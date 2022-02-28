@@ -11,7 +11,7 @@ https://github.com/brrainey13
 ## Vish Chugani
 https://github.com/vish0804
 
-## Nyugen Dang
+## Nguyen Dang
 https://github.com/nguyendang2000
 
 ## Hannah Harvard
