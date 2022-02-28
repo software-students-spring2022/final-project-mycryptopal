@@ -4,8 +4,6 @@ The goal of MyCryptoPal is to provide users an accessible gateway to the world o
 # About Us
  ## Shashanka Sharma
 https://github.com/Shashanka-Sharma
-https://www.linkedin.com/in/shashankasharma/
-https://gopeer.org/profile/5e65ae1007ce202ebd796bbc?code=shashankas0
 
 ## Blake Rainey
 https://github.com/brrainey13
