@@ -3,6 +3,10 @@
 This repository contains instructions and files for two assignments that together comprise the user experience design phase of a web app.
 
 Replace the contents of this file with the completed assignments, as described in:
+
+
+### this is our sitemap
+![Site map](ux-design/MyCryptoPal-Site-Map.drawio.png)
 ### Our home page of the app, quite self explanitory
 ![Home page](MyCryptoPal-Home-Page.drawio.png)
 ### This page is where we will teach people about cryptos
