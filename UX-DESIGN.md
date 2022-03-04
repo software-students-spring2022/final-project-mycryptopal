@@ -4,23 +4,32 @@ This repository contains instructions and files for two assignments that togethe
 
 Replace the contents of this file with the completed assignments, as described in:
 
-
 ### this is our sitemap
-![Site map](ux-design/MyCryptoPal-Site-Map.drawio.png)
+![Site map](ux-design/MyCryptoPal-Site-Map.drawio(1).png)
 ### Our home page of the app, quite self explanitory
-![Home page](MyCryptoPal-Home-Page.drawio.png)
+![Login page](ux-design/MyCryptoPal-Login-Screen.drawio.png)
 ### This page is where we will teach people about cryptos
-![Learn page](MyCryptoPal-Learn-Page.drawio.png)
-### This page is where people can explore more cryptos
-![Explore Cryptos page](MyCryptoPal-Explore-Cryptos.drawio.png)
-### this page is to determine the user education level
-![Beginneer/Intermediate/advanced](MyCryptoPal-Beginner_Intermediate_Advanced.drawio.png)
+![Registration Page](ux-design/MyCryptoPal-Register.drawio.png)
 ### this page is to show some analytics surrounding your portfolio
-![Crypto Analytics](MyCryptoPal-Crypto-Analytics.drawio.png)
+![Home Page](ux-design/MyCryptoPal-Home-Page.drawio.png)
+### This page is where people can explore more cryptos
+![Explore Cryptos page](ux-design/MyCryptoPal-NEW-Explore.drawio.png)
+### this page is to determine the user education level
+![Specific Crypto Page](ux-design/MyCryptoPal-clickedON-Crypto.drawio.png)
+### this page is to show some analytics surrounding your portfolio
+![Lessons/Learn Page](ux-design/MyCryptoPal-NEW-Learn.drawio.png)
+### this page is to show some analytics surrounding your portfolio
+![Example lesson](ux-design/MyCryptoPal-NEW-example-lesson.drawio.png)
+### this page is to show some analytics surrounding your portfolio
+![Sample News Article Page](ux-design/MyCryptoPal-Sample-News-Article.drawio.png)
+### this page is to show some analytics surrounding your portfolio
+![Sample News Article with Scrolling Page](ux-design/MyCryptoPal-Sample-News-Scrolling.drawio.png)
+### this page is to show some analytics surrounding your portfolio
+![Portfolio Page](ux-design/MyCryptoPal-New-Portfolio.drawio.png)
 ### this is our contact us page, also pretty self explanitory
 ![Contact us](MyCryptoPal-Contact-Us.drawio.png)
 
 
 ### Our prototype
-[invision prototype](https://blakerainey605421.invisionapp.com/console/share/QRAJDUY2PS8/881869811)
+[invision prototype](https://blakerainey605421.invisionapp.com/console/share/8JU2WM6ZA5F)
 
