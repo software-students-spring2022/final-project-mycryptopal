@@ -1,0 +1,45 @@
+.section {
+    display: flex;
+    flex-direction: column;
+    width: 92%;
+    text-align: justify;
+}
+
+.section-header {
+    font-weight: bold;
+    font-size: 1.3em;
+    margin-top: 2vh;
+}
+
+.question {
+    font-weight: bold;
+    font-style: italic;
+    margin-top: 1vh;
+}
+
+.answer {
+    margin-top: 0.5vh;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+#submitButton {
+    margin-top: 0.5vh;
+    margin-left: auto;
+    margin-right: 0;
+    width: 30%;
+    height: 2.2em;
+}
+
+label {
+    margin-top: 0.5vh;
+    font-style: italic;
+}
+
+textarea {
+    resize: none;
+    height: 10em;
+}

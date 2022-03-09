@@ -1,5 +1,10 @@
-.App {
+#page-title {
   text-align: center;
+}
+
+#page-content {
+  margin-top: 3vh;
+  margin-left:8%;
 }
 
 #page-wrap {
