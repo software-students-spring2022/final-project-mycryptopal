@@ -1,19 +1,25 @@
-# Project Repository
+# Product Vision Statement
+The goal of MyCryptoPal is to provide users an accessible gateway to the world of cryptocurrency. Cryptocurrency is an emerging type of finance that revolves around a relatively new technology called blockchain. The space is often a hot topic and is often trending on news sources, social media and financial markets. Everyone seems to have an opinion on the relatively speculative industry, but one statement that our team internalizes is the notion that cryptocurrency is too large to ignore. Rather than focus on an application that supports one opinion or another, we strive to provide an educational service that allows users to learn more about cryptocurrency, the financials behind it and the technology that it is built upon. 
 
-This repository will be used for team projects.
+# About Us
+ ## Shashanka Sharma
+https://github.com/Shashanka-Sharma
 
-Several sets of instructions are included in this repository. They should each be treated as separate assignments with their own due dates and sets of requirements.
+## Blake Rainey
+https://github.com/brrainey13
 
-1. See the [App Map & Wireframes](instructions-0a-app-map-wireframes.md) and [Prototyping](./instructions-0b-prototyping.md) instructions for the requirements of the initial user experience design of the app.
+## Vish Chugani
+https://github.com/vish0804
 
-1. Delete the contents of this file and replace with the contents of a proper README.md, as described in the [project setup instructions](./instructions-0c-project-setup.md)
+## Nguyen Dang
+https://github.com/nguyendang2000
 
-1. See the [Sprint Planning instructions](instructions-0d-sprint-planning.md) for the requirements of Sprint Planning for each Sprint.
+## Hannah Harvard
+https://github.com/hh1927
 
-1. See the [Front-End Development instructions](./instructions-1-front-end.md) for the requirements of the initial Front-End Development.
 
-1. See the [Back-End Development instructions](./instructions-2-back-end.md) for the requirements of the initial Back-End Development.
+# Product History
+A few of the team members are Crypto enthusiasts and have some experience trading cryptocurrencies in secondary markets. Our passion for the technology led to the idea of an educational platform that helps segue more individuals into the space. The crypto space is heavily run by a community effort and by introducing others into the space, we can benefit the community as a whole. A problem with the issue that is often quoted about the cryptocurrency space is it’s volatility and speculative nature. Our platform strives to provide users with a paper trading simulator of real time crypto exchanges. Users can practice trading different coins and learn more about how it’s done in a controlled and safe setting, with no potential of losing money.  
+See the [Contributions Document](./CONTRIBUTING.md) 
 
-1. See the [Database Integration instructions](./instructions-3-database.md) for the requirements of integrating a database into the back-end.
-
-1. See the [Deployment instructions](./instructions-4-deployment.md) for the requirements of deploying an app.
+# Building and Testing The Project (update later when we get to this point)
