@@ -5,3 +5,28 @@
 #page-wrap {
   overflow: auto;
 }
+
+.page-button {
+  min-width: 300px;
+  max-width: 400px;
+  border: 1px solid #94A3B8;
+  background-color: #E2E8F0;
+  padding-right: 25px;
+  padding-left: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login{
+  background:linear-gradient(rgba(250,0,0,0.5),transparent);
+  background-color:rgb(153, 0, 255); /*this your primary color*/
+  height : 900px;
+  width: 10000px;
+  /*width: 400px;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
