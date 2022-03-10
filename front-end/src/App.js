@@ -17,14 +17,14 @@ function App() {
       <div id="page-wrap">
         <Router>
           <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<Login />} />
+            <Route path='/registration' element={<Registration />} /> 
+            <Route path='/home' element={<Home />} />
             <Route path='/portfolio' element={<Portfolio />} />
             <Route path='/explore' element={<Explore />} />
             <Route path='/learn' element={<Learn />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/settings' element={<Settings />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/registration' element={<Registration />} />
           </Routes>
         </Router>
       </div>

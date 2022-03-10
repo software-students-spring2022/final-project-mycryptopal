@@ -1,0 +1,9 @@
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 0.5vh;
+    font-style: italic;
+}
