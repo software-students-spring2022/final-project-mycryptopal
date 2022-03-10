@@ -4,7 +4,7 @@ import { slide as Menu } from 'react-burger-menu';
 function Sidebar() {
     return (
         <Menu>
-            <a id="home" className="menu-item" href="/"><h1>MyCryptoPal</h1></a>
+            <a id="home" className="menu-item" href="/home"><h1>MyCryptoPal</h1></a>
             <a id="portfolio" className="menu-item" href="/portfolio">My Portfolio</a>
             <a id="explore" className="menu-item" href="/explore">Explore Cryptos</a>
             <a id="learn" className="menu-item" href="/learn">Learn</a>
