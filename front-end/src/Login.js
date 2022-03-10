@@ -10,7 +10,9 @@ function Login() {
                 <input name="username" type="text"></input>
                 <label for="password">Password:</label>
                 <input name="password" type="text"></input>
-                <input id="loginButton" type="button" onclick="window.location.href = '/home';" value="Login"></input>
+                <a href = '/home'>
+                <input id="loginButton" type="button" value="Login"></input>
+                </a>
             </form>
         </div>
         <a href = '/registration'>
