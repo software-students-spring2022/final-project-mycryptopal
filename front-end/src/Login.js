@@ -6,27 +6,14 @@ function Login() {
         <h1>Login</h1>
         <div>
             <form>
-                <label>
-                    Username: <input type="text" />
-                </label>
-                <br />
-                <label>
-                    Password: <input type="text" />
-                </label>
+                <label for="username">Username:</label>
+                <input name="username" type="text"></input>
+                <label for="password">Password:</label>
+                <input name="password" type="text"></input>
+                <input id="loginButton" type="button" value="Login"></input>
             </form>
         </div>
-        <button
-            // onClick={() => navigateToPage('/home')} //need to decide on page after login - commented out as the onClick function is a placeholder that breaks the app
-            className="page-button"
-        >
-            Login
-        </button>
-        <button
-            // onClick={() => navigateToPage('/registration')} //need to talk to backend - commented out as the onClick function is a placeholder that breaks the app 
-            className="page-button"
-        >
-            Create Account
-        </button>
+        <button className= "page-button"> Create Account </button>
     </div>
     )
 }
