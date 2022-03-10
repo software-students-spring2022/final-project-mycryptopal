@@ -16,13 +16,13 @@ function Login() {
             </form>
         </div>
         <button
-            onClick={() => navigateToPage('/home')} //need to decide on page after login
+            // onClick={() => navigateToPage('/home')} //need to decide on page after login - commented out as the onClick function is a placeholder that breaks the app
             className="page-button"
         >
             Login
         </button>
         <button
-            onClick={() => navigateToPage('/registration')} //need to talk to backend 
+            // onClick={() => navigateToPage('/registration')} //need to talk to backend - commented out as the onClick function is a placeholder that breaks the app 
             className="page-button"
         >
             Create Account

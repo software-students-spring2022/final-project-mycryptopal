@@ -2,7 +2,15 @@ import './Home.css';
 
 function Home() {
     return (
-        <h1>Home Page</h1>
+        <>
+            <div id="page-title">
+                <h1>Home Page</h1>
+            </div>
+
+            <div id="page-content">
+            
+            </div>
+        </>
     )
 }
 

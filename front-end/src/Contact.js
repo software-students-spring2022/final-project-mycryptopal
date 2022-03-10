@@ -6,6 +6,7 @@ function Contact() {
             <div id="page-title">
                 <h1>Contact Page</h1>
             </div>
+            
             <div id="page-content">
                 <div id="faq" className="section">
                     <div className="section-header">
@@ -46,9 +47,7 @@ function Contact() {
                     </form>
                 </div>
             </div>
-            
         </>
-
     )
 }
 

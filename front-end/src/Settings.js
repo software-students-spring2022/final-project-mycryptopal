@@ -2,7 +2,15 @@ import './Settings.css';
 
 function Settings() {
     return (
-        <h1>Settings Page</h1>
+        <>
+            <div id="page-title">
+                <h1>Settings Page</h1>
+            </div>
+
+            <div id="page-content">
+            
+            </div>
+        </>
     )
 }
 

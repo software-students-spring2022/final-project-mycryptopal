@@ -2,7 +2,15 @@ import './Learn.css';
 
 function Learn() {
     return (
-        <h1>Learn Page</h1>
+        <>
+            <div id="page-title">
+                <h1>Learn Page</h1>
+            </div>
+
+            <div id="page-content">
+            
+            </div>
+        </>
     )
 }
 

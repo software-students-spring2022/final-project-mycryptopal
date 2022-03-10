@@ -2,7 +2,15 @@ import './Portfolio.css';
 
 function Portfolio() {
     return (
-        <h1>Portfolio Page</h1>
+        <>
+            <div id="page-title">
+                <h1>Portfolio Page</h1>
+            </div>
+
+            <div id="page-content">
+            
+            </div>
+        </>
     )
 }
 
