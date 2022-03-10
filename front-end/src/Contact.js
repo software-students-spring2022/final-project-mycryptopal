@@ -43,12 +43,16 @@ function Contact() {
                         <input name="contact-email" type="text"></input>
                         <label for="contact-message">Your Message or Question</label>
                         <textarea name="contact-message" type="text"></textarea>
-                        <input id="submitButton" type="button" value="Send"></input>
+                        <input id="submitButton" onClick={popUp} type="button" value="Send"></input>
                     </form>
                 </div>
             </div>
         </>
     )
+}
+
+function popUp() {
+    alert("Thank you for your message!\nOur team will get back to you as soon as possible :)");
 }
 
 export default Contact;
