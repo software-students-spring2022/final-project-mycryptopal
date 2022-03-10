@@ -10,10 +10,12 @@ function Login() {
                 <input name="username" type="text"></input>
                 <label for="password">Password:</label>
                 <input name="password" type="text"></input>
-                <input id="loginButton" type="button" onClick={href='/home'} value="Login"></input>
+                <input id="loginButton" type="button" onclick="window.location.href = '/home';" value="Login"></input>
             </form>
         </div>
-        <button className= "page-button" onClick={href='/registration'}> Create Account </button>
+        <a href = '/registration'>
+        <button className= "page-button"> Create Account </button>
+        </a>
     </div>
     )
 }
