@@ -10,10 +10,10 @@ function Login() {
                 <input name="username" type="text"></input>
                 <label for="password">Password:</label>
                 <input name="password" type="text"></input>
-                <input id="loginButton" type="button" value="Login"></input>
+                <input id="loginButton" type="button" onClick="location.href='Home'" value="Login"></input>
             </form>
         </div>
-        <button className= "page-button"> Create Account </button>
+        <button className= "page-button" onClick="location.href='Registration'"> Create Account </button>
     </div>
     )
 }
