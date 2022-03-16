@@ -37,11 +37,11 @@ function Contact() {
                         Still Need Help? Contact Us!
                     </div>
                     <form name="contact-form" action="/contact" method="GET">
-                        <label for="contact-name">Your Name</label>
+                        <label htmlFor="contact-name">Your Name</label>
                         <input name="contact-name" type="text"></input>
-                        <label for="contact-email">Your Email</label>
+                        <label htmlFor="contact-email">Your Email</label>
                         <input name="contact-email" type="text"></input>
-                        <label for="contact-message">Your Message or Question</label>
+                        <label htmlFor="contact-message">Your Message or Question</label>
                         <textarea name="contact-message" type="text"></textarea>
                         <input id="submitButton" onClick={popUp} type="button" value="Send"></input>
                     </form>
