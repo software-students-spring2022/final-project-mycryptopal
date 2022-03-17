@@ -69,15 +69,15 @@ function clickedOn() {
                 <br></br>
 
                 <div className = "trading_vol">
-                    Trading Volume: {Volume}
+                    Trading Volume: Volume
                 </div>
 
                 <div className = "market-cap">
-                    Market Cap: {market_cap}
+                    Market Cap: Market Cap
                 </div>
 
                 <div className = "Supply">
-                    Circulating Supply: {Supply}
+                    Circulating Supply: Supply
                 </div>    
             </div>
         </div>
