@@ -7,7 +7,7 @@ import Explore from './Explore';
 import Learn from './Learn';
 import Contact from './Contact';
 import Settings from './Settings';
-import clickedOn from './clickedOn';
+import Crypto from './Crypto';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
           <Route path='/learn' element={<Learn />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/settings' element={<Settings />} />
-          <Route path='/clickedOn' element={<clickedOn />} />
+          <Route path='/crypto' element={<Crypto />} />
         </Routes>
       </div>
     </div>

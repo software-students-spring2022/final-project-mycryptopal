@@ -1,4 +1,4 @@
-import './clickedOn.css';
+import './Crypto.css';
 
     // https://www.mockaroo.com/docs
     // All these API requests should be "GET" Requests based on the Input
@@ -10,7 +10,7 @@ import './clickedOn.css';
 
     // Add a picture of a cryptocurrency to the right of these headers
 
-function clickedOn() {
+function Crypto() {
     return (
         <>
         <div id = "page-title">
@@ -103,4 +103,4 @@ function dropCrypto() {
     // fetch crypto name from mockaroo
     alert("You have removed {GET crypto name} from your watchlist.")
 }
-export default clickedOn;
+export default Crypto;
