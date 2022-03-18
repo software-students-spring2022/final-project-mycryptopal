@@ -1,0 +1,61 @@
+.section_top{
+    font-weight: bold;
+}
+
+.cryptoStuff{
+    font-weight: bold;
+    font-size: 1.3em;
+    margin-top: 2vh;
+}
+
+.cryptoPic{
+    align-items: right;
+}
+
+.cryptoParagraphTitle{
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.market_header{
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.section_bottom{
+    align-items: center;
+    font-weight: bold;
+}
+
+.stockGraph{
+    align-items: center;
+}
+
+.add_crypto_button{
+    align-items: left;
+}
+
+.add_crypto_button{
+    align-items:right
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

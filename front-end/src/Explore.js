@@ -4,7 +4,7 @@ function Explore() {
     return (
         <div className= "explore">
         <h1>Explore Page</h1>
-            <a href = '/clickedOn'>
+            <a href = '/crypto'>
             <button className= "page-button"> More Details... </button>
             </a>
         </div>
