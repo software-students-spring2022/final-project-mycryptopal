@@ -14,7 +14,7 @@ function Registration() {
                 <input name="password" type="text"></input>
                 <label for="repassword">Reenter Password:</label>
                 <input name="repassword" type="text"></input>
-                <a href = '/home'>
+                <a href = '/ '>
                 <input id="create" type="button" value="Create"></input>
                 </a>
             </form>
