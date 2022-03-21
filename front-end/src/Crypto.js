@@ -97,11 +97,11 @@ function Crypto() {
 
 function addCrypto() {
     // fetch cry name from mockaroo
-    alert("You have added {GET crypto name} to your watchlist!")
+    alert("You have successfully added a crypto to your watchlist!")
 }
 
 function dropCrypto() {
     // fetch crypto name from mockaroo
-    alert("You have removed {GET crypto name} from your watchlist.")
+    alert("You have successfully removed a crypto from your watchlist.")
 }
 export default Crypto;
