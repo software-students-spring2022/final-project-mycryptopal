@@ -138,6 +138,11 @@ function Home() {
             adipiscing elit pellentesque.
             </p>
         </div>
+        <div className="myButton">
+        <button onClick={Home}>
+            Load more news
+        </button>
+        </div>
     </>
 
       );
