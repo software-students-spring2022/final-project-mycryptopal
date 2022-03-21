@@ -22,4 +22,12 @@ https://github.com/hh1927
 A few of the team members are Crypto enthusiasts and have some experience trading cryptocurrencies in secondary markets. Our passion for the technology led to the idea of an educational platform that helps segue more individuals into the space. The crypto space is heavily run by a community effort and by introducing others into the space, we can benefit the community as a whole. A problem with the issue that is often quoted about the cryptocurrency space is it’s volatility and speculative nature. Our platform strives to provide users with a paper trading simulator of real time crypto exchanges. Users can practice trading different coins and learn more about how it’s done in a controlled and safe setting, with no potential of losing money.  
 See the [Contributions Document](./CONTRIBUTING.md) 
 
-# Building and Testing The Project (update later when we get to this point)
+# Building and Testing The Project
+1. Clone the repository onto your local machine with ```git clone https://github.com/software-assignments-spring2022/final-project-mycryptopal.git```
+2. Navigate to the local repository
+3. Navigate to front-end directory with ```cd front-end```
+4. Install front-end dependencies with ```npm install```
+5. Launch the front end with ```npm start```
+6. If not done automatically, access the app using a browser at ```localhost:3000```
+7. Enable Device Mode on browser (Chrome/Firefox) with ```Ctrl-Shift-M```
+8. Enter a mobile viewport size, e.g. ```390 x 844```, at the top of the screen to test the mobile interface of the app

@@ -7,7 +7,7 @@ function Registration() {
                 <h1>Ready to Level Up Your Investing Career?</h1>
 
                 <div id="logo">
-                    <img src="https://picsum.photos/300" alt="MyCryptoPal Logo"/>
+                    <img src="https://picsum.photos/1000" alt="MyCryptoPal Logo"/>
                 </div>
 
                 <div id="title">

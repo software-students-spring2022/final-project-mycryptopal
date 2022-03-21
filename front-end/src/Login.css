@@ -27,3 +27,7 @@ label {
 h2 {
     margin-bottom: 0.5em;
 }
+
+#logo img {
+    max-width: 80%;
+}

@@ -1,0 +1,22 @@
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.question {
+    font-weight: bold;
+    font-style: italic;
+    margin-top: 1vh;
+}
+
+.answer {
+    margin-top: 0.5vh;
+}
+
+#checkAnswerButton {
+    margin-top: 0.5vh;
+    margin-left: auto;
+    margin-right: 0;
+    width: 30%;
+    height: 2.2em;
+}

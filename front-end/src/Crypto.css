@@ -1,44 +1,124 @@
-.section_top{
+#top-content {
+    display: flex;
+    flex-direction: row;
+    width: 92%;
+}
+
+#crypto-name {
+    display: flex;
+    text-align: center;
     font-weight: bold;
-}
-
-.cryptoStuff{
-    font-weight: bold;
-    font-size: 1.3em;
-    margin-top: 2vh;
-}
-
-.cryptoPic{
-    align-items: right;
-}
-
-.cryptoParagraphTitle{
-    align-items: center;
-    font-weight: bold;
-    font-size: 1.3em;
-}
-
-.market_header{
-    font-weight: bold;
-    font-size: 1.3em;
-}
-
-.section_bottom{
-    align-items: center;
-    font-weight: bold;
-}
-
-.stockGraph{
+    width: 100%;
+    font-size: 1.7em;
+    flex-basis: 40%;
+    justify-content: center;
     align-items: center;
 }
 
-.add_crypto_button{
-    align-items: left;
+#crypto-info {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 70%;
+    justify-content: center;
+    align-items: center;
 }
 
-.add_crypto_button{
-    align-items:right
+#crypto-subinfo {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-basis: 60%;
 }
+
+.subinfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-left {
+    flex-basis: 60%;
+    font-weight: bold;
+}
+
+.info-right {
+    flex-basis: 40%;
+    font-style: italic;
+}
+
+.cryptoInfo {
+    height: 30%;
+}
+
+#crypto-image {
+    flex-basis: 30%;
+}
+
+#crypto-image img {
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#middle-content {
+    display: flex;
+    flex-direction: column;
+    width: 92%;
+}
+
+#stock-graph img {
+    min-width: 100%;
+    max-width: 100%;
+}
+
+#history-header {
+    flex-basis: 20%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+#history-content {
+    flex-basis: 80%;
+    text-align: justify;
+}
+
+#bottom-content {
+    display: flex;
+    flex-direction: column;
+    width: 92%;
+}
+
+#market-header {
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#market-info {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#buttons{
+    width: 92%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+    text-align: center;
+}
+
+#button-left {
+    flex-basis: 50%;
+}
+
+#button-right {
+    flex-basis: 50%;
+}
+
 
 
 

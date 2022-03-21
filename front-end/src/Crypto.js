@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import './Crypto.css';
 
     // https://www.mockaroo.com/docs
@@ -11,93 +12,96 @@ import './Crypto.css';
     // Add a picture of a cryptocurrency to the right of these headers
 
 function Crypto() {
+    const [coin, setCoin] = useState({});
+
+    useEffect(() => {
+        async function getCoin() {
+            const res = await fetch('https://my.api.mockaroo.com/coins.json?key=4c156a80');
+            const data = await res.json();
+            setCoin(data);
+        }
+        getCoin();
+    }, []);
+
     return (
         <>
-        <div id = "page-title">
-            <h1> Crypto Analytics </h1>
-        </div>
-        
-        <div id = "page-top-content">
-            <div id = "crypto-info" className = "section_top">
-            
-            <img src = "https://github.com/software-assignments-spring2022/final-project-mycryptopal/blob/master/front-end/imageResources/myCryptoPalLogo.png"  alt = "" id = "cryptoPic" className='cryptoPic'></img>
-
-                <div className = "cryptoStuff">
-                    Name of Searched Cryptocurrency
-                </div>
-
-                <div className = "cryptoStuff">
-                    Price
-                </div>
-
-                <div className = "cryptoStuff">
-                    Percent Change
-                </div>
-
-            </div>
-        
-        <br></br>
-
-        <div id = "page-mid-content">
-            <div id = "crypto-history" className = "section_mid">
-                <img src = "https://github.com/software-assignments-spring2022/final-project-mycryptopal/blob/a42e35c3c31566198bd149189c708eaf394ac61c/front-end/imageResources/stockGraph.png" alt = "" className = "stockGraph"></img>
-
-                <div className = "cryptoParagraphTitle">
-                    Cryptocurrency Information and History
-                </div>
-
-                <div className = "cryptoParagraph">
-                    <p>
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                    </p>
-
-                </div>
-            </div>   
-        </div>
-
-        <br></br>
-
-        <div id = "page-bottom-content">
-            <div id = "pageBottomHeader" className ="market_header">
-                Market Stats
+            <div id = "page-title">
+                <h1> Crypto Analytics </h1>
             </div>
 
-            <div id = "market-stats" className = "section_bottom">
-                <br></br>
-
-                <div className = "trading_vol">
-                    Trading Volume: Volume
+            <div id="page-content">
+                <div id="top-content">
+                    <div id="crypto-info">
+                        <div id="crypto-name">
+                            {coin.cryptoName}
+                        </div>
+                        <div id="crypto-subinfo">
+                            <div className="subinfo info-left">
+                                <div className="cryptoInfo cryptoPrice">Price</div>
+                                <div className="cryptoInfo cryptoPercent">% Change</div>
+                            </div>
+                            <div className="subinfo info-right">
+                                <div className="cryptoInfo cryptoPrice">{coin.cryptoPrice}</div>
+                                <div className="cryptoInfo cryptoPercent">{coin.cryptoPercentChange}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="crypto-image">
+                        <img src="https://picsum.photos/300" alt="coin pic"></img>
+                    </div>
                 </div>
 
-                <div className = "market-cap">
-                    Market Cap: Market Cap
+                <div id="middle-content">
+                    <div id="stock-graph">
+                        <img src="https://picsum.photos/1200/600" alt="stock graph"></img>
+                    </div>
+                    <div id="crypto-history">
+                        <div id="history-header">
+                            Cryptocurrency Information and History
+                        </div>
+                        <div id="history-content">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </div>
+                    </div>
                 </div>
-
-                <div className = "Supply">
-                    Circulating Supply: Supply
-                </div>    
-            </div>
-        </div>
-
-        <div id = "buttons">
-            <input id = "addButton" onClick = {addCrypto} type = "button" value = "Add Crypto" className = "add_crypto_button"></input>
-            <input id = "dropButton" onClick = {dropCrypto} type = "button" value = "Drop Crypto" className = "drop_crypto_button"></input>
-        </div>
-        
-
-        </div>
+                
+                <div id="bottom-content">
+                    <div id="market-header">
+                        Market Stats
+                    </div>
+                    <div id="market-info">
+                        <div className="subinfo info-left">
+                            <div className="cryptoInfo cryptoVolume">Trading Volume</div>
+                            <div className="cryptoInfo cryptoCap">Market Cap</div>
+                            <div className="cryptoInfo cryptoSupply">Circulating Supply</div>
+                        </div>
+                        <div className="subinfo info-right">
+                            <div className="cryptoInfo cryptoVolume">{coin.cryptoVolume}</div>
+                            <div className="cryptoInfo cryptoCap">{coin.cryptoCap}</div>
+                            <div className="cryptoInfo cryptoSupply">{coin.cryptoSupply}</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="buttons">
+                    <div id="button-left">
+                        <input id="addButton" onClick = {addCrypto} type = "button" value = "Add Crypto" className = "add_crypto_button"></input>
+                    </div>
+                    <div id="button-right">
+                        <input id = "dropButton" onClick = {dropCrypto} type = "button" value = "Drop Crypto" className = "drop_crypto_button"></input>
+                    </div>
+                </div>
+            </div>       
         </>
-
     )     
 }
 
 function addCrypto() {
     // fetch cry name from mockaroo
-    alert("You have added {GET crypto name} to your watchlist!")
+    alert("You have successfully added a crypto to your watchlist!")
 }
 
 function dropCrypto() {
     // fetch crypto name from mockaroo
-    alert("You have removed {GET crypto name} from your watchlist.")
+    alert("You have successfully removed a crypto from your watchlist.")
 }
 export default Crypto;
