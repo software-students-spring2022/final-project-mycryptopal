@@ -1,13 +1,18 @@
+import { useEffect, useState } from 'react';
 import './Settings.css';
 
-const sampleUser = {
-    firstName: 'John',
-    lastName: 'Smith',
-    userName: 'jsmith123',
-    email: 'jsmith@gmail.com'
-};
-
 function Settings() {
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        async function getUser() {
+            const res = await fetch('https://my.api.mockaroo.com/users.json?key=4c156a80');
+            const data = await res.json();
+            setUser(data[0]);
+        }
+        getUser();
+    }, []);
+
     return (
         <>
             <div id="page-title">
@@ -22,20 +27,20 @@ function Settings() {
                             Change Profile Picture
                         </div>
                     </div>
-                    <h2>{sampleUser.firstName} {sampleUser.lastName}</h2>
+                    <h2>{user.firstName} {user.lastName}</h2>
                 </div>
 
                 <div id="personalization">
                     <form>
                         <h3>Personalize</h3>
                         <label htmlFor="fname">First Name</label>
-                        <input name="fname" type="text" value={sampleUser.firstName}></input>
+                        <input name="fname" type="text" value={user.firstName}></input>
                         <label htmlFor="lname">Last Name</label>
-                        <input name="lname" type="text" value={sampleUser.lastName}></input>
+                        <input name="lname" type="text" value={user.lastName}></input>
                         <label htmlFor="uname">Username</label>
-                        <input name="uname" type="text" value={sampleUser.userName}></input>
+                        <input name="uname" type="text" value={user.userName}></input>
                         <label htmlFor="email">Email</label>
-                        <input name="email" type="text" value={sampleUser.email}></input>
+                        <input name="email" type="text" value={user.email}></input>
                         <input type="button" value="Save" id="saveButton"></input>
                     </form>
 
