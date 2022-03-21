@@ -67,7 +67,7 @@ function Crypto() {
             <div id = "market-stats" className = "section_bottom">
                 <br></br>
 
-                <div className = "trading_vol">
+                <div className = "trading_vol" >
                     Trading Volume: Volume
                 </div>
 

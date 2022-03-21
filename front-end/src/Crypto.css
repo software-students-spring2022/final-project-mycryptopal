@@ -1,16 +1,25 @@
 .section_top{
     font-weight: bold;
     float: left;
+    margin-left: 36px;
 }
 
 .section_mid{
     float: left;
     width: 60%;
+    margin-left: 36px;
 }
 
 .section_bottom{
     float: center;
     font-weight: bold;
+    margin-left: 600px;
+    font-size: 1.5em;
+}
+
+#buttons{
+    margin-left: 650px;
+    font-size: 50px;
 }
 
 #pageTopContent{
@@ -26,12 +35,11 @@
 #pageBottomContent{
     display: inline-block;
     width: 100%;
-    align-items: center;
 }
 
 .cryptoStuff{
     font-weight: bold;
-    font-size: 1.3em;
+    font-size: 2.0em;
 }
 
 #pic1{
@@ -44,14 +52,14 @@
 
 .cryptoParagraphTitle{
     font-weight: bold;
-    font-size: 1.3em;
+    font-size: 2.0em;
     float: middle;
 }
 
 .market_header{
     font-weight: bold;
-    font-size: 1.3em;
-    float: center;
+    font-size: 2.0em;
+    margin-left: 36px;
 }
 
 
