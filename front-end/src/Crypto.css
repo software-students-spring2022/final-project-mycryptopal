@@ -1,69 +1,44 @@
 .section_top{
     font-weight: bold;
-    float: left;
-    margin-left: 36px;
-}
-
-.section_mid{
-    float: left;
-    width: 60%;
-    margin-left: 36px;
-}
-
-.section_bottom{
-    float: center;
-    font-weight: bold;
-    margin-left: 600px;
-    font-size: 1.5em;
-}
-
-#buttons{
-    margin-left: 650px;
-    font-size: 50px;
-}
-
-#pageTopContent{
-    display: inline-block;
-    width: 100%;
-}
-
-#pageMidContent{
-    display: inline-block;
-    width: 100%;
-}
-
-#pageBottomContent{
-    display: inline-block;
-    width: 100%;
 }
 
 .cryptoStuff{
     font-weight: bold;
-    font-size: 2.0em;
+    font-size: 1.3em;
+    margin-top: 2vh;
 }
 
-#pic1{
-    float: right;
-}
-
-#pic2{
-    float: right;
+.cryptoPic{
+    align-items: right;
 }
 
 .cryptoParagraphTitle{
+    align-items: center;
     font-weight: bold;
-    font-size: 2.0em;
-    float: middle;
+    font-size: 1.3em;
 }
 
 .market_header{
     font-weight: bold;
-    font-size: 2.0em;
-    margin-left: 36px;
+    font-size: 1.3em;
 }
 
+.section_bottom{
+    align-items: center;
+    font-weight: bold;
+}
 
+.stockGraph{
+    align-items: center;
+}
 
+.add_crypto_button{
+    align-items: left;
+}
+
+.add_crypto_button{
+    align-items:right
+}
 
 
 
