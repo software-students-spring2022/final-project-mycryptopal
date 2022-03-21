@@ -17,11 +17,11 @@ function Crypto() {
             <h1> Crypto Analytics </h1>
         </div>
         
-        <div id = "page-top-content">
+        <div id = "pageTopContent">
+            <div id = "pic1">
+                <img src = "https://picsum.photos/400/400"  alt = "" id = "cryptoPic" className='cryptoPic'></img>
+            </div>
             <div id = "crypto-info" className = "section_top">
-            
-            <img src = "https://github.com/software-assignments-spring2022/final-project-mycryptopal/blob/master/front-end/imageResources/myCryptoPalLogo.png"  alt = "" id = "cryptoPic" className='cryptoPic'></img>
-
                 <div className = "cryptoStuff">
                     Name of Searched Cryptocurrency
                 </div>
@@ -35,13 +35,15 @@ function Crypto() {
                 </div>
 
             </div>
+        </div>
         
-        <br></br>
 
-        <div id = "page-mid-content">
+        <div id = "pageMidContent">
+            <div id = "pic2">
+                <img src = "https://picsum.photos/400/400" alt = "" className = "stockGraph"></img>
+            </div>
             <div id = "crypto-history" className = "section_mid">
-                <img src = "https://github.com/software-assignments-spring2022/final-project-mycryptopal/blob/a42e35c3c31566198bd149189c708eaf394ac61c/front-end/imageResources/stockGraph.png" alt = "" className = "stockGraph"></img>
-
+                
                 <div className = "cryptoParagraphTitle">
                     Cryptocurrency Information and History
                 </div>
@@ -84,8 +86,6 @@ function Crypto() {
             <input id = "dropButton" onClick = {dropCrypto} type = "button" value = "Drop Crypto" className = "drop_crypto_button"></input>
         </div>
         
-
-        </div>
         </>
 
     )     
