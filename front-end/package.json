@@ -14,7 +14,8 @@
     "react-scripts": "5.0.0",
     "rechart": "^0.0.1",
     "recharts": "^2.1.9",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yarn": "^1.22.18"
   },
   "scripts": {
     "start": "react-scripts start",
