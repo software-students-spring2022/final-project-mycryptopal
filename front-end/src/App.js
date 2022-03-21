@@ -5,6 +5,8 @@ import Home from './Home';
 import Portfolio from './Portfolio';
 import Explore from './Explore';
 import Learn from './Learn';
+import Login from './Login';
+import Registration from './Registration';
 import LearnMap from './LearnMap';
 import Contact from './Contact';
 import Settings from './Settings';
