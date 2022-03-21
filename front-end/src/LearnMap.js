@@ -2,8 +2,9 @@ import './LearnMap.css';
 
 function LearnMap() {
     return (
-            <div className="learnMap">
+            <div id="page-title">
                 <h1>LearnMap</h1>
+                
                 <a href = '/learn'>
                 <button className= "page-button"> Lesson 1 </button>
                 </a>

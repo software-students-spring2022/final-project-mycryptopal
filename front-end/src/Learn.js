@@ -4,6 +4,7 @@ function Learn() {
     return (
     <div id="page-title">
         <h1>Lesson Page</h1>
+        
         <div className="question"> Quiz Question 1 </div>
         <div>
             <form>
