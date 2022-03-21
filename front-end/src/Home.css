@@ -30,18 +30,22 @@ float: left
 #paragraph1 {
 position: relative;
 margin-left: 130px;
-bottom: 100px;
+bottom: 130px;
+max-width: 600px;
 }
 
 #paragraph2 {
 position: relative;
 margin-left: 130px;
-bottom: 100px;
+bottom: 120px;
+max-width: 600px;
+
 
 }
 
 #paragraph3 {
-    position: relative;
-    margin-left: 130px;
-    bottom: 100px;
+position: relative;
+margin-left: 130px;
+bottom: 120px;
+max-width: 600px;
 }

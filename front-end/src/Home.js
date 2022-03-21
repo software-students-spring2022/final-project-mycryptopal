@@ -112,6 +112,9 @@ function Home() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
             Ac tincidunt vitae semper quis lectus. Dolor sit amet consectetur 
+            adipiscing elit pellentesque.Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ac tincidunt vitae semper quis lectus. Dolor sit amet consectetur 
             adipiscing elit pellentesque.
             </p>
             </div>
@@ -123,6 +126,9 @@ function Home() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
             Ac tincidunt vitae semper quis lectus. Dolor sit amet consectetur 
+            adipiscing elit pellentesque.Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ac tincidunt vitae semper quis lectus. Dolor sit amet consectetur 
             adipiscing elit pellentesque.
             </p>
             </div>
@@ -132,6 +138,9 @@ function Home() {
             <div className="text3">
             <p id="paragraph3">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ac tincidunt vitae semper quis lectus. Dolor sit amet consectetur 
+            adipiscing elit pellentesque.Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
             Ac tincidunt vitae semper quis lectus. Dolor sit amet consectetur 
             adipiscing elit pellentesque.
