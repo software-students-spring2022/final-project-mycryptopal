@@ -2,10 +2,10 @@ import './Learn.css';
 
 function Learn() {
     return (
-    <div className='learn'>
-        <h1>Lesson Example</h1>
-        <div>
+    <div id="page-title">
+        <h1>Lesson Page</h1>
         <div className="question"> Quiz Question 1 </div>
+        <div>
             <form>
                 <label for="answer">Answer:</label>
                 <input name="answer" type="text"></input>
