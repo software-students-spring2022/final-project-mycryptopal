@@ -10,7 +10,7 @@ function Login() {
                 <input name="username" type="text"></input>
                 <label for="password">Password:</label>
                 <input name="password" type="text"></input>
-                <a href = '/home'>
+                <a href = '/ '>
                 <input id="loginButton" type="button" value="Login"></input>
                 </a>
             </form>
