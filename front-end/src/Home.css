@@ -10,34 +10,34 @@
   }
 
   .firstarticle {
-margin-left: 400px;
+margin-left: 50px;
 margin-top: 50px;
-float: left;
+max-height: 200px;
 
   }
 
   .secondarticle {
-margin-left: 400px;
-float: left
-
+margin-left: 50px;
+max-height: 200px;
   }
   
   .thirdarticle {
-margin-left: 400px;
-float: left
+margin-left: 50px;
+max-height: 200px;
+
   }
 
 #paragraph1 {
 position: relative;
 margin-left: 130px;
-bottom: 130px;
+bottom: 150px;
 max-width: 600px;
 }
 
 #paragraph2 {
 position: relative;
 margin-left: 130px;
-bottom: 120px;
+bottom: 150px;
 max-width: 600px;
 
 
@@ -46,6 +46,6 @@ max-width: 600px;
 #paragraph3 {
 position: relative;
 margin-left: 130px;
-bottom: 120px;
+bottom: 150px;
 max-width: 600px;
 }
