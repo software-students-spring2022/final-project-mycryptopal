@@ -8,11 +8,12 @@ import Learn from './Learn';
 import Contact from './Contact';
 import Settings from './Settings';
 import Crypto from './Crypto';
+import Article from './Article';
 
 function App() {
   return (
     <div className="App" id="outer-container">
-    <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'}/>
+      <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'}/>
       <div id="page-wrap">
         <Routes>
           <Route path='/' element={<Home />} />
@@ -22,6 +23,7 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/settings' element={<Settings />} />
           <Route path='/crypto' element={<Crypto />} />
+          <Route path='/article' element={<Article />} />
         </Routes>
       </div>
     </div>
