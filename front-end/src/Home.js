@@ -15,7 +15,7 @@ import {
 import './Home.css';
 
 const API_TOKEN = "c8qd4eiad3ienapjjc9g";
-const CRYPTO_SYMBOLS = ["BTC", "ETH", "DOGE", "SOL", "SHIB"]
+const CRYPTO_SYMBOLS = ["BINANCE:BTCUSDT", "BINANCE:ETHUSDT", "BINANCE:DOGEUSDT", "SOL", "BINANCE:SHIBUSDT"]
 const INTERVAL_OPTIONS = [30, 60, 90, 120]
 const API_URL = "https://finnhub.io/api/v1/crypto/candle"
 const API_URL_SYMBOL = "https://finnhub.io/api/v1/crypto/symbol"
@@ -89,47 +89,10 @@ function Home() {
 
   }, [from, to, symbol]);
 
-
-
-  const handleChangeCrypto = event =>
-    setSymbol(event.target.value);
-
-  const handleChangeInterval = event =>
-    setInterval(event.target.value);
-
     return (
+    <>
+
         <div>
-          <div className="container">
-            <div className="selector">
-              <label for="stock_select" className="label">
-                <strong>Stock Symbol: </strong>
-              </label>
-              <select id="stock_select" onChange={handleChangeCrypto}>
-                {CRYPTO_SYMBOLS.map(s => <option key={s} value={s}>{s}</option>)}
-              </select>
-            </div>
-            <div className="selector">
-              <label for="interval_select" className="label">
-                <strong>Time Interval: </strong>
-              </label>
-              <select onChange={handleChangeInterval}>
-                {INTERVAL_OPTIONS.map(s => <option key={s} value={s}>Past {s} days</option>)}
-              </select>
-            </div>
-          </div>
-          <div className="container">
-            <LineChart width={900} height={500} data={data}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="timestamp" />
-              <YAxis type="number" allowDecimals={true}
-                allowDataOverflow={true} />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey="open" stroke="blue" dot={false} />
-              <Line type="monotone" dataKey="close" stroke="gray" dot={false} />
-            </LineChart>
-          </div>
           <div className="container">
             <PieChart width={730} height={250}>
               <Pie data={allocation} dataKey="value" nameKey="name">
@@ -142,6 +105,41 @@ function Home() {
             </PieChart>
           </div>
         </div>
+        <div className="firstarticle">  
+            <img id="photo1" src= {"https://picsum.photos/120"}></img>
+            <div className="text1"> 
+            <p id="paragraph1"> 
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ac tincidunt vitae semper quis lectus. Dolor sit amet consectetur 
+            adipiscing elit pellentesque.
+            </p>
+            </div>
+        </div>
+        <div className="secondarticle">  
+            <img id="photo2" src= {"https://picsum.photos/120"}></img>
+            <div className="text2">
+            <p id="paragraph2">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ac tincidunt vitae semper quis lectus. Dolor sit amet consectetur 
+            adipiscing elit pellentesque.
+            </p>
+            </div>
+        </div>
+        <div className="thirdarticle">  
+            <img id="photo3" src= {"https://picsum.photos/120"}></img>
+            <div className="text3">
+            <p id="paragraph3">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ac tincidunt vitae semper quis lectus. Dolor sit amet consectetur 
+            adipiscing elit pellentesque.
+            </p>
+            </div>
+        </div>
+    </>
+
       );
 }
 

@@ -8,3 +8,40 @@
   .selector { 
     margin-right: 15px;
   }
+
+  .firstarticle {
+margin-left: 400px;
+margin-top: 50px;
+float: left;
+
+  }
+
+  .secondarticle {
+margin-left: 400px;
+float: left
+
+  }
+  
+  .thirdarticle {
+margin-left: 400px;
+float: left
+  }
+
+#paragraph1 {
+position: relative;
+margin-left: 130px;
+bottom: 100px;
+}
+
+#paragraph2 {
+position: relative;
+margin-left: 130px;
+bottom: 100px;
+
+}
+
+#paragraph3 {
+    position: relative;
+    margin-left: 130px;
+    bottom: 100px;
+}
