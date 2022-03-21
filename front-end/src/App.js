@@ -21,9 +21,11 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/registration' element={<Registration />} />
           <Route path='/portfolio' element={<Portfolio />} />
           <Route path='/explore' element={<Explore />} />
           <Route path='/learnmap' element={<LearnMap />} />
+          <Route path='/learn' element={<Learn />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/settings' element={<Settings />} />
           <Route path='/crypto' element={<Crypto />} />
