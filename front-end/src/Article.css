@@ -1,0 +1,9 @@
+#article {
+    text-align: justify;
+    width: 92%;
+}
+
+#article img {
+    min-width: 100%;
+    max-width: 100%;
+}

@@ -10,11 +10,13 @@ import Registration from './Registration';
 import LearnMap from './LearnMap';
 import Contact from './Contact';
 import Settings from './Settings';
+import Crypto from './Crypto';
+import Article from './Article';
 
 function App() {
   return (
     <div className="App" id="outer-container">
-    <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'}/>
+      <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'}/>
       <div id="page-wrap">
         <Routes>
           <Route path='/' element={<Home />} />
@@ -24,6 +26,8 @@ function App() {
           <Route path='/learnmap' element={<LearnMap />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/settings' element={<Settings />} />
+          <Route path='/crypto' element={<Crypto />} />
+          <Route path='/article' element={<Article />} />
         </Routes>
       </div>
     </div>
