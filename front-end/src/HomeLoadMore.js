@@ -1,54 +1,9 @@
 import React from "react";
-import {
-  Tooltip,
-  Legend,
-  PieChart,
-  Pie,
-  Cell
-} from "recharts";
-import './Home.css';
-import Button from "./ButtonHome";
-import HomeLoadMore from "./HomeLoadMore"
+import "./HomeLoadMore.css";
 
-const COLORS = ["blue", "green", "yellow", "coral"]
-
-const allocation = [
-  {
-    name: "BTC",
-    value: 0.35,
-  },
-  {
-    name: "ETH",
-    value: 0.2,
-  },
-  {
-    name: "DOGE",
-    value: 0.2,
-  },
-  {
-    name: "SOL",
-    value: 0.25
-  }
-];
-
-function Home() {
-
+function HomeLoadMore() {
     return (
     <>
-
-        <div>
-          <div className="container">
-            <PieChart width={730} height={250}>
-              <Pie data={allocation} dataKey="value" nameKey="name">
-                {allocation.map((item, index) => (
-                  <Cell key={index} stroke={'#000'} strokeWidth={1} fill={COLORS[index]} />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </div>
-        </div>
         <div className="firstarticle">  
             <a href="/article">
             <img id="photo1" src= {"https://picsum.photos/120"}></img>
@@ -82,13 +37,9 @@ function Home() {
             adipiscing elit pellentesque.
             </p>
         </div>
-        <div className="myButton">
-        <Button onClick={HomeLoadMore}>
-        </Button>
-        </div>
     </>
 
       );
 }
 
-export default Home;
+export default HomeLoadMore;

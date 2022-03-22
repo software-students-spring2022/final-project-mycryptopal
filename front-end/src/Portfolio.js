@@ -10,9 +10,7 @@ import {
   Tooltip,
   Legend,
   Line,
-  PieChart,
-  Pie,
-  Cell
+ 
 } from "recharts";
 import './Home.css';
 
@@ -20,28 +18,8 @@ const API_TOKEN = "c8qd4eiad3ienapjjc9g";
 const CRYPTO_SYMBOLS = ["BINANCE:BTCUSDT", "BINANCE:ETHUSDT", "BINANCE:DOGEUSDT", "SOL", "BINANCE:SHIBUSDT"]
 const INTERVAL_OPTIONS = [30, 60, 90, 120]
 const API_URL = "https://finnhub.io/api/v1/crypto/candle"
-const API_URL_SYMBOL = "https://finnhub.io/api/v1/crypto/symbol"
 const RESOLUTION = "D"
-const COLORS = ["blue", "green", "yellow", "coral"]
 
-const allocation = [
-  {
-    name: "BTC",
-    value: 0.35,
-  },
-  {
-    name: "ETH",
-    value: 0.2,
-  },
-  {
-    name: "DOGE",
-    value: 0.2,
-  },
-  {
-    name: "SOL",
-    value: 0.25
-  }
-];
 
 function getUnixTime(date) {
     return date.getTime() / 1000 | 0;

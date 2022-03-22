@@ -1,0 +1,46 @@
+
+.firstarticle {
+margin-left: 50px;
+margin-top: 50px;
+max-height: 200px;
+
+  }
+
+.secondarticle {
+margin-left: 50px;
+max-height: 200px;
+  }
+  
+.thirdarticle {
+margin-left: 50px;
+max-height: 200px;
+
+  }
+
+#paragraph1 {
+position: relative;
+margin-left: 130px;
+bottom: 150px;
+max-width: 600px;
+}
+
+#paragraph2 {
+position: relative;
+margin-left: 130px;
+bottom: 150px;
+max-width: 600px;
+
+
+}
+
+#paragraph3 {
+position: relative;
+margin-left: 130px;
+bottom: 150px;
+max-width: 600px;
+}
+
+.myButton {
+margin-left: 150px;
+margin-bottom: 15px;
+}
