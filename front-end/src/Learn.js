@@ -5,7 +5,7 @@ function Learn() {
     <div id="page-title">
         <h1>Lesson Page</h1>
 
-        <div className="question"> Quiz Question 1 </div>
+        <div className="question"> Question 1 </div>
         <div>
             <form>
                 <label for="answer">Answer:</label>
