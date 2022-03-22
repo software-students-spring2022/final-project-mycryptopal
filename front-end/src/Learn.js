@@ -14,8 +14,8 @@ function Learn() {
                 <input id="checkAnswerButton" type="button" value="Check"></input> 
             </form>
         </div>
-        <a href = '/learn'>
-        <button id= "prevButton"> Previous Lesson </button>
+        <a href = '/learnmap'>
+        <button id= "retButton"> Back to Map </button>
         </a>
         <a href = '/learn'>
         <button id= "nextButton"> Next Lesson </button>
