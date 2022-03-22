@@ -6,6 +6,7 @@ function Learn() {
         <h1>Lesson Page</h1>
 
         <div className="question"> Question 1 </div>
+        <div className="sampleQ"> Sample question here? </div>
         <div>
             <form>
                 <label for="answer">Answer:</label>
