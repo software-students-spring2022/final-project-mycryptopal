@@ -14,7 +14,23 @@ form {
 }
 
 #checkAnswerButton {
-    margin-top: 0.5vh;
+    margin-top: 1vh;
+    margin-left: auto;
+    margin-right: 0;
+    width: 30%;
+    height: 2.2em;
+}
+
+#prevButton {
+    margin-top: 2vh;
+    margin-left: 0;
+    margin-right: auto;
+    width: 30%;
+    height: 2.2em;
+}
+
+#nextButton {
+    margin-top: 2vh;
     margin-left: auto;
     margin-right: 0;
     width: 30%;

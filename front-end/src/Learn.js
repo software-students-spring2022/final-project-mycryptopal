@@ -4,7 +4,7 @@ function Learn() {
     return (
     <div id="page-title">
         <h1>Lesson Page</h1>
-        
+
         <div className="question"> Quiz Question 1 </div>
         <div>
             <form>
@@ -14,10 +14,10 @@ function Learn() {
             </form>
         </div>
         <a href = '/learn'>
-        <button className= "page-button"> Previous Lesson </button>
+        <button id= "prevButton"> Previous Lesson </button>
         </a>
         <a href = '/learn'>
-        <button className= "page-button"> Next Lesson </button>
+        <button id= "nextButton"> Next Lesson </button>
         </a>
     </div>
     )
