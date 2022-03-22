@@ -7,8 +7,6 @@ import {
   Cell
 } from "recharts";
 import './Home.css';
-import Button from "./ButtonHome";
-import HomeLoadMore from "./HomeLoadMore"
 
 const COLORS = ["blue", "green", "yellow", "coral"]
 
@@ -35,7 +33,6 @@ function Home() {
 
     return (
     <>
-
         <div>
           <div className="container">
             <PieChart width={730} height={250}>
@@ -51,7 +48,7 @@ function Home() {
         </div>
         <div className="firstarticle">  
             <a href="/article">
-            <img id="photo1" src= {"https://picsum.photos/120"}></img>
+            <img id="photo1" src= {"https://picsum.photos/120"} alt=""></img>
             </a>
             <p id="paragraph1"> 
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
@@ -62,7 +59,7 @@ function Home() {
         </div>
         <div className="secondarticle">  
             <a href="article">
-            <img id="photo2" src= {"https://picsum.photos/120"}></img>
+            <img id="photo2" src= {"https://picsum.photos/120"} alt=""></img>
             </a>
             <p id="paragraph2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
@@ -73,7 +70,7 @@ function Home() {
         </div>
         <div className="thirdarticle">  
             <a href="/article">
-            <img id="photo3" src= {"https://picsum.photos/120"}></img>
+            <img id="photo3" src= {"https://picsum.photos/120"} alt=""></img>
             </a>
             <p id="paragraph3">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
@@ -82,9 +79,10 @@ function Home() {
             adipiscing elit pellentesque.
             </p>
         </div>
-        <div className="myButton">
-        <Button onClick={HomeLoadMore}>
-        </Button>
+        <div>
+        <button className="myButton" onClick={event =>  window.location.href='/Article'}>
+            Load More News
+        </button>
         </div>
     </>
 

@@ -87,7 +87,7 @@ return (
         </div>
         <div className="selector">
         <label for="interval_select" className="label">
-             <strong>Time Interval: </strong>
+             <strong>Interval: </strong>
         </label>
         <select onChange={handleChangeInterval}>
             {INTERVAL_OPTIONS.map(s => <option key={s} value={s}>Past {s} days</option>)}
@@ -95,7 +95,7 @@ return (
         </div>
     </div>
     <div className="container">
-        <LineChart width={900} height={500} data={data}
+        <LineChart width={450} height={300} data={data}
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="timestamp" />
