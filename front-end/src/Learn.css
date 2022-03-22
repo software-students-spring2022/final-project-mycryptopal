@@ -11,8 +11,8 @@ form {
 
 .answer {
     margin-top: 1vh;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 1vh;
+    margin-right: 1vh;
 }
 
 #checkAnswerButton {
