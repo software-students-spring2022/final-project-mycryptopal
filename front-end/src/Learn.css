@@ -9,10 +9,16 @@ form {
     margin-top: 1vh;
 }
 
+.answer {
+    margin-top: 1vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #checkAnswerButton {
     margin-top: 1vh;
     margin-left: auto;
-    margin-right: 0;
+    margin-right: auto;
     width: 30%;
     height: 2.2em;
 }
