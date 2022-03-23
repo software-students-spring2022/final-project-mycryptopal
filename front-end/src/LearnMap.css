@@ -1,0 +1,7 @@
+.mapButton {
+    min-width: 300px;
+    max-width: 300px;
+    border: 1px solid #94A3B8;
+    border-radius: 50%;
+    cursor: pointer;
+  }
