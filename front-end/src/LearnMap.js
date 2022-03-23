@@ -6,49 +6,49 @@ function LearnMap() {
                 <h1>LearnMap</h1>
                 
                 <a href = '/learn'>
-                <button className= "mapButton"> Lesson 1 </button>
+                <button className= "mapButton1"> Lesson 1 </button>
                 </a>
                 <a href = '/learn'>
-                <button className= "mapButton"> Lesson 2 </button>
+                <button className= "mapButton2"> Lesson 2 </button>
                 </a>
                 <a href = '/learn'>
-                <button className= "mapButton"> Lesson 3 </button>
+                <button className= "mapButton3"> Lesson 3 </button>
                 </a>
                 <a href = '/learn'>
-                <button className= "mapButton"> Lesson 4 </button>
+                <button className= "mapButton4"> Lesson 4 </button>
                 </a>
                 <a href = '/learn'>
-                <button className= "mapButton"> Lesson 5 </button>
+                <button className= "mapButton1"> Lesson 5 </button>
                 </a>
                 <a href = '/learn'>
-                <button className= "mapButton"> Lesson 6 </button>
+                <button className= "mapButton2"> Lesson 6 </button>
                 </a>
                 <a href = '/learn'>
-                <button className= "mapButton"> Lesson 7 </button>
+                <button className= "mapButton3"> Lesson 7 </button>
                 </a>
                 <a href = '/learn'>
-                <button className= "mapButton"> Lesson 8 </button>
+                <button className= "mapButton4"> Lesson 8 </button>
                 </a>
                 <a href = '/learn'>
-                <button className= "mapButton"> Lesson 9 </button>
+                <button className= "mapButton1"> Lesson 9 </button>
                 </a>
                 <a href = '/learn'>
-                <button className= "mapButton"> Lesson 10 </button>
+                <button className= "mapButton2"> Lesson 10 </button>
                 </a>
                 <a href = '/learn'>
-                <button className= "mapButton"> Lesson 11 </button>
+                <button className= "mapButton3"> Lesson 11 </button>
                 </a>
                 <a href = '/learn'>
-                <button className= "mapButton"> Lesson 12 </button>
+                <button className= "mapButton4"> Lesson 12 </button>
                 </a>
                 <a href = '/learn'>
-                <button className= "mapButton"> Lesson 13 </button>
+                <button className= "mapButton1"> Lesson 13 </button>
                 </a>
                 <a href = '/learn'>
-                <button className= "mapButton"> Lesson 14 </button>
+                <button className= "mapButton2"> Lesson 14 </button>
                 </a>
                 <a href = '/learn'>
-                <button className= "mapButton"> Lesson 15 </button>
+                <button className= "mapButton3"> Lesson 15 </button>
                 </a>
             </div>
             )
