@@ -8,7 +8,7 @@ function Learn() {
         <div className="question"> Question 1 </div>
         <div className="sampleQ"> Sample question here? </div>
         <div>
-            <form>
+            <form id="quiz">
                 <label for="answer">Answer:</label>
                 <input name="answer" type="text"></input>
                 <input id="checkAnswerButton" type="button" value="Check"></input> 
