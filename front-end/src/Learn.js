@@ -18,7 +18,7 @@ function Learn() {
         <button id= "retButton"> Back to Map </button>
         </a>
         <a href = '/learn'>
-        <button id= "nextButton"> Next Lesson </button>
+        <button id= "nextButton"> Next </button>
         </a>
     </div>
     )
