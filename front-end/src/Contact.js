@@ -36,7 +36,7 @@ function Contact() {
                     <div className="section-header">
                         Still Need Help? Contact Us!
                     </div>
-                    <form name="contact-form" action="/contact" method="GET">
+                    <form name="contact-form" id="contact-form" action="/contact" method="GET">
                         <label htmlFor="contact-name">Your Name</label>
                         <input name="contact-name" type="text"></input>
                         <label htmlFor="contact-email">Your Email</label>
