@@ -1,13 +1,13 @@
-label {
+.loginLabel {
     margin-top: 0.5vh;
     font-style: italic;
 }
 
-#login {
-    display: flex;
-    flex-direction: column;
+#login form {
     width: 92%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .credentials {
@@ -24,7 +24,7 @@ label {
     margin-right: auto;
 }
 
-h2 {
+#title {
     margin-bottom: 0.5em;
 }
 

@@ -18,17 +18,17 @@ function Registration() {
             <div id="page-content">
                 <div id="registration">
                     <form>
-                        <label htmlFor="first">First Name</label>
+                        <label htmlFor="first" className="registerLabel">First Name</label>
                         <input name="first" type="text" className="credentials"></input>
-                        <label htmlFor="last">Last Name</label>
+                        <label htmlFor="last" className="registerLabel">Last Name</label>
                         <input name="last" type="text" className="credentials"></input>
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email" className="registerLabel">Email</label>
                         <input name="email" type="text" className="credentials"></input>
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="username" className="registerLabel">Username</label>
                         <input name="username" type="text" className="credentials"></input>
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password" className="registerLabel">Password</label>
                         <input name="password" type="password" className="credentials"></input>
-                        <label htmlFor="repassword">Reenter Password</label>
+                        <label htmlFor="repassword" className="registerLabel">Reenter Password</label>
                         <input name="repassword" type="password" className="credentials"></input>
                         <input onClick={() => window.location.href='/login'} type="button" value="Create Account" className="formButton"></input>
                     </form>

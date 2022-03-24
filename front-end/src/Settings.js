@@ -31,7 +31,7 @@ function Settings() {
                 </div>
 
                 <div id="personalization">
-                    <form>
+                    <form className="settingsForm">
                         <h3>Personalize</h3>
                         <label htmlFor="fname">First Name</label>
                         <input name="fname" type="text" value={user.firstName}></input>
@@ -44,7 +44,7 @@ function Settings() {
                         <input type="button" value="Save" id="saveButton"></input>
                     </form>
 
-                    <form>
+                    <form className="settingsForm">
                         <h3>Security</h3>
                         <label htmlFor="currpass">Current Password</label>
                         <input name="currpass" type="password"></input>

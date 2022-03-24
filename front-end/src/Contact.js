@@ -37,12 +37,12 @@ function Contact() {
                         Still Need Help? Contact Us!
                     </div>
                     <form name="contact-form" id="contact-form" action="/contact" method="GET">
-                        <label htmlFor="contact-name">Your Name</label>
+                        <label htmlFor="contact-name" className="contactLabel">Your Name</label>
                         <input name="contact-name" type="text"></input>
-                        <label htmlFor="contact-email">Your Email</label>
+                        <label htmlFor="contact-email" className="contactLabel">Your Email</label>
                         <input name="contact-email" type="text"></input>
-                        <label htmlFor="contact-message">Your Message or Question</label>
-                        <textarea name="contact-message" type="text"></textarea>
+                        <label htmlFor="contact-message" className="contactLabel">Your Message or Question</label>
+                        <textarea name="contact-message" type="text" className="contactMessage"></textarea>
                         <input id="submitButton" onClick={popUp} type="button" value="Send"></input>
                     </form>
                 </div>

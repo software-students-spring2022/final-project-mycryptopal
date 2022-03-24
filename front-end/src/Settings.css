@@ -47,6 +47,12 @@
     opacity: 1;
 }
 
+.settingsForm{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 #personalization {
     width: 92%;
     display: flex;

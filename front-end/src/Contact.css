@@ -34,12 +34,12 @@
     height: 2.2em;
 }
 
-label {
+.contactLabel {
     margin-top: 0.5vh;
     font-style: italic;
 }
 
-textarea {
+.contactMessage {
     resize: none;
     height: 10em;
 }

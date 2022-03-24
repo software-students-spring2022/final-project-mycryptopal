@@ -1,9 +1,9 @@
-label {
+.registerLabel {
     margin-top: 0.5vh;
     font-style: italic;
 }
 
-#registration {
+#registration form {
     display: flex;
     flex-direction: column;
     width: 92%;

@@ -18,9 +18,9 @@ function Login() {
             <div id="page-content">
                 <div id="login">
                     <form>
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="username" className="loginLabel">Username</label>
                         <input name="username" type="text" className="credentials"></input>
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password" className="loginLabel">Password</label>
                         <input name="password" type="password" className="credentials"></input>
                         <input onClick={() => window.location.href='/'} type="button" value="Login" className="formButton"></input>
                         <h2>Don't Have An Account?</h2>
