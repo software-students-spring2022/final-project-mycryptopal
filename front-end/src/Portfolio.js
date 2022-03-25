@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
   Line,
+  ResponsiveContainer
  
 } from "recharts";
 import './Home.css';
@@ -98,6 +99,7 @@ return (
             </div>
         </div>
         <div className="container">
+        <ResponsiveContainer width="100%" height={300}> 
             <LineChart width={450} height={300} data={data}
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -109,6 +111,7 @@ return (
             <Line type="monotone" dataKey="open" stroke="blue" dot={false} />
             <Line type="monotone" dataKey="close" stroke="gray" dot={false} />
             </LineChart>
+        </ResponsiveContainer>
         </div>
       </div>   
     </>
