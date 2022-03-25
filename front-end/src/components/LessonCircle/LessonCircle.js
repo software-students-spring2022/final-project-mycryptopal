@@ -1,12 +1,12 @@
-import './LearnCircle.css';
+import './LessonCircle.css';
 
-function LearnCircle(props) {
+function LessonCircle(props) {
     const COLORS = ['greenButton', 'yellowButton', 'blueButton', 'redButton'];
 
     return (
         <>
             <div className={"mapButton " + COLORS[props.num % 4]} onClick={() => {
-                window.location.href='/learn'
+                window.location.href='/lesson'
             }}>
                 Lesson {props.num}
             </div>
@@ -14,4 +14,4 @@ function LearnCircle(props) {
     )
 }
 
-export default LearnCircle;
+export default LessonCircle;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './Article.css';
-import ArticleSmall from './ArticleSmall';
+import ArticleSmall from '../../components/ArticleSmall/ArticleSmall';
 
 function Article() {
     const related = [];
@@ -14,7 +14,7 @@ function Article() {
     const [articles, setArticles] = useState(related);
     const [numShown, setNumShown] = useState(initialShown);
     const [expanded, setExpanded] = useState(false);
-    
+
     function showMore(){
         if (numShown === initialShown){
             setNumShown(articles.length);

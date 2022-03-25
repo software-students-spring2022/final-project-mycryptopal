@@ -1,6 +1,5 @@
 #article {
     text-align: justify;
-    width: 92%;
 }
 
 #article img {
@@ -17,7 +16,6 @@
 
 #related {
     text-align: center;
-    width: 92%;
 }
 
 #expand-button {

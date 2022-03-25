@@ -12,7 +12,6 @@ import {
   ResponsiveContainer
  
 } from "recharts";
-import './Home.css';
 
 const API_TOKEN = "c8qd4eiad3ienapjjc9g";
 const CRYPTO_SYMBOLS = ["BINANCE:BTCUSDT", "BINANCE:ETHUSDT", "BINANCE:DOGEUSDT", "SOL", "BINANCE:SHIBUSDT"]

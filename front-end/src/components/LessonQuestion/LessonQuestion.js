@@ -1,6 +1,6 @@
-import './LearnQuestion.css';
+import './LessonQuestion.css';
 
-function LearnQuestion(props) {
+function LessonQuestion(props) {
     return (
         <div class="quizQuestion">
             <div class="questionNumber">
@@ -19,4 +19,4 @@ function LearnQuestion(props) {
     )
 }
 
-export default LearnQuestion;
+export default LessonQuestion;

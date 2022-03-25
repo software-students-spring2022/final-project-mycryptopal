@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import Login from './Login';
-import Registration from './Registration';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './views/Login/Login';
+import Registration from './views/Registration/Registration';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(

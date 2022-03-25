@@ -1,11 +1,11 @@
-import LearnQuestion from './LearnQuestion';
 import { useState } from 'react';
-import './Learn.css';
+import './Lesson.css';
+import LessonQuestion from '../../components/LessonQuestion/LessonQuestion';
 
-function Learn() {
+function Lesson() {
     const questions = [];
     for (let i = 1; i <= 5; i++) {
-        questions.push(<LearnQuestion key={i} num={i}/>);
+        questions.push(<LessonQuestion key={i} num={i}/>);
     }
 
     const [questionNum, setQuestionNum] = useState(1);
@@ -34,7 +34,7 @@ function Learn() {
     return (
     <>
         <div id="page-title">
-            <h1>Lesson Page</h1>
+            <h1>Lesson</h1>
         </div>
         <div id="page-content">
             <div id="lesson-body">
@@ -57,8 +57,8 @@ function Learn() {
                 </div>
             </div>
             <div id="lesson-buttons">
-                <button id= "retButton" onClick={() => window.location.href='/learnmap'}> Back to Map </button>
-                <button id= "nextButton" onClick={() => window.location.href='/learn'}> Next </button>
+                <button id= "retButton" onClick={() => window.location.href='/learn'}>Back to Map</button>
+                <button id= "nextButton" onClick={() => window.location.href='/lesson'}>Next</button>
             </div>
         </div>    
     </>
@@ -66,4 +66,4 @@ function Learn() {
     )
 }
 
-export default Learn;
+export default Lesson;

@@ -1,5 +1,5 @@
 import './Explore.css';
-import ExploreCard from './ExploreCard';
+import ExploreCard from '../../components/ExploreCard/ExploreCard';
 
 function Explore() {
     const data = [

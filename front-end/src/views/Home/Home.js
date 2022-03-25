@@ -8,7 +8,7 @@ import {
   ResponsiveContainer
 } from "recharts";
 import './Home.css';
-import ArticleSmall from "./ArticleSmall";
+import ArticleSmall from "../../components/ArticleSmall/ArticleSmall";
 
 const COLORS = ["blue", "green", "yellow", "coral"]
 
