@@ -10,6 +10,8 @@
     flex-basis: 30%;
     margin-left: auto;
     font-size: 0.8em;
+    color: white;
+    font-weight: bold;
 }
 
 .greenButton {
@@ -18,7 +20,7 @@
 }
 
 .yellowButton {
-    background-color: #eedd47;
+    background-color: #cebb16;
     border: 1px solid #b4a305;
 }
 

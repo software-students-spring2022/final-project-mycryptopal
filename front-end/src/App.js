@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import Sidebar from './Sidebar';
 import Home from './Home';
@@ -14,6 +14,8 @@ import Crypto from './Crypto';
 import Article from './Article';
 
 function App() {
+  const navigate = useNavigate();
+
   return (
     <div className="App" id="outer-container">
       <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'}/>
@@ -31,6 +33,9 @@ function App() {
           <Route path='/crypto' element={<Crypto />} />
           <Route path='/article' element={<Article />} />
         </Routes>
+        <div id="return">
+          <button id="return-button" onClick={() => navigate(-1)}>Return to Previous Page</button>
+        </div>
       </div>
     </div>
   );

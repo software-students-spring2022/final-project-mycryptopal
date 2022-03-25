@@ -23,3 +23,18 @@
   border: 1px solid #94A3B8;
   cursor: pointer;
 }
+
+#return {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#return-button {
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 3em;
+  margin-bottom: 5%;
+  font-weight: bold;
+}
