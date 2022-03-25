@@ -1,7 +1,41 @@
-.Explore-page {
-    margin-left: 3em;
-  }
-.page-button {
-    margin-left: 6em;
-    margin-bottom: 10em;
+.dropdown-section{
+margin-top: 3em;
+display: flex;
+/* border: 2px solid black; */
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+.dropdown-btn{
+width:90%;
+background-color: black;
+color: white;
+outline: none;
+border: none;
+padding: 10px;
+cursor: pointer;
+font-size: 18px;
+border-radius: 5px;
+}
+.dropdown-content-section{
+margin-top: 40px;
+padding: 10px;
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: flex-start;
+}
+#crypto-dropdown {
+ text-align: center; 
+}
+#crypto-dropdown select {
+  width: 90%;
+
+}
+#crypto-collage {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
