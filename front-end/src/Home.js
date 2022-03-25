@@ -62,7 +62,7 @@ function Home() {
       </div>
         <div id="page-content">
           <div id="chart">
-            <div id="news-header">Portfolio</div>
+            <div id="news-header">Asset Allocations</div>
             <div id="chart-container">
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
