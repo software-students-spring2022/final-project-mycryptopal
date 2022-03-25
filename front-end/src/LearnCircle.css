@@ -1,0 +1,33 @@
+.mapButton {
+    aspect-ratio: 1/1;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 30%;
+    margin-left: auto;
+    font-size: 0.8em;
+}
+
+.greenButton {
+    background-color: #0d9e39;
+    border: 1px solid #013b12;
+}
+
+.yellowButton {
+    background-color: #eedd47;
+    border: 1px solid #b4a305;
+}
+
+.blueButton {
+    background-color: #0853bd;
+    border: 1px solid #043a86;
+}
+
+.redButton {
+    background-color: #f04731;
+    border: 1px solid #6b1004;
+}

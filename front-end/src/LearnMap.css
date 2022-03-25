@@ -1,51 +1,5 @@
-.mapButton1 {
-    width: 100px;
-    height: 100px;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
-    margin-left: 20vh;
-    margin-right: 20vh;
-    background-color: #0d9e39;
-    border: 1px solid #013b12;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-
-  .mapButton2 {
-    width: 100px;
-    height: 100px;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
-    margin-left: 20vh;
-    margin-right: 20vh;
-    background-color: #eedd47;
-    border: 1px solid #b4a305;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-
-  .mapButton4 {
-    width: 100px;
-    height: 100px;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
-    margin-left: 20vh;
-    margin-right: 20vh;
-    background-color: #f04731;
-    border: 1px solid #6b1004;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-
-  .mapButton3 {
-    width: 100px;
-    height: 100px;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
-    margin-left: 20vh;
-    margin-right: 20vh;
-    background-color: #0853bd;
-    border: 1px solid #043a86;
-    border-radius: 50%;
-    cursor: pointer;
-  }
+#lesson-map {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
