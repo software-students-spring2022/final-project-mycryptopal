@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Tooltip,
   Legend,
@@ -7,6 +6,7 @@ import {
   Cell
 } from "recharts";
 import './Home.css';
+import ArticleSmall from "./ArticleSmall";
 
 const COLORS = ["blue", "green", "yellow", "coral"]
 
@@ -30,6 +30,11 @@ const allocation = [
 ];
 
 function Home() {
+    const news = [];
+
+    for (let i = 0; i < 5; i++) {
+        news.push(<ArticleSmall key={i} />);
+    }
 
     return (
     <>
@@ -46,38 +51,11 @@ function Home() {
             </PieChart>
           </div>
         </div>
-        <div className="firstarticle">  
-            <a href="/article">
-            <img id="photo1" src= {"https://picsum.photos/120"} alt=""></img>
-            </a>
-            <p id="paragraph1"> 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            Ac tincidunt vitae semper quis lectus. Dolor sit amet consectetur 
-            adipiscing elit pellentesque.
-            </p>
-        </div>
-        <div className="secondarticle">  
-            <a href="article">
-            <img id="photo2" src= {"https://picsum.photos/120"} alt=""></img>
-            </a>
-            <p id="paragraph2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            Ac tincidunt vitae semper quis lectus. Dolor sit amet consectetur 
-            adipiscing elit pellentesque.
-            </p>
-        </div>
-        <div className="thirdarticle">  
-            <a href="/article">
-            <img id="photo3" src= {"https://picsum.photos/120"} alt=""></img>
-            </a>
-            <p id="paragraph3">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            Ac tincidunt vitae semper quis lectus. Dolor sit amet consectetur 
-            adipiscing elit pellentesque.
-            </p>
+        <div id="page-content">
+          <div id="news">
+            <div id="news-header">News</div>
+            {news}
+          </div>
         </div>
         <div>
         <button className="myButton" onClick={event =>  window.location.href='/Article'}>
@@ -85,8 +63,7 @@ function Home() {
         </button>
         </div>
     </>
-
-      );
+    );
 }
 
 export default Home;

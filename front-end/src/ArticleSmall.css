@@ -1,0 +1,45 @@
+.articleSmall {
+    display: flex;
+    flex-direction: row;
+    width: 92%;
+    margin-top: 5%;
+}
+
+.articleSmallPicture {
+    display: flex;
+    flex-basis: 30%;
+    justify-content: center;
+    align-items: center;
+}
+
+.articleSmallPicture img {
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.articleSmallContent {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 65%;
+    text-align: justify;
+    margin-left: 5%;
+    font-size: 90%;
+}
+
+.articleSmallTitle {
+    flex-basis: 30%;
+    font-weight: bold;
+    text-align: justify;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.articleSmallSummary {
+    margin-top: 1%;
+    flex-basis: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80%;
+}
