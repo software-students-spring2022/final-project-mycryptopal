@@ -6,31 +6,6 @@
     text-align: justify;
 }
 
-#quiz-answer form {
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2vh;
-}
-
-#quiz-question-number {
-    font-weight: bold;
-}
-
-#quiz-question-content {
-    font-style: italic;
-}
-
-#checkAnswerButton {
-    margin-top: 1vh;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 3vh;
-    width: 30%;
-    height: 2.2em;
-}
-
 #lesson-buttons {
     display: flex;
     flex-direction: row;
@@ -47,4 +22,18 @@
     margin-left: auto;
     margin-right: 0;
     width: 30%;
+}
+
+#question-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+#question-buttons input {
+    margin-top: 1vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3vh;
+    width: 30%;
+    height: 2.2em;
 }

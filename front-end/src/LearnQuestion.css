@@ -1,0 +1,15 @@
+.questionAnswer form {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2vh;
+}
+
+.questionNumber {
+    font-weight: bold;
+}
+
+.questionContent {
+    font-style: italic;
+}
