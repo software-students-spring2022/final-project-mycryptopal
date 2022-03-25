@@ -9,9 +9,17 @@
 }
 
 #related-header {
-    width: 92%;
     text-align: center;
     font-weight: bold;
     margin-top: 5%;
     font-size: 1.1em;
+}
+
+#related {
+    text-align: center;
+    width: 92%;
+}
+
+#expand-button {
+    margin-top: 3%;
 }

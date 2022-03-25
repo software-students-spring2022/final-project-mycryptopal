@@ -1,11 +1,29 @@
+import { useState } from 'react';
 import './Article.css';
 import ArticleSmall from './ArticleSmall';
 
 function Article() {
     const related = [];
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
         related.push(<ArticleSmall key={i} />);
+    }
+
+    let initialShown = related.length > 3 ? 3 : related.length;
+
+    const [articles, setArticles] = useState(related);
+    const [numShown, setNumShown] = useState(initialShown);
+    const [expanded, setExpanded] = useState(false);
+    
+    function showMore(){
+        if (numShown === initialShown){
+            setNumShown(articles.length);
+            setExpanded(true);
+        }
+        else {
+            setNumShown(initialShown);
+            setExpanded(false);
+        }
     }
 
     return (
@@ -29,7 +47,14 @@ function Article() {
 
                 <div id="related">
                     <div id="related-header">Related</div>
-                    {related}
+                    {related.slice(0, numShown)}
+                    <button id="expand-button" onClick={showMore}>
+                        {expanded ? (
+                            <span>Show Less</span>
+                        ) : (
+                            <span>Show More</span>
+                        )}
+                    </button>
                 </div>
             </div>
         </>

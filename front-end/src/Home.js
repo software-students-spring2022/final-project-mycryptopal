@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Tooltip,
   Legend,
@@ -36,6 +37,23 @@ function Home() {
         news.push(<ArticleSmall key={i} />);
     }
 
+    let initialShown = news.length > 3 ? 3 : news.length;
+
+    const [articles, setArticles] = useState(news);
+    const [numShown, setNumShown] = useState(initialShown);
+    const [expanded, setExpanded] = useState(false);
+    
+    function showMore(){
+        if (numShown === initialShown){
+            setNumShown(articles.length);
+            setExpanded(true);
+        }
+        else {
+            setNumShown(initialShown);
+            setExpanded(false);
+        }
+    }
+
     return (
     <>
         <div>
@@ -54,13 +72,17 @@ function Home() {
         <div id="page-content">
           <div id="news">
             <div id="news-header">News</div>
-            {news}
+            {news.slice(0, numShown)}
+            <button id="expand-button" onClick={showMore}>
+              {expanded ? (
+                  <span>Show Less</span>
+              ) : (
+                  <span>Show More</span>
+              )}
+            </button>
           </div>
         </div>
         <div>
-        <button className="myButton" onClick={event =>  window.location.href='/Article'}>
-            Load More News
-        </button>
         </div>
     </>
     );

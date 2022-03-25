@@ -54,10 +54,18 @@ margin-left: 150px;
 margin-bottom: 15px;
 }
 
-#news-header {
+#news {
   width: 92%;
+  text-align: center;
+}
+
+#news-header {
   text-align: center;
   font-weight: bold;
   margin-top: 5%;
   font-size: 1.1em;
+}
+
+#expand-button {
+  margin-top: 3%;
 }

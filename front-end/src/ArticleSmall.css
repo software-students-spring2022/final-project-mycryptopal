@@ -1,7 +1,7 @@
 .articleSmall {
     display: flex;
     flex-direction: row;
-    width: 92%;
+    width: 100%;
     margin-top: 5%;
 }
 
