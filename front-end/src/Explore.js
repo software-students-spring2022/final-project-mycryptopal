@@ -2,12 +2,18 @@ import './Explore.css';
 
 function Explore() {
     return (
-        <div className= "explore">
-        <h1 className='Explore-page'> Explore Page</h1>
-            <a href = '/crypto'>
-            <button className= "page-button"> More Details... </button>
-            </a>
-        </div>
+        <>
+            <div id="page-title">
+                <h1>Explore Cryptos</h1>
+            </div>
+            <div id="page-content">
+                <div className= "explore">
+                    <a href = '/crypto'>
+                    <button className= "page-button"> More Details... </button>
+                    </a>
+                </div>     
+            </div>
+        </>
     )
 }
 

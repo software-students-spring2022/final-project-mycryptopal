@@ -1,12 +1,21 @@
+#registration-title {
+    text-align: center;
+}
+
 .registerLabel {
     margin-top: 0.5vh;
     font-style: italic;
 }
 
+#registration-content {
+    margin-top: 3vh;
+    margin-left: 8%;
+    margin-right: 8%;;
+}
+
 #registration form {
     display: flex;
     flex-direction: column;
-    width: 92%;
     text-align: center;
 }
 

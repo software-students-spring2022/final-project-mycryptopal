@@ -4,7 +4,8 @@ import {
   Legend,
   PieChart,
   Pie,
-  Cell
+  Cell,
+  ResponsiveContainer
 } from "recharts";
 import './Home.css';
 import ArticleSmall from "./ArticleSmall";
@@ -56,20 +57,26 @@ function Home() {
 
     return (
     <>
-        <div>
-          <div className="container">
-            <PieChart width={730} height={250}>
-              <Pie data={allocation} dataKey="value" nameKey="name">
-                {allocation.map((item, index) => (
-                  <Cell key={index} stroke={'#000'} strokeWidth={1} fill={COLORS[index]} />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </div>
-        </div>
+      <div id="page-title">
+        <h1>Home</h1>
+      </div>
         <div id="page-content">
+          <div id="chart">
+            <div id="news-header">Portfolio</div>
+            <div id="chart-container">
+              <ResponsiveContainer width="100%" height={300}>
+                <PieChart>
+                  <Pie data={allocation} dataKey="value" nameKey="name">
+                    {allocation.map((item, index) => (
+                      <Cell key={index} stroke={'#000'} strokeWidth={1} fill={COLORS[index]} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
           <div id="news">
             <div id="news-header">News</div>
             {news.slice(0, numShown)}

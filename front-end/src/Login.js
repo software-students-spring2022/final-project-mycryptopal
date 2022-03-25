@@ -3,7 +3,7 @@ import './Login.css';
 function Login() {
     return (
         <>
-            <div id="page-title">
+            <div id="login-title">
                 <h1>Ready to Level Up Your Investing Career?</h1>
 
                 <div id="logo">
@@ -15,7 +15,7 @@ function Login() {
                 </div>
             </div>
 
-            <div id="page-content">
+            <div id="login-content">
                 <div id="login">
                     <form>
                         <label htmlFor="username" className="loginLabel">Username</label>

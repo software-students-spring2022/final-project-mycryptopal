@@ -3,13 +3,14 @@
     position: fixed;
     width: 36px;
     height: 30px;
-    left: 36px;
-    top: 36px;
+    left: 8%;
+    top: 3.7vh;
+    z-index: 2;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-    background: #373a47;
+    background: #b8b7ad;
 }
 
 /* Color/shape of burger icon bars on hover*/

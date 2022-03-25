@@ -1,7 +1,6 @@
 .section {
     display: flex;
     flex-direction: column;
-    width: 92%;
     text-align: justify;
 }
 
@@ -11,13 +10,13 @@
     margin-top: 2vh;
 }
 
-.question {
+.faqQuestion {
     font-weight: bold;
     font-style: italic;
     margin-top: 1vh;
 }
 
-.answer {
+.faqAnswer {
     margin-top: 0.5vh;
 }
 

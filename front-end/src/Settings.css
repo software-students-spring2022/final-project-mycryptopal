@@ -1,5 +1,4 @@
 #info {
-    width: 92%;
     display: flex;
     flex-direction: column;
     justify-items: center;
@@ -54,7 +53,6 @@
 }
 
 #personalization {
-    width: 92%;
     display: flex;
     flex-direction: column;
     text-align: center;

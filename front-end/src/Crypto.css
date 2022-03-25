@@ -1,7 +1,6 @@
 #top-content {
     display: flex;
     flex-direction: row;
-    width: 92%;
 }
 
 #crypto-name {
@@ -64,7 +63,6 @@
 #middle-content {
     display: flex;
     flex-direction: column;
-    width: 92%;
 }
 
 #stock-graph img {
@@ -87,7 +85,6 @@
 #bottom-content {
     display: flex;
     flex-direction: column;
-    width: 92%;
 }
 
 #market-header {
@@ -104,7 +101,6 @@
 }
 
 #buttons{
-    width: 92%;
     display: flex;
     flex-direction: row;
     margin-top: 5%;
@@ -118,9 +114,6 @@
 #button-right {
     flex-basis: 50%;
 }
-
-
-
 
 
 

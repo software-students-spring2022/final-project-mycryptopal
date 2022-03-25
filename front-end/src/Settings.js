@@ -16,7 +16,7 @@ function Settings() {
     return (
         <>
             <div id="page-title">
-                <h1>Settings Page</h1>
+                <h1>Settings</h1>
             </div>
 
             <div id="page-content">

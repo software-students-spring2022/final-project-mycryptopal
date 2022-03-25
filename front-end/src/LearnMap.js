@@ -2,9 +2,11 @@ import './LearnMap.css';
 
 function LearnMap() {
     return (
+        <>
             <div id="page-title">
                 <h1>LearnMap</h1>
-                
+            </div>
+            <div id="page-content">    
                 <a href = '/learn'>
                 <button className= "mapButton1"> Lesson 1 </button>
                 </a>
@@ -50,8 +52,9 @@ function LearnMap() {
                 <a href = '/learn'>
                 <button className= "mapButton3"> Lesson 15 </button>
                 </a>
-            </div>
-            )
+            </div>        
+        </>
+        )
 }
 
 export default LearnMap;

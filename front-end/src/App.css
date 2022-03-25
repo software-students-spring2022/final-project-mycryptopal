@@ -1,10 +1,16 @@
 #page-title {
   text-align: center;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background-color: #373a47;
+  color: #b8b7ad;
 }
 
 #page-content {
-  margin-top: 3vh;
-  margin-left:8%;
+  margin-top: 13vh;
+  margin-left: 8%;
+  margin-right: 8%;
 }
 
 #page-wrap {

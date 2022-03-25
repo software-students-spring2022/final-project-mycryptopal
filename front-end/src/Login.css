@@ -1,10 +1,19 @@
+#login-title {
+    text-align: center;
+}
+
 .loginLabel {
     margin-top: 0.5vh;
     font-style: italic;
 }
 
+#login-content {
+    margin-top: 3vh;
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
 #login form {
-    width: 92%;
     text-align: center;
     display: flex;
     flex-direction: column;

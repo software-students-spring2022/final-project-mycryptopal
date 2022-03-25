@@ -4,7 +4,7 @@ function Contact() {
     return (
         <>
             <div id="page-title">
-                <h1>Contact Page</h1>
+                <h1>Contact Us</h1>
             </div>
             
             <div id="page-content">
@@ -12,22 +12,22 @@ function Contact() {
                     <div className="section-header">
                         Frequently Asked Questions
                     </div>
-                    <div className="question">
+                    <div className="faqQuestion">
                         Sample Question 1
                     </div>
-                    <div className="answer">
+                    <div className="faqAnswer">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                     </div>
-                    <div className="question">
+                    <div className="faqQuestion">
                         Sample Question 2
                     </div>
-                    <div className="answer">
+                    <div className="faqAnswer">
                         dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                     </div>
-                    <div className="question">
+                    <div className="faqQuestion">
                         Sample Question 3
                     </div>
-                    <div className="answer">
+                    <div className="faqAnswer">
                         aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
                     </div>
                 </div>
@@ -43,7 +43,7 @@ function Contact() {
                         <input name="contact-email" type="text"></input>
                         <label htmlFor="contact-message" className="contactLabel">Your Message or Question</label>
                         <textarea name="contact-message" type="text" className="contactMessage"></textarea>
-                        <input id="submitButton" onClick={popUp} type="button" value="Send"></input>
+                        <input id="submitButton" onClick={popUp} type="button" value="Submit"></input>
                     </form>
                 </div>
             </div>

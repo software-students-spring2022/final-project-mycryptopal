@@ -1,51 +1,50 @@
-#quiz {
+.lessonSectionTitle {
+    text-align: center;
+}
+
+#lesson-content {
+    text-align: justify;
+}
+
+#quiz-answer form {
     display: flex;
     flex-direction: column;
-    width: 60%;
-    margin-top: auto;
     margin-left: auto;
     margin-right: auto;
-}
-
-.question {
-    font-weight: bold;
     margin-top: 2vh;
-    margin-bottom: .5vh;
 }
 
-.sampleQ {
+#quiz-question-number {
+    font-weight: bold;
+}
+
+#quiz-question-content {
     font-style: italic;
-    margin-top: .5vh;
-    margin-bottom: 5vh;
-}
-
-.answer {
-    margin-top: 1vh;
-    margin-left: 1vh;
-    margin-right: 0;
 }
 
 #checkAnswerButton {
     margin-top: 1vh;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 5vh;
+    margin-bottom: 3vh;
     width: 30%;
+    height: 2.2em;
+}
+
+#lesson-buttons {
+    display: flex;
+    flex-direction: row;
     height: 2.2em;
 }
 
 #retButton {
-    margin-top: 2vh;
     margin-left: 0;
     margin-right: auto;
     width: 30%;
-    height: 2.2em;
 }
 
 #nextButton {
-    margin-top: 2vh;
     margin-left: auto;
     margin-right: 0;
     width: 30%;
-    height: 2.2em;
 }

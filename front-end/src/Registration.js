@@ -3,7 +3,7 @@ import './Registration.css';
 function Registration() {
     return (
         <>
-            <div id="page-title">
+            <div id="registration-title">
                 <h1>Ready to Level Up Your Investing Career?</h1>
 
                 <div id="logo">
@@ -15,7 +15,7 @@ function Registration() {
                 </div>
             </div>
 
-            <div id="page-content">
+            <div id="registration-content">
                 <div id="registration">
                     <form>
                         <label htmlFor="first" className="registerLabel">First Name</label>
