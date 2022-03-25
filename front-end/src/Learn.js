@@ -1,6 +1,36 @@
+import LearnQuestion from './LearnQuestion';
+import { useState } from 'react';
 import './Learn.css';
 
 function Learn() {
+    const questions = [];
+    for (let i = 1; i <= 5; i++) {
+        questions.push(<LearnQuestion key={i} num={i}/>);
+    }
+
+    const [questionNum, setQuestionNum] = useState(1);
+    const [currentQuestion, setCurrentQuestion] = useState(questions[questionNum - 1])
+
+    function prevQuestion() {
+        if(questionNum > 1){
+            const newNum = questionNum - 1
+            setQuestionNum(newNum);
+            setCurrentQuestion(questions[newNum - 1]);
+        }
+    }
+
+    function nextQuestion() {
+        if(questionNum < questions.length){
+            const newNum = questionNum + 1
+            setQuestionNum(newNum);
+            setCurrentQuestion(questions[newNum - 1]);
+        }
+    }
+
+    function checkAnswer() {
+        alert(`Your answer is ${Math.random() > 0.5 ? "correct" : "incorrect"}!`)
+    }
+
     return (
     <>
         <div id="page-title">
@@ -19,20 +49,11 @@ function Learn() {
                 <div className="lessonSectionTitle">
                     <h3>Quiz</h3>
                 </div>
-                <div id="quiz-question">
-                    <div id="quiz-question-number">
-                        Question
-                    </div>
-                    <div id="quiz-question-content">
-                        Lorem ipsum dolor sit amet?
-                    </div>
-                    <div id="quiz-answer">
-                        <form>
-                            <label htmlFor="user-answer">Answer:</label>
-                            <input name="user-answer" type="text"></input>
-                            <input id="checkAnswerButton" type="button" value="Check"></input> 
-                        </form>
-                    </div>
+                {currentQuestion}
+                <div id="question-buttons">
+                        <input id="prevQuestionButton" type="button" value="Previous" onClick={prevQuestion}></input> 
+                        <input id="checkAnswerButton" type="button" value="Check" onClick={checkAnswer}></input>
+                        <input id="nextQuestionButton" type="button" value="Next" onClick={nextQuestion}></input> 
                 </div>
             </div>
             <div id="lesson-buttons">
