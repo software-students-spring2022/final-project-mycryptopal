@@ -24,4 +24,34 @@ app.get('/', (req, res) => {
     res.send('Example route');
 });
 
+app.get('/portfolio/:symbol', (req, res, next) => {
+    
+    const API_TOKEN = "c8qd4eiad3ienapjjc9g";
+    const CRYPTO_SYMBOLS = ["BINANCE:BTCUSDT", "BINANCE:ETHUSDT", "BINANCE:DOGEUSDT", "SOL", "BINANCE:SHIBUSDT"]
+    const INTERVAL_OPTIONS = [30, 60, 90, 120]
+    const API_URL = "https://finnhub.io/api/v1/crypto/candle"
+    const RESOLUTION = "D"
+
+    function getUnixTime(date) {
+        return date.getTime() / 1000 | 0;
+      }
+      
+      function transformData(data) {
+        return data.c.map((item, index) => ({
+          close: Number(item).toFixed(2),
+          open: Number(data.o[index]).toFixed(2),
+          timestamp: new Date(data.t[index] * 1000).toLocaleDateString()
+        }))
+      }
+
+
+    
+      axios
+      .get(`https://finnhub.io/api/v1/crypto/candle?from=1645990157&resolution=D&symbol=${req.params.symbol}&to=1648578557&token=c8qd4eiad3ienapjjc9g`)
+      .then(apiResponse => res.json(apiResponse.data))
+      .catch(err => next(err));
+
+
+});
+
 module.exports = app;
