@@ -44,10 +44,19 @@ app.get('/portfolio/:symbol', (req, res, next) => {
         }))
       }
 
+        function to() {
+          return getUnixTime(new Date())
+      }
+        function from() {
+        let d = new Date();
+        d.setDate(d.getDate() - INTERVAL_OPTIONS[0]); //this will be modified to whatver is passed from front end
+        return getUnixTime(d);
+      }
+
 
     
       axios
-      .get(`https://finnhub.io/api/v1/crypto/candle?from=1645990157&resolution=D&symbol=${req.params.symbol}&to=1648578557&token=c8qd4eiad3ienapjjc9g`)
+      .get(`https://finnhub.io/api/v1/crypto/candle?from=${from()}&resolution=D&symbol=${req.params.symbol}&to=${to()}&token=c8qd4eiad3ienapjjc9g`)
       .then(apiResponse => res.json(apiResponse.data))
       .catch(err => next(err));
 
