@@ -63,4 +63,17 @@ app.get('/portfolio/:symbol', (req, res, next) => {
 
 });
 
+    // https://www.mockaroo.com/docs
+    // All these API requests should be "GET" Requests based on the Input
+    // Name of clicked Crypto <--- Will be filled in based on results of "GET" Request
+    // Price of clicked Crypto <--- Will be filled in based on results of "GET" Request
+    // Picture of Crypto <--- Will be filled in based on results of "GET" Request
+    // Stock Graph of Crypto <--- Will be filled in based on results of "GET" Request
+    // Crypto information <--- Will be filled in based on results of "GET" Request
+
+    // Add a picture of a cryptocurrency to the right of these headers
+
+// route for crypto analytics page
+app.get()
+
 module.exports = app;
