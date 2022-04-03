@@ -63,6 +63,13 @@ app.get('/portfolio/:symbol', (req, res, next) => {
 
 });
 
+app.get('/userdata', (req, res) => {
+  axios
+  .get(`https://my.api.mockaroo.com/users.json?key=4c156a80&limit=1`)
+  .then(apiResponse => res.json(apiResponse.data))
+  .catch(err=> next(err));
+})
+
     // https://www.mockaroo.com/docs
     // All these API requests should be "GET" Requests based on the Input
     // Name of clicked Crypto <--- Will be filled in based on results of "GET" Request
@@ -74,6 +81,6 @@ app.get('/portfolio/:symbol', (req, res, next) => {
     // Add a picture of a cryptocurrency to the right of these headers
 
 // route for crypto analytics page
-app.get()
+// app.get()
 
 module.exports = app;
