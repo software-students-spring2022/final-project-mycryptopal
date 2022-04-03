@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import './Crypto.css';
 
     // https://www.mockaroo.com/docs
@@ -12,13 +13,14 @@ import './Crypto.css';
     // Add a picture of a cryptocurrency to the right of these headers
 
 function Crypto() {
-    const [coin, setCoin] = useState({});
+    const [coin, setCoin] = useState({circulating_supply: 0, quote: {USD: {price: 0, percent_change_24h: 0, volume_24h: 0, market_cap: 0}}});
+    let { symbol } = useParams();
 
     useEffect(() => {
         async function getCoin() {
-            const res = await fetch('https://my.api.mockaroo.com/coins.json?key=4c156a80');
+            const res = await fetch(`http://localhost:4000/crypto/${symbol}`);
             const data = await res.json();
-            setCoin(data);
+            setCoin(data.data[`${symbol.toUpperCase()}`][0]);
         }
         getCoin();
     }, []);
@@ -33,7 +35,7 @@ function Crypto() {
                 <div id="top-content">
                     <div id="crypto-info">
                         <div id="crypto-name">
-                            {coin.cryptoName}
+                            {coin.name}
                         </div>
                         <div id="crypto-subinfo">
                             <div className="subinfo info-left">
@@ -41,8 +43,8 @@ function Crypto() {
                                 <div className="cryptoInfo cryptoPercent">% Change</div>
                             </div>
                             <div className="subinfo info-right">
-                                <div className="cryptoInfo cryptoPrice">{coin.cryptoPrice}</div>
-                                <div className="cryptoInfo cryptoPercent">{coin.cryptoPercentChange}</div>
+                                <div className="cryptoInfo cryptoPrice">{coin.quote.USD.price.toFixed(2)}</div>
+                                <div className="cryptoInfo cryptoPercent">{(coin.quote.USD.percent_change_24h / 100).toFixed(2)}%</div>
                             </div>
                         </div>
                     </div>
@@ -76,9 +78,9 @@ function Crypto() {
                             <div className="cryptoInfo cryptoSupply">Circulating Supply</div>
                         </div>
                         <div className="subinfo info-right">
-                            <div className="cryptoInfo cryptoVolume">{coin.cryptoVolume}</div>
-                            <div className="cryptoInfo cryptoCap">{coin.cryptoCap}</div>
-                            <div className="cryptoInfo cryptoSupply">{coin.cryptoSupply}</div>
+                            <div className="cryptoInfo cryptoVolume">{coin.quote.USD.volume_24h.toFixed()}</div>
+                            <div className="cryptoInfo cryptoCap">{coin.quote.USD.market_cap.toFixed()}</div>
+                            <div className="cryptoInfo cryptoSupply">{coin.circulating_supply.toFixed()}</div>
                         </div>
                     </div>
                 </div>

@@ -70,6 +70,13 @@ app.get('/userdata', (req, res) => {
   .catch(err=> next(err));
 })
 
+app.get('/crypto/:symbol', (req, res) => {
+  axios
+  .get(`https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=${req.params.symbol}`, { headers: { 'X-CMC_PRO_API_KEY': '528926c7-6726-45a1-9add-dcb670893b40' }})
+  .then(apiResponse => res.json(apiResponse.data))
+  .catch(err => console.log(err))
+});
+
     // https://www.mockaroo.com/docs
     // All these API requests should be "GET" Requests based on the Input
     // Name of clicked Crypto <--- Will be filled in based on results of "GET" Request
