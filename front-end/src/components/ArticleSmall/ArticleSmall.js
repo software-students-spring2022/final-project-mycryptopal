@@ -8,21 +8,20 @@ import './ArticleSmall.css';
 // }
 
 async function getNews() {
-    const res = await fetch(`http://localhost:4000/Home`)
-    const data = await res.json()
-    return data;
-  }
+    const res = await fetch(`http://localhost:4000/Home`).then((response) => response.json())
+    return res
+}
   getNews();
 
 
 function ArticleSmall(props) {
-    props = getNews();
+    props = getNews()
     console.log(props)
     return (
         <>
             <div className="articleSmall" onClick={() => window.location.href=props.link}>
                 <div className="articleSmallPicture">
-                    <img src={props.urlToImage} alt="Article"></img>
+                    <img src={props.articles} alt="Article"></img>
                 </div>
                 <div className="articleSmallContent">
                     <div className="articleSmallTitle">{props.title}</div>
