@@ -127,6 +127,16 @@ app.get('/graph/:symbol/:interval?', (req, res) => {
   .catch(err => console.log(err));
 });
 
+app.get('/assets', (req, res) => {
+  const COINS = ['BTC', 'ETH', 'DOGE', 'SOL'];
+  const FRACTIONS = new Array(4).fill(0).map(() => parseInt((Math.random() * 200)) + 20);
+  const ALLOCATIONS = COINS.reduce((current, element, index) => {
+    current[element] = FRACTIONS[index];
+    return current;
+  }, {});
+  res.json(ALLOCATIONS);
+});
+
     // https://www.mockaroo.com/docs
     // All these API requests should be "GET" Requests based on the Input
     // Name of clicked Crypto <--- Will be filled in based on results of "GET" Request
