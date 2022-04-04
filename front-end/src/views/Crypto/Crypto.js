@@ -15,6 +15,8 @@ import {
 function Crypto() {
     const [coin, setCoin] = useState({slug: '', symbol: '', circulating_supply: 0, quote: {USD: {price: 0, percent_change_24h: 0, volume_24h: 0, market_cap: 0}}});
     const [data, setData] = useState(null);
+    const [info, setInfo] = useState("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+
     let { symbol } = useParams();
 
     function transformData(data) {
@@ -38,8 +40,16 @@ function Crypto() {
             setData(transformData(data));
         }
 
+        async function getInfo() {
+            const res = await fetch(`http://localhost:4000/crypto/info/${symbol}`);
+            const data = await res.json();
+            setInfo(data.data[`${symbol.toUpperCase()}`][0])
+            
+        }
+
         getCoin();
         getData();
+        getInfo();
     }, []);
 
     return (

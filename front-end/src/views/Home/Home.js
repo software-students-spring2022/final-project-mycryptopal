@@ -10,30 +10,9 @@ import {
 import './Home.css';
 import ArticleSmall from "../../components/ArticleSmall/ArticleSmall";
 
-
-const COLORS = ["blue", "green", "yellow", "coral"]
-
-const allocation = [
-  {
-    name: "BTC",
-    value: 0.35,
-  },
-  {
-    name: "ETH",
-    value: 0.2,
-  },
-  {
-    name: "DOGE",
-    value: 0.2,
-  },
-  {
-    name: "SOL",
-    value: 0.25
-  }
-];
-
 function Home() {
     const news = [];
+    const COLORS = ["blue", "green", "orange", "coral"]
 
     for (let i = 0; i < 5; i++) {
         news.push(<ArticleSmall key={i} />);
@@ -41,6 +20,7 @@ function Home() {
 
     let initialShown = news.length > 3 ? 3 : news.length;
 
+    const [allocations, setAllocations] = useState([]);
     const [articles, setArticles] = useState(news);
     const [numShown, setNumShown] = useState(initialShown);
     const [expanded, setExpanded] = useState(false);
@@ -74,6 +54,22 @@ function Home() {
   
     }, [searchterm, apiKeyNews]);
 
+    useEffect(() => {
+      async function getAllocations() {
+        const res = await fetch(`http://localhost:4000/assets`);
+        const data = await res.json();
+        const assetSum = Object.values(data).reduce((sum, current) => sum + current, 0);
+        const formattedData = Object.keys(data).reduce((result, current, index) => {
+          const entry = {};
+          entry.name = current;
+          entry.value = parseFloat((Object.values(data)[index] / assetSum).toFixed(2));
+          result.push(entry);
+          return result;
+        }, []);
+        setAllocations(formattedData);
+      }
+      getAllocations();
+    }, []);
 
     return (
     <>
@@ -86,8 +82,8 @@ function Home() {
             <div id="chart-container">
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
-                  <Pie data={allocation} dataKey="value" nameKey="name">
-                    {allocation.map((item, index) => (
+                  <Pie data={allocations} dataKey="value" nameKey="name">
+                    {allocations.map((item, index) => (
                       <Cell key={index} stroke={'#000'} strokeWidth={1} fill={COLORS[index]} />
                     ))}
                   </Pie>
