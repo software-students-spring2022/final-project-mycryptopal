@@ -6,7 +6,6 @@ import Explore from './views/Explore/Explore';
 import Learn from './views/Learn/Learn';
 import Contact from './views/Contact/Contact';
 import Settings from './views/Settings/Settings';
-import Article from './views/Article/Article';
 import Crypto from './views/Crypto/Crypto';
 import Lesson from './views/Lesson/Lesson';
 // Components
