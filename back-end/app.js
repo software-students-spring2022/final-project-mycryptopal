@@ -19,7 +19,7 @@ app.use((req, res, next) => {
     next();
 });
 
-//Routes
+// Routes
 app.get('/', (req, res) => {   
     res.send('Example route');
 });
