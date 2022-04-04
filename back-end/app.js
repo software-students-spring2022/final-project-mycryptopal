@@ -34,10 +34,6 @@ app.get('/Home', (req,res, next) => {
   .get(`${API_URL_NEWS}?q=${search_term}&apiKey=${API_KEY_NEWS}`)
   .then(apiResponse => res.json(apiResponse.data))
   .catch(err => console.log(err));
-
-
-
-
 });
 
 app.get('/portfolio/:symbol', (req, res, next) => {
