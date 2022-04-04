@@ -38,9 +38,11 @@ function Home() {
 
     useEffect(() => {
      async function getNews() {
-        const res = await fetch(`http://localhost:4000/Home`)
+        const res = await fetch(`http://localhost:4000/Home`)  //this is being moved over to ArticleSmall, but needed for original article
         const data = await res.json()
         console.log(data)
+        setArticles(res.articles)
+
       }
       getNews();
     }, []);
