@@ -1,20 +1,29 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './Crypto.css';
-
-    // https://www.mockaroo.com/docs
-    // All these API requests should be "GET" Requests based on the Input
-    // Name of clicked Crypto <--- Will be filled in based on results of "GET" Request
-    // Price of clicked Crypto <--- Will be filled in based on results of "GET" Request
-    // Picture of Crypto <--- Will be filled in based on results of "GET" Request
-    // Stock Graph of Crypto <--- Will be filled in based on results of "GET" Request
-    // Crypto information <--- Will be filled in based on results of "GET" Request
-
-    // Add a picture of a cryptocurrency to the right of these headers
+import {
+    LineChart,
+    CartesianGrid,
+    XAxis,
+    YAxis,
+    Tooltip,
+    Legend,
+    Line,
+    ResponsiveContainer
+} from "recharts";
 
 function Crypto() {
     const [coin, setCoin] = useState({slug: '', symbol: '', circulating_supply: 0, quote: {USD: {price: 0, percent_change_24h: 0, volume_24h: 0, market_cap: 0}}});
+    const [data, setData] = useState(null);
     let { symbol } = useParams();
+
+    function transformData(data) {
+        return data.c.map((item, index) => ({
+          close: Number(item).toFixed(5),
+          open: Number(data.o[index]).toFixed(5),
+          timestamp: new Date(data.t[index] * 1000).toLocaleDateString()
+        }))
+    }
 
     useEffect(() => {
         async function getCoin() {
@@ -22,7 +31,15 @@ function Crypto() {
             const data = await res.json();
             setCoin(data.data[`${symbol.toUpperCase()}`][0]);
         }
+
+        async function getData() {
+            const res = await fetch(`http://localhost:4000/graph/${symbol}`);
+            const data = await res.json();
+            setData(transformData(data));
+        }
+
         getCoin();
+        getData();
     }, []);
 
     return (
@@ -55,10 +72,25 @@ function Crypto() {
 
                 <div id="middle-content">
                     <div id="stock-graph">
-                        <img src="https://picsum.photos/1200/600" alt="stock graph"></img>
+                        <div className="sectionHeader">
+                            Price History (30 Days)
+                        </div>
+                        <ResponsiveContainer width="100%" height={300}> 
+                            <LineChart data={data}
+                            margin={{ top: 20, bottom: 15 }}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="timestamp" />
+                            <YAxis type="number" allowDecimals={true}
+                                allowDataOverflow={true} />
+                            <Tooltip />
+                            <Legend />
+                            <Line type="monotone" dataKey="open" stroke="blue" dot={false} />
+                            <Line type="monotone" dataKey="close" stroke="gray" dot={false} />
+                            </LineChart>
+                        </ResponsiveContainer>
                     </div>
                     <div id="crypto-history">
-                        <div id="history-header">
+                        <div className="sectionHeader">
                             Cryptocurrency Information and History
                         </div>
                         <div id="history-content">
@@ -68,7 +100,7 @@ function Crypto() {
                 </div>
                 
                 <div id="bottom-content">
-                    <div id="market-header">
+                    <div className="sectionHeader">
                         Market Stats
                     </div>
                     <div id="market-info">
