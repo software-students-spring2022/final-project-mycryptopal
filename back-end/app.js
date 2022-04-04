@@ -28,15 +28,13 @@ app.get('/', (req, res) => {    //dont need this route, just commmenting it for 
 app.get('/Home', (req,res, next) => {
     const API_KEY_NEWS = "0473a42ea4ee4b1fa9734aea4ab7d84d"
     const API_URL_NEWS = "https://newsapi.org/v2/everything"
-    const PAGE_SIZE = "3"
+    const PAGE_SIZE = "10"
     let search_term = "cryptocurrency"
 
     axios
   .get(`${API_URL_NEWS}?q=${search_term}&apiKey=${API_KEY_NEWS}&pageSize=${PAGE_SIZE}`)
   .then(apiResponse => res.json(apiResponse.data))
   .catch(err => next(err));
-
-
 });
 
 app.get('/userdata', (req, res) => {

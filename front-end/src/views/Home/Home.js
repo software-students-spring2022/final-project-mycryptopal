@@ -10,21 +10,15 @@ import {
 import './Home.css';
 import ArticleSmall from "../../components/ArticleSmall/ArticleSmall";
 
+let initialShown = 0;
+
 function Home() {
-    const news = [];
     const COLORS = ["blue", "green", "orange", "coral"]
-
-    for (let i = 0; i < 5; i++) {
-        news.push(<ArticleSmall key={i} />);
-    }
-
-    let initialShown = news.length > 3 ? 3 : news.length;
-
     const [allocations, setAllocations] = useState([]);
-    const [articles, setArticles] = useState(news);
+    const [articles, setArticles] = useState([]);
     const [numShown, setNumShown] = useState(initialShown);
     const [expanded, setExpanded] = useState(false);
-    
+
     function showMore(){
         if (numShown === initialShown){
             setNumShown(articles.length);
@@ -36,16 +30,25 @@ function Home() {
         }
     }
 
+    // API calls for news articles
     useEffect(() => {
-     async function getNews() {
+     async function getArticles() {
         const res = await fetch(`http://localhost:4000/Home`)  //this is being moved over to ArticleSmall, but needed for original article
-        const data = await res.json()
-        console.log(data)
-        setArticles(res.articles)
-
+        const data = (await res.json()).articles
+        const news = data.map((current, index) => {
+          return <ArticleSmall key={index} title={current.title} summary={current.description} picture={current.urlToImage} link={current.url}/>
+        });
+        setArticles(news);
       }
-      getNews();
+      getArticles();
     }, []);
+
+    useEffect(() => {
+      initialShown = articles.length > 3 ? 3 : articles.length;
+      setNumShown(initialShown);
+    }, [articles]);
+
+    // API call for mock asset allocation data
 
     useEffect(() => {
       async function getAllocations() {
@@ -88,7 +91,7 @@ function Home() {
           </div>
           <div id="news">
             <div id="news-header">News</div>
-            {news.slice(0, numShown)}
+            {articles.slice(0, numShown)}
             <button id="expand-button" onClick={showMore}>
               {expanded ? (
                   <span>Show Less</span>
