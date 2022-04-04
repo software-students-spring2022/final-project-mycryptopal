@@ -25,13 +25,13 @@ app.get('/', (req, res) => {    //dont need this route, just commmenting it for 
     res.send('Example route');
 });
 
-app.get('/Home', (req,res, next) => {
+app.get('/news', (req, res, next) => {
     const API_KEY_NEWS = "0473a42ea4ee4b1fa9734aea4ab7d84d"
     const API_URL_NEWS = "https://newsapi.org/v2/everything"
-    const PAGE_SIZE = "10"
+    const PAGE_SIZE = "20"
     let search_term = "cryptocurrency"
 
-    axios
+  axios
   .get(`${API_URL_NEWS}?q=${search_term}&apiKey=${API_KEY_NEWS}&pageSize=${PAGE_SIZE}`)
   .then(apiResponse => res.json(apiResponse.data))
   .catch(err => next(err));
@@ -57,8 +57,6 @@ app.get('/crypto/info/:symbol', (req, res) => {
   .then(apiResponse => res.json(apiResponse.data))
   .catch(err => console.log(err))
 });
-
-
 
 app.get('/graph/:symbol/:interval?', (req, res) => {
   const API_TOKEN = "c8qd4eiad3ienapjjc9g";

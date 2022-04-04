@@ -33,7 +33,7 @@ function Home() {
     // API calls for news articles
     useEffect(() => {
      async function getArticles() {
-        const res = await fetch(`http://localhost:4000/Home`)  
+        const res = await fetch(`http://localhost:4000/news`)  
         const data = (await res.json()).articles
         const news = data.map((current, index) => {
           return <ArticleSmall key={index} title={current.title} summary={current.description} picture={current.urlToImage} link={current.url}/>
@@ -49,7 +49,6 @@ function Home() {
     }, [articles]);
 
     // API call for mock asset allocation data
-
     useEffect(() => {
       async function getAllocations() {
         const res = await fetch(`http://localhost:4000/assets`);
