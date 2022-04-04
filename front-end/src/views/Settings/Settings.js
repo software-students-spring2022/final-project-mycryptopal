@@ -6,9 +6,10 @@ function Settings() {
 
     useEffect(() => {
         async function getUser() {
-            const res = await fetch('https://my.api.mockaroo.com/users.json?key=4c156a80');
+            const res = await fetch('http://localhost:4000/userdata');
             const data = await res.json();
-            setUser(data[0]);
+            console.log(data);
+            setUser(data);
         }
         getUser();
     }, []);

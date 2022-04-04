@@ -19,7 +19,7 @@ function Explore() {
             logo: 'https://cryptologos.cc/logos/dogecoin-doge-logo.png'
         },
         {
-            title: 'Terra',
+            title: 'LUNA',
             url: '/crypto',
             logo: 'https://cryptologos.cc/logos/terra-luna-luna-logo.png'
         },
@@ -34,7 +34,7 @@ function Explore() {
             logo: 'https://cryptologos.cc/logos/binance-coin-bnb-logo.svg?v=002'
         },
         {
-            title: 'USD Coin',
+            title: 'USDC',
             url: '/crypto',
             logo: 'https://cryptologos.cc/logos/usd-coin-usdc-logo.svg?v=002'
         },
@@ -44,7 +44,7 @@ function Explore() {
             logo: 'https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=002'
         },
         {
-            title: 'Cardano',
+            title: 'ADA',
             url: '/crypto',
             logo: 'https://cryptologos.cc/logos/cardano-ada-logo.png'
         },
