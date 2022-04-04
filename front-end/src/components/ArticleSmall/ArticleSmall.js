@@ -3,7 +3,7 @@ import './ArticleSmall.css';
 function ArticleSmall(props) {
     return (
         <>
-            <div className="articleSmall" onClick={() => window.location.href=props.link}>
+            <div className="articleSmall" onClick={() => window.open(props.link)}>
                 <div className="articleSmallPicture">
                     <img src={props.picture} alt="Article"></img>
                 </div>

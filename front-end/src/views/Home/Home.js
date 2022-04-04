@@ -33,7 +33,7 @@ function Home() {
     // API calls for news articles
     useEffect(() => {
      async function getArticles() {
-        const res = await fetch(`http://localhost:4000/Home`)  //this is being moved over to ArticleSmall, but needed for original article
+        const res = await fetch(`http://localhost:4000/Home`)  
         const data = (await res.json()).articles
         const news = data.map((current, index) => {
           return <ArticleSmall key={index} title={current.title} summary={current.description} picture={current.urlToImage} link={current.url}/>
