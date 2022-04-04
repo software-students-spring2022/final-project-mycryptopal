@@ -38,41 +38,6 @@ app.get('/Home', (req,res, next) => {
 
 });
 
-app.get('/portfolio/:symbol', (req, res, next) => {
-    
-    const API_TOKEN = "c8qd4eiad3ienapjjc9g";
-    const CRYPTO_SYMBOLS = ["BINANCE:BTCUSDT", "BINANCE:ETHUSDT", "BINANCE:DOGEUSDT", "SOL", "BINANCE:SHIBUSDT"]
-    const INTERVAL_OPTIONS = [30, 60, 90, 120]
-    const API_URL = "https://finnhub.io/api/v1/crypto/candle"
-    const RESOLUTION = "D"
-
-    function getUnixTime(date) {
-        return date.getTime() / 1000 | 0;
-      }
-      
-    //   function transformData(data) {                     not being used right now, probably best to comment out
-    //     return data.c.map((item, index) => ({
-    //       close: Number(item).toFixed(2),
-    //       open: Number(data.o[index]).toFixed(2),
-    //       timestamp: new Date(data.t[index] * 1000).toLocaleDateString()
-    //     }))
-    //   }
-
-        function to() {
-          return getUnixTime(new Date())
-      }
-        function from() {
-        let d = new Date();
-        d.setDate(d.getDate() - INTERVAL_OPTIONS[0]); //this will be modified to whatver is passed from front end
-        return getUnixTime(d);
-      }
-      axios
-      .get(`https://finnhub.io/api/v1/crypto/candle?from=${from()}&resolution=D&symbol=${req.params.symbol}&to=${to()}&token=c8qd4eiad3ienapjjc9g`)
-      .then(apiResponse => res.json(apiResponse.data))
-      .catch(err => next(err));
-
-    })
-
 app.get('/userdata', (req, res) => {
   axios
   .get(`https://my.api.mockaroo.com/users.json?key=4c156a80&limit=1`)
@@ -88,7 +53,6 @@ app.get('/crypto/:symbol', (req, res) => {
 });
 
 app.get('/graph/:symbol/:interval?', (req, res) => {
-
   const API_TOKEN = "c8qd4eiad3ienapjjc9g";
   const API_URL = "https://finnhub.io/api/v1/crypto/candle"
   const symbol = req.params.symbol;
@@ -138,18 +102,5 @@ app.get('/assets', (req, res) => {
   }, {});
   res.json(ALLOCATIONS);
 });
-
-    // https://www.mockaroo.com/docs
-    // All these API requests should be "GET" Requests based on the Input
-    // Name of clicked Crypto <--- Will be filled in based on results of "GET" Request
-    // Price of clicked Crypto <--- Will be filled in based on results of "GET" Request
-    // Picture of Crypto <--- Will be filled in based on results of "GET" Request
-    // Stock Graph of Crypto <--- Will be filled in based on results of "GET" Request
-    // Crypto information <--- Will be filled in based on results of "GET" Request
-
-    // Add a picture of a cryptocurrency to the right of these headers
-
-// route for crypto analytics page
-// app.get()
 
 module.exports = app;
