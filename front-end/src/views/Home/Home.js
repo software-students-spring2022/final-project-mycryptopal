@@ -64,7 +64,7 @@ function Home() {
         return;
       }
   
-      fetch(`http://localhost:4000/Home/?${searchterm}&${apiKeyNews}&${pageSize}`)
+      fetch(`http://localhost:4000/Home/?q=${searchterm}&apiKey=${apiKeyNews}&pageSize=${pageSize}`)
       .then(response => response.json())
       .catch(error => {
         console.error('Error:', error);
