@@ -10,7 +10,6 @@ import {
 import './Home.css';
 import ArticleSmall from "../../components/ArticleSmall/ArticleSmall";
 
-
 function Home() {
     const news = [];
     const COLORS = ["blue", "green", "orange", "coral"]
@@ -36,6 +35,22 @@ function Home() {
             setExpanded(false);
         }
     }
+    const searchterm = "cryptocurrency"
+    const apiKeyNews = "0473a42ea4ee4b1fa9734aea4ab7d84d"
+    const pageSize = "3"
+
+    useEffect(() => {
+      if (!searchterm | !apiKeyNews) {
+        return;
+      }
+  
+      fetch(`http://localhost:4000/Home/?${searchterm}&${apiKeyNews}&${pageSize}`)
+      .then(response => response.json())
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  
+    }, [searchterm, apiKeyNews]);
 
     useEffect(() => {
       async function getAllocations() {
