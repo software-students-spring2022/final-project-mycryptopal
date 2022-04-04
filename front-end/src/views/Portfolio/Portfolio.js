@@ -1,5 +1,5 @@
 import './Portfolio.css';
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect} from "react";
 import {
   LineChart,
   CartesianGrid,
