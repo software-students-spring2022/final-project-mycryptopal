@@ -18,9 +18,8 @@ app.use((req, res, next) => {
     console.log("Example custom middleware function");
     next();
 });
-
 // Routes
-app.get('/', (req, res) => {   
+app.get('/', (req, res) => {    //dont need this route, just commmenting it for now, going to switch it to /Home route
     res.send('Example route');
 });
 
