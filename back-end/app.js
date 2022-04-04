@@ -19,21 +19,23 @@ app.use((req, res, next) => {
     next();
 });
 
-// Routes
-app.get('/', (req, res) => {
+Routes
+app.get('/', (req, res) => {   
     res.send('Example route');
 });
 
 app.get('/Home', (req,res, next) => {
     const API_KEY_NEWS = "0473a42ea4ee4b1fa9734aea4ab7d84d"
     const API_URL_NEWS = "https://newsapi.org/v2/everything"
-
+    const PAGE_SIZE = "3"
     let search_term = "cryptocurrency"
 
     axios
-  .get(`${API_URL_NEWS}?q=${search_term}&apiKey=${API_KEY_NEWS}`)
+  .get(`${API_URL_NEWS}?q=${search_term}&apiKey=${API_KEY_NEWS}&pageSize=${PAGE_SIZE}`)
   .then(apiResponse => res.json(apiResponse.data))
-  .catch(err => console.log(err));
+  .catch(err => next(err));
+
+
 });
 
 app.get('/portfolio/:symbol', (req, res, next) => {
