@@ -28,7 +28,6 @@ function App() {
           <Route path='/learn' element={<Learn />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/settings' element={<Settings />} />
-          <Route path='/article' element={<Article />} />
           <Route path='crypto' element={<Explore />} />
           <Route path='/crypto/:symbol' element={<Crypto />} />
           <Route path='/lesson' element={<Lesson />} />
