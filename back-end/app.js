@@ -24,6 +24,22 @@ app.get('/', (req, res) => {
     res.send('Example route');
 });
 
+app.get('/Home', (req,res, next) => {
+    const API_KEY_NEWS = "0473a42ea4ee4b1fa9734aea4ab7d84d"
+    const API_URL_NEWS = "https://newsapi.org/v2/everything?q=&apiKey="
+
+    let search_term = "cryptocurrency"
+
+    axios
+  .get(`${API_URL_NEWS}?q=${search_term}&apiKey=${API_KEY_NEWS}`)
+  .then(apiResponse => res.json(apiResponse.data))
+  .catch(err => console.log(err));
+
+
+
+
+});
+
 app.get('/portfolio/:symbol', (req, res, next) => {
     
     const API_TOKEN = "c8qd4eiad3ienapjjc9g";
@@ -36,13 +52,13 @@ app.get('/portfolio/:symbol', (req, res, next) => {
         return date.getTime() / 1000 | 0;
       }
       
-      function transformData(data) {
-        return data.c.map((item, index) => ({
-          close: Number(item).toFixed(2),
-          open: Number(data.o[index]).toFixed(2),
-          timestamp: new Date(data.t[index] * 1000).toLocaleDateString()
-        }))
-      }
+    //   function transformData(data) {                     not being used right now, probably best to comment out
+    //     return data.c.map((item, index) => ({
+    //       close: Number(item).toFixed(2),
+    //       open: Number(data.o[index]).toFixed(2),
+    //       timestamp: new Date(data.t[index] * 1000).toLocaleDateString()
+    //     }))
+    //   }
 
         function to() {
           return getUnixTime(new Date())
