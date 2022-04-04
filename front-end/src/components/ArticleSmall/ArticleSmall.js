@@ -11,12 +11,12 @@ async function getNews() {
     const res = await fetch(`http://localhost:4000/Home`).then((response) => response.json())
     return res
 }
-  getNews();
-
 
 function ArticleSmall(props) {
     props = getNews()
-    console.log(props)
+    props.then(function(result) {
+        console.log(result) //fixed promise problem
+     })
     return (
         <>
             <div className="articleSmall" onClick={() => window.location.href=props.link}>
