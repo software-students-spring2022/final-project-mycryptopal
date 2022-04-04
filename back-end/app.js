@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 
 app.get('/Home', (req,res, next) => {
     const API_KEY_NEWS = "0473a42ea4ee4b1fa9734aea4ab7d84d"
-    const API_URL_NEWS = "https://newsapi.org/v2/everything?q=&apiKey="
+    const API_URL_NEWS = "https://newsapi.org/v2/everything"
 
     let search_term = "cryptocurrency"
 
@@ -69,12 +69,14 @@ app.get('/portfolio/:symbol', (req, res, next) => {
       .then(apiResponse => res.json(apiResponse.data))
       .catch(err => next(err));
 
+    })
+
 app.get('/userdata', (req, res) => {
   axios
   .get(`https://my.api.mockaroo.com/users.json?key=4c156a80&limit=1`)
   .then(apiResponse => res.json(apiResponse.data))
   .catch(err=> next(err));
-})
+});
 
 app.get('/crypto/:symbol', (req, res) => {
   axios
@@ -138,4 +140,4 @@ app.get('/graph/:symbol/:interval?', (req, res) => {
 // route for crypto analytics page
 // app.get()
 
-module.exports = app})
+module.exports = app;
