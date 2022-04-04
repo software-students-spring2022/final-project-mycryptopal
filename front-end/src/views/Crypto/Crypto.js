@@ -13,7 +13,7 @@ import './Crypto.css';
     // Add a picture of a cryptocurrency to the right of these headers
 
 function Crypto() {
-    const [coin, setCoin] = useState({circulating_supply: 0, quote: {USD: {price: 0, percent_change_24h: 0, volume_24h: 0, market_cap: 0}}});
+    const [coin, setCoin] = useState({slug: '', symbol: '', circulating_supply: 0, quote: {USD: {price: 0, percent_change_24h: 0, volume_24h: 0, market_cap: 0}}});
     let { symbol } = useParams();
 
     useEffect(() => {
@@ -49,7 +49,7 @@ function Crypto() {
                         </div>
                     </div>
                     <div id="crypto-image">
-                        <img src="https://picsum.photos/300" alt="coin pic"></img>
+                        <img src={`https://cryptologos.cc/logos/${coin.slug.replace(' ', '-')}-${coin.symbol.toLowerCase()}-logo.png`} alt="coin pic"></img>
                     </div>
                 </div>
 
