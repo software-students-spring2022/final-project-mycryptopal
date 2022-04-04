@@ -71,6 +71,15 @@ app.get('/crypto/:symbol', (req, res) => {
   .catch(err => console.log(err))
 });
 
+app.get('/crypto/info/:symbol', (req, res) => {
+  axios
+  .get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?symbol=${req.params.symbol}`, { headers: { 'X-CMC_PRO_API_KEY': '22311edd-3d82-441f-b577-f54ae7faa7f7' }})
+  .then(apiResponse => res.json(apiResponse.data))
+  .catch(err => console.log(err))
+});
+
+
+
 app.get('/graph/:symbol/:interval?', (req, res) => {
 
   const API_TOKEN = "c8qd4eiad3ienapjjc9g";
