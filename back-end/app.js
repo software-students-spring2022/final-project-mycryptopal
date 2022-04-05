@@ -9,6 +9,7 @@ const axios = require('axios'); // makes requests to API
 const morgan = require('morgan'); // handles HTTP POST requests with file uploads
 const multer = require('multer'); // logs incoming HTTP requests
 const cors = require('cors');
+const mongoose = require('mongoose')
 
 // Middleware
 app.use(express.static(path.join(__dirname, 'public'))); // serves static files
