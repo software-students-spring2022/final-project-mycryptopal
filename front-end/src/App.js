@@ -6,7 +6,6 @@ import Explore from './views/Explore/Explore';
 import Learn from './views/Learn/Learn';
 import Contact from './views/Contact/Contact';
 import Settings from './views/Settings/Settings';
-import Article from './views/Article/Article';
 import Crypto from './views/Crypto/Crypto';
 import Lesson from './views/Lesson/Lesson';
 // Components
@@ -28,7 +27,6 @@ function App() {
           <Route path='/learn' element={<Learn />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/settings' element={<Settings />} />
-          <Route path='/article' element={<Article />} />
           <Route path='crypto' element={<Explore />} />
           <Route path='/crypto/:symbol' element={<Crypto />} />
           <Route path='/lesson' element={<Lesson />} />
