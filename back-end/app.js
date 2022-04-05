@@ -9,6 +9,7 @@ const axios = require('axios'); // makes requests to API
 const morgan = require('morgan'); // handles HTTP POST requests with file uploads
 const multer = require('multer'); // logs incoming HTTP requests
 const cors = require('cors');
+const mongoose = require('mongoose')
 
 // Middleware
 app.use(express.static(path.join(__dirname, 'public'))); // serves static files
@@ -108,5 +109,20 @@ app.get('/assets', (req, res) => {
   }, {});
   res.json(ALLOCATIONS);
 });
+
+var storage = multer.diskStorage({ //adding boilerplate base code
+  destination: function (req, file, cb) {
+    // store files into a directory named 'uploads'
+    cb(null, "/uploads")
+  },
+  filename: function (req, file, cb) {
+    // rename the files to include the current time and date
+    cb(null, file.fieldname + "-" + Date.now())
+  },
+})
+var upload = multer({ storage: storage })
+
+
+
 
 module.exports = app;
