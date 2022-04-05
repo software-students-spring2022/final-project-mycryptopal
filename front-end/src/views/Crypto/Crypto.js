@@ -43,7 +43,7 @@ function Crypto() {
         async function getInfo() {
             const res = await fetch(`http://localhost:4000/crypto/info/${symbol}`);
             const data = await res.json();
-            setInfo(data.data[`${symbol.toUpperCase()}`][0])
+            setInfo(data.data[`${symbol.toUpperCase()}`].description); 
             
         }
 
