@@ -1,82 +1,44 @@
 import './Explore.css';
 import ExploreCard from '../../components/ExploreCard/ExploreCard';
+import { useState, useEffect } from 'react';
 
 function Explore() {
-    const data = [
-        {
-            title: 'BTC',
-            url: '/crypto',
-            logo: 'https://www.cryptocompare.com/media/19633/btc.png'
-        },
-        {
-            title: 'ETH',
-            url: '/crypto',
-            logo: 'https://cryptologos.cc/logos/ethereum-eth-logo.png'
-        },
-        {
-            title: 'DOGE',
-            url: '/crypto',
-            logo: 'https://cryptologos.cc/logos/dogecoin-doge-logo.png'
-        },
-        {
-            title: 'LUNA',
-            url: '/crypto',
-            logo: 'https://cryptologos.cc/logos/terra-luna-luna-logo.png'
-        },
-        {
-            title: 'USDT',
-            url: '/crypto',
-            logo: 'https://cryptologos.cc/logos/tether-usdt-logo.svg?v=002'
-        },
-        {
-            title: 'BNB',
-            url: '/crypto',
-            logo: 'https://cryptologos.cc/logos/binance-coin-bnb-logo.svg?v=002'
-        },
-        {
-            title: 'USDC',
-            url: '/crypto',
-            logo: 'https://cryptologos.cc/logos/usd-coin-usdc-logo.svg?v=002'
-        },
-        {
-            title: 'XRP',
-            url: '/crypto',
-            logo: 'https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=002'
-        },
-        {
-            title: 'ADA',
-            url: '/crypto',
-            logo: 'https://cryptologos.cc/logos/cardano-ada-logo.png'
-        },
-        {
-            title: 'SOL',
-            url: '/crypto',
-            logo: 'https://cryptologos.cc/logos/solana-sol-logo.png'
-        }
-    ]
+    const [coins, setCoins] = useState([]);
+
+    useEffect(() => {
+        async function getCoins() {
+            const res = await fetch(`http://localhost:4000/explore/102`);
+            const data = await res.json();
+            setCoins(data);
+          }
+          getCoins();
+    }, []);
+
     return (
         <>
             <div id="page-title">
                 <h1>Explore Cryptos</h1>
             </div>
             <div id="page-content">
-                <div className="dropdown-section">
-                    <button className="dropdown-btn">Cryptocurrency Dropdown</button>
-                </div>
+                <div id="most-popular">
+                    <div className="exploreHeader">
+                        Most Popular Cryptocurrencies By Market Cap
+                    </div>
 
-                <div id="crypto-dropdown">
-                    <select name="cars" id="cars" onChange={() => {window.location.href='/crypto'}}>
-                        <option value="">Select Cryptocurrency</option>
-                        {
-                            data.map(item => <option>{item.title}</option>)
-                        }
-                    </select>
-                </div>
+                    <div id="crypto-dropdown">
+                        <select id="pop" onChange={() => {
+                            window.location.href = document.getElementById('pop').value;
+                            }}>
+                            <option value="">Search Crypto in Alphabetical Order</option>
+                            {
+                                [...coins].sort((a,b) => a.name > b.name).map((item, i) => <option key={i} value={item.url}>{item.name}</option>)
+                            }
+                        </select>
+                    </div>
 
-                <div id="crypto-collage">
-                    {
-                        data.map(item => <ExploreCard title={item.title} url={item.url} logo={item.logo}/>)
-                    }
+                    <div id="crypto-collage">
+                        {coins.map((item, i) => <ExploreCard key={i} symbol={item.symbol} url={item.url} pic={item.pic}/>)}
+                    </div>
                 </div>
             </div>
         </>

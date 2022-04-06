@@ -18,14 +18,6 @@ function Home() {
     const [numShown, setNumShown] = useState(0);
     const [colors, setColors] = useState([]);
 
-    function showMore(){
-      setNumShown(Math.min(numShown + 3, articles.length));
-    }
-    
-    function showLess() {
-      setNumShown(minShown);
-    }
-
     // API calls for news articles
     useEffect(() => {
      async function getArticles() {
@@ -78,42 +70,42 @@ function Home() {
       <div id="page-title">
         <h1>Home</h1>
       </div>
-        <div id="page-content">
-          <div id="chart">
-            <div className="homeHeader">Asset Allocations</div>
-            <div id="chart-container">
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
-                  <Pie data={allocations} dataKey="value" nameKey="name">
-                    {allocations.map((item, index) => (
-                      <Cell key={index} stroke={'#000'} strokeWidth={1} fill={colors[index]} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                  <Legend />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
+      <div id="page-content">
+        <div id="chart">
+          <div className="homeHeader">Asset Allocations</div>
+          <div id="chart-container">
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie data={allocations} dataKey="value" nameKey="name">
+                  {allocations.map((item, index) => (
+                    <Cell key={index} stroke={'#000'} strokeWidth={1} fill={colors[index]} />
+                  ))}
+                </Pie>
+                <Tooltip />
+                <Legend />
+              </PieChart>
+            </ResponsiveContainer>
           </div>
-          <div id="news">
-            <div className="homeHeader">News</div>
-            {articles.slice(0, numShown)}
-            <div id="feed-buttons">
-              {numShown > minShown ? (
-                <button className="newsButton" onClick={showLess}>
-                  <span>Show Less</span>
-                </button>
-              ) : (<></>)}
-            </div>
-          </div>
-          <InfiniteScroll
-            dataLength={numShown}
-            next={showMore}
-            hasMore={() => numShown >= articles.length ? false : true}
-            id="infinite-scroll"
-          >
-          </InfiniteScroll>
         </div>
+        <div id="news">
+          <div className="homeHeader">News</div>
+          {articles.slice(0, numShown)}
+          <div id="feed-buttons">
+            {numShown > minShown ? (
+              <button className="newsButton" onClick={() => setNumShown(minShown)}>
+                <span>Show Less</span>
+              </button>
+            ) : (<></>)}
+          </div>
+        </div>
+        <InfiniteScroll
+          dataLength={numShown}
+          next={() => setNumShown(Math.min(numShown + 5, articles.length))}
+          hasMore={() => numShown >= articles.length ? false : true}
+          id="infinite-scroll"
+        >
+        </InfiniteScroll>
+      </div>
     </>
     );
 }
