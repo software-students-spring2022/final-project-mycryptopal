@@ -1,14 +1,23 @@
-#news {
-  text-align: center;
-}
-
-#news-header {
+.homeHeader {
   text-align: center;
   font-weight: bold;
   margin-top: 5%;
   font-size: 1.1em;
 }
 
-#expand-button {
+#feed-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.newsButton {
   margin-top: 3%;
+  width: 40%;
+  height: 2.3em;
+}
+
+#infinite-scroll {
+  display: none;
 }

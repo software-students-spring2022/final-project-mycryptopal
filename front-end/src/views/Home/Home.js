@@ -6,28 +6,24 @@ import {
   Pie,
   Cell,
   ResponsiveContainer
-} from "recharts";
+} from 'recharts';
 import './Home.css';
-import ArticleSmall from "../../components/ArticleSmall/ArticleSmall";
-
-let initialShown = 0;
+import ArticleSmall from '../../components/ArticleSmall/ArticleSmall';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 function Home() {
-    const COLORS = ["blue", "green", "orange", "coral"]
     const [allocations, setAllocations] = useState([]);
     const [articles, setArticles] = useState([]);
-    const [numShown, setNumShown] = useState(initialShown);
-    const [expanded, setExpanded] = useState(false);
+    const [minShown, setMinShown] = useState(0);
+    const [numShown, setNumShown] = useState(0);
+    const [colors, setColors] = useState([]);
 
     function showMore(){
-        if (numShown === initialShown){
-            setNumShown(articles.length);
-            setExpanded(true);
-        }
-        else {
-            setNumShown(initialShown);
-            setExpanded(false);
-        }
+      setNumShown(Math.min(numShown + 3, articles.length));
+    }
+    
+    function showLess() {
+      setNumShown(minShown);
     }
 
     // API calls for news articles
@@ -44,9 +40,12 @@ function Home() {
     }, []);
 
     useEffect(() => {
-      initialShown = articles.length > 3 ? 3 : articles.length;
-      setNumShown(initialShown);
+      setMinShown(articles.length > 4 ? 4 : articles.length);
     }, [articles]);
+
+    useEffect(() => {
+      setNumShown(minShown);
+    }, [minShown]);
 
     // API call for mock asset allocation data
     useEffect(() => {
@@ -66,6 +65,14 @@ function Home() {
       getAllocations();
     }, []);
 
+    useEffect(() => {
+      function getRandomColor() {
+        return '#' + Math.floor(Math.random()*16777215).toString(16).toString();
+      }
+      const randomColors = new Array(allocations.length).fill(0).map(() => getRandomColor());
+      setColors(randomColors);
+    }, [allocations]);
+
     return (
     <>
       <div id="page-title">
@@ -73,13 +80,13 @@ function Home() {
       </div>
         <div id="page-content">
           <div id="chart">
-            <div id="news-header">Asset Allocations</div>
+            <div className="homeHeader">Asset Allocations</div>
             <div id="chart-container">
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
                   <Pie data={allocations} dataKey="value" nameKey="name">
                     {allocations.map((item, index) => (
-                      <Cell key={index} stroke={'#000'} strokeWidth={1} fill={COLORS[index]} />
+                      <Cell key={index} stroke={'#000'} strokeWidth={1} fill={colors[index]} />
                     ))}
                   </Pie>
                   <Tooltip />
@@ -89,18 +96,23 @@ function Home() {
             </div>
           </div>
           <div id="news">
-            <div id="news-header">News</div>
+            <div className="homeHeader">News</div>
             {articles.slice(0, numShown)}
-            <button id="expand-button" onClick={showMore}>
-              {expanded ? (
+            <div id="feed-buttons">
+              {numShown > minShown ? (
+                <button className="newsButton" onClick={showLess}>
                   <span>Show Less</span>
-              ) : (
-                  <span>Show More</span>
-              )}
-            </button>
+                </button>
+              ) : (<></>)}
+            </div>
           </div>
-        </div>
-        <div>
+          <InfiniteScroll
+            dataLength={numShown}
+            next={showMore}
+            hasMore={() => numShown >= articles.length ? false : true}
+            id="infinite-scroll"
+          >
+          </InfiniteScroll>
         </div>
     </>
     );
