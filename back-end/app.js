@@ -30,11 +30,11 @@ app.get('/', (req, res) => {    //dont need this route, just commmenting it for 
 app.get('/news', (req, res, next) => {
     const API_KEY_NEWS = "0473a42ea4ee4b1fa9734aea4ab7d84d";
     const API_URL_NEWS = "https://newsapi.org/v2/everything";
-    const PAGE_SIZE = "50";
-    let search_term = "cryptocurrency";
+    const PAGE_SIZE = 100;
+    let search_term = "crypto";
 
   axios
-  .get(`${API_URL_NEWS}?q=${search_term}&apiKey=${API_KEY_NEWS}&pageSize=${PAGE_SIZE}`)
+  .get(`${API_URL_NEWS}?q=${search_term}&apiKey=${API_KEY_NEWS}&pageSize=${PAGE_SIZE}&language=en&sortBy=publishedAt`)
   .then(apiResponse => res.json(apiResponse.data))
   .catch(err => next(err));
 });
@@ -109,6 +109,24 @@ app.get('/assets', (req, res) => {
     return current;
   }, {});
   res.json(ALLOCATIONS);
+});
+
+app.get('/explore/:num?', (req, res) => {
+  axios
+  .get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=${req.params.num ? req.params.num : 12}`, { headers: { 'X-CMC_PRO_API_KEY': '528926c7-6726-45a1-9add-dcb670893b40' }})
+  .then(apiResponse => {
+    const coins = apiResponse.data.data.reduce((current, element) => {
+      const coin = {};
+      coin.name = element.name;
+      coin.symbol = element.symbol;
+      coin.pic = `https://s2.coinmarketcap.com/static/img/coins/128x128/${element.id}.png`;
+      coin.url = `/crypto/${element.symbol}`;
+      current.push(coin);
+      return current;
+    }, []);
+    res.json(coins);
+  })
+  .catch(err => console.log(err))
 });
 
 var storage = multer.diskStorage({ //adding boilerplate base code

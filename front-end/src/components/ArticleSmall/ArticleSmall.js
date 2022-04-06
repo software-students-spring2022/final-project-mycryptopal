@@ -5,7 +5,7 @@ function ArticleSmall(props) {
         <>
             <div className="articleSmall" onClick={() => window.open(props.link)}>
                 <div className="articleSmallPicture">
-                    <img src={props.picture} alt="Article"></img>
+                    <img src={props.picture} alt=""></img>
                 </div>
                 <div className="articleSmallContent">
                     <div className="articleSmallTitle">{props.title}</div>

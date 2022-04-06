@@ -76,7 +76,7 @@ function Crypto() {
                         </div>
                     </div>
                     <div id="crypto-image">
-                        <img src={`https://cryptologos.cc/logos/${coin.slug.replace(' ', '-')}-${coin.symbol.toLowerCase()}-logo.png`} alt="coin pic"></img>
+                        <img src={`https://s2.coinmarketcap.com/static/img/coins/128x128/${coin.id}.png`} alt="coin pic"></img>
                     </div>
                 </div>
 

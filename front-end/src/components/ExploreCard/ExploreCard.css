@@ -6,7 +6,7 @@
     cursor: pointer;
     background-color:grey;
     border-radius: 3%;
-    flex-basis: 80%;
+    flex-basis: 32%;
     margin-left: auto;
     margin-right: auto;
     padding-top: 5%;
@@ -16,7 +16,7 @@
 
 .exploreCard h2{
     text-align: center;
-    font-size: 1.3em;
+    font-size: 1.2em;
 }
 
 .cardImage {
@@ -27,15 +27,15 @@
 .cardImage img {
     min-width: 40%;
     height: auto;
-    margin-right: 3%;
-    margin-left: auto;
+    margin-left: 10%;
     margin-right: auto;
 }
 
 .cardName {
-    flex-basis: 70%;
+    flex-basis: 60%;
 }
 
 .exploreCard:hover {
     background-color: #d9dbd3;
+    color: rgb(62, 62, 62);
 }

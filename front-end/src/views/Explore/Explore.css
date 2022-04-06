@@ -1,36 +1,10 @@
-.dropdown-section{
-margin-top: 3em;
-display: flex;
-/* border: 2px solid black; */
-flex-direction: column;
-align-items: center;
-justify-content: center;
-}
-.dropdown-btn{
-width:90%;
-background-color: black;
-color: white;
-outline: none;
-border: none;
-padding: 10px;
-cursor: pointer;
-font-size: 18px;
-border-radius: 5px;
-}
-.dropdown-content-section{
-margin-top: 40px;
-padding: 10px;
-display: flex;
-flex-wrap: wrap;
-align-items: center;
-justify-content: flex-start;
-}
 #crypto-dropdown {
- text-align: center; 
+ text-align: center;
+ margin-top: 1em;
+ margin-bottom: 1em;
 }
 #crypto-dropdown select {
-  width: 90%;
-
+  width: 80%;
 }
 #crypto-collage {
   display: flex;
@@ -38,4 +12,29 @@ justify-content: flex-start;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+}
+.exploreHeader {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 5%;
+  font-size: 1.1em;
+}
+
+#explore-search form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5em;
+}
+
+#search-box {
+  width: 80%;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+#search-button {
+  height: 2.1em;
+  width: 60%;
 }
