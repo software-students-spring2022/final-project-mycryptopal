@@ -6,9 +6,10 @@ import {
   Pie,
   Cell,
   ResponsiveContainer
-} from "recharts";
+} from 'recharts';
 import './Home.css';
-import ArticleSmall from "../../components/ArticleSmall/ArticleSmall";
+import ArticleSmall from '../../components/ArticleSmall/ArticleSmall';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 function Home() {
     const [allocations, setAllocations] = useState([]);
@@ -18,7 +19,7 @@ function Home() {
     const [colors, setColors] = useState([]);
 
     function showMore(){
-      setNumShown(Math.min(numShown + 5, articles.length));
+      setNumShown(Math.min(numShown + 3, articles.length));
     }
     
     function showLess() {
@@ -39,7 +40,7 @@ function Home() {
     }, []);
 
     useEffect(() => {
-      setMinShown(articles.length > 3 ? 3 : articles.length);
+      setMinShown(articles.length > 4 ? 4 : articles.length);
     }, [articles]);
 
     useEffect(() => {
@@ -98,11 +99,6 @@ function Home() {
             <div className="homeHeader">News</div>
             {articles.slice(0, numShown)}
             <div id="feed-buttons">
-              {numShown < articles.length ? (
-                  <button className="newsButton" onClick={showMore}>
-                    <span>Show More</span>
-                </button>
-              ) : (<></>)}
               {numShown > minShown ? (
                 <button className="newsButton" onClick={showLess}>
                   <span>Show Less</span>
@@ -110,6 +106,13 @@ function Home() {
               ) : (<></>)}
             </div>
           </div>
+          <InfiniteScroll
+            dataLength={numShown}
+            next={showMore}
+            hasMore={() => numShown >= articles.length ? false : true}
+            id="infinite-scroll"
+          >
+          </InfiniteScroll>
         </div>
     </>
     );
