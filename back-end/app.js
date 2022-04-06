@@ -20,16 +20,17 @@ app.use((req, res, next) => {
     console.log("Example custom middleware function");
     next();
 });
+
 // Routes
 app.get('/', (req, res) => {    //dont need this route, just commmenting it for now, going to switch it to /Home route
     res.send('Example route');
 });
 
 app.get('/news', (req, res, next) => {
-    const API_KEY_NEWS = "0473a42ea4ee4b1fa9734aea4ab7d84d"
-    const API_URL_NEWS = "https://newsapi.org/v2/everything"
-    const PAGE_SIZE = "20"
-    let search_term = "cryptocurrency"
+    const API_KEY_NEWS = "0473a42ea4ee4b1fa9734aea4ab7d84d";
+    const API_URL_NEWS = "https://newsapi.org/v2/everything";
+    const PAGE_SIZE = "50";
+    let search_term = "cryptocurrency";
 
   axios
   .get(`${API_URL_NEWS}?q=${search_term}&apiKey=${API_KEY_NEWS}&pageSize=${PAGE_SIZE}`)
@@ -100,8 +101,8 @@ app.get('/graph/:symbol/:interval?', (req, res) => {
 });
 
 app.get('/assets', (req, res) => {
-  const COINS = ['BTC', 'ETH', 'DOGE', 'SOL'];
-  const FRACTIONS = new Array(4).fill(0).map(() => parseInt((Math.random() * 200)) + 20);
+  const COINS = ['BTC', 'ETH', 'DOGE', 'SOL', 'XMR'];
+  const FRACTIONS = new Array(COINS.length).fill(0).map(() => parseInt((Math.random() * 200)) + 20);
   const ALLOCATIONS = COINS.reduce((current, element, index) => {
     current[element] = FRACTIONS[index];
     return current;
