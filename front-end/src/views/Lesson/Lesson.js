@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import './Lesson.css';
+import lessons from './LessonData.js';
 import LessonQuestion from '../../components/LessonQuestion/LessonQuestion';
 
-function Lesson() {
+function Lesson(props) {
     const questions = [];
     for (let i = 1; i <= 5; i++) {
         questions.push(<LessonQuestion key={i} num={i}/>);
@@ -39,7 +40,7 @@ function Lesson() {
         <div id="page-content">
             <div id="lesson-body">
                 <div className="lessonSectionTitle">
-                    <h3>Lesson: Lorem ipsum dolor sit amet</h3>
+                    <h3>Lesson 1: Lorem ipsum dolor sit amet</h3>
                 </div>
                 <div id="lesson-content">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla aliquet porttitor venenatis. Donec a dui et dui fringilla consectetur id nec massa. Aliquam erat volutpat. Sed ut dui ut lacus dictum fermentum vel tincidunt neque. Sed sed lacinia lectus. Duis sit amet sodales felis. Duis nunc eros, mattis at dui ac, convallis semper risus. In adipiscing ultrices tellus, in suscipit massa vehicula eu.
