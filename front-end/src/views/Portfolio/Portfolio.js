@@ -41,7 +41,7 @@ function Portfolio() {
       return;
     }
     async function getData() {
-      const res = await fetch(`http://localhost:4000/api/crypto/graph/${symbol}/${interval}`);
+      const res = await fetch(`http://localhost:4000/api/crypto/graph/${symbol}?interval=${interval}`);
       const data = await res.json();
       setData(data);
     }
