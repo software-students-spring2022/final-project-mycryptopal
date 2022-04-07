@@ -4,7 +4,7 @@ import LessonQuestion from '../../components/LessonQuestion/LessonQuestion';
 
 function Lesson() {
     const questions = [];
-    count = 0
+    let count = 0
     for (let i = 1; i <= 3; i++) {
         questions.push(<LessonQuestion key={i} num={i}/>);
     }
