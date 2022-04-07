@@ -4,13 +4,13 @@ const lessons = [
             {titleNum: 1, titleText: "Lesson 1: What is the difference between the crypto market and the stock market? "},
             {titleNum: 2, titleText: "Lesson 2: What is a blockchain? "},
             {titleNum: 3, titleText: "Lesson 3: What is cryptocurrency? "},
-            {titleNum: 4, titleText: "Lesson 4"},
-            {titleNum: 5, titleText: "Lesson 5"},
-            {titleNum: 6, titleText: "Lesson 6"},
-            {titleNum: 7, titleText: "Lesson 7"},
-            {titleNum: 8, titleText: "Lesson 8"},
-            {titleNum: 9, titleText: "Lesson 9"},
-            {titleNum: 10, titleText: "Lesson 10"}
+            {titleNum: 4, titleText: "Lesson 4: What is a cryptocurrency exchange?"},
+            {titleNum: 5, titleText: "Lesson 5: Storage methods"},
+            {titleNum: 6, titleText: "Lesson 6: What is a whitepaper?"},
+            {titleNum: 7, titleText: "Lesson 7: Investing methods (Day trading, HODL, etc)"},
+            {titleNum: 8, titleText: "Lesson 8: Bear and Bull Markets and FUD"},
+            {titleNum: 9, titleText: "Lesson 9: What is a smart contract?"},
+            {titleNum: 10, titleText: "Lesson 10: Different Types of Cryptocurrency"}
         ]
     }           
     {content: 
