@@ -80,7 +80,10 @@ app.get('/api/crypto/data/:symbol', (req, res) => {
           }
       )
       .then((apiResponse) => res.json(apiResponse.data.data[`${SYMBOL}`][0]))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        res.status(404);
+        res.json({});
+      });
 });
 
 app.get('/api/crypto/info/:symbol', (req, res) => {
@@ -97,9 +100,12 @@ app.get('/api/crypto/info/:symbol', (req, res) => {
       )
       .then((apiResponse) => {
         const data = apiResponse.data.data;
-        res.json(data[`${SYMBOL}`].description);
+        res.json(data[`${SYMBOL}`]);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        res.status(404);
+        res.json({});
+      });
 });
 
 app.get('/api/crypto/graph/:symbol/:interval?', (req, res) => {

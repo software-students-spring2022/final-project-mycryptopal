@@ -23,9 +23,16 @@ function Crypto() {
     useEffect(() => {
         async function getCoinData() {
             const res = await fetch(`http://localhost:4000/api/crypto/data/${symbol}`);
+            if(res.status === 404){
+                window.location.href = '/notfound';
+            }
             const data = await res.json();
             setCoinData(data);
         }
+        getCoinData();
+    }, [symbol]);
+
+    useEffect(() => {
         async function getCoinGraph() {
             const res = await fetch(`http://localhost:4000/api/crypto/graph/${symbol}`);
             const data = await res.json();
@@ -34,19 +41,15 @@ function Crypto() {
         async function getCoinInfo() {
             const res = await fetch(`http://localhost:4000/api/crypto/info/${symbol}`);
             const data = await res.json();
-            setCoinInfo(data); 
+            setCoinInfo(data.description); 
         }
-        getCoinData();
         getCoinGraph();
         getCoinInfo();
-    }, [symbol]);
-
-    useEffect(() => {
         if(coinData.id){
             const logoURL = `https://s2.coinmarketcap.com/static/img/coins/128x128/${coinData.id}.png`;
             setCoinLogo(logoURL);
         }
-    }, [coinData])
+    }, [coinData]);
 
     return (
         <>
