@@ -13,22 +13,31 @@ function Contact() {
                         Frequently Asked Questions
                     </div>
                     <div className="faqQuestion">
-                        Sample Question 1
+                        Does myCryptoPal allow me to trade real money in the financial markets?
                     </div>
                     <div className="faqAnswer">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        No, myCryptoPal does not allow users to trade real US dollars in financial markets. 
+                        The mission of our application is to spread awareness and educate users about cryptocurrencies and the
+                        technology behind it. We hope users can learn how real crypto traders use tools such as stock graphs
+                        to assist them in their financial decisions. 
                     </div>
                     <div className="faqQuestion">
-                        Sample Question 2
+                        The myCryptoPal team seem to be educated about cryptocurrencies, should I ask the team what crypto I should buy?
                     </div>
                     <div className="faqAnswer">
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        Absolutely not. We are not financial advisors. 
                     </div>
                     <div className="faqQuestion">
-                        Sample Question 3
+                        I feel like I've learned a lot from this application, how can I trade cryptocurrencies in real markets?
                     </div>
                     <div className="faqAnswer">
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                        Our team is delighted to hear that this application has helped you learn more about cryptocurrencies
+                        and has inspired you to trade real crypto. Cryptocurrencies are supported in various countries throughout the
+                        world and each country has distinct laws in place regarding crypto. Certain countries require a specific age to be 
+                        reached. In the digital world, more and more retail investors are beginnning to use popular financial brokerage
+                        apps to trade their crypto. Some popular apps that allow you to begin trading easily and seamlessly are 
+                        Coinbase, Binance, Robinhood, and Webull. There are many different ways you can go about the next step in your journey,
+                        choose the path that works best for you and we hope that this is the start of a new adventure for you!
                     </div>
                 </div>
 

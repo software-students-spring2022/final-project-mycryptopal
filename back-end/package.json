@@ -4,7 +4,20 @@
   "description": "The back-end of your project will live in this directory.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc mocha ./testing/*.js --timeout=3000"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "google"
+    ],
+    "rules": {
+      "require-jsdoc": 0
+    }
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +32,8 @@
   "devDependencies": {
     "chai": "^4.3.6",
     "chai-http": "^4.3.0",
+    "eslint": "^8.12.0",
+    "eslint-config-google": "^0.14.0",
     "mocha": "^9.2.2",
     "mongoose": "^6.2.10",
     "nodemon": "^2.0.15",
