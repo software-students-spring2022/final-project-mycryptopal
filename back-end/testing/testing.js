@@ -1,7 +1,7 @@
 
-//boilerplate mocha code from their documentation/class
+// boilerplate mocha code from their documentation/class
 // use node.js's built-in assert assertion library
-const assert = require("assert")
+const assert = require('assert')
 // a set of tests of array functions
 describe("Array", function () {
   // one particular unit test
