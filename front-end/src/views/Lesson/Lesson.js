@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import './Lesson.css';
 import LessonQuestion from '../../components/LessonQuestion/LessonQuestion';
 
@@ -11,6 +11,15 @@ function Lesson() {
 
     const [questionNum, setQuestionNum] = useState(1);
     const [currentQuestion, setCurrentQuestion] = useState(questions[questionNum - 1])
+
+    useEffect(() => {
+        async function getLessons() {
+           const res = await fetch(`http://localhost:4000/lessons/:lessonid`)  
+           const data = (await res.json())
+         }
+         getLessons();
+       }, []);
+
 
     function prevQuestion() {
         if(questionNum > 1){
@@ -33,6 +42,8 @@ function Lesson() {
     function checkAnswer() {
         alert(`Your answer is ${Math.random() > 0.5 ? "correct" : "incorrect"}!`)
     }
+
+
 
     return (
     <>

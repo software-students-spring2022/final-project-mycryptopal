@@ -189,7 +189,9 @@ app.get('/lesson/:lessonid', (req, res) => {
 // into their own files first.
 // this will tomorrow morning contain an import into lessons.js
 // import lessons from ./Lessons/Lessons
+  let number = req.params.number;
 
+// use number var to grab lessonid and iterate through lessons const
 });
 
 // Currently unused file uploading code
