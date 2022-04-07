@@ -11,11 +11,13 @@ function Lesson() {
 
     const [questionNum, setQuestionNum] = useState(1);
     const [currentQuestion, setCurrentQuestion] = useState(questions[questionNum - 1])
+    const [currentLesson, setCurrentLesson] = useState(0);
 
     useEffect(() => {
         async function getLessons() {
            const res = await fetch(`http://localhost:4000/lessons/:lessonid`)  
-           const data = (await res.json())
+           const data = (await res.json()).currentLesson
+           setCurrentLesson(data)
          }
          getLessons();
        }, []);
@@ -44,6 +46,10 @@ function Lesson() {
     }
 
 
+
+
+    // use currentLesson state variable, and pass in all related
+    // data from the Lessons.js content page!
 
     return (
     <>
