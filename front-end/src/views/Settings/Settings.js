@@ -6,9 +6,8 @@ function Settings() {
 
     useEffect(() => {
         async function getUser() {
-            const res = await fetch('http://localhost:4000/userdata');
+            const res = await fetch('http://localhost:4000/user/data');
             const data = await res.json();
-            console.log(data);
             setUser(data);
         }
         getUser();

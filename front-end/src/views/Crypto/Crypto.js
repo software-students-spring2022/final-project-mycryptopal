@@ -13,44 +13,40 @@ import {
 } from "recharts";
 
 function Crypto() {
-    const [coin, setCoin] = useState({slug: '', symbol: '', circulating_supply: 0, quote: {USD: {price: 0, percent_change_24h: 0, volume_24h: 0, market_cap: 0}}});
-    const [data, setData] = useState(null);
-    const [info, setInfo] = useState("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+    const [coinData, setCoinData] = useState({slug: '', symbol: '', circulating_supply: 0, quote: {USD: {price: 0, percent_change_24h: 0, volume_24h: 0, market_cap: 0}}});
+    const [coinGraph, setCoinGraph] = useState(null);
+    const [coinInfo, setCoinInfo] = useState("");
+    const [coinLogo, setCoinLogo] = useState("https://via.placeholder.com/128")
 
     let { symbol } = useParams();
 
-    function transformData(data) {
-        return data.c.map((item, index) => ({
-          close: Number(item).toFixed(5),
-          open: Number(data.o[index]).toFixed(5),
-          timestamp: new Date(data.t[index] * 1000).toLocaleDateString()
-        }))
-    }
+    useEffect(() => {
+        async function getCoinData() {
+            const res = await fetch(`http://localhost:4000/api/crypto/data/${symbol}`);
+            const data = await res.json();
+            setCoinData(data);
+        }
+        async function getCoinGraph() {
+            const res = await fetch(`http://localhost:4000/api/crypto/graph/${symbol}`);
+            const data = await res.json();
+            setCoinGraph(data);
+        }
+        async function getCoinInfo() {
+            const res = await fetch(`http://localhost:4000/api/crypto/info/${symbol}`);
+            const data = await res.json();
+            setCoinInfo(data); 
+        }
+        getCoinData();
+        getCoinGraph();
+        getCoinInfo();
+    }, [symbol]);
 
     useEffect(() => {
-        async function getCoin() {
-            const res = await fetch(`http://localhost:4000/crypto/${symbol}`);
-            const data = await res.json();
-            setCoin(data.data[`${symbol.toUpperCase()}`][0]);
+        if(coinData.id){
+            const logoURL = `https://s2.coinmarketcap.com/static/img/coins/128x128/${coinData.id}.png`;
+            setCoinLogo(logoURL);
         }
-
-        async function getData() {
-            const res = await fetch(`http://localhost:4000/graph/${symbol}`);
-            const data = await res.json();
-            setData(transformData(data));
-        }
-
-        async function getInfo() {
-            const res = await fetch(`http://localhost:4000/crypto/info/${symbol}`);
-            const data = await res.json();
-            setInfo(data.data[`${symbol.toUpperCase()}`].description); 
-            
-        }
-
-        getCoin();
-        getData();
-        getInfo();
-    }, []);
+    }, [coinData])
 
     return (
         <>
@@ -62,7 +58,7 @@ function Crypto() {
                 <div id="top-content">
                     <div id="crypto-info">
                         <div id="crypto-name">
-                            {coin.name}
+                            {coinData.name}
                         </div>
                         <div id="crypto-subinfo">
                             <div className="subinfo info-left">
@@ -70,13 +66,13 @@ function Crypto() {
                                 <div className="cryptoInfo cryptoPercent">% Change</div>
                             </div>
                             <div className="subinfo info-right">
-                                <div className="cryptoInfo cryptoPrice">{coin.quote.USD.price.toFixed(2)}</div>
-                                <div className="cryptoInfo cryptoPercent">{(coin.quote.USD.percent_change_24h / 100).toFixed(2)}%</div>
+                                <div className="cryptoInfo cryptoPrice">{coinData.quote.USD.price.toFixed(2)}</div>
+                                <div className="cryptoInfo cryptoPercent">{(coinData.quote.USD.percent_change_24h / 100).toFixed(2)}%</div>
                             </div>
                         </div>
                     </div>
                     <div id="crypto-image">
-                        <img src={`https://s2.coinmarketcap.com/static/img/coins/128x128/${coin.id}.png`} alt="coin pic"></img>
+                        <img src={coinLogo} alt="coin pic"></img>
                     </div>
                 </div>
 
@@ -86,7 +82,7 @@ function Crypto() {
                             Price History (30 Days)
                         </div>
                         <ResponsiveContainer width="100%" height={300}> 
-                            <LineChart data={data}
+                            <LineChart data={coinGraph}
                             margin={{ top: 20, bottom: 15 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="timestamp" />
@@ -104,7 +100,7 @@ function Crypto() {
                             Cryptocurrency Information and History
                         </div>
                         <div id="history-content">
-                            {info}
+                            {coinInfo}
                         </div>
                     </div>
                 </div>
@@ -120,9 +116,9 @@ function Crypto() {
                             <div className="cryptoInfo cryptoSupply">Circulating Supply</div>
                         </div>
                         <div className="subinfo info-right">
-                            <div className="cryptoInfo cryptoVolume">{coin.quote.USD.volume_24h.toFixed()}</div>
-                            <div className="cryptoInfo cryptoCap">{coin.quote.USD.market_cap.toFixed()}</div>
-                            <div className="cryptoInfo cryptoSupply">{coin.circulating_supply.toFixed()}</div>
+                            <div className="cryptoInfo cryptoVolume">{coinData.quote.USD.volume_24h.toFixed()}</div>
+                            <div className="cryptoInfo cryptoCap">{coinData.quote.USD.market_cap.toFixed()}</div>
+                            <div className="cryptoInfo cryptoSupply">{coinData.circulating_supply.toFixed()}</div>
                         </div>
                     </div>
                 </div>
