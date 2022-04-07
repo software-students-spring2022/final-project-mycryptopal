@@ -8,6 +8,7 @@ import Contact from './views/Contact/Contact';
 import Settings from './views/Settings/Settings';
 import Crypto from './views/Crypto/Crypto';
 import Lesson from './views/Lesson/Lesson';
+import NotFound from './views/NotFound/NotFound';
 // Components
 import Sidebar from './components/Sidebar/Sidebar';
 // CSS
@@ -30,9 +31,19 @@ function App() {
           <Route path='crypto' element={<Explore />} />
           <Route path='/crypto/:symbol' element={<Crypto />} />
           <Route path='/lesson' element={<Lesson />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
         <div id="return">
-          <button id="return-button" onClick={() => navigate(-1)}>Return to Previous Page</button>
+          <button id="return-button" onClick={() => {
+              if(window.location.pathname !== '/notfound'){
+                navigate(-1);
+              }
+              else {
+                window.location.href = '/';
+              }
+            }}>
+              Return
+          </button>
         </div>
       </div>
     </div>
