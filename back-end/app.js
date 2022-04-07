@@ -183,6 +183,15 @@ app.get('/user/data', (req, res) => {
       .catch((err)=> console.log(err));
 });
 
+
+app.get('/lesson/:lessonid', (req, res) => {
+// we are working on adding lesson routes, need to separate app.get calls
+// into their own files first.
+// this will tomorrow morning contain an import into lessons.js
+// import lessons from ./Lessons/Lessons
+
+});
+
 // Currently unused file uploading code
 // const storage = multer.diskStorage({ // adding boilerplate base code
 //   destination: function(req, file, cb) {
