@@ -16,13 +16,6 @@ function Portfolio() {
   const CRYPTO_SYMBOLS = ["BTC", "ETH", "USDT", "DOGE" ,"SHIB", "SOL"]
   const INTERVAL_OPTIONS = [30, 60, 90, 120]
 
-  function transformData(data) {
-    return data.c.map((item, index) => ({
-      close: Number(item).toFixed(5),
-      open: Number(data.o[index]).toFixed(5),
-      timestamp: new Date(data.t[index] * 1000).toLocaleDateString()
-    }))
-  }
   const [symbol, setSymbol] = useState(CRYPTO_SYMBOLS[0])
   const [data, setData] = useState(null);
   const [interval, setInterval] = useState(INTERVAL_OPTIONS[0]);
@@ -32,8 +25,8 @@ function Portfolio() {
       return;
     }
 
-    fetch(`http://localhost:4000/graph/${symbol}/${interval}`)
-      .then(async data => setData(transformData(await data.json())))
+    fetch(`http://localhost:4000/api/crypto/graph/${symbol}/${interval}`)
+      .then(async data => setData(await data.json()))
       .catch(error => console.error(error))
 
   }, [symbol, interval]);
@@ -52,7 +45,7 @@ function Portfolio() {
         <div id="page-content">
           <div className="container dropdownContainer">
               <div className="selector">
-              <label for="stock_select" className="label">
+              <label htmlFor="stock_select" className="label">
                   <strong>Stock Symbol: </strong>
               </label>
               <select id="stock_select" onChange={handleChangeCrypto}>
@@ -60,7 +53,7 @@ function Portfolio() {
               </select>
               </div>
               <div className="selector">
-              <label for="interval_select" className="label">
+              <label htmlFor="interval_select" className="label">
                   <strong>Interval: </strong>
               </label>
               <select onChange={handleChangeInterval}>
