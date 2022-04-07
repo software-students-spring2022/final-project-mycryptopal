@@ -27,7 +27,7 @@ app.get('/api/news', (req, res) => {
   const SEARCH_TERM = 'cryptocurrency';
   const SORT_BY = 'publishedAt';
   const LANGUAGE = 'en';
-  const PAGE_SIZE = 100;
+  const PAGE_SIZE = Math.min(parseInt(req.query.limit), 100);
   axios
       .get(
           `${process.env.NEWS_API_URL}?apiKey=${process.env.NEWS_API_KEY}` +
@@ -40,8 +40,8 @@ app.get('/api/news', (req, res) => {
       .catch((err) => console.log(err));
 });
 
-app.get('/api/explore/:num?', (req, res) => {
-  const LIMIT = req.params.num ? req.params.num : 12;
+app.get('/api/explore', (req, res) => {
+  const LIMIT = Math.max(parseInt(req.query.limit), 102);
   axios
       .get(
           `${process.env.CMC_API_URL_V1}/listings/latest?limit=${LIMIT}`,
@@ -80,7 +80,10 @@ app.get('/api/crypto/data/:symbol', (req, res) => {
           }
       )
       .then((apiResponse) => res.json(apiResponse.data.data[`${SYMBOL}`][0]))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        res.status(404);
+        res.json({});
+      });
 });
 
 app.get('/api/crypto/info/:symbol', (req, res) => {
@@ -97,12 +100,15 @@ app.get('/api/crypto/info/:symbol', (req, res) => {
       )
       .then((apiResponse) => {
         const data = apiResponse.data.data;
-        res.json(data[`${SYMBOL}`].description);
+        res.json(data[`${SYMBOL}`]);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        res.status(404);
+        res.json({});
+      });
 });
 
-app.get('/api/crypto/graph/:symbol/:interval?', (req, res) => {
+app.get('/api/crypto/graph/:symbol', (req, res) => {
   // Helper function for data transformation
   function transformData(data) {
     return data.c.map((item, index) => ({
@@ -130,7 +136,7 @@ app.get('/api/crypto/graph/:symbol/:interval?', (req, res) => {
   const SYMBOL = req.params.symbol.toUpperCase();
   const EXCHANGE_PREFIX = 'BINANCE:';
   let querySymbol = EXCHANGE_PREFIX;
-  let queryInterval = parseInt(req.params.interval);
+  let queryInterval = parseInt(req.query.interval);
 
   // Validate query parameters
   if (SYMBOL === 'USDT') {
