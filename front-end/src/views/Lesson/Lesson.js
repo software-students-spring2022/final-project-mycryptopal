@@ -4,7 +4,8 @@ import LessonQuestion from '../../components/LessonQuestion/LessonQuestion';
 
 function Lesson() {
     const questions = [];
-    for (let i = 1; i <= 5; i++) {
+    count = 0
+    for (let i = 1; i <= 3; i++) {
         questions.push(<LessonQuestion key={i} num={i}/>);
     }
 
@@ -13,15 +14,17 @@ function Lesson() {
 
     function prevQuestion() {
         if(questionNum > 1){
-            const newNum = questionNum - 1
+            const newNum = questionNum - 1;
+            count = count - 1;
             setQuestionNum(newNum);
             setCurrentQuestion(questions[newNum - 1]);
         }
     }
 
     function nextQuestion() {
-        if(questionNum < questions.length){
-            const newNum = questionNum + 1
+        if(questionNum < questions.length && count < 3){
+            const newNum = questionNum + 1;
+            count = count + 1;
             setQuestionNum(newNum);
             setCurrentQuestion(questions[newNum - 1]);
         }
