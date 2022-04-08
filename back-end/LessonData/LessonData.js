@@ -33,14 +33,14 @@ const lessons = [
     {questions: 
         [   
             {questionNumber: 1, questionText: "What does non-regulated cryptocurriencies create?", answer: "Volatility"}, 
-            {questionNumber: 2, questionText: "True or False: cryptocurrencies are backed by underlying assets or earnings.", answer: "False"}, 
+            {questionNumber: 2, questionText: "True or False: Cryptocurrencies are backed by underlying assets or earnings.", answer: "False"}, 
             {questionNumber: 3, questionText: "Fill in the blank: Owning _____ means ownership of a piece of a company", answer: "Stock"}, 
             {questionNumber: 4, questionText: "Fill in the blank: A blockchain is a ___________ database that is shared among a computer network", answer: "Distributed"}, 
             {questionNumber: 5, questionText: "What is the most common use of storage on a blockchain?", answer: "Ledger"}, 
             {questionNumber: 6, questionText: "What cyptographic signature is used to store transactions?", answer: "Hash"}, 
-            {questionNumber: 7, questionText: "Question Text", answer: "Question Answer"},
-            {questionNumber: 8, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 9, questionText: "Question Text", answer: "Question Answer"}, 
+            {questionNumber: 7, questionText: "True or False: A cryptocurrency is a digital or virtual currency that is not backed by institutions and secured by cryptography ", answer: "True"},
+            {questionNumber: 8, questionText: "True or False: Cryptocurrency is easy to counterfeit or double-spend.", answer: "False"}, 
+            {questionNumber: 9, questionText: "Fill in the blank: Some benefits of a system like this are cheaper and faster money transfers and ____________________", answer: "Decentralization"}, 
             {questionNumber: 10, questionText: "Question Text", answer: "Question Answer"}, 
             {questionNumber: 11, questionText: "Question Text", answer: "Question Answer"}, 
             {questionNumber: 12, questionText: "Question Text", answer: "Question Answer"}, 
