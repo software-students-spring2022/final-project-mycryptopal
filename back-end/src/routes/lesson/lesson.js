@@ -4,15 +4,18 @@ const path = require('path');
 require('dotenv').config({
   silent: true, path: path.join('../..', '.env'),
 }); // Stores custom environmental variables
+const lessons = require('../../../LessonData/lessons.json'); // Probably needs to move this file somewhere else
 
 router.get('/:lessonID', (req, res) => {
-  // we are working on adding lesson routes, need to separate app.get calls
-  // into their own files first.
-  // this will tomorrow morning contain an import into lessons.js
-  // import lessons from ./Lessons/Lessons
   const lessonID = req.params.lessonID;
-  res.send(`Sample lesson ${lessonID}`);
-  // use number var to grab lessonid and iterate through lessons const
+  if (lessonID === 'all') {
+    res.send(lessons); // Probably bad practice
+  } else if (!parseInt(lessonID)) {
+    res.status(400);
+    res.send({});
+  } else {
+    res.send(lessons[lessonID]);
+  }
 });
 
 module.exports = router;
