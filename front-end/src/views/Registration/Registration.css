@@ -1,38 +1,10 @@
-#registration-title {
-    text-align: center;
-}
-
-.registerLabel {
-    margin-top: 0.5vh;
-    font-style: italic;
-}
-
-#registration-content {
-    margin-top: 3vh;
-    margin-left: 8%;
-    margin-right: 8%;;
-}
-
-#registration form {
+#registration-form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.registrationSection{
     text-align: center;
-}
-
-.credentials {
-    width: 70%;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.formButton {
-    margin-top: 1vh;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#logo img {
-    max-width: 80%;
 }

@@ -4,12 +4,12 @@ function NotFound() {
     return (
         <>
             <div id="page-title">
-                <h1>Page Not Found</h1>
+                <div>Not Found</div>
             </div>
             <div id="page-content">
                 <div id="not-found">
                     <h2>This page is not available!</h2>
-                    <img src="https://i.imgur.com/ZLLiffC.gif"></img>
+                    <img src="https://i.imgur.com/ZLLiffC.gif" alt="404"></img>
                 </div>
             </div>
         </>

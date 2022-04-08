@@ -16,13 +16,13 @@ function Crypto() {
     const [coinData, setCoinData] = useState({slug: '', symbol: '', circulating_supply: 0, quote: {USD: {price: 0, percent_change_24h: 0, volume_24h: 0, market_cap: 0}}});
     const [coinGraph, setCoinGraph] = useState(null);
     const [coinInfo, setCoinInfo] = useState("");
-    const [coinLogo, setCoinLogo] = useState("https://via.placeholder.com/128")
+    const [coinLogo, setCoinLogo] = useState(`${process.env.REACT_APP_COIN_PLACEHOLDER}`)
 
     let { symbol } = useParams();
 
     useEffect(() => {
         async function getCoinData() {
-            const res = await fetch(`http://localhost:4000/api/crypto/data/${symbol}`);
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/crypto/data/${symbol}`);
             if(res.status === 404){
                 window.location.href = '/notfound';
             }
@@ -34,27 +34,27 @@ function Crypto() {
 
     useEffect(() => {
         async function getCoinGraph() {
-            const res = await fetch(`http://localhost:4000/api/crypto/graph/${symbol}`);
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/crypto/graph/${symbol}`);
             const data = await res.json();
             setCoinGraph(data);
         }
         async function getCoinInfo() {
-            const res = await fetch(`http://localhost:4000/api/crypto/info/${symbol}`);
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/crypto/info/${symbol}`);
             const data = await res.json();
             setCoinInfo(data.description); 
         }
         getCoinGraph();
         getCoinInfo();
         if(coinData.id){
-            const logoURL = `https://s2.coinmarketcap.com/static/img/coins/128x128/${coinData.id}.png`;
+            const logoURL = `${process.env.REACT_APP_COIN_LOGO}/${coinData.id}.png`;
             setCoinLogo(logoURL);
         }
     }, [coinData]);
 
     return (
         <>
-            <div id = "page-title">
-                <h1> Crypto Analytics </h1>
+            <div id="page-title">
+                <div>Analytics</div>
             </div>
 
             <div id="page-content">

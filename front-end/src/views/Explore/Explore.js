@@ -7,17 +7,18 @@ function Explore() {
 
     useEffect(() => {
         async function getCoins() {
-            const res = await fetch(`http://localhost:4000/api/crypto/explore?limit=102`);
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/crypto/explore?limit=102`);
             const data = await res.json();
             setCoins(data);
           }
           getCoins();
+          
     }, []);
 
     return (
         <>
             <div id="page-title">
-                <h1>Explore Cryptos</h1>
+                <div>Explore</div>
             </div>
             <div id="page-content">
                 <div id="most-popular">
@@ -31,13 +32,13 @@ function Explore() {
                             }}>
                             <option value="">Search Crypto in Alphabetical Order</option>
                             {
-                                [...coins].sort((a,b) => a.name > b.name).map((item, i) => <option key={i} value={item.url}>{item.name}</option>)
+                                [...Object.keys(coins)].sort((a,b) => a > b).map((item, i) => <option key={i} value={coins[item].url}>{item}</option>)
                             }
                         </select>
                     </div>
 
                     <div id="crypto-collage">
-                        {coins.map((item, i) => <ExploreCard key={i} symbol={item.symbol} url={item.url} pic={item.pic}/>)}
+                        {Object.keys(coins).map((symbol, i) => <ExploreCard key={i} symbol={coins[symbol].symbol} url={coins[symbol].url} pic={coins[symbol].pic}/>)}
                     </div>
                 </div>
             </div>

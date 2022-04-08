@@ -6,7 +6,7 @@ function Settings() {
 
     useEffect(() => {
         async function getUser() {
-            const res = await fetch('http://localhost:4000/user/data');
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/data`);
             const data = await res.json();
             setUser(data);
         }
@@ -16,7 +16,7 @@ function Settings() {
     return (
         <>
             <div id="page-title">
-                <h1>Settings</h1>
+                <div>Settings</div>
             </div>
 
             <div id="page-content">

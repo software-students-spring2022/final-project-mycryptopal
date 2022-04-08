@@ -21,7 +21,7 @@ function Portfolio() {
 
   useEffect(() => {
     async function getAssets() {
-      const res = await fetch(`http://localhost:4000/user/assets`);
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/4000/user/assets`);
       const data = await res.json();
       setAssets(data);
     }
@@ -41,7 +41,7 @@ function Portfolio() {
       return;
     }
     async function getData() {
-      const res = await fetch(`http://localhost:4000/api/crypto/graph/${symbol}?interval=${interval}`);
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/crypto/graph/${symbol}?interval=${interval}`);
       const data = await res.json();
       setData(data);
     }
@@ -55,7 +55,7 @@ function Portfolio() {
   return (
       <>
         <div id="page-title">
-          <h1>My Portfolio</h1>
+            <div>My Portfolio</div>
         </div>
         <div id="page-content">
           <div className="container dropdownContainer">

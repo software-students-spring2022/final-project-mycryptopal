@@ -1,15 +1,12 @@
-.questionAnswer form {
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2vh;
-}
-
 .questionNumber {
     font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 1.5vh;
+    text-align: center;
 }
 
 .questionContent {
+    font-size: 1.05em;
     font-style: italic;
+    text-align: center;
 }

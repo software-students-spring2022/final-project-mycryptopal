@@ -1,35 +1,44 @@
 .mapButton {
     aspect-ratio: 1/1;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-basis: 30%;
     margin-left: auto;
-    font-size: 0.8em;
-    color: white;
+    margin-right: auto;
+    color: #514e58;
     font-weight: bold;
+    border-color: #373a47;
+    border-width: thick;
 }
 
-.greenButton {
-    background-color: #0d9e39;
-    border: 1px solid #013b12;
+.desktopCircle {
+    flex-basis: 18%;
+    font-size: 1.4em;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
 }
 
-.yellowButton {
-    background-color: #cebb16;
-    border: 1px solid #b4a305;
+.mobileCircle {
+    flex-basis: 43%;
+    font-size: 1.2em;
+    margin-top: 2.8vh;
+    margin-bottom: 2.8vh;
 }
 
-.blueButton {
-    background-color: #0853bd;
-    border: 1px solid #043a86;
+.color1 {
+    background-color: #d2cbdc;
 }
 
-.redButton {
-    background-color: #f04731;
-    border: 1px solid #6b1004;
+.color2 {
+    background-color: #e6b5b6;
+}
+
+.color3 {
+    background-color: #d3eaf5;
+}
+
+.color4 {
+    background-color: #B7CADB;
 }
