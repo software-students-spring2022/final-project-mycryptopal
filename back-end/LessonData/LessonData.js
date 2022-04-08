@@ -53,20 +53,20 @@ const lessons = [
             {questionNumber: 19, questionText: "What method is called when you buy crypto and store it in your wallet?", answer: "hodl"}, 
             {questionNumber: 20, questionText: "True or False: Day trading is the exact opposite of HODL", answer: "True"},
             {questionNumber: 21, questionText: "True or False: Day trading becomes tricky for amateur investors as it requires constant attention to the volatility of the market, especially within cryptocurrency", answer: "True"}, 
-            {questionNumber: 22, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 23, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 24, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 25, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 26, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 27, questionText: "Question Text", answer: "Question Answer"}, 
+            {questionNumber: 22, questionText: "Fill in the blank: A ____ ______ is a period of time where most investors are buying and prices are rising", answer: "Bull Market"}, 
+            {questionNumber: 23, questionText: "Fill in the blank: A ____ ______ is a period of time where confidence is low and prices are dropping", answer: "Bear Market"}, 
+            {questionNumber: 24, questionText: "True or False:  In many cases, people spread FUD to trick people and spread negativity about a coin and its future.", answer: "True"}, 
+            {questionNumber: 25, questionText: "What are programs that are stored on a blockchain and only run when conditions are met called", answer: "Smart Contracts"}, 
+            {questionNumber: 26, questionText: "True or False: Everyone can see the transaction history of smart contracts.", answer: "True"}, 
+            {questionNumber: 27, questionText: "Fill in the blank: Smart contracts is that they are all connected to the _______ record on a ledger.", answer: "Previous"}, 
             {questionNumber: 28, questionText: "Question Text", answer: "Question Answer"}, 
             {questionNumber: 29, questionText: "Question Text", answer: "Question Answer"}, 
             {questionNumber: 30, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 31, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 32, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 33, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 34, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 35, questionText: "Question Text", answer: "Question Answer"}  
+            {questionNumber: 31, questionText: "Fill in the blank: Because the volatility is not _______, countries such as China have banned crypto in hopes of keeping a _________ finance system", answer: "Regulated"},
+            {questionNumber: 32, questionText: "True or False: The blockchain is encrypted and is very easy for people to hack", answer: "False"}, 
+            {questionNumber: 33, questionText: "Specifically in crypto, who releases the whitepaper that explains what technology they are using and the purpose of the project.", answer: "Developers"}, 
+            {questionNumber: 34, questionText: "True or False: Especially if your investment strategy is focused on the long term, many people advise against using bear markets to enter.", answer: "False"}, 
+            {questionNumber: 35, questionText: "True or False: Given that smart contracts is fully automated, there is no paperwork processing time and little to no errors.", answer: "True"}  
         ]
     }
 ]
