@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+
 const lessons = [
   {title:
         [
@@ -70,3 +73,33 @@ const lessons = [
         ],
   },
 ];
+
+const reformattedLessons = lessons[0].title.reduce((resultObject, element, index) => {
+  const lesson = {};
+  lesson.id = element.titleNum;
+  lesson.title = element.titleText;
+  lesson.content = lessons[1].content[index].contentText;
+  const lessonQuestions = [];
+  const questionStartIndex = 3 * (index + 1) - 2;
+  let questionEndIndex;
+  if (index !== 10) {
+    questionEndIndex = (index + 1) * 3;
+  } else {
+    questionEndIndex = 35;
+  }
+  for (let i = questionStartIndex - 1; i < questionEndIndex; i++) {
+    lessonQuestions.push(lessons[2].questions[i]);
+  }
+  lesson.questions = lessonQuestions;
+  resultObject[lesson.id] = lesson;
+  return resultObject;
+}, {});
+
+const jsonString = JSON.stringify(reformattedLessons, null, 2);
+
+fs.writeFile(path.join(__dirname, 'lessons.json'), jsonString, (err) => {
+  if (err) {
+    console.log(err);
+    return;
+  }
+});
