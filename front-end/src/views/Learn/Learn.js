@@ -13,7 +13,7 @@ function Learn() {
         }
         window.addEventListener('resize', handleResize);
         async function getLessonCount() {
-            const res = await fetch(`http://localhost:4000/lesson/all`);
+            const res = await fetch(`http://localhost:4000/lesson/`);
             const data = await res.json();
             const length = Object.keys(data).length;
             setLessonCount(length);

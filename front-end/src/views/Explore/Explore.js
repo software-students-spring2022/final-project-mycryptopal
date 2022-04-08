@@ -31,13 +31,13 @@ function Explore() {
                             }}>
                             <option value="">Search Crypto in Alphabetical Order</option>
                             {
-                                [...coins].sort((a,b) => a.name > b.name).map((item, i) => <option key={i} value={item.url}>{item.name}</option>)
+                                [...Object.keys(coins)].sort((a,b) => a > b).map((item, i) => <option key={i} value={coins[item].url}>{item}</option>)
                             }
                         </select>
                     </div>
 
                     <div id="crypto-collage">
-                        {coins.map((item, i) => <ExploreCard key={i} symbol={item.symbol} url={item.url} pic={item.pic}/>)}
+                        {Object.keys(coins).map((symbol, i) => <ExploreCard key={i} symbol={symbol} url={coins[symbol].url} pic={coins[symbol].pic}/>)}
                     </div>
                 </div>
             </div>

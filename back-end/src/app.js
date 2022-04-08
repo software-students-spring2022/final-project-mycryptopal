@@ -13,7 +13,8 @@ const cors = require('cors'); // Enables CORS
 // const multer = require('multer'); // Handles file uploads - currently unused
 // const mongoose = require('mongoose'); // Database
 // Middleware
-app.use('/static', express.static(path.join(__dirname,  '../public'))); // Serves static files
+app.use('/static',
+    express.static(path.join(__dirname, '../public'))); // Serves static files
 app.use(express.json()); // Parses incoming JSON requests
 app.use(express.urlencoded({
   extended: true,
@@ -30,7 +31,7 @@ app.post('/login', (req, res) => {
 app.post('/register', (req, res) => {
   console.log(req.body);
   res.redirect('http://localhost:3000/login');
-})
+});
 
 // Currently unused file uploading code
 // const storage = multer.diskStorage({ // adding boilerplate base code

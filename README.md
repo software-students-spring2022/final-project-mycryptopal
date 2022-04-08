@@ -34,8 +34,11 @@ See the [Contributions Document](./CONTRIBUTING.md)
 4. If not done automatically, access the app using a browser at ```localhost:3000```
 5. Enable Device Mode on browser (Chrome/Firefox) with ```Ctrl-Shift-M```
 6. Enter a mobile viewport size, e.g. ```390 x 844```, at the top of the screen to test the mobile interface of the app
-### Backend Express App
+## Backend Express App
 1. Navigate to ```back-end``` directory
 2. Install back-end dependencies with ```npm install```
 3. Install `nodemon` globally with ```npm install -g nodemon```
 4. Launch the back-end with ```npm start```
+## Testing Backend Routes
+1. Navigate to the project's root folder
+2. Run tests with ```npm test```

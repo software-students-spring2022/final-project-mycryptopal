@@ -62,20 +62,19 @@ router.get('/crypto/explore', (req, res) => {
       )
       .then((apiResponse) => {
         const data = apiResponse.data.data;
-        const coins = data.reduce((resultArray, currentElement) => {
-          const coin = {};
-          coin.name = currentElement.name;
-          coin.symbol = currentElement.symbol;
-          coin.pic = `${process.env.CMC_ICON_URL}/${currentElement.id}.png`;
-          coin.url = `/crypto/${currentElement.symbol}`;
-          resultArray.push(coin);
-          return resultArray;
-        }, []);
+        const coins = data.reduce((resultObject, currentElement) => {
+          const coinInfo = {};
+          coinInfo.symbol = currentElement.symbol;
+          coinInfo.pic = `${process.env.CMC_ICON_URL}/${currentElement.id}.png`;
+          coinInfo.url = `/crypto/${currentElement.symbol}`;
+          resultObject[currentElement.name] = coinInfo;
+          return resultObject;
+        }, {});
         res.json(coins);
       })
       .catch((err) => {
         res.status(400);
-        res.json({articles: []});
+        res.json({});
       });
 });
 
