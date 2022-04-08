@@ -9,7 +9,7 @@ function Contact() {
             
             <div id="page-content">
                 <div id="faq" className="section">
-                    <div className="section-header">
+                    <div className="contactHeader">
                         Frequently Asked Questions
                     </div>
                     <div className="faqQuestion">
@@ -42,17 +42,17 @@ function Contact() {
                 </div>
 
                 <div id="contact-us" className="section">
-                    <div className="section-header">
+                    <div className="contactHeader">
                         Still Need Help? Contact Us!
                     </div>
-                    <form name="contact-form" id="contact-form" action="/contact" method="GET">
+                    <form name="contact-form" id="contact-form" action="http://localhost:4000/user/contact" method="POST">
                         <label htmlFor="contact-name" className="contactLabel">Your Name</label>
                         <input name="contact-name" type="text"></input>
                         <label htmlFor="contact-email" className="contactLabel">Your Email</label>
                         <input name="contact-email" type="text"></input>
                         <label htmlFor="contact-message" className="contactLabel">Your Message or Question</label>
                         <textarea name="contact-message" type="text" className="contactMessage"></textarea>
-                        <input id="submitButton" onClick={popUp} type="button" value="Submit"></input>
+                        <input id="submitButton" onClick={popUp} type="submit" value="Submit"></input>
                     </form>
                 </div>
             </div>

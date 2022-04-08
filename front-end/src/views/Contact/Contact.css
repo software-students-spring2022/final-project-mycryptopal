@@ -4,20 +4,24 @@
     text-align: justify;
 }
 
-.section-header {
+.contactHeader {
     font-weight: bold;
     font-size: 1.3em;
     margin-top: 2vh;
+    margin-bottom: 1.5vh;
 }
 
 .faqQuestion {
     font-weight: bold;
     font-style: italic;
     margin-top: 1vh;
+    margin-bottom: 0.7vh;
+    font-size: 1.1em;
 }
 
 .faqAnswer {
     margin-top: 0.5vh;
+    margin-bottom: 1vh;
 }
 
 #contact-form {

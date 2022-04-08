@@ -5,7 +5,7 @@ function Login() {
         <>
             <div id="bg"></div>
             <div id="page">
-                <div className="section">
+                <div className="loginSection">
                     <div className="tagLine">
                         Ready to Level Up Your Investing Career?
                     </div>
@@ -15,7 +15,7 @@ function Login() {
                     </div>
                 </div>
 
-                <div className="section">
+                <div className="loginSection">
                     <form id="login-form" action="http://localhost:4000/login" method="POST">
                         <label htmlFor="username" className="label">Username</label>
                         <input name="username" type="text" className="credentials" required />
