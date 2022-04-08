@@ -7,7 +7,7 @@ function Explore() {
 
     useEffect(() => {
         async function getCoins() {
-            const res = await fetch(`http://localhost:4000/api/explore?limit=102`);
+            const res = await fetch(`http://localhost:4000/api/crypto/explore?limit=102`);
             const data = await res.json();
             setCoins(data);
           }
