@@ -24,4 +24,9 @@ router.get('/data', (req, res) => {
       .then((apiResponse) => res.json(apiResponse.data));
 });
 
+router.post('/contact', (req, res) => {
+  console.log(req.body);
+  res.redirect('http://localhost:3000/contact');
+});
+
 module.exports = router;

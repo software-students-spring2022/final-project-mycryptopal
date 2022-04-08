@@ -16,7 +16,11 @@ function Login() {
                 </div>
 
                 <div className="loginSection">
+<<<<<<< HEAD
                     <form id="login-form" action={`${process.env.REACT_APP_BACKEND_URL}/login`} method="POST">
+=======
+                    <form id="login-form" action="http://localhost:4000/login" method="POST">
+>>>>>>> master
                         <label htmlFor="username" className="label">Username</label>
                         <input name="username" type="text" className="credentials" required />
                         <label htmlFor="password" className="label">Password</label>

@@ -2,7 +2,6 @@ import './Registration.css';
 
 function Registration() {
     return (
-
         <>
             <div id="bg"></div>
             <div id="page">
@@ -40,7 +39,6 @@ function Registration() {
                 </div>
             </div>
             </>
-
 
     )
 }
