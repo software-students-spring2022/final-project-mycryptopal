@@ -23,11 +23,19 @@ A few of the team members are Crypto enthusiasts and have some experience tradin
 See the [Contributions Document](./CONTRIBUTING.md) 
 
 # Building and Testing The Project
+## Initial setup
 1. Clone the repository onto your local machine with ```git clone https://github.com/software-assignments-spring2022/final-project-mycryptopal.git```
-2. Navigate to the local repository
-3. Navigate to front-end directory with ```cd front-end```
-4. Install front-end dependencies with ```npm install```
-5. Launch the front end with ```npm start```
-6. If not done automatically, access the app using a browser at ```localhost:3000```
-7. Enable Device Mode on browser (Chrome/Firefox) with ```Ctrl-Shift-M```
-8. Enter a mobile viewport size, e.g. ```390 x 844```, at the top of the screen to test the mobile interface of the app
+2. Navigate to the local source repository
+3. Install project-wide dependencies with ```npm install```
+## Frontend React App
+1. Navigate to ```front-end``` directory
+2. Install front-end dependencies with ```npm install```
+3. Launch the front-end with ```npm start```
+4. If not done automatically, access the app using a browser at ```localhost:3000```
+5. Enable Device Mode on browser (Chrome/Firefox) with ```Ctrl-Shift-M```
+6. Enter a mobile viewport size, e.g. ```390 x 844```, at the top of the screen to test the mobile interface of the app
+### Backend Express App
+1. Navigate to ```back-end``` directory
+2. Install back-end dependencies with ```npm install```
+3. Install `nodemon` globally with ```npm install -g nodemon```
+4. Launch the back-end with ```npm start```
