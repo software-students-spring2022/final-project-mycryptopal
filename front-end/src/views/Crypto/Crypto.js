@@ -53,8 +53,8 @@ function Crypto() {
 
     return (
         <>
-            <div id = "page-title">
-                <h1> Crypto Analytics </h1>
+            <div id="page-title">
+                <div>Analytics</div>
             </div>
 
             <div id="page-content">

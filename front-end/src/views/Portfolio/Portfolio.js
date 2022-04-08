@@ -55,7 +55,7 @@ function Portfolio() {
   return (
       <>
         <div id="page-title">
-          <h1>My Portfolio</h1>
+            <div>My Portfolio</div>
         </div>
         <div id="page-content">
           <div className="container dropdownContainer">

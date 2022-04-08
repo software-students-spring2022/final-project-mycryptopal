@@ -31,7 +31,7 @@ function Learn() {
     return (
         <>
             <div id="page-title">
-                <h1>Learn</h1>
+                <div>Learn</div>
             </div>
             <div id="page-content">
                 <div id="lesson-map">

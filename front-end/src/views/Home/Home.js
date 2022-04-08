@@ -68,7 +68,7 @@ function Home() {
     return (
     <>
       <div id="page-title">
-        <h1>Home</h1>
+          <div>Home</div>
       </div>
       <div id="page-content">
         <div id="chart">
@@ -87,6 +87,7 @@ function Home() {
             </ResponsiveContainer>
           </div>
         </div>
+        <div className='divider'></div>
         <div id="news">
           <div className="homeHeader">News</div>
           {articles.slice(0, numShown)}

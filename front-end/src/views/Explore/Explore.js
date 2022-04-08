@@ -17,7 +17,7 @@ function Explore() {
     return (
         <>
             <div id="page-title">
-                <h1>Explore Cryptos</h1>
+                <div>Explore</div>
             </div>
             <div id="page-content">
                 <div id="most-popular">

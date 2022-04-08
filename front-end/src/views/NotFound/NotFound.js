@@ -4,7 +4,7 @@ function NotFound() {
     return (
         <>
             <div id="page-title">
-                <h1>Page Not Found</h1>
+                <div>Not Found</div>
             </div>
             <div id="page-content">
                 <div id="not-found">

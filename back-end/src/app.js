@@ -12,9 +12,8 @@ const morgan = require('morgan'); // Logs incoming HTTP requests
 const cors = require('cors'); // Enables CORS
 // const multer = require('multer'); // Handles file uploads - currently unused
 // const mongoose = require('mongoose'); // Database
-
 // Middleware
-app.use(express.static(path.join('..', 'public'))); // Serves static files
+app.use('/static', express.static(path.join(__dirname,  '../public'))); // Serves static files
 app.use(express.json()); // Parses incoming JSON requests
 app.use(express.urlencoded({
   extended: true,

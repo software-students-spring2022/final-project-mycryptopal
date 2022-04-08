@@ -2,18 +2,12 @@ import './LessonQuestion.css';
 
 function LessonQuestion(props) {
     return (
-        <div class="quizQuestion">
-            <div class="questionNumber">
+        <div className="quizQuestion">
+            <div className="questionNumber">
                 Question {props.num}
             </div>
-            <div class="questionContent">
-                Lorem ipsum dolor sit amet?
-            </div>
-            <div class="questionAnswer">
-                <form>
-                    <label htmlFor="user-answer">Answer:</label>
-                    <input name="user-answer" type="text"></input>
-                </form>
+            <div className="questionContent">
+                {props.content}
             </div>
         </div>
     )

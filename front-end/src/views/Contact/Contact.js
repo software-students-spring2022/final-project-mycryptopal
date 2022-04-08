@@ -4,7 +4,7 @@ function Contact() {
     return (
         <>
             <div id="page-title">
-                <h1>Contact Us</h1>
+                <div>Contact Us</div>
             </div>
             
             <div id="page-content">

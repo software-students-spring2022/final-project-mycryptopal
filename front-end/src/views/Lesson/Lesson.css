@@ -1,39 +1,102 @@
-.lessonSectionTitle {
+.lessonHeader {
     text-align: center;
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-bottom: 2vh;
+    margin-top: 1.5vh
 }
 
 #lesson-content {
     text-align: justify;
 }
 
-#lesson-buttons {
+#map-button {
     display: flex;
     flex-direction: row;
     height: 2.2em;
+    height: fit-content
 }
 
-#retButton {
-    margin-left: 0;
+#map-button button{
+    margin-left: auto;
     margin-right: auto;
-    width: 30%;
+    height: 10em;
+    width: 10em;
+    border-radius: 50%;
+    border: 0;
+    background-color: #B7CADB;
+    color: #514e58;
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
-#nextButton {
+#nextLessonButton {
     margin-left: auto;
     margin-right: 0;
     width: 30%;
 }
 
-#question-buttons {
+#lesson-buttons {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-#question-buttons input {
-    margin-top: 1vh;
+.mobileQuestionButtons {
+    margin-left: 3vh;
+    margin-right: 3vh;
+    max-width: 15%;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+.mobileCenterButton {
+    width: 100%;
+    font-size: 0.9em;
+    height: 2.5em;
+}
+
+.desktopQuestionButtons {
+    margin-left: 5vh;
+    margin-right: 5vh;
+    max-width: 5%;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    width: 25%;
+    border-radius: 6px;
+}
+
+.desktopCenterButton {
+    width: 25%;
+    height: 3em;
+}
+
+#centerButton {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    border: 0;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    background-color: #383c47;
+}
+
+.questionAnswer form {
+    display: flex;
+    flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 3vh;
-    width: 30%;
-    height: 2.2em;
+    margin-top: 2vh;
+}
+
+#answer-box {
+    height: 2em;
+    border:0;
+    border-bottom: 2px solid black;
+    font-size: 1.1em;
+    text-align: center;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
 }
