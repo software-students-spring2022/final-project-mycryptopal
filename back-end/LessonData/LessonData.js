@@ -10,7 +10,8 @@ const lessons = [
             {titleNum: 7, titleText: "Lesson 7: Investing methods (Day trading, HODL, etc)"},
             {titleNum: 8, titleText: "Lesson 8: Bear and Bull Markets and FUD"},
             {titleNum: 9, titleText: "Lesson 9: What is a smart contract?"},
-            {titleNum: 10, titleText: "Lesson 10: Different Types of Cryptocurrency"}
+            {titleNum: 10, titleText: "Lesson 10: Different Types of Cryptocurrency"},
+            {titleNum: 11, titleText: "Lessons Overview"}
         ]
     }           
     {content: 
@@ -31,13 +32,13 @@ const lessons = [
     }
     {questions: 
         [   
-            {questionNumber: 1, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 2, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 3, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 4, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 5, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 6, questionText: "Question Text", answer: "Question Answer"}, 
-            {questionNumber: 7, questionText: "Question Text", answer: "Question Answer"}, 
+            {questionNumber: 1, questionText: "What does non-regulated cryptocurriencies create?", answer: "Volatility"}, 
+            {questionNumber: 2, questionText: "True or False: cryptocurrencies are backed by underlying assets or earnings.", answer: "False"}, 
+            {questionNumber: 3, questionText: "Fill in the blank: Owning _____ means ownership of a piece of a company", answer: "Stock"}, 
+            {questionNumber: 4, questionText: "Fill in the blank: A blockchain is a ___________ database that is shared among a computer network", answer: "Distributed"}, 
+            {questionNumber: 5, questionText: "What is the most common use of storage on a blockchain?", answer: "Ledger"}, 
+            {questionNumber: 6, questionText: "What cyptographic signature is used to store transactions?", answer: "Hash"}, 
+            {questionNumber: 7, questionText: "Question Text", answer: "Question Answer"},
             {questionNumber: 8, questionText: "Question Text", answer: "Question Answer"}, 
             {questionNumber: 9, questionText: "Question Text", answer: "Question Answer"}, 
             {questionNumber: 10, questionText: "Question Text", answer: "Question Answer"}, 
