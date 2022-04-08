@@ -41,7 +41,7 @@ describe('GET /api/crypto/explore', () => {
     chai.request(app).get('/api/crypto/explore').query({'limit': 5001})
     .end((err, res) => {
       res.should.have.status(400);
-      console.log(res.body)
+      console.log(res.body);
       res.body.should.be.a('object');
       Object.keys(res.body).should.be.empty;
       done();
@@ -103,5 +103,27 @@ describe('GET /api/crypto/info/:symbol', () => {
 });
 
 describe('GET /api/crypto/graph/:symbol', () => {
-
+  it('should respond with an object containing a cryptocurrency\'s metadata given that the provided symbol is valid, in which the cryptocurrency\'s price data and graph can be found', (done) => {
+    chai
+        .request(app)
+        .get('/api/crypto/graph/btc')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.should.have.property('c');
+          res.body['description'].should.be.a('object');
+          done();
+        });
+  });
+  it('should respond with a 404 error code and an empty response object if the provided symbol is invalid', (done) => {
+    chai
+        .request(app)
+        .get('/api/crypto/graph/thisCoinDoesNotExist')
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.should.be.a('object');
+          res.body.should.be.empty;
+          done();
+        });
+  });
 });
