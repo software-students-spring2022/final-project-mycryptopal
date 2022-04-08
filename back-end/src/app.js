@@ -8,7 +8,6 @@ const router = require('./routes/router');
 require('dotenv').config({
   silent: true, path: path.join(__dirname, '.env'),
 }); // Stores custom environmental variables
-const axios = require('axios'); // makes requests to API
 const morgan = require('morgan'); // Logs incoming HTTP requests
 const cors = require('cors'); // Enables CORS
 // const multer = require('multer'); // Handles file uploads - currently unused
