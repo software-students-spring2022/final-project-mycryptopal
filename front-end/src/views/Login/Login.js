@@ -24,7 +24,7 @@ function Login() {
                         <input type="submit" value="Login" className="submitButton"></input>
                     </form>
 
-                    <form id="register-redirect">
+                    <form id="redirect">
                         <h2>Don't Have An Account?</h2>
                         <input onClick={() => window.location.href='/registration'} type="button" value="Register!" className="submitButton"></input>
                     </form>

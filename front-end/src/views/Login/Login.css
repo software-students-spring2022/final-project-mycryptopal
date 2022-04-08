@@ -67,11 +67,6 @@
     height: 2.2em;
 }
 
-#register-redirect {
+#redirect {
     margin-top: 10px;
-}
-
-#register-redirect input {
-    width: 75px;
-    height: 2.2em;
 }

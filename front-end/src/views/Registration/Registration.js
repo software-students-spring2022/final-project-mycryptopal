@@ -6,7 +6,7 @@ function Registration() {
         <>
             <div id="bg"></div>
             <div id="page">
-                <div className="section">
+                <div className="registrationSection">
                     <div className="tagLine">
                         Start Your Journey Today!
                     </div>
@@ -16,7 +16,7 @@ function Registration() {
                     </div>
                 </div>
 
-                <div className="section">
+                <div className="registrationSection">
                     <form id="registration-form" action="http://localhost:4000/login" method="POST">
                     <label htmlFor="first" className="label">First Name</label>
                         <input name="first" type="text" className="credentials" required/>
@@ -33,7 +33,7 @@ function Registration() {
                         <input type="submit" value="Register" className="submitButton"></input>
                     </form>
 
-                    <form id="register-redirect">
+                    <form id="redirect">
                         <h2>Already Have An Account?</h2>
                         <input onClick={() => window.location.href='/login'} type="button" value="Login!" className="submitButton"></input>
                     </form>

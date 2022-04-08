@@ -12,6 +12,7 @@ function Explore() {
             setCoins(data);
           }
           getCoins();
+          
     }, []);
 
     return (
@@ -37,7 +38,7 @@ function Explore() {
                     </div>
 
                     <div id="crypto-collage">
-                        {Object.keys(coins).map((symbol, i) => <ExploreCard key={i} symbol={symbol} url={coins[symbol].url} pic={coins[symbol].pic}/>)}
+                        {Object.keys(coins).map((symbol, i) => <ExploreCard key={i} symbol={coins[symbol].symbol} url={coins[symbol].url} pic={coins[symbol].pic}/>)}
                     </div>
                 </div>
             </div>
