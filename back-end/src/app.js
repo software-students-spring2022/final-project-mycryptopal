@@ -22,6 +22,16 @@ app.use(morgan('dev')); // Sets logging mode
 app.use(cors()); // Enables CORS
 app.use('/', router);
 
+app.post('/login', (req, res) => {
+  console.log(req.body);
+  res.redirect('http://localhost:3000');
+});
+
+app.post('/register', (req, res) => {
+  console.log(req.body);
+  res.redirect('http://localhost:3000/login');
+})
+
 // Currently unused file uploading code
 // const storage = multer.diskStorage({ // adding boilerplate base code
 //   destination: function(req, file, cb) {

@@ -3,29 +3,32 @@ import './Login.css';
 function Login() {
     return (
         <>
-            <div id="login-title">
-                <h1>Ready to Level Up Your Investing Career?</h1>
+            <div id="bg"></div>
+            <div id="page">
+                <div className="section">
+                    <div className="tagLine">
+                        Ready to Level Up Your Investing Career?
+                    </div>
 
-                <div id="logo">
-                    <img src="https://picsum.photos/1000" alt="MyCryptoPal Logo"/>
+                    <div className="appLogo">
+                        <img src="https://picsum.photos/1000" alt="MyCryptoPal Logo"/>
+                    </div>
                 </div>
 
-                <div id="title">
-                    <h2>Login</h2>
-                </div>
-            </div>
-
-            <div id="login-content">
-                <div id="login">
-                    <form>
-                        <label htmlFor="username" className="loginLabel">Username</label>
-                        <input name="username" type="text" className="credentials"></input>
-                        <label htmlFor="password" className="loginLabel">Password</label>
-                        <input name="password" type="password" className="credentials"></input>
-                        <input onClick={() => window.location.href='/'} type="button" value="Login" className="formButton"></input>
-                        <h2>Don't Have An Account?</h2>
-                        <input onClick={() => window.location.href='/registration'} type="button" value="Create Account" className="formButton"></input>
+                <div className="section">
+                    <form id="login-form" action="http://localhost:4000/login" method="POST">
+                        <label htmlFor="username" className="label">Username</label>
+                        <input name="username" type="text" className="credentials" required />
+                        <label htmlFor="password" className="label">Password</label>
+                        <input name="password" type="password" className="credentials"required />
+                        <input type="submit" value="Login" className="submitButton"></input>
                     </form>
+
+                    <form id="register-redirect">
+                        <h2>Don't Have An Account?</h2>
+                        <input onClick={() => window.location.href='/registration'} type="button" value="Register!" className="submitButton"></input>
+                    </form>
+
                 </div>
             </div>
         </>

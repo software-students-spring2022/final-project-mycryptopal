@@ -1,42 +1,77 @@
-#login-title {
-    text-align: center;
+#bg {
+    display: block;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: #383c47;
+    z-index: -1;
+    top: -20px;
+    padding-bottom: 20px;
 }
 
-.loginLabel {
-    margin-top: 0.5vh;
-    font-style: italic;
+#page {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 35px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border: 5px black;
+    border-style: groove;
+    background-color: white;
+    z-index: 0;
 }
 
-#login-content {
-    margin-top: 3vh;
-    margin-left: 8%;
-    margin-right: 8%;
+.tagLine {
+    font-weight: bold;
+    font-size: 1.7em;
+    margin-bottom: 2vh;
 }
 
-#login form {
-    text-align: center;
+.appLogo img {
+    max-width: 300px;
+    margin-bottom: 2vh;
+}
+
+.section {
     display: flex;
     flex-direction: column;
+    text-align: center;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.label {
+    font-size: 1.1em;
 }
 
 .credentials {
-    width: 70%;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+    width: 200px;
+    margin-bottom: 1vh;
+    border: 1px solid rgb(97, 95, 95);
+    border-radius: 6px;
+    height: 1.5em
 }
 
-.formButton {
-    margin-top: 1vh;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+.submitButton {
+    margin-top: 0.8vh;
+    width: 75px;
+    height: 2.2em;
 }
 
-#title {
-    margin-bottom: 0.5em;
+#register-redirect {
+    margin-top: 10px;
 }
 
-#logo img {
-    max-width: 80%;
+#register-redirect input {
+    width: 75px;
+    height: 2.2em;
 }
