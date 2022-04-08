@@ -1,27 +1,41 @@
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import './Lesson.css';
 import LessonQuestion from '../../components/LessonQuestion/LessonQuestion';
 
 function Lesson() {
     const questions = [];
-    for (let i = 1; i <= 5; i++) {
+    let count = 0
+    for (let i = 1; i <= 3; i++) {
         questions.push(<LessonQuestion key={i} num={i}/>);
     }
 
     const [questionNum, setQuestionNum] = useState(1);
     const [currentQuestion, setCurrentQuestion] = useState(questions[questionNum - 1])
+    const [currentLesson, setCurrentLesson] = useState(0);
+
+    useEffect(() => {
+        async function getLessons() {
+           const res = await fetch(`http://localhost:4000/lessons/:lessonid`)  
+           const data = (await res.json()).currentLesson
+           setCurrentLesson(data)
+         }
+         getLessons();
+       }, []);
+
 
     function prevQuestion() {
         if(questionNum > 1){
-            const newNum = questionNum - 1
+            const newNum = questionNum - 1;
+            count = count - 1;
             setQuestionNum(newNum);
             setCurrentQuestion(questions[newNum - 1]);
         }
     }
 
     function nextQuestion() {
-        if(questionNum < questions.length){
-            const newNum = questionNum + 1
+        if(questionNum < questions.length && count < 3){
+            const newNum = questionNum + 1;
+            count = count + 1;
             setQuestionNum(newNum);
             setCurrentQuestion(questions[newNum - 1]);
         }
@@ -30,6 +44,12 @@ function Lesson() {
     function checkAnswer() {
         alert(`Your answer is ${Math.random() > 0.5 ? "correct" : "incorrect"}!`)
     }
+
+
+
+
+    // use currentLesson state variable, and pass in all related
+    // data from the Lessons.js content page!
 
     return (
     <>
