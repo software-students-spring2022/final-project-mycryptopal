@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import './Settings.css';
+import AvatarUploader from '../../components/AvatarUploader/AvatarUploader';
 
 function Settings() {
   const [user, setUser] = useState({});
@@ -21,12 +22,7 @@ function Settings() {
 
       <div id="page-content">
         <div id="info">
-          <div id="profile-pic">
-            <img id="user-pic" src="https://picsum.photos/500" alt="profile" />
-            <div id="overlay">
-                            Change Profile Picture
-            </div>
-          </div>
+          <AvatarUploader />
           <h2>{user.firstName} {user.lastName}</h2>
         </div>
 

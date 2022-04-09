@@ -5,47 +5,6 @@
     align-items: center;
 }
 
-#profile-pic {
-    position: relative;
-    width: 60%;
-}
-
-#user-pic {
-    max-width: 100%;
-    border-radius: 50%;
-    opacity: 1;
-    display: block;
-    transition: .5s ease;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#overlay {
-    transition: .5s ease;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    height: 100%;
-    width: 100%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    font-size: 0.8em;
-    font-weight: bold;
-}
-
-#profile-pic:hover #user-pic{
-    opacity: 0.2;
-}
-
-#profile-pic:hover #overlay{
-    opacity: 1;
-}
-
 .settingsForm{
     display: flex;
     flex-direction: column;
