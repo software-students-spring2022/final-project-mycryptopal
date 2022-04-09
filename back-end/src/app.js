@@ -5,16 +5,28 @@ const path = require('path');
 const router = require('./routes/router');
 
 // Useful libraries
+const fs = require('fs');
 require('dotenv').config({
   silent: true, path: path.join(__dirname, '.env'),
 }); // Stores custom environmental variables
 const morgan = require('morgan'); // Logs incoming HTTP requests
 const cors = require('cors'); // Enables CORS
-// const multer = require('multer'); // Handles file uploads - currently unused
+const multer = require('multer'); // Handles file uploads
+const PUBLIC_DIR = path.join(__dirname, `../public`);
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, PUBLIC_DIR);
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${file.fieldname}-${req.body.userId}${path.extname(file.originalname)}`);
+  }
+});
+const upload = multer({storage: storage});
+
 // const mongoose = require('mongoose'); // Database
 // Middleware
-app.use('/static',
-    express.static(path.join(__dirname, '../public'))); // Serves static files
+app.use('/static', express.static(PUBLIC_DIR)); // Serves static files
 app.use(express.json()); // Parses incoming JSON requests
 app.use(express.urlencoded({
   extended: true,
@@ -33,17 +45,22 @@ app.post('/register', (req, res) => {
   res.redirect(`${process.env.FRONT_END_URL}/login`);
 });
 
-// Currently unused file uploading code
-// const storage = multer.diskStorage({ // adding boilerplate base code
-//   destination: function(req, file, cb) {
-//     // store files into a directory named 'uploads'
-//     cb(null, '/uploads');
-//   },
-//   filename: function(req, file, cb) {
-//     // rename the files to include the current time and date
-//     cb(null, file.fieldname + '-' + Date.now());
-//   },
-// });
-// const upload = multer({storage: storage});
+app.post('/personalize', (req, res) => {
+  console.log(req.body);
+  res.redirect(`${process.env.FRONT_END_URL}/settings`);
+});
+
+app.post('/security', (req, res) => {
+  console.log(req.body);
+  res.redirect(`${process.env.FRONT_END_URL}/settings`);
+});
+
+app.get('/avatar/:userId', (req, res) => {
+  res.json({'url': `avatar-${req.params.userId}.jpg`}); // extension shouldn't be hardcoded but this is just placeholder code until MongoDB has been implemented
+});
+
+app.post('/avatar', upload.single('avatar') , (req, res) => {
+  res.json({});
+});
 
 module.exports = app;
