@@ -26,8 +26,12 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "google"
+    ],
+    "rules": {
+      "require-jsdoc": 0
+    }
   },
   "browserslist": {
     "production": [

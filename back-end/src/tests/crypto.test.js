@@ -9,43 +9,43 @@ chai.use(chaiHttp);
 describe('GET /api/crypto/explore', () => {
   it('should respond with an object containing a default number of cryptocurrencies along with their basic information', (done) => {
     chai.request(app).get('/api/crypto/explore')
-    .end((err, res)=>{
-      res.should.have.status(200);
-      res.body.should.be.a('object');
-      Object.keys(res.body).should.have.lengthOf(20);
-      res.body[Object.keys(res.body)[0]].should.include.all.keys('symbol', 'pic', 'url');
-      done();
-    });
+        .end((err, res)=>{
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          Object.keys(res.body).should.have.lengthOf(20);
+          res.body[Object.keys(res.body)[0]].should.include.all.keys('symbol', 'pic', 'url');
+          done();
+        });
   });
   it('should respond with an object containing a single cryptocurrency', (done) => {
     chai.request(app).get('/api/crypto/explore').query({'limit': 1})
-    .end((err, res) => {
-      res.should.have.status(200);
-      res.body.should.be.a('object');
-      Object.keys(res.body).should.have.lengthOf(1);
-      res.body[Object.keys(res.body)[0]].should.include.all.keys('symbol', 'pic', 'url');
-      done();
-    });
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          Object.keys(res.body).should.have.lengthOf(1);
+          res.body[Object.keys(res.body)[0]].should.include.all.keys('symbol', 'pic', 'url');
+          done();
+        });
   });
   it('should respond with an object containing a specified large number of cryptocurrencies', (done) => {
     chai.request(app).get('/api/crypto/explore').query({'limit': 500})
-    .end((err, res) => {
-      res.should.have.status(200);
-      res.body.should.be.a('object');
-      Object.keys(res.body).should.have.lengthOf(500);
-      res.body[Object.keys(res.body)[0]].should.include.all.keys('symbol', 'pic', 'url');
-      done();
-    });
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          Object.keys(res.body).should.have.lengthOf(500);
+          res.body[Object.keys(res.body)[0]].should.include.all.keys('symbol', 'pic', 'url');
+          done();
+        });
   });
   it('should respond with status code 400 and an empty object if the specified limit exceeds the API\'s restrictions', (done) => {
     chai.request(app).get('/api/crypto/explore').query({'limit': 5001})
-    .end((err, res) => {
-      res.should.have.status(400);
-      console.log(res.body);
-      res.body.should.be.a('object');
-      Object.keys(res.body).should.be.empty;
-      done();
-    });
+        .end((err, res) => {
+          res.should.have.status(400);
+          console.log(res.body);
+          res.body.should.be.a('object');
+          Object.keys(res.body).should.be.empty;
+          done();
+        });
   });
 });
 

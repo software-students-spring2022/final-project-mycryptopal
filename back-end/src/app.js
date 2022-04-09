@@ -25,12 +25,12 @@ app.use('/', router);
 
 app.post('/login', (req, res) => {
   console.log(req.body);
-  res.redirect('http://localhost:3000');
+  res.redirect(`${process.env.FRONT_END_URL}`);
 });
 
 app.post('/register', (req, res) => {
   console.log(req.body);
-  res.redirect('http://localhost:3000/login');
+  res.redirect(`${process.env.FRONT_END_URL}/login`);
 });
 
 // Currently unused file uploading code

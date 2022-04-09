@@ -27,6 +27,8 @@ See the [Contributions Document](./CONTRIBUTING.md)
 1. Clone the repository onto your local machine with ```git clone https://github.com/software-assignments-spring2022/final-project-mycryptopal.git```
 2. Navigate to the local source repository
 3. Install project-wide dependencies with ```npm install```
+4. Acquire front-end ```.env``` config file and place in ```front-end```
+5. Acquire back-end ```.env``` config file and place in ```back-end/src```
 ## Frontend React App
 1. Navigate to ```front-end``` directory
 2. Install front-end dependencies with ```npm install```
@@ -41,5 +43,4 @@ See the [Contributions Document](./CONTRIBUTING.md)
 4. Launch the back-end with ```npm start```
 ## Testing Backend Routes
 1. Navigate to the project's root folder
-2. Ensure that you have the ```.env``` config file in ```/back-end/src``` (can be acquired from the team's discord)
 3. Run tests with ```npm test```
