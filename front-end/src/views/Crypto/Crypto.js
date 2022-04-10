@@ -50,7 +50,7 @@ function Crypto() {
       const logoURL = `${process.env.REACT_APP_COIN_LOGO}/${coinData.id}.png`;
       setCoinLogo(logoURL);
     }
-  }, [coinData]);
+  }, [coinData, symbol]);
 
   return (
     <>

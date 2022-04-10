@@ -9,7 +9,6 @@ function Lesson() {
   const {lessonID: lessonId} = useParams();
   const [lesson, setLesson] = useState({});
   const [questions, setQuestions] = useState(null);
-  const [currentQuestion, setCurrentQuestion] = useState({});
 
   useEffect(() => {
     async function getCurrentLesson() {
@@ -27,12 +26,6 @@ function Lesson() {
       }
     }
   }, [lesson]);
-
-  useEffect(() => {
-    if (questions) {
-      setCurrentQuestion(questions[0]);
-    }
-  }, [questions]);
 
   return (
     <>

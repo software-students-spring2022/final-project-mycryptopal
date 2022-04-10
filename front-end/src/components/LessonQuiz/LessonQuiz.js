@@ -40,11 +40,13 @@ function LessonQuiz(props) {
   }
 
   function checkAnswer() {
-    const userAnswer = document.getElementById('quiz-answer').value.toLowerCase();
+    const answerBox = document.getElementById('quiz-answer')
+    const userAnswer = answerBox.value.toLowerCase();
     const isCorrect = (userAnswer === currentQuestion.answer.toLowerCase());
     if (isCorrect) {
       currentQuestion.answered = true;
       document.getElementById('quiz-center').style.visibility = 'hidden';
+      answerBox.value = currentQuestion.answer;
       setCorrectOpen(true);
       setCorrectCount(correctCount + 1);
     } else {
@@ -80,7 +82,7 @@ function LessonQuiz(props) {
 
   useEffect(() => {
     setQuestions(props.questions);
-  }, []);
+  }, [props.questions]);
 
   useEffect(() => {
     if (questions) {
@@ -112,7 +114,7 @@ function LessonQuiz(props) {
         document.getElementById('right-arrow').style.visibility = 'visible';
       }
     }
-  }, [currentQuestion]);
+  }, [currentQuestion, questions, complete]);
 
   useEffect(() => {
     if (questions) {
@@ -122,7 +124,7 @@ function LessonQuiz(props) {
         document.getElementById('quiz-center').style.visibility = 'visible';
       }
     }
-  }, [correctCount]);
+  }, [correctCount, questions]);
 
 
   return (

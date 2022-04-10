@@ -16,7 +16,6 @@ function Explore() {
   const [coins, setCoins] = useState([]);
   const [selected, setSelected] = useState('');
   const [open, setOpen] = useState(false);
-  const [sortType, setSortType] = useState(null);
 
   useEffect(() => {
     async function getCoins() {
@@ -26,11 +25,6 @@ function Explore() {
     }
     getCoins();
   }, []);
-
-  useEffect(() => {
-    const sorted = [...coins].sort((a, b) => a[sortType] < b[sortType]);
-    setCoins(sorted);
-  }, [sortType]);
 
   function handleAlertClose(evt, reason) {
     if (reason === 'clickaway') {
@@ -49,7 +43,8 @@ function Explore() {
 
   function handleSortChange(evt) {
     const filter = evt.target.value;
-    setSortType(filter);
+    const sorted = [...coins].sort((a, b) => a[filter] < b[filter]);
+    setCoins(sorted);
   }
 
   return (
@@ -124,7 +119,7 @@ function Explore() {
                 </Grid>
 
                 <Grid item xs={8} textAlign={'left'}>
-                  <Select id='sort-select' onChange={handleSortChange} fullWidth>
+                  <Select id='sort-select' defaultValue={'cap'} onChange={handleSortChange} fullWidth>
                     <MenuItem value={'cap'}>Market Cap</MenuItem>
                     <MenuItem value={'supply'}>Circulating Supply</MenuItem>
                     <MenuItem value={'volume'}>Volume (24H)</MenuItem>
@@ -142,7 +137,7 @@ function Explore() {
 
 
               {coins.slice(0, 20).map((coin, i) => {
-                return <Grid item xs={6} md={3}>
+                return <Grid item key={i} xs={6} md={3}>
                   <ExploreCard key={i} symbol={coin.symbol} pic={coin.pic}/>
                 </Grid>;
               })}
