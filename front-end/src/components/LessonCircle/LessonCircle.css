@@ -13,20 +13,6 @@
     border-width: thick;
 }
 
-.desktopCircle {
-    flex-basis: 18%;
-    font-size: 1.4em;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-}
-
-.mobileCircle {
-    flex-basis: 43%;
-    font-size: 1.2em;
-    margin-top: 2.8vh;
-    margin-bottom: 2.8vh;
-}
-
 .color1 {
     background-color: #d2cbdc;
 }
