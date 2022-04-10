@@ -22,10 +22,17 @@ const UserSchema = new mongoose.Schema({
     email: String, 
     username: String,
     password: String,
-    crypto: Array
+    crypto: Array,
+    comments: Array
 });
 
+const ContactSchema = new mongoose.Schema({
+    username: String,
+    feedback: String
+})
+
 const User = mongoose.model('User', UserSchema);
+const Contact = mongoose.model('Contact', ContactSchema)
 
 const user1 = new User({
     firstName: 'test',
@@ -33,7 +40,8 @@ const user1 = new User({
     email: 'testUser123@gmail.com',
     username: 'testUser123123',
     password: 'testPassword12',
-    crypto: null
+    crypto: null,
+    comments: null
 })
 
 const user2 = new User({
@@ -42,7 +50,8 @@ const user2 = new User({
     email: 'testUser1233@gmail.com',
     username: 'testUser1231123',
     password: 'testPassword1132',
-    crypto: null
+    crypto: null,
+    comments: null
 })
 
 const user3 = new User({
@@ -51,7 +60,8 @@ const user3 = new User({
     email: 'testUser1231343143@gmail.com',
     username: 'testUser1781123',
     password: 'testPassword156762',
-    crypto: null
+    crypto: null,
+    comments: null
 })
 
 user1.save(function(err, user) {
@@ -66,6 +76,8 @@ user3.save(function(err, user) {
     if (err) return console.error(err);
     console.log(user3.username + " saved to atlas")
 });
+
+
 
 
 
