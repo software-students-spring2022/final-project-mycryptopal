@@ -10,6 +10,7 @@ import {
   Line,
   ResponsiveContainer,
 } from 'recharts';
+import Typography from '@mui/material/Typography';
 
 function Portfolio() {
   const INTERVAL_OPTIONS = [30, 60, 90, 120];
@@ -55,8 +56,9 @@ function Portfolio() {
   return (
     <>
       <div id="page-title">
-        <div>My Portfolio</div>
+        <Typography variant='h4' fontWeight={'bold'}>My Portfolio</Typography>
       </div>
+
       <div id="page-content">
         <div className="container dropdownContainer">
           <div className="selector">

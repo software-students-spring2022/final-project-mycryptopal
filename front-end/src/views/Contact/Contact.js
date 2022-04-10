@@ -36,7 +36,7 @@ function Contact() {
   return (
     <>
       <div id="page-title">
-        <div>Contact Us</div>
+        <Typography variant='h4' fontWeight={'bold'}>Contact Us</Typography>
       </div>
 
       <div id="page-content">

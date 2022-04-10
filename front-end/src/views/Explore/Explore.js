@@ -55,7 +55,7 @@ function Explore() {
   return (
     <>
       <div id="page-title">
-        <div>Explore</div>
+        <Typography variant='h4' fontWeight={'bold'}>Explore</Typography>
       </div>
 
       <div id="page-content">

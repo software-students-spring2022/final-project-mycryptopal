@@ -21,7 +21,7 @@ function Settings() {
   return (
     <>
       <div id="page-title">
-        <div>Settings</div>
+        <Typography variant='h4' fontWeight={'bold'}>Settings</Typography>
       </div>
 
       <div id="page-content">

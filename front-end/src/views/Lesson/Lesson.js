@@ -37,7 +37,7 @@ function Lesson() {
   return (
     <>
       <div id="page-title">
-        <div>Lesson</div>
+        <Typography variant='h4' fontWeight={'bold'}>Lesson</Typography>
       </div>
       <div id="page-content">
         <Stack id="lesson-body">

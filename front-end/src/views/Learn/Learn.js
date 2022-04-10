@@ -3,6 +3,7 @@ import LessonCircle from '../../components/LessonCircle/LessonCircle';
 import './Learn.css';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 function Learn() {
   const [lessonCount, setLessonCount] = useState(0);
@@ -51,8 +52,9 @@ function Learn() {
   return (
     <>
       <div id="page-title">
-        <div>Learn</div>
+        <Typography variant='h4' fontWeight={'bold'}>Learn</Typography>
       </div>
+
       <div id="page-content">
         <Box id="desktop-map" display={{'xs': 'none', 'md': 'block'}}>
           {

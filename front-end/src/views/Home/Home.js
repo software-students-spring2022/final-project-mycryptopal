@@ -10,6 +10,7 @@ import {
 import './Home.css';
 import ArticleSmall from '../../components/ArticleSmall/ArticleSmall';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import Typography from '@mui/material/Typography';
 
 function Home() {
   const [allocations, setAllocations] = useState([]);
@@ -81,7 +82,7 @@ function Home() {
   return (
     <>
       <div id="page-title">
-        <div>Home</div>
+        <Typography variant='h4' fontWeight={'bold'}>Home</Typography>
       </div>
       <div id="page-content">
         <div id="chart">

@@ -11,6 +11,7 @@ import {
   Line,
   ResponsiveContainer,
 } from 'recharts';
+import Typography from '@mui/material/Typography';
 
 function Crypto() {
   const [coinData, setCoinData] = useState({slug: '', symbol: '', circulating_supply: 0, quote: {USD: {price: 0, percent_change_24h: 0, volume_24h: 0, market_cap: 0}}});
@@ -54,7 +55,7 @@ function Crypto() {
   return (
     <>
       <div id="page-title">
-        <div>Analytics</div>
+        <Typography variant='h4' fontWeight={'bold'}>Analytics</Typography>
       </div>
 
       <div id="page-content">
