@@ -35,7 +35,7 @@ function Sidebar() {
           <Grid item>
             <Typography variant='body1'>Explore Cryptos</Typography>
           </Grid>
-        </Grid>       
+        </Grid>
       </a>
       <a id="learn" className="menu-item" href="/learn">
         <Grid container spacing={1}>
@@ -46,18 +46,18 @@ function Sidebar() {
           <Grid item>
             <Typography variant='body1'>Learn</Typography>
           </Grid>
-        </Grid>        
+        </Grid>
       </a>
       <a id="contact" className="menu-item" href="/contact">
         <Grid container spacing={1}>
-            <Grid item>
-              <AlternateEmailIcon />
-            </Grid>
+          <Grid item>
+            <AlternateEmailIcon />
+          </Grid>
 
-            <Grid item>
-              <Typography variant='body1'>Contact Us</Typography>
-            </Grid>
-        </Grid>              
+          <Grid item>
+            <Typography variant='body1'>Contact Us</Typography>
+          </Grid>
+        </Grid>
       </a>
       <a id="settings" className="menu-item" href="/settings">
         <Grid container spacing={1}>
@@ -68,7 +68,7 @@ function Sidebar() {
           <Grid item>
             <Typography variant='body1'>Settings</Typography>
           </Grid>
-        </Grid>              
+        </Grid>
       </a>
       <a id="logout" className="menu-item" href="/login">
         <Grid container spacing={1}>
@@ -79,7 +79,7 @@ function Sidebar() {
           <Grid item>
             <Typography variant='body1'>Logout</Typography>
           </Grid>
-        </Grid>         
+        </Grid>
       </a>
     </Menu>
   );

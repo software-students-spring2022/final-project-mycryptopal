@@ -10,22 +10,22 @@ function Learn() {
   const [lessons, setLessons] = useState([]);
 
   function generateLessonGrid(grid, lessons, spacing, xs, marginBottom) {
-    let min = 0, max;
+    let min = 0; let max;
     const elements = [];
-    for(const num of grid){
+    for (const num of grid) {
       max = min + num;
       elements.push(
-        <Grid container spacing={spacing} className='lessonMap'>
-          {
-            lessons.slice(min, max).map((lesson) => {
-              return (
-                <Grid item xs={xs} marginBottom={marginBottom}>
-                  {lesson}
-                </Grid>
-              )
-            })
-          }
-        </Grid>
+          <Grid container spacing={spacing} className='lessonMap'>
+            {
+              lessons.slice(min, max).map((lesson) => {
+                return (
+                  <Grid item xs={xs} marginBottom={marginBottom}>
+                    {lesson}
+                  </Grid>
+                );
+              })
+            }
+          </Grid>
       );
       min = max;
     }

@@ -1,72 +1,43 @@
-#bg {
-    display: block;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    background-color: #383c47;
-    z-index: -1;
-    top: -20px;
-    padding-bottom: 20px;
+.formContainer {
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
 }
 
-#page {
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 35px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 15px;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    border: 5px black;
-    border-style: groove;
-    background-color: white;
-    z-index: 0;
+.formSurrounds {
+    display: block;
+    background-color: #383c47;
+}
+
+.formVertical {
+    height: 5%;
+}
+
+.formMiddle {
+    width: 100vw;
+    height: 90vh;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.formBody {
+    width: 60%;
+    height: 100%;
+    border: 5px rgb(193, 180, 104) solid;
 }
 
 .tagLine {
-    font-weight: bold;
-    font-size: 1.7em;
+    margin-top: 2vh;
     margin-bottom: 2vh;
 }
 
 .appLogo img {
     max-width: 300px;
-    margin-bottom: 2vh;
-}
-
-.loginSection {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-#login-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.label {
-    font-size: 1.1em;
+    margin-bottom: 4vh;
 }
 
 .credentials {
-    width: 200px;
-    margin-bottom: 1vh;
-    border: 1px solid rgb(97, 95, 95);
-    border-radius: 6px;
-    height: 1.5em
-}
-
-.submitButton {
-    margin-top: 0.8vh;
-    width: 75px;
-    height: 2.2em;
-}
-
-#redirect {
-    margin-top: 10px;
+    width: 90%;
 }

@@ -5,9 +5,9 @@ function LessonQuestion(props) {
   return (
     <div className="quizQuestion">
       <div className="questionNumber">
-          <Typography variant='h6'>
+        <Typography variant='h6'>
             Question {props.num}
-          </Typography>
+        </Typography>
       </div>
       <div className="questionContent">
         <Typography variant='body1'>

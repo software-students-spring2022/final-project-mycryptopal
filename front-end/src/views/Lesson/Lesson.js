@@ -51,12 +51,12 @@ function Lesson() {
               {lesson.content}
             </Typography>
           </div>
-        </Stack>        
-        
+        </Stack>
+
         <div className='divider'></div>
 
         <div id="lesson-quiz">
-          {questions ? 
+          {questions ?
           (
             <LessonQuiz lessonId={lessonId} questions={questions} />
           ) : (<></>)}
