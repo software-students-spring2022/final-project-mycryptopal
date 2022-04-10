@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const router = require('./routes/router');
+const faqs = require('./data/faqs.json');
 
 // Useful libraries
 const fs = require('fs');
@@ -34,6 +35,15 @@ app.use(express.urlencoded({
 app.use(morgan('dev')); // Sets logging mode
 app.use(cors()); // Enables CORS
 app.use('/', router);
+
+app.get('/faqs', (req, res) => {
+  res.send(faqs);
+})
+
+app.post('/contact', (req, res) => {
+  console.log(req.body);
+  res.sendStatus(200);
+});
 
 app.post('/login', (req, res) => {
   console.log(req.body);
