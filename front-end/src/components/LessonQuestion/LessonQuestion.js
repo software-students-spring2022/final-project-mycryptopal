@@ -1,13 +1,18 @@
 import './LessonQuestion.css';
+import Typography from '@mui/material/Typography';
 
 function LessonQuestion(props) {
   return (
     <div className="quizQuestion">
       <div className="questionNumber">
-                Question {props.num}
+          <Typography variant='h6'>
+            Question {props.num}
+          </Typography>
       </div>
       <div className="questionContent">
-        {props.content}
+        <Typography variant='body1'>
+          {props.content}
+        </Typography>
       </div>
     </div>
   );

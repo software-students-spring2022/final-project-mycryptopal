@@ -15,7 +15,7 @@ import {useEffect, useState} from 'react';
 
 function Contact() {
   const [faqs, setFAQs] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
 
   useEffect(() => {
     async function getFAQs() {
@@ -26,11 +26,11 @@ function Contact() {
     getFAQs();
   }, []);
 
-  const handleClose = (event, reason) => {
+  function handleAlertClose(event, reason) {
     if (reason === 'clickaway') {
       return;
     }
-    setOpen(false);
+    setAlertOpen(false);
   };
 
   return (
@@ -79,7 +79,7 @@ function Contact() {
               axios
                   .post(`${process.env.REACT_APP_BACKEND_URL}/contact`, postRequest, {})
                   .then(() => {
-                    setOpen(true);
+                    setAlertOpen(true);
                   })
                   .catch((err) => console.log(err));
             }}>
@@ -105,13 +105,11 @@ function Contact() {
             </form>
           </Grid>
 
-          <Grid item xs={12}>
-            <Snackbar open={open} autoHideDuration={5000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleClose}>
-              <Alert onClose={handleClose} severity="success" sx={{width: '100%'}}>
-              Thank you for your message! Our team will get back to you as soon as possible :)
-              </Alert>
-            </Snackbar>
-          </Grid>
+          <Snackbar open={alertOpen} autoHideDuration={5000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleAlertClose}>
+            <Alert onClose={handleAlertClose} severity="success" sx={{width: '100%'}}>
+            Thank you for your message! Our team will get back to you as soon as possible :)
+            </Alert>
+          </Snackbar>
         </Grid>
       </div>
     </>
