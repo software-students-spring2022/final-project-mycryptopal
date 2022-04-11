@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({storage: storage});
 
-// const mongoose = require('mongoose'); // Database
+const mongoose = require('mongoose'); // Database
 // Middleware
 app.use('/static', express.static(PUBLIC_DIR)); // Serves static files
 app.use(express.json()); // Parses incoming JSON requests
@@ -73,4 +73,15 @@ app.post('/avatar', upload.single('avatar') , (req, res) => {
   res.json({});
 });
 
+// added mongoDB connection code.
+mongoose.connect(`${process.env.MONGODB_CONNECTION_URL}`)
+    .then( () => {
+        console.log('Connected to database ')
+    })
+    .catch( (err) => {
+        console.error(`Error connecting to the database. \n${err}`);
+    })
+
 module.exports = app;
+
+
