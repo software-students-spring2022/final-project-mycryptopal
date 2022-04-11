@@ -5,6 +5,7 @@ const password = 'ivt4SmlFqu8avauz'
 
 const url = `mongodb+srv://Shanks480Agile:${password}@cluster0.wux8g.mongodb.net/myCryptoPal?retryWrites=true&w=majority
 `;
+
 // connecting to database
 mongoose.connect(url)
     .then( () => {
