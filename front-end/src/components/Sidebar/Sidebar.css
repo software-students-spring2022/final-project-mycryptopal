@@ -20,8 +20,10 @@
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
-    height: 24px;
-    width: 24px;
+    margin-top: 3.5vh;
+    margin-right: 2vh;
+    height: 60px;
+    width: 60px;
 }
 
 /* Color/shape of close button cross */
@@ -41,7 +43,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* General sidebar styles */
 .bm-menu {
     background: #373a47;
-    padding: 2.5em 1.5em 0;
+    padding: 2vh 2vh 0;
     font-size: 1.15em;
 }
 
@@ -73,4 +75,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Styling of overlay */
 .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
+}
+
+#home {
+    margin-bottom: 2vh;
 }

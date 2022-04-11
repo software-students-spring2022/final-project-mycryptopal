@@ -62,14 +62,17 @@ router.get('/crypto/explore', (req, res) => {
       )
       .then((apiResponse) => {
         const data = apiResponse.data.data;
-        const coins = data.reduce((resultObject, currentElement) => {
+        const coins = data.reduce((resultArray, currentElement) => {
           const coinInfo = {};
+          coinInfo.label = currentElement.name;
           coinInfo.symbol = currentElement.symbol;
           coinInfo.pic = `${process.env.CMC_ICON_URL}/${currentElement.id}.png`;
-          coinInfo.url = `/crypto/${currentElement.symbol}`;
-          resultObject[currentElement.name] = coinInfo;
-          return resultObject;
-        }, {});
+          coinInfo.supply = currentElement['circulating_supply'];
+          coinInfo.volume = currentElement.quote.USD['volume_24h'];
+          coinInfo.cap = currentElement.quote.USD['market_cap'];
+          resultArray.push(coinInfo);
+          return resultArray;
+        }, []);
         res.json(coins);
       })
       .catch((err) => {

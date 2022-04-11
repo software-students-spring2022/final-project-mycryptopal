@@ -19,9 +19,18 @@ router.get('/assets', (req, res) => {
 });
 
 router.get('/data', (req, res) => {
-  axios
-      .get(`https://my.api.mockaroo.com/users.json?key=4c156a80&limit=1`)
-      .then((apiResponse) => res.json(apiResponse.data));
+  // axios
+  //     .get(`https://my.api.mockaroo.com/users.json?key=4c156a80&limit=1`)
+  //     .then((apiResponse) => res.json(apiResponse.data))
+  //     .catch(err => console.log(err));
+  const obj = {
+    id: 1181923123812,
+    firstName: "John",
+    lastName: "Smith",
+    username: "jsmith",
+    email: "jsmith123@mail.com"
+  };
+  res.json(obj);
 });
 
 router.post('/contact', (req, res) => {

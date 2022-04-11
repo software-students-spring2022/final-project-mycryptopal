@@ -1,9 +1,7 @@
 .lessonHeader {
     text-align: center;
-    font-size: 1.6em;
     font-weight: bold;
     margin-bottom: 2vh;
-    margin-top: 1.5vh
 }
 
 #lesson-content {
@@ -12,9 +10,11 @@
 
 #map-button {
     display: flex;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
     flex-direction: row;
     height: 2.2em;
-    height: fit-content
+    height: fit-content;
 }
 
 #map-button button{
@@ -28,75 +28,5 @@
     color: #514e58;
     font-weight: bold;
     font-size: 1.1em;
-}
-
-#nextLessonButton {
-    margin-left: auto;
-    margin-right: 0;
-    width: 30%;
-}
-
-#lesson-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.mobileQuestionButtons {
-    margin-left: 3vh;
-    margin-right: 3vh;
-    max-width: 15%;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
-}
-
-.mobileCenterButton {
-    width: 100%;
-    font-size: 0.9em;
-    height: 2.5em;
-}
-
-.desktopQuestionButtons {
-    margin-left: 5vh;
-    margin-right: 5vh;
-    max-width: 5%;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
-    width: 25%;
-    border-radius: 6px;
-}
-
-.desktopCenterButton {
-    width: 25%;
-    height: 3em;
-}
-
-#centerButton {
-    margin-top: 3vh;
-    margin-bottom: 3vh;
-    border: 0;
-    color: white;
-    font-weight: bold;
-    border-radius: 6px;
-    background-color: #383c47;
-}
-
-.questionAnswer form {
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2vh;
-}
-
-#answer-box {
-    height: 2em;
-    border:0;
-    border-bottom: 2px solid black;
-    font-size: 1.1em;
-    text-align: center;
-    width: 40%;
-    margin-left: auto;
-    margin-right: auto;
+    cursor: pointer;
 }
