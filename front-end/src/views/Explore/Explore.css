@@ -1,40 +1,13 @@
-#crypto-dropdown {
- text-align: center;
- margin-top: 1em;
- margin-bottom: 1em;
-}
-#crypto-dropdown select {
-  width: 80%;
-}
-#crypto-collage {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-.exploreHeader {
-  text-align: center;
-  font-weight: bold;
-  margin-top: 5%;
-  font-size: 1.1em;
-}
-
-#explore-search form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 0.5em;
-}
-
-#search-box {
-  width: 80%;
-  text-align: center;
-  margin-bottom: 0.5em;
-}
-
 #search-button {
   height: 2.1em;
   width: 60%;
+}
+
+#explore-search {
+  width:100%;
+  height: 56px;
+}
+
+#sort-select {
+  text-align: center;
 }

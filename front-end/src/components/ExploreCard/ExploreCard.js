@@ -1,16 +1,19 @@
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+
 import './ExploreCard.css';
 
 function ExploreCard(props) {
   return (
     <>
-      <div className="exploreCard" onClick={() => window.location.href=props.url}>
-        <div className="cardImage">
-          <img src={props.pic} width = '40px' height = '40px' alt = 'crypto-logo'/>
-        </div>
-        <div className="cardName">
-          <h2>{props.symbol}</h2>
-        </div>
-      </div>
+      <Grid container className="exploreCard" onClick={() => window.location.href=`/crypto/${props.symbol}`}>
+        <Grid item xs={5} md={2.5} className="cardImage">
+          <img src={props.pic} alt = 'crypto-logo'/>
+        </Grid>
+        <Grid item xs={5} md={2.5} className="cardName">
+          <Typography variant={'h6'} className="cardTitle">{props.symbol}</Typography>
+        </Grid>
+      </Grid>
     </>
   );
 }

@@ -1,6 +1,7 @@
 const app = require('../app');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
+const { expect } = require('chai');
 const should = chai.should();
 chai.use(chaiHttp);
 
@@ -111,7 +112,7 @@ describe('GET /api/crypto/graph/:symbol', () => {
           res.should.have.status(200);
           res.body.should.be.a('object');
           res.body.should.have.property('c');
-          res.body['description'].should.be.a('object');
+          expect.res.to.be.json;
           done();
         });
   });

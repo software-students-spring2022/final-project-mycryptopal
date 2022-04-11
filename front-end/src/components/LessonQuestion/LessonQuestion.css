@@ -1,12 +1,9 @@
 .questionNumber {
-    font-weight: bold;
-    font-size: 1.2em;
-    margin-bottom: 1.5vh;
     text-align: center;
+    margin-bottom: 2vh;
 }
 
 .questionContent {
-    font-size: 1.05em;
-    font-style: italic;
     text-align: center;
+    margin-bottom: 1vh;
 }
