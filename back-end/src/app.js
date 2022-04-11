@@ -74,7 +74,7 @@ app.post('/avatar', upload.single('avatar') , (req, res) => {
 });
 
 // added mongoDB connection code.
-mongoose.connect(`${process.env.MONGODB_CONNECTION_URL}`)
+mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASS}@cluster0.wux8g.mongodb.net/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`)
     .then( () => {
         console.log('Connected to database ')
     })
