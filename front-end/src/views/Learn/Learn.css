@@ -1,5 +1,4 @@
-#lesson-map {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+.lessonMap {
+  align-items: center;
+  justify-content: center;
 }

@@ -1,6 +1,3 @@
-#registration-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+#register-helper {
+    margin-top: 1vh;
 }

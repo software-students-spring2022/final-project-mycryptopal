@@ -1,48 +1,78 @@
 import './Registration.css';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 function Registration() {
-    return (
-        <>
-        <>
-            <div id="bg"></div>
-            <div id="page">
-                <div className="section">
-                    <div className="tagLine">
-                        Start Your Journey Today!
-                    </div>
+  return (
+    <>
+      <Grid container className="formContainer">
+        <Grid item className="formVertical formSurrounds" xs={12} md={12}></Grid>
 
-                    <div className="appLogo">
-                        <img src="https://picsum.photos/1000" alt="MyCryptoPal Logo"/>
-                    </div>
+        <Grid item md={12} className="formMiddle">
+          <Grid container height={'100%'} width={'100%'}>
+
+            <Grid item xs={0.5} md={4} className="formLeft formSurrounds"></Grid>
+
+            <Grid item xs={11} md={4} className="formBody">
+              <Stack>
+
+                <div className="tagLine">
+                  <Typography fontSize={'3vh'}>
+                      Start Your Journey Today!
+                  </Typography>
                 </div>
 
-                <div className="section">
-                    <form id="registration-form" action="http://localhost:4000/login" method="POST">
-                    <label htmlFor="first" className="label">First Name</label>
-                        <input name="first" type="text" className="credentials" required/>
-                        <label htmlFor="last" className="label">Last Name</label>
-                        <input name="last" type="text" className="credentials" required />
-                        <label htmlFor="email" className="label">Email</label>
-                        <input name="email" type="text" className="credentials" required />
-                        <label htmlFor="username" className="label">Username</label>
-                        <input name="username" type="text" className="credentials" required />
-                        <label htmlFor="password" className="label">Password</label>
-                        <input name="password" type="password" className="credentials" required />
-                        <label htmlFor="repassword" className="label">Reenter Password</label>
-                        <input name="repassword" type="password" className="credentials" required />
-                        <input type="submit" value="Register" className="submitButton"></input>
-                    </form>
-
-                    <form id="register-redirect">
-                        <h2>Already Have An Account?</h2>
-                        <input onClick={() => window.location.href='/login'} type="button" value="Login!" className="submitButton"></input>
-                    </form>
+                <div className="appLogo">
+                  <img src="https://picsum.photos/1000" alt="MyCryptoPal Logo"/>
                 </div>
-            </div>
-            </>
-        </>
 
-    )
+                <div className="entryForm">
+                  <form action={`${process.env.REACT_APP_BACKEND_URL}/register`} method="POST">
+                    <Grid container spacing={2} alignItems={'center'} justifyContent={'center'}>
+
+                      <Grid item xs={12} md={7}>
+                        <TextField name='username' id="register-user" className="credentials" label="Username" variant="outlined" InputLabelProps={{shrink: true}} required/>
+                      </Grid>
+
+                      <Grid item xs={12} md={7}>
+                        <TextField name='email' id="register-email" className="credentials" label="Email" variant="outlined" InputLabelProps={{shrink: true}} required/>
+                      </Grid>
+
+                      <Grid item xs={12} md={7}>
+                        <TextField name='password' id="register-pass" className="credentials" label="Password" type={'password'} variant="outlined" InputLabelProps={{shrink: true}} required/>
+                      </Grid>
+
+                      <Grid item xs={12}>
+                        <Button variant="outlined" size='large' type='submit'>Register</Button>
+                      </Grid>
+
+                      <Grid item xs={12} className='helperText' id='register-helper'>
+                        <Button variant="text" size='small' onClick={() => {
+                          window.location.href='/login';
+                        }}>Have an Account? Sign In Here!</Button>
+                      </Grid>
+
+                    </Grid>
+
+                  </form>
+                </div>
+              </Stack>
+            </Grid>
+
+            <Grid item xs={0.5} md={4} className="formRight formSurrounds"></Grid>
+
+          </Grid>
+        </Grid>
+
+        <Grid item className="formVertical formSurrounds" xs={12} md={12}></Grid>
+
+      </Grid>
+    </>
+
+  );
 }
 
 export default Registration;

@@ -41,14 +41,14 @@ describe('GET /user/assets', () => {
 describe('POST /user/contact', () => {
   it('should redirect the user to the contact page once the message has been received and processed by server', (done) => {
     chai.request(app).post('/user/contact').type('form')
-    .send({
-      'contact-name': 'John Smith',
-      'contact-email': 'jsmith@mail.com',
-      'contact-message': 'This is a message.',
-    }).end((err, res) => {
-      res.should.redirectTo('http://localhost:3000/contact');
-      done();
-    })
+        .send({
+          'contact-name': 'John Smith',
+          'contact-email': 'jsmith@mail.com',
+          'contact-message': 'This is a message.',
+        }).end((err, res) => {
+          res.should.redirectTo('http://localhost:3000/contact');
+          done();
+        });
   });
 });
 

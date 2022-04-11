@@ -1,67 +1,119 @@
 import './Contact.css';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import axios from 'axios';
+import {useEffect, useState} from 'react';
 
 function Contact() {
-    return (
-        <>
-            <div id="page-title">
-                <div>Contact Us</div>
-            </div>
-            
-            <div id="page-content">
-                <div id="faq" className="section">
-                    <div className="contactHeader">
-                        Frequently Asked Questions
-                    </div>
-                    <div className="faqQuestion">
-                        Does myCryptoPal allow me to trade real money in the financial markets?
-                    </div>
-                    <div className="faqAnswer">
-                        No, myCryptoPal does not allow users to trade real US dollars in financial markets. 
-                        The mission of our application is to spread awareness and educate users about cryptocurrencies and the
-                        technology behind it. We hope users can learn how real crypto traders use tools such as stock graphs
-                        to assist them in their financial decisions. 
-                    </div>
-                    <div className="faqQuestion">
-                        The myCryptoPal team seem to be educated about cryptocurrencies, should I ask the team what crypto I should buy?
-                    </div>
-                    <div className="faqAnswer">
-                        Absolutely not. We are not financial advisors. 
-                    </div>
-                    <div className="faqQuestion">
-                        I feel like I've learned a lot from this application, how can I trade cryptocurrencies in real markets?
-                    </div>
-                    <div className="faqAnswer">
-                        Our team is delighted to hear that this application has helped you learn more about cryptocurrencies
-                        and has inspired you to trade real crypto. Cryptocurrencies are supported in various countries throughout the
-                        world and each country has distinct laws in place regarding crypto. Certain countries require a specific age to be 
-                        reached. In the digital world, more and more retail investors are beginnning to use popular financial brokerage
-                        apps to trade their crypto. Some popular apps that allow you to begin trading easily and seamlessly are 
-                        Coinbase, Binance, Robinhood, and Webull. There are many different ways you can go about the next step in your journey,
-                        choose the path that works best for you and we hope that this is the start of a new adventure for you!
-                    </div>
-                </div>
+  const [faqs, setFAQs] = useState(null);
+  const [alertOpen, setAlertOpen] = useState(false);
 
-                <div id="contact-us" className="section">
-                    <div className="contactHeader">
-                        Still Need Help? Contact Us!
-                    </div>
-                    <form name="contact-form" id="contact-form" action="http://localhost:4000/user/contact" method="POST">
-                        <label htmlFor="contact-name" className="contactLabel">Your Name</label>
-                        <input name="contact-name" type="text"></input>
-                        <label htmlFor="contact-email" className="contactLabel">Your Email</label>
-                        <input name="contact-email" type="text"></input>
-                        <label htmlFor="contact-message" className="contactLabel">Your Message or Question</label>
-                        <textarea name="contact-message" type="text" className="contactMessage"></textarea>
-                        <input id="submitButton" onClick={popUp} type="submit" value="Submit"></input>
-                    </form>
-                </div>
-            </div>
-        </>
-    )
-}
+  useEffect(() => {
+    async function getFAQs() {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/faqs`);
+      const data = await res.json();
+      setFAQs(data);
+    }
+    getFAQs();
+  }, []);
 
-function popUp() {
-    alert("Thank you for your message!\nOur team will get back to you as soon as possible :)");
+  function handleAlertClose(event, reason) {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setAlertOpen(false);
+  };
+
+  return (
+    <>
+      <div id="page-title">
+        <Typography variant='h4' fontWeight={'bold'}>Contact Us</Typography>
+      </div>
+
+      <div id="page-content">
+        <Grid container direction={'column'} spacing={3}>
+          <Grid item id="frequently-asked">
+            <Typography variant='h5' marginBottom={'3vh'}>
+              Frequently Asked Questions
+            </Typography>
+            { (faqs ?
+                faqs.map((element, i) => {
+                  return (
+                    <Accordion key={i}>
+                      <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
+                        <Typography variant='subtitle1' align='justify'>
+                          {element.question}
+                        </Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Typography variant='body2' align='justify'>
+                          {element.answer}
+                        </Typography>
+                      </AccordionDetails>
+                    </Accordion>
+                  );
+                }) : (<></>))
+            }
+          </Grid>
+
+          <Grid item id="contact-us">
+            <Typography variant='h5' marginBottom={'3vh'}>
+              Still Need Help? Contact Us!
+            </Typography>
+            <form id="contact-form" onSubmit={(evt) => {
+              evt.preventDefault();
+              const postRequest = {};
+              const formData = new FormData(document.querySelector('#contact-form'));
+              for (const pair of formData.entries()) {
+                postRequest[pair[0]] = pair[1];
+              }
+              axios
+                  .post(`${process.env.REACT_APP_BACKEND_URL}/contact`, postRequest, {})
+                  .then(() => {
+                    setAlertOpen(true);
+                  })
+                  .catch((err) => console.log(err));
+            }}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} md={6}>
+                  <TextField name='contactName' id="contact-name" label="Your Name" variant="outlined" fullWidth />
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                  <TextField name='contactEmail' id="contact-email" label="Your Email" variant="outlined" fullWidth/>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField name='contactMessage' id="contact-message" label="Your Message" variant="outlined" multiline rows={12} fullWidth />
+                </Grid>
+
+                <Grid item xs={12} justifyContent={'flex-end'}>
+                  <Box display="flex" justifyContent="flex-end">
+                    <Button variant="outlined" size='large' type='submit'>Submit</Button>
+                  </Box>
+                </Grid>
+              </Grid>
+            </form>
+          </Grid>
+
+          <Snackbar open={alertOpen} autoHideDuration={5000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleAlertClose}>
+            <Alert onClose={handleAlertClose} severity="success" sx={{width: '100%'}}>
+            Thank you for your message! Our team will get back to you as soon as possible :)
+            </Alert>
+          </Snackbar>
+        </Grid>
+      </div>
+    </>
+  );
 }
 
 export default Contact;

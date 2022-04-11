@@ -1,38 +1,79 @@
 import './Login.css';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 function Login() {
-    return (
-        <>
-            <div id="bg"></div>
-            <div id="page">
-                <div className="loginSection">
-                    <div className="tagLine">
-                        Ready to Level Up Your Investing Career?
-                    </div>
+  return (
+    <>
+      <Grid container className="formContainer">
+        <Grid item className="formVertical formSurrounds" xs={12} md={12}></Grid>
 
-                    <div className="appLogo">
-                        <img src="https://picsum.photos/1000" alt="MyCryptoPal Logo"/>
-                    </div>
+        <Grid item md={12} className="formMiddle">
+          <Grid container height={'100%'} width={'100%'}>
+
+            <Grid item xs={0.5} md={4} className="formLeft formSurrounds"></Grid>
+
+            <Grid item xs={11} md={4} className="formBody">
+              <Stack>
+
+                <div className="tagLine">
+                  <Typography fontSize={'3vh'}>
+                    Ready to Level Up Your Investing Career?
+                  </Typography>
                 </div>
 
-                <div className="loginSection">
-                    <form id="login-form" action="http://localhost:4000/login" method="POST">
-                        <label htmlFor="username" className="label">Username</label>
-                        <input name="username" type="text" className="credentials" required />
-                        <label htmlFor="password" className="label">Password</label>
-                        <input name="password" type="password" className="credentials"required />
-                        <input type="submit" value="Login" className="submitButton"></input>
-                    </form>
-
-                    <form id="register-redirect">
-                        <h2>Don't Have An Account?</h2>
-                        <input onClick={() => window.location.href='/registration'} type="button" value="Register!" className="submitButton"></input>
-                    </form>
-
+                <div className="appLogo">
+                  <img src="https://picsum.photos/1000" alt="MyCryptoPal Logo"/>
                 </div>
-            </div>
-        </>
-    )
+
+                <div className="entryForm">
+                  <form action={`${process.env.REACT_APP_BACKEND_URL}/login`} method="POST">
+                    <Grid container spacing={3} alignItems={'center'} justifyContent={'center'}>
+
+                      <Grid item xs={12} md={7}>
+                        <TextField name='username' id="login-user" className="credentials" label="Username" variant="outlined" InputLabelProps={{shrink: true}} required/>
+                      </Grid>
+
+                      <Grid item xs={12} md={7}>
+                        <TextField name='password' id="login-pass" className="credentials" label="Password" type={'password'} variant="outlined" InputLabelProps={{shrink: true}} required/>
+                      </Grid>
+
+                      <Grid item xs={12}>
+                        <Button variant="outlined" size='large' type='submit'>Sign In</Button>
+                      </Grid>
+
+                      <Grid item xs={12} className='helperText' marginTop={'-0.5vh'}>
+                        <Button variant="text" size='small' onClick={() => {
+                          window.location.href='/login';
+                        }}>Forgot Password?</Button>
+                      </Grid>
+
+                      <Grid item xs={12} className='helperText' marginTop={'-1.75vh'}>
+                        <Button variant="text" size='small' onClick={() => {
+                          window.location.href='/registration';
+                        }}>Don't Have An Account? Register Here!</Button>
+                      </Grid>
+
+                    </Grid>
+
+                  </form>
+                </div>
+              </Stack>
+            </Grid>
+
+            <Grid item xs={0.5} md={4} className="formRight formSurrounds"></Grid>
+
+          </Grid>
+        </Grid>
+
+        <Grid item className="formVertical formSurrounds" xs={12} md={12}></Grid>
+
+      </Grid>
+    </>
+  );
 }
 
 export default Login;
