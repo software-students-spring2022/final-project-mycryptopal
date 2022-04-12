@@ -16,7 +16,7 @@ const jwtStrategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
   // console.log("JWT payload received", jwt_payload) // debugging
 
   // load up some mock user data in an array... we only need this because we're mocking the data from a database
-  const users = require('./user_data.js');
+  // const users = require('./user_data.js'); // dont actually need this, will be making reqests to db
 
   // try to find a matching user in our "database"
   // usually we would do this by finding matching records in a real database... here we're searching the hard-coded mock data in our 'user_data.js' file
