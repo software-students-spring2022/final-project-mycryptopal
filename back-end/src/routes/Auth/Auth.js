@@ -54,7 +54,7 @@ router.post('/login', function(req, res) {
   }
 
   // usually this would be a database call, but here we look for a matching user in our mock data
-  const user = users[_.findIndex(users, {username: username})];
+  const user = users[_.findIndex(users, {username: username})]; // this will be database call
   if (!user) {
     // no user found with this name... send an error
     res
