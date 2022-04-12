@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: "off" */
 
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // const password = 'ivt4SmlFqu8avauz';
 
@@ -64,9 +64,9 @@ const user3 = new User({
 });
 
 const contact1 = new Contact({
-  username: "Shashanka",
-  feedback: "Great App!"
-})
+  username: 'Shashanka',
+  feedback: 'Great App!',
+});
 
 
 // the save() is essentially posting to the database, similar to SQL "INSERT"
@@ -83,7 +83,7 @@ const contact1 = new Contact({
 //   console.log(user3.username + ' saved to atlas');
 // });
 
-contact1.save(function(err,contacts) {
+contact1.save(function(err, contacts) {
   if (err) return console.error(err);
-  console.log(contact1.username + ' saved to atlas')
+  console.log(contact1.username + ' saved to atlas');
 });
