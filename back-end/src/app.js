@@ -30,7 +30,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 const mongoose = require('mongoose'); // Database
-const { constants } = require('crypto');
+const {constants} = require('crypto');
 // Middleware
 app.use('/static', express.static(PUBLIC_DIR)); // Serves static files
 app.use(express.json()); // Parses incoming JSON requests
@@ -74,7 +74,7 @@ app.get('/avatar/:userId', (req, res) => {
   res.json({'url': `avatar-${req.params.userId}.jpg`}); // extension shouldn't be hardcoded but this is just placeholder code until MongoDB has been implemented
 });
 
-app.post('/avatar', upload.single('avatar') , (req, res) => {
+app.post('/avatar', upload.single('avatar'), (req, res) => {
   res.json({});
 });
 
