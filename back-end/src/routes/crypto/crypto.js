@@ -82,7 +82,7 @@ router.get('/crypto/explore', (req, res) => {
 });
 
 router.get('/crypto/graph/:symbol', (req, res) => {
-  const QUERY_INTERVAL = `1d`
+  const QUERY_INTERVAL = `1d`;
   const querySymbol = req.params.symbol;
   let queryInterval = parseInt(req.query.interval);
 
