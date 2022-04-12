@@ -6,9 +6,7 @@ const app = express();
 const path = require('path');
 const router = require('./routes/router');
 const faqs = require('./data/faqs.json');
-const jwt = require("jsonwebtoken");
-const passport = require("passport");
-
+const jwt = require('jsonwebtoken');
 // Useful libraries
 const fs = require('fs');
 require('dotenv').config({
@@ -21,6 +19,8 @@ const PUBLIC_DIR = path.join(__dirname, `../public`);
 
 const session = require('express-session');
 const passport = require('passport');
+const cookieParser = require('cookie-parser');
+app.use(passport.initialize());
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -43,6 +43,9 @@ app.use(session({
   store: new Mongoose({db: 'sessions.db', dir: './var/db'}),
 }));
 app.use(passport.authenticate('session'));
+app.use(passport.initialize());
+const {jwtOptions, jwtStrategy} = require('./jwt-config.js'); // import setup options for using JWT in passport
+passport.use(jwtStrategy);
 
 
 app.use(express.json()); // Parses incoming JSON requests
