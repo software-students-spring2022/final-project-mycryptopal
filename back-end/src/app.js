@@ -18,8 +18,6 @@ const multer = require('multer'); // Handles file uploads
 const PUBLIC_DIR = path.join(__dirname, `../public`);
 
 const passport = require('passport');
-const cookieParser = require('cookie-parser');
-
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, PUBLIC_DIR);
@@ -31,7 +29,6 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 const Mongoose = require('mongoose'); // Database
-const {constants} = require('crypto');
 // Middleware
 app.use('/static', express.static(PUBLIC_DIR)); // Serves static files
 app.use(passport.authenticate('session'));
