@@ -1,63 +1,20 @@
-#top-content {
-    display: flex;
-    flex-direction: row;
-}
-
-#crypto-name {
-    display: flex;
-    text-align: center;
-    font-weight: bold;
-    width: 100%;
-    font-size: 1.7em;
-    flex-basis: 40%;
-    justify-content: center;
-    align-items: center;
-}
-
 #crypto-info {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 70%;
-    justify-content: center;
-    align-items: center;
-}
-
-#crypto-subinfo {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    flex-basis: 60%;
-}
-
-.subinfo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.info-left {
-    flex-basis: 60%;
-    font-weight: bold;
-}
-
-.info-right {
-    flex-basis: 40%;
-    font-style: italic;
-}
-
-.cryptoInfo {
-    height: 30%;
+    text-align: center;
 }
 
 #crypto-image {
-    flex-basis: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #crypto-image img {
     min-width: 100%;
     max-width: 100%;
-    max-height: 100%;
+}
+
+.cryptoButtons {
+    width: 70%;
 }
 
 #middle-content {
