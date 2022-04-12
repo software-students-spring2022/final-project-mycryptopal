@@ -17,10 +17,8 @@ const cors = require('cors'); // Enables CORS
 const multer = require('multer'); // Handles file uploads
 const PUBLIC_DIR = path.join(__dirname, `../public`);
 
-const session = require('express-session');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
-app.use(passport.initialize());
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -36,12 +34,6 @@ const Mongoose = require('mongoose'); // Database
 const {constants} = require('crypto');
 // Middleware
 app.use('/static', express.static(PUBLIC_DIR)); // Serves static files
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false,
-  store: new Mongoose({db: 'sessions.db', dir: './var/db'}),
-}));
 app.use(passport.authenticate('session'));
 app.use(passport.initialize());
 const {jwtOptions, jwtStrategy} = require('./jwt-config.js'); // import setup options for using JWT in passport
