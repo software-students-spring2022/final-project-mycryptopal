@@ -1,7 +1,3 @@
-#crypto-info {
-    text-align: center;
-}
-
 #crypto-image {
     display: flex;
     align-items: center;
@@ -12,60 +8,6 @@
     min-width: 100%;
     max-width: 100%;
 }
-
-.cryptoButtons {
-    width: 70%;
-}
-
-#middle-content {
-    display: flex;
-    flex-direction: column;
-}
-
-#stock-graph img {
-    min-width: 100%;
-    max-width: 100%;
-}
-
-.sectionHeader {
-    flex-basis: 20%;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.5em;
-}
-
-#history-content {
-    flex-basis: 80%;
-    text-align: justify;
-}
-
-#bottom-content {
-    display: flex;
-    flex-direction: column;
-}
-
-#market-info {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-
-#buttons{
-    display: flex;
-    flex-direction: row;
-    margin-top: 5%;
-    text-align: center;
-}
-
-#button-left {
-    flex-basis: 50%;
-}
-
-#button-right {
-    flex-basis: 50%;
-}
-
-
 
 
 
