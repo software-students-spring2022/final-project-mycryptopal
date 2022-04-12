@@ -7,7 +7,6 @@ const {Router} = require('express');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const crypto = require('crypto');
-const db = require('../routes/Auth/mongoose');
 
 let router = new Router({mergeParams: true});
 const axios = require('axios');
@@ -18,10 +17,11 @@ require('dotenv').config({
 const express = require('express');
 router = express.Router();
 
+const mongoose = require('mongoose');
 // this SQL will need to align with our Schemas
 
 passport.use(new LocalStrategy(function verify(username, password, cb) {
-  db.get('SELECT rowid AS id, * FROM users WHERE username = ?', [username], function(err, row) {
+  mongoose.get('SELECT rowid AS id, * FROM users WHERE username = ?', [username], function(err, row) {
     if (err) {
       return cb(err);
     }
@@ -29,7 +29,7 @@ passport.use(new LocalStrategy(function verify(username, password, cb) {
       return cb(null, false, {message: 'Incorrect username or password.'});
     }
 
-    crypto.pbkdf2(password, row.salt, 310000, 32, 'sha256', function(err, hashedPassword) {
+    crypto.pbkdf2(password, row.salt, 310000, 32, 'bcrypt', function(err, hashedPassword) {
       if (err) {
         return cb(err);
       }

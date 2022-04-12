@@ -33,7 +33,7 @@ const Mongoose = require('mongoose'); // Database
 app.use('/static', express.static(PUBLIC_DIR)); // Serves static files
 app.use(passport.authenticate('session'));
 app.use(passport.initialize());
-const {jwtOptions, jwtStrategy} = require('./jwt-config.js'); // import setup options for using JWT in passport
+const {jwtOptions, jwtStrategy} = require('../src/routes/Auth/jwt-config.js'); // import setup options for using JWT in passport
 passport.use(jwtStrategy);
 
 
@@ -92,5 +92,3 @@ Mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO
     });
 
 module.exports = app;
-
-

@@ -43,6 +43,7 @@
     "nodemon": "^2.0.15",
     "nyc": "^15.1.0",
     "passport": "^0.5.2",
+    "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "sinon": "^13.0.1"
   }
