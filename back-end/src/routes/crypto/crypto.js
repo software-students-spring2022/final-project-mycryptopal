@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const {Router} = require('express');
 const router = new Router({mergeParams: true});
 const axios = require('axios');
@@ -84,18 +85,18 @@ router.get('/crypto/explore', (req, res) => {
 router.get('/crypto/graph/:symbol', (req, res) => {
   const QUERY_INTERVAL = `1d`;
   const querySymbol = req.params.symbol;
-  let queryInterval = parseInt(req.query.interval);
+  const queryInterval = parseInt(req.query.interval);
 
   axios
       .get(`${process.env.MESSARI_API_URL}/${querySymbol}/metrics/price/time-series` +
-            `?start=${from(queryInterval)}` + 
-            `&end=${to}` + 
+            `?start=${from(queryInterval)}` +
+            `&end=${to}` +
             `&interval=${QUERY_INTERVAL}`,
-            {
-              headers: {
-                "x-messari-api-key": process.env.MESSARI_API_KEY
-              }
-            })
+      {
+        headers: {
+          'x-messari-api-key': process.env.MESSARI_API_KEY,
+        },
+      })
       .then((apiResponse) => {
         const tickers = apiResponse.data.data.values;
         const roundedTickers = transformData(tickers);
