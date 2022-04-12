@@ -5,7 +5,7 @@ const {Router} = require('express');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const crypto = require('crypto');
-const db = require('../db');
+const db = require('../routes/Auth/mongoose');
 
 let router = new Router({mergeParams: true});
 const axios = require('axios');
