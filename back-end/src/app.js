@@ -6,6 +6,8 @@ const app = express();
 const path = require('path');
 const router = require('./routes/router');
 const faqs = require('./data/faqs.json');
+const jwt = require("jsonwebtoken");
+const passport = require("passport");
 
 // Useful libraries
 const fs = require('fs');
