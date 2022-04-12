@@ -18,7 +18,6 @@ const multer = require('multer'); // Handles file uploads
 const PUBLIC_DIR = path.join(__dirname, `../public`);
 
 const session = require('express-session');
-const SQLiteStore = require('connect-sqlite3')(session);
 const passport = require('passport');
 
 const storage = multer.diskStorage({
@@ -31,7 +30,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({storage: storage});
 
-const mongoose = require('mongoose'); // Database
+const Mongoose = require('mongoose'); // Database
 const {constants} = require('crypto');
 // Middleware
 app.use('/static', express.static(PUBLIC_DIR)); // Serves static files
@@ -39,7 +38,7 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false,
-  store: new SQLiteStore({db: 'sessions.db', dir: './var/db'}),
+  store: new Mongoose({db: 'sessions.db', dir: './var/db'}),
 }));
 app.use(passport.authenticate('session'));
 
@@ -90,7 +89,7 @@ app.post('/avatar', upload.single('avatar'), (req, res) => {
 });
 
 // added mongoDB connection code.
-mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASS}@cluster0.wux8g.mongodb.net/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`)
+Mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASS}@cluster0.wux8g.mongodb.net/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`)
     .then( () => {
       console.log('Connected to database ');
     })
