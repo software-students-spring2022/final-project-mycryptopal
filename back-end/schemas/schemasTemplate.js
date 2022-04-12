@@ -63,17 +63,27 @@ const user3 = new User({
   password: 'testPassword156762',
 });
 
+const contact1 = new Contact({
+  username: "Shashanka",
+  feedback: "Great App!"
+})
+
 
 // the save() is essentially posting to the database, similar to SQL "INSERT"
-user1.save(function(err, user) {
+// user1.save(function(err, user) {
+//   if (err) return console.error(err);
+//   console.log(user1.username + ' saved to atlas');
+// });
+// user2.save(function(err, user) {
+//   if (err) return console.error(err);
+//   console.log(user2.username + ' saved to atlas');
+// });
+// user3.save(function(err, user) {
+//   if (err) return console.error(err);
+//   console.log(user3.username + ' saved to atlas');
+// });
+
+contact1.save(function(err,contacts) {
   if (err) return console.error(err);
-  console.log(user1.username + ' saved to atlas');
-});
-user2.save(function(err, user) {
-  if (err) return console.error(err);
-  console.log(user2.username + ' saved to atlas');
-});
-user3.save(function(err, user) {
-  if (err) return console.error(err);
-  console.log(user3.username + ' saved to atlas');
+  console.log(contact1.username + ' saved to atlas')
 });
