@@ -2,7 +2,7 @@ const {Router} = require('express');
 const router = new Router({mergeParams: true});
 const axios = require('axios');
 const path = require('path');
-const {from, to, transformData} = require('../../lib');
+const {from, to, transformData, getDataMax, getDataMin} = require('../../lib');
 require('dotenv').config({
   silent: true, path: path.join('../..', '.env'),
 }); // Stores custom environmental variables
@@ -82,34 +82,29 @@ router.get('/crypto/explore', (req, res) => {
 });
 
 router.get('/crypto/graph/:symbol', (req, res) => {
-  // Query constants
-  const RESOLUTION = 'D';
-  const SYMBOL = req.params.symbol.toUpperCase();
-  const EXCHANGE_PREFIX = 'BINANCE:';
-  let querySymbol = EXCHANGE_PREFIX;
+  const QUERY_INTERVAL = `1d`
+  const querySymbol = req.params.symbol;
   let queryInterval = parseInt(req.query.interval);
 
-  // Validate query parameters
-  if (SYMBOL === 'USDT') {
-    querySymbol += 'BUSDUSDT';
-  } else {
-    querySymbol += `${SYMBOL}USDT`;
-  }
-  if (!queryInterval || [30, 60, 90, 120].indexOf(queryInterval) < 0) {
-    queryInterval = 30;
-  }
-
-  // API request
   axios
-      .get(
-          `${process.env.FINNHUB_API_URL}/candle?from=${from(queryInterval)}` +
-          `&to=${to()}` +
-          `&resolution=${RESOLUTION}` +
-          `&symbol=${querySymbol}` +
-          `&token=${process.env.FINNHUB_API_KEY}`
-      )
+      .get(`${process.env.MESSARI_API_URL}/${querySymbol}/metrics/price/time-series` +
+            `?start=${from(queryInterval)}` + 
+            `&end=${to}` + 
+            `&interval=${QUERY_INTERVAL}`,
+            {
+              headers: {
+                "x-messari-api-key": process.env.MESSARI_API_KEY
+              }
+            })
       .then((apiResponse) => {
-        res.json(transformData(apiResponse.data));
+        const tickers = apiResponse.data.data.values;
+        const roundedTickers = transformData(tickers);
+        const graphData = {
+          values: roundedTickers,
+          min: getDataMin(tickers),
+          max: getDataMax(tickers),
+        };
+        res.json(graphData);
       })
       .catch((err) => console.log(err));
 });

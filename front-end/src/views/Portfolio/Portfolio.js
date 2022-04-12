@@ -19,6 +19,8 @@ function Portfolio() {
   const [interval, setInterval] = useState(INTERVAL_OPTIONS[0]);
   const [assets, setAssets] = useState({});
   const [symbols, setSymbols] = useState([]);
+  const [minTick, setMinTick] = useState(0);
+  const [maxTick, setMaxTick] = useState(0);
 
   useEffect(() => {
     async function getAssets() {
@@ -44,7 +46,9 @@ function Portfolio() {
     async function getData() {
       const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/crypto/graph/${symbol}?interval=${interval}`);
       const data = await res.json();
-      setData(data);
+      setData(data.values);
+      setMinTick(data.min);
+      setMaxTick(data.max);
     }
     getData();
   }, [symbol, interval]);
@@ -80,17 +84,17 @@ function Portfolio() {
         </div>
         <div className="container">
           <ResponsiveContainer width="100%" height={300}>
-            <LineChart width={450} height={300} data={data}
-              margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="timestamp" />
-              <YAxis type="number" allowDecimals={true}
-                allowDataOverflow={true} />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey="open" stroke="blue" dot={false} />
-              <Line type="monotone" dataKey="close" stroke="gray" dot={false} />
-            </LineChart>
+              <LineChart data={data} margin={{'left': 10, 'right': 10, 'top': 10, 'bottom': 10}}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="timestamp" tick={{ fontSize: '80%'}} />
+
+                <YAxis type="number" allowDecimals={true} allowDataOverflow={true} tick={{ fontSize: '80%'}} 
+                domain={[minTick, maxTick]} />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="open" stroke="green" dot={false} />
+                <Line type="monotone" dataKey="close" stroke="blue" dot={false} />
+              </LineChart>
           </ResponsiveContainer>
         </div>
       </div>
