@@ -1,114 +1,13 @@
-#top-content {
-    display: flex;
-    flex-direction: row;
-}
-
-#crypto-name {
-    display: flex;
-    text-align: center;
-    font-weight: bold;
-    width: 100%;
-    font-size: 1.7em;
-    flex-basis: 40%;
-    justify-content: center;
-    align-items: center;
-}
-
-#crypto-info {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 70%;
-    justify-content: center;
-    align-items: center;
-}
-
-#crypto-subinfo {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    flex-basis: 60%;
-}
-
-.subinfo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.info-left {
-    flex-basis: 60%;
-    font-weight: bold;
-}
-
-.info-right {
-    flex-basis: 40%;
-    font-style: italic;
-}
-
-.cryptoInfo {
-    height: 30%;
-}
-
 #crypto-image {
-    flex-basis: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #crypto-image img {
     min-width: 100%;
     max-width: 100%;
-    max-height: 100%;
 }
-
-#middle-content {
-    display: flex;
-    flex-direction: column;
-}
-
-#stock-graph img {
-    min-width: 100%;
-    max-width: 100%;
-}
-
-.sectionHeader {
-    flex-basis: 20%;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.5em;
-}
-
-#history-content {
-    flex-basis: 80%;
-    text-align: justify;
-}
-
-#bottom-content {
-    display: flex;
-    flex-direction: column;
-}
-
-#market-info {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-
-#buttons{
-    display: flex;
-    flex-direction: row;
-    margin-top: 5%;
-    text-align: center;
-}
-
-#button-left {
-    flex-basis: 50%;
-}
-
-#button-right {
-    flex-basis: 50%;
-}
-
-
 
 
 
