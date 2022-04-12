@@ -1,20 +1,20 @@
 /* eslint no-unused-vars: "off" */
 
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
-const password = 'ivt4SmlFqu8avauz';
+// const password = 'ivt4SmlFqu8avauz';
 
-const url = `mongodb+srv://Shanks480Agile:${password}@cluster0.wux8g.mongodb.net/myCryptoPal?retryWrites=true&w=majority
-`;
+// const url = `mongodb+srv://Shanks480Agile:${password}@cluster0.wux8g.mongodb.net/myCryptoPal?retryWrites=true&w=majority
+// `;
 
-// connecting to database
-mongoose.connect(url)
-    .then( () => {
-      console.log('Connected to database ');
-    })
-    .catch( (err) => {
-      console.error(`Error connecting to the database. \n${err}`);
-    });
+// // connecting to database
+// mongoose.connect(url)
+//     .then( () => {
+//       console.log('Connected to database ');
+//     })
+//     .catch( (err) => {
+//       console.error(`Error connecting to the database. \n${err}`);
+//     });
 
 // Current Schema diagrams for User and ContactPage
 const UserSchema = new mongoose.Schema({
