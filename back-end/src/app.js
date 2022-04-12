@@ -17,8 +17,6 @@ const cors = require('cors'); // Enables CORS
 const multer = require('multer'); // Handles file uploads
 const PUBLIC_DIR = path.join(__dirname, `../public`);
 
-const authRouter = require('./routes/auth');
-
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, PUBLIC_DIR);
