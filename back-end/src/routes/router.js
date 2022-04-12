@@ -4,7 +4,7 @@ const newsRouter = require('./news/news');
 const cryptoRouter = require('./crypto/crypto');
 const userRouter = require('./user/user');
 const lessonRouter = require('./lesson/lesson');
-const authRouter = require('./routes/auth');
+const authRouter = require('./Auth/Auth');
 
 router.use('/api', newsRouter);
 router.use('/api', cryptoRouter);

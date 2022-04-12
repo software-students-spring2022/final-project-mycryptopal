@@ -4,7 +4,6 @@ const {Router} = require('express');
 let router = new Router({mergeParams: true});
 const axios = require('axios');
 const path = require('path');
-const {from, to, transformData} = require('../../lib');
 require('dotenv').config({
   silent: true, path: path.join('../..', '.env'),
 }); // Stores custom environmental variables
