@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable no-unused-vars */
 // Initial setup
 const express = require('express');
 const app = express();
@@ -15,17 +17,20 @@ const cors = require('cors'); // Enables CORS
 const multer = require('multer'); // Handles file uploads
 const PUBLIC_DIR = path.join(__dirname, `../public`);
 
+const authRouter = require('./routes/auth');
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, PUBLIC_DIR);
   },
   filename: (req, file, cb) => {
     cb(null, `${file.fieldname}-${req.body.userId}${path.extname(file.originalname)}`);
-  }
+  },
 });
 const upload = multer({storage: storage});
 
 const mongoose = require('mongoose'); // Database
+const { constants } = require('crypto');
 // Middleware
 app.use('/static', express.static(PUBLIC_DIR)); // Serves static files
 app.use(express.json()); // Parses incoming JSON requests
@@ -38,7 +43,7 @@ app.use('/', router);
 
 app.get('/faqs', (req, res) => {
   res.send(faqs);
-})
+}),
 
 app.post('/contact', (req, res) => {
   console.log(req.body);
@@ -76,11 +81,11 @@ app.post('/avatar', upload.single('avatar') , (req, res) => {
 // added mongoDB connection code.
 mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASS}@cluster0.wux8g.mongodb.net/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`)
     .then( () => {
-        console.log('Connected to database ')
+      console.log('Connected to database ');
     })
     .catch( (err) => {
-        console.error(`Error connecting to the database. \n${err}`);
-    })
+      console.error(`Error connecting to the database. \n${err}`);
+    });
 
 module.exports = app;
 

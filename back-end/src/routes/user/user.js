@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const {Router} = require('express');
 const router = new Router({mergeParams: true});
 const axios = require('axios');
@@ -25,10 +26,10 @@ router.get('/data', (req, res) => {
   //     .catch(err => console.log(err));
   const obj = {
     id: 1181923123812,
-    firstName: "John",
-    lastName: "Smith",
-    username: "jsmith",
-    email: "jsmith123@mail.com"
+    firstName: 'John',
+    lastName: 'Smith',
+    username: 'jsmith',
+    email: 'jsmith123@mail.com',
   };
   res.json(obj);
 });
