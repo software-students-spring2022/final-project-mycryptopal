@@ -31,7 +31,6 @@ const upload = multer({storage: storage});
 const Mongoose = require('mongoose'); // Database
 // Middleware
 app.use('/static', express.static(PUBLIC_DIR)); // Serves static files
-app.use(passport.authenticate('session'));
 app.use(passport.initialize());
 const {jwtOptions, jwtStrategy} = require('../src/routes/Auth/jwt-config.js'); // import setup options for using JWT in passport
 passport.use(jwtStrategy);
