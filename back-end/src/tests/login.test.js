@@ -21,7 +21,7 @@ describe('Login', () => {
     it('it should return a 401 HTTP response code', (done) => {
       chai
           .request(server)
-          .post('/login')
+          .post('/auth/login')
           .type('form')
           .send(formData)
           .end((err, res) => {
@@ -36,7 +36,7 @@ describe('Login', () => {
     it('it should return a 200 HTTP response code', (done) => {
       chai
           .request(server)
-          .post('/login')
+          .post('/auth/login')
           .type('form')
           .send(formData)
           .end((err, res) => {

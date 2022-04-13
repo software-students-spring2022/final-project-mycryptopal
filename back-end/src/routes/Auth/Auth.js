@@ -74,6 +74,14 @@ router.get('/protected',
     }
 );
 
+router.get('/logout', function(req, res) {
+  res.json({
+    success: true,
+    message:
+      'Logout successful',
+  });
+});
+
 module.exports = router;
 
 //const LocalStrategy = require('passport-local');
