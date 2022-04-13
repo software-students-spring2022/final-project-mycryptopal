@@ -29,7 +29,39 @@ router.get('/protected', passport.authenticate('jwt', { session: false}), (req, 
     message:
       "You can access protected content",
   })
-})
+});
+
+router.post('/register', async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  const email = req.body.email;
+  const reenter = req.body.reenter;
+
+  if(password !== reenter){
+    res
+    .status(401)
+    .json({success: false, message: `Re-entered password does not match.`});
+  }
+  else{
+    const passwordSalt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, passwordSalt);
+
+    const registeredUser = new User({
+      username: username,
+      password: hashedPassword,
+      email: email,
+    });
+
+    try {
+      let saved = await registeredUser.save();
+      res.json({ success: true });
+      console.log(saved);
+    }
+    catch(err) {
+      console.log(err);
+    }
+  }
+});
 
 router.post('/login', async (req, res) => {
   const username = req.body.username;
