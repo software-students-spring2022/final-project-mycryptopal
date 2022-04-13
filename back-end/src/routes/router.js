@@ -1,15 +1,15 @@
 const {Router} = require('express');
 const router = new Router();
-const newsRouter = require('./news/news');
+const authRouter = require('./auth/auth');
 const cryptoRouter = require('./crypto/crypto');
-const userRouter = require('./user/user');
 const lessonRouter = require('./lesson/lesson');
-const authRouter = require('./Auth/Auth');
+const newsRouter = require('./news/news');
+const userRouter = require('./user/user');
 
-router.use('/api', newsRouter);
+router.use('/auth', authRouter);
 router.use('/api', cryptoRouter);
-router.use('/user', userRouter);
 router.use('/lesson', lessonRouter);
-router.use('/login', authRouter);
+router.use('/api', newsRouter);
+router.use('/user', userRouter);
 
 module.exports = router;

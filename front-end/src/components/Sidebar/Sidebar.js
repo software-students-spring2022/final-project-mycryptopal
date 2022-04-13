@@ -70,7 +70,7 @@ function Sidebar() {
           </Grid>
         </Grid>
       </a>
-      <a id="logout" className="menu-item" href="/login">
+      <a id="logout" className="menu-item" href="/login" onClick={() => localStorage.removeItem('token')}>
         <Grid container spacing={1}>
           <Grid item>
             <LogoutIcon />
