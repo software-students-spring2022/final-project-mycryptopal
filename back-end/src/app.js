@@ -17,7 +17,7 @@ require('dotenv').config({
 const morgan = require('morgan'); // Logs incoming HTTP requests
 const cors = require('cors'); // Enables CORS
 // Handles file uploads
-const multer = require('multer'); 
+const multer = require('multer');
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, PUBLIC_DIR);
@@ -28,7 +28,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({storage: storage});
 // Database integration
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
 // Connects to database
 mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASS}@cluster0.wux8g.mongodb.net/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`)
     .then( () => {

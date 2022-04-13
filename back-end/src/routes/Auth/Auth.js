@@ -12,7 +12,6 @@ require('dotenv').config({
 
 const passport = require('passport');
 router.use(passport.initialize());
-
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken")
 const { jwtOptions, jwtStrategy } = require("./jwt-config.js")
@@ -83,28 +82,3 @@ router.get('/logout', function(req, res) {
 });
 
 module.exports = router;
-
-//const LocalStrategy = require('passport-local');
-// const crypto = require('crypto');
-// this SQL will need to align with our Schemas
-
-// passport.use(new LocalStrategy(function verify(username, password, cb) {
-//   mongoose.get('SELECT rowid AS id, * FROM users WHERE username = ?', [username], function(err, row) {
-//     if (err) {
-//       return cb(err);
-//     }
-//     if (!row) {
-//       return cb(null, false, {message: 'Incorrect username or password.'});
-//     }
-
-//     crypto.pbkdf2(password, row.salt, 310000, 32, 'bcrypt', function(err, hashedPassword) {
-//       if (err) {
-//         return cb(err);
-//       }
-//       if (!crypto.timingSafeEqual(row.hashed_password, hashedPassword)) {
-//         return cb(null, false, {message: 'Incorrect username or password.'});
-//       }
-//       return cb(null, row);
-//     });
-//   });
-// }));
