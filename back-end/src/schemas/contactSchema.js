@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const contactSchema = new mongoose.Schema({
     name: String;
     email: String;
-    message: String; //unsure if textfield or String
+    message: String; 
 });
 
 const Contact = db.model('Contact', schema);
