@@ -14,7 +14,7 @@ describe('GET /user/data', () => {
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
-          res.body.should.have.all.keys('id', 'firstName', 'lastName', 'userName', 'email');
+          res.body.should.have.all.keys('id', 'firstName', 'lastName', 'username', 'email');
           res.body['id'].should.be.a('number');
           Object.keys(res.body).slice(1).forEach((prop) => {
             res.body[prop].should.be.a('string');
@@ -40,17 +40,17 @@ describe('GET /user/assets', () => {
   });
 });
 
-describe('POST /user/contact', () => {
-  it('should redirect the user to the contact page once the message has been received and processed by server', (done) => {
-    chai.request(app).post('/user/contact').type('form')
-        .send({
-          'contact-name': 'John Smith',
-          'contact-email': 'jsmith@mail.com',
-          'contact-message': 'This is a message.',
-        }).end((err, res) => {
-          res.should.redirectTo('http://localhost:3000/contact');
-          done();
-        });
-  });
-});
+// describe('POST /user/contact', () => {
+//   it('should redirect the user to the contact page once the message has been received and processed by server', (done) => {
+//     chai.request(app).post('/user/contact').type('form')
+//         .send({
+//           'contact-name': 'John Smith',
+//           'contact-email': 'jsmith@mail.com',
+//           'contact-message': 'This is a message.',
+//         }).end((err, res) => {
+//           res.should.redirectTo('http://localhost:3000/contact');
+//           done();
+//         });
+//   });
+// });
 
