@@ -14,13 +14,13 @@ function Login() {
   async function handleSubmit(evt) {
     evt.preventDefault();
 
-    const inputCredentials = {
+    const credentials = {
       username: evt.target.username.value,
       password: evt.target.password.value
     }
 
     axios
-    .post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, inputCredentials)
+    .post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, credentials)
     .then((res) => {
       console.log(`Server response: ${JSON.stringify(res.data, null, 0)}`);
       setResponse(res.data);
@@ -55,9 +55,9 @@ function Login() {
                   </Typography>
                 </div>
 
-                <div className="appLogo">
+                {/* <div className="appLogo">
                   <img src="https://picsum.photos/1000" alt="MyCryptoPal Logo"/>
-                </div>
+                </div> */}
 
                 <div className="entryForm">
                   <form onSubmit={handleSubmit}>
