@@ -4,19 +4,20 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+
+// Constants
+const PUBLIC_DIR = path.join(__dirname, `../public`);
 const router = require('./routes/router');
 const faqs = require('./data/faqs.json');
 
-// Useful libraries
-const fs = require('fs');
+// Stores custom environmental variables
 require('dotenv').config({
   silent: true, path: path.join(__dirname, '.env'),
-}); // Stores custom environmental variables
+});
 const morgan = require('morgan'); // Logs incoming HTTP requests
 const cors = require('cors'); // Enables CORS
-const multer = require('multer'); // Handles file uploads
-const PUBLIC_DIR = path.join(__dirname, `../public`);
-
+// Handles file uploads
+const multer = require('multer'); 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, PUBLIC_DIR);
@@ -26,9 +27,28 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({storage: storage});
+// Database integration
+const mongoose = require('mongoose'); 
+// Connects to database
+mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASS}@cluster0.wux8g.mongodb.net/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`)
+    .then( () => {
+      console.log('Connected to database ');
+    })
+    .catch( (err) => {
+      console.error(`Error connecting to the database. \n${err}`);
+    });
+// Imports models
+const User = require('./models/User');
 
-const mongoose = require('mongoose'); // Database
-const {constants} = require('crypto');
+// Authentication
+const jwt = require("jsonwebtoken")
+const passport = require("passport")
+const bcrypt = require('bcrypt');
+
+app.use(passport.initialize());
+const { jwtOptions, jwtStrategy } = require("./jwt-config.js")
+passport.use(jwtStrategy);
+
 // Middleware
 app.use('/static', express.static(PUBLIC_DIR)); // Serves static files
 app.use(express.json()); // Parses incoming JSON requests
@@ -39,9 +59,38 @@ app.use(morgan('dev')); // Sets logging mode
 app.use(cors()); // Enables CORS
 app.use('/', router);
 
+app.get('/protected', passport.authenticate('jwt', { session: false}), (req, res) => {
+  res.send(200);
+})
+
+app.post('/login', async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  const user = await User.findOne({username: username});
+
+  if(!user) {
+    res
+    .status(401)
+    .json({success: false, message: `user not found ${username}.`});
+  }
+
+  else{
+    const passwordsMatch = await bcrypt.compare(password, user.password);
+    if(passwordsMatch) {
+      const payload = {user_id: user.user_id};
+      const token = jwt.sign(payload, jwtOptions.secretOrKey);
+      res.json({ success: true, username: user.username, token: token });
+    } else {
+      res.status(401).json({ success: false, message: "passwords did not match" })
+    }
+  }
+});
+
+// Placeholder/not important yet
 app.get('/faqs', (req, res) => {
   res.send(faqs);
-}),
+});
 
 app.post('/contact', (req, res) => {
   console.log(req.body);
@@ -75,15 +124,6 @@ app.get('/avatar/:userId', (req, res) => {
 app.post('/avatar', upload.single('avatar'), (req, res) => {
   res.json({});
 });
-
-// added mongoDB connection code.
-mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASS}@cluster0.wux8g.mongodb.net/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`)
-    .then( () => {
-      console.log('Connected to database ');
-    })
-    .catch( (err) => {
-      console.error(`Error connecting to the database. \n${err}`);
-    });
 
 module.exports = app;
 

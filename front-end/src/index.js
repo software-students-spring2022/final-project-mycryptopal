@@ -1,24 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import './index.css';
-import App from './App';
-import Login from './views/Login/Login';
-import Registration from './views/Registration/Registration';
 import reportWebVitals from './reportWebVitals';
+import Authentication from './components/Authentication/Authentication';
 
 ReactDOM.render(
     <React.StrictMode>
       <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
-      <Router>
-        <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route path='/registration' element={<Registration />} />
-          <Route path='*' element={<App/>}/>
-        </Routes>
-      </Router>
+      <Authentication />
     </React.StrictMode>,
     document.getElementById('root')
 );

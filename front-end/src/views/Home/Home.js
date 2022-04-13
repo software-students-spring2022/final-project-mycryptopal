@@ -17,6 +17,7 @@ function Home() {
 
   // API call for mock asset allocation data
   useEffect(() => {
+    console.log(localStorage.token);
     async function getAllocations() {
       const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/assets`);
       const data = await res.json();
