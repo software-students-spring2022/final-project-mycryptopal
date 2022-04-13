@@ -24,7 +24,6 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.26.1",
-    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
@@ -35,6 +34,7 @@
     "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
+    "bcrypt": "^5.0.1",
     "chai": "^4.3.6",
     "chai-http": "^4.3.0",
     "cookie-parser": "^1.4.6",
