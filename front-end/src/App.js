@@ -21,6 +21,8 @@ function App() {
       <div id="page-wrap">
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Home />} />
+          <Route path='/registration' element={<Home />} />
           <Route path='/portfolio' element={<Portfolio />} />
           <Route path='/explore' element={<Explore />} />
           <Route path='/learn' element={<Learn />} />

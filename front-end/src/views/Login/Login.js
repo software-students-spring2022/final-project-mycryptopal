@@ -1,11 +1,41 @@
+import { useState, useEffect } from 'react';
 import './Login.css';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import axios from 'axios';
 
 function Login() {
+
+  const [response, setResponse] = useState({});
+
+  async function handleSubmit(evt) {
+    evt.preventDefault();
+
+    const inputCredentials = {
+      username: evt.target.username.value,
+      password: evt.target.password.value
+    }
+
+    axios
+    .post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, inputCredentials)
+    .then((res) => {
+      console.log(`Server response: ${JSON.stringify(res.data, null, 0)}`);
+      setResponse(res.data);
+    })
+    .catch(err => console.log(err));
+  }
+
+  useEffect(() => {
+    if (response.success && response.token) {
+      console.log(`User successfully logged in: ${response.username}`);
+      localStorage.setItem("token", response.token);
+      window.location.href = '/';
+    }
+  }, [response]);
+
   return (
     <>
       <Grid container className="formContainer">
@@ -30,7 +60,7 @@ function Login() {
                 </div>
 
                 <div className="entryForm">
-                  <form action={`${process.env.REACT_APP_BACKEND_URL}/login`} method="POST">
+                  <form onSubmit={handleSubmit}>
                     <Grid container spacing={3} alignItems={'center'} justifyContent={'center'}>
 
                       <Grid item xs={12} md={7}>

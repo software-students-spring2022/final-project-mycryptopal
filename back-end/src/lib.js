@@ -14,18 +14,19 @@ function to() {
 
 function transformData(data) {
   const mappedData = data.map((item) => {
-    return { 
+    return {
       timestamp: (new Date(item[0])).toLocaleDateString(),
       open: roundNumber(item[1]),
       close: roundNumber(item[2]),
-    }});
+    };
+  });
   return mappedData;
 }
 
 function roundNumber(number) {
   let factor = 1;
   let rounded = Math.round(number * factor + Number.EPSILON) / factor;
-  while(rounded === 0) {
+  while (rounded === 0) {
     factor *= 10;
     rounded = Math.round(number * factor + Number.EPSILON) / factor;
   }
@@ -40,9 +41,9 @@ function getDataMin(data) {
 }
 
 function getDataMax(data) {
-  return dataMax = data.reduce((currentMax, current) => {
+  return data.reduce((currentMax, current) => {
     const higher = Math.max(current.open, current.close);
-    return Math.max(higher, currentMax)
+    return Math.max(higher, currentMax);
   }, Number.NEGATIVE_INFINITY);
 }
 
