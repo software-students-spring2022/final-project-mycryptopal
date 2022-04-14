@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 const lessonSchema = new mongoose.Schema({
+    lessonId: String;
     title: String;
-    lesson: String; 
-    question: String;
-    answer: String;
-    lessonProgress: Array;
+    content: String;
+    questions: Array;
 });
 
 const Lesson = db.model('Lesson', schema);

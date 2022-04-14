@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const newsSchema = new mongoose.Schema({
-    articleName: String;
-    articleImage: Object;
-    articleLink: Object;
-    articleBlub: String;
+    title: String;
+    summary: String;
+    source: String;
+    url: String;
+    imageUrl: String;
 
 });
 

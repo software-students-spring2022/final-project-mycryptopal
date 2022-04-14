@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const contactSchema = new mongoose.Schema({
-    name: String;
-    email: String;
-    message: String; 
+    userName: String;
+    userEmail: String;
+    userMessage: String;
 });
 
 const Contact = db.model('Contact', schema);
