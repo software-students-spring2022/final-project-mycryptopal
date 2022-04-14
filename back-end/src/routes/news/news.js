@@ -27,7 +27,7 @@ router.get('/news/feed', (req, res) => {
     'u.today',
     'cryptocynews.com',
     'dailyhodl.com',
-    'cryptopolitan.com'
+    'cryptopolitan.com',
   ];
   axios
       .get(

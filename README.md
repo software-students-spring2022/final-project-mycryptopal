@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/software-assignments-spring2022/final-project-mycryptopal/tree/master.svg?style=shield)](https://circleci.com/gh/software-assignments-spring2022/your-repo-name-here/tree/master)
+
 # Product Vision Statement
 The goal of MyCryptoPal is to provide users an accessible gateway to the world of cryptocurrency. Cryptocurrency is an emerging type of finance that revolves around a relatively new technology called blockchain. The space is often a hot topic and is often trending on news sources, social media and financial markets. Everyone seems to have an opinion on the relatively speculative industry, but one statement that our team internalizes is the notion that cryptocurrency is too large to ignore. Rather than focus on an application that supports one opinion or another, we strive to provide an educational service that allows users to learn more about cryptocurrency, the financials behind it and the technology that it is built upon. 
 
