@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon src/index.js",
-    "test": "nyc mocha ./src/tests/*.js --timeout=3000"
+    "test": "nyc mocha ./src/tests/*.js --timeout=10000"
   },
   "eslintConfig": {
     "env": {
