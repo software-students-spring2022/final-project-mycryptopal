@@ -7,7 +7,7 @@ function LessonCircle(props) {
   return (
     <>
       <div className={`mapButton ${COLORS[props.num % 4]} circle`} onClick={() => {
-        window.location.href=`/lesson/${props.num}`;
+        window.location.href=`/lesson/id/${props.num}`;
       }}>
         <Typography variant='h6'>
           Lesson {props.num}

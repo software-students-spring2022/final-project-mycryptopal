@@ -32,11 +32,11 @@ function LessonQuiz(props) {
   }
 
   function prevQuestion() {
-    setCurrentQuestion(questions[getQuestionIndex(currentQuestion.questionNumber) - 1]);
+    setCurrentQuestion(questions[getQuestionIndex(currentQuestion.number) - 1]);
   }
 
   function nextQuestion() {
-    setCurrentQuestion(questions[getQuestionIndex(currentQuestion.questionNumber) + 1]);
+    setCurrentQuestion(questions[getQuestionIndex(currentQuestion.number) + 1]);
   }
 
   function checkAnswer() {
@@ -55,7 +55,7 @@ function LessonQuiz(props) {
   }
 
   function advanceLessons() {
-    window.location.href=`/lesson/${parseInt(props.lessonId)+1}`;
+    window.location.href=`/lesson/id/${parseInt(props.lessonId)+1}`;
   }
 
   function handleCorrectClose(event, reason) {
@@ -104,10 +104,10 @@ function LessonQuiz(props) {
         document.getElementById('quiz-answer').removeAttribute('readonly', false);
         document.getElementById('quiz-center').style.visibility = 'visible';
       }
-      const questionNum = currentQuestion.questionNumber;
-      if (questionNum === questions[0].questionNumber) {
+      const questionNum = currentQuestion.number;
+      if (questionNum === questions[0].number) {
         document.getElementById('left-arrow').style.visibility = 'hidden';
-      } else if (questionNum === questions.slice(-1)[0].questionNumber) {
+      } else if (questionNum === questions.slice(-1)[0].number) {
         document.getElementById('right-arrow').style.visibility = 'hidden';
       } else {
         document.getElementById('left-arrow').style.visibility = 'visible';
@@ -137,7 +137,7 @@ function LessonQuiz(props) {
         </div>
 
         <div className='quizQuestion'>
-          {<LessonQuestion num={currentQuestion.questionNumber} content={currentQuestion.questionText} />}
+          {<LessonQuestion num={currentQuestion.number} content={currentQuestion.text} />}
         </div>
 
         <div className="quizAnswer">

@@ -6,14 +6,15 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 function Lesson() {
-  const {lessonID: lessonId} = useParams();
+  const {lessonId} = useParams();
   const [lesson, setLesson] = useState({});
   const [questions, setQuestions] = useState(null);
 
   useEffect(() => {
     async function getCurrentLesson() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/lesson/${lessonId}`);
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/lesson/id/${lessonId}`);
       const data = await res.json();
+      console.log(data);
       setLesson(data);
     }
     getCurrentLesson();
