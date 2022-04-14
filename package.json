@@ -24,6 +24,9 @@
     ],
     "rules": {
       "require-jsdoc": 0
+    },
+    "parserOptions": {
+      "ecmaVersion": 8
     }
   },
   "scripts": {

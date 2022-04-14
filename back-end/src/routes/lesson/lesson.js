@@ -7,14 +7,24 @@ require('dotenv').config({
 const Lesson = require('../../models/Lesson');
 
 router.get('/count', async (req, res) => {
-  const lessonCount = await Lesson.countDocuments();
-  res.send({count: lessonCount});
+  try {
+    const lessonCount = await Lesson.countDocuments();
+    res.send({ success: true, count: lessonCount});
+  } catch(err) {
+    res.status(404);
+    res.json({ success: false, error: 'Count not found'})
+  }
 });
 
 router.get('/id/:lessonId', async (req, res) => {
   const lessonId = parseInt(req.params.lessonId);
 
-  const lesson = await Lesson.findOne({id: lessonId});
+  if(!lessonId) {
+    res.status(400);
+    res.json({ success: false, error: 'Invalid lesson ID' });
+  }
+
+  const lesson = await Lesson.findOne({id: lessonId}, {_id: 0});
 
   if(!lesson) {
     res.status(404);
