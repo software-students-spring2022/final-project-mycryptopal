@@ -34,10 +34,9 @@ function Learn() {
 
   useEffect(() => {
     async function getLessonCount() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/lesson/`);
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/lesson/count`);
       const data = await res.json();
-      const length = Object.keys(data).length;
-      setLessonCount(length);
+      setLessonCount(data.count);
     }
     getLessonCount();
   }, []);
