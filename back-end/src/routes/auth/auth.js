@@ -7,7 +7,7 @@ const {Router} = require('express');
 const router = new Router({mergeParams: true});
 const path = require('path');
 require('dotenv').config({
-  silent: true, path: path.join('../..', '.env'),
+  silent: true, path: path.join(__dirname, '../..', '.env'),
 }); // Stores custom environmental variables
 
 const passport = require('passport');
@@ -18,6 +18,7 @@ const { jwtOptions, jwtStrategy } = require("./jwt-config.js")
 passport.use(jwtStrategy);
 
 const User = require('../../models/User');
+const { body, validationResult } = require('express-validator');
 
 router.get('/protected', passport.authenticate('jwt', { session: false}), (req, res) => {
   res.json({

@@ -1,19 +1,21 @@
 import {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import './Lesson.css';
 import LessonQuiz from '../../components/LessonQuiz/LessonQuiz';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 function Lesson() {
-  const {lessonID: lessonId} = useParams();
+  const navigate = useNavigate();
+  const {lessonId} = useParams();
   const [lesson, setLesson] = useState({});
   const [questions, setQuestions] = useState(null);
 
   useEffect(() => {
     async function getCurrentLesson() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/lesson/${lessonId}`);
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/lesson/id/${lessonId}`);
       const data = await res.json();
+      console.log(data);
       setLesson(data);
     }
     getCurrentLesson();
@@ -55,7 +57,7 @@ function Lesson() {
           ) : (<></>)}
         </div>
         <div id="map-button">
-          <button onClick={() => window.location.href='/learn'}>Back to Map</button>
+          <button onClick={() => navigate('/learn')}>Back to Map</button>
         </div>
       </div>
     </>

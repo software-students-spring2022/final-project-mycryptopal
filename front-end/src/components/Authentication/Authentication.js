@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import axios from 'axios';
@@ -23,7 +24,7 @@ function Authentication() {
             console.log("You cannot access this page without logging in!");
             setIsLoggedIn(false);
           })
-      }, []);
+      }, [jwtToken]);
 
       return (
         <Router>

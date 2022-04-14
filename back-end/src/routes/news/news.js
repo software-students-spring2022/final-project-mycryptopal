@@ -3,7 +3,7 @@ const router = new Router({mergeParams: true});
 const axios = require('axios');
 const path = require('path');
 require('dotenv').config({
-  silent: true, path: path.join('../..', '.env'),
+  silent: true, path: path.join(__dirname, '../..', '.env'),
 }); // Stores custom environmental variables
 
 router.get('/news/feed', (req, res) => {

@@ -1,19 +1,21 @@
 import {useState, useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 import './LessonQuiz.css';
 import LessonQuestion from '../../components/LessonQuestion/LessonQuestion';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
+import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
-import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import LinearProgress from '@mui/material/LinearProgress';
 import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 
 function LessonQuiz(props) {
+  const navigate = useNavigate();
   const [questions, setQuestions] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState({});
   const [correctCount, setCorrectCount] = useState(0);
@@ -32,15 +34,15 @@ function LessonQuiz(props) {
   }
 
   function prevQuestion() {
-    setCurrentQuestion(questions[getQuestionIndex(currentQuestion.questionNumber) - 1]);
+    setCurrentQuestion(questions[getQuestionIndex(currentQuestion.number) - 1]);
   }
 
   function nextQuestion() {
-    setCurrentQuestion(questions[getQuestionIndex(currentQuestion.questionNumber) + 1]);
+    setCurrentQuestion(questions[getQuestionIndex(currentQuestion.number) + 1]);
   }
 
   function checkAnswer() {
-    const answerBox = document.getElementById('quiz-answer')
+    const answerBox = document.getElementById('quiz-answer');
     const userAnswer = answerBox.value.toLowerCase();
     const isCorrect = (userAnswer === currentQuestion.answer.toLowerCase());
     if (isCorrect) {
@@ -55,7 +57,7 @@ function LessonQuiz(props) {
   }
 
   function advanceLessons() {
-    window.location.href=`/lesson/${parseInt(props.lessonId)+1}`;
+    navigate(`/lesson/id/${parseInt(props.lessonId)+1}`);
   }
 
   function handleCorrectClose(event, reason) {
@@ -104,10 +106,10 @@ function LessonQuiz(props) {
         document.getElementById('quiz-answer').removeAttribute('readonly', false);
         document.getElementById('quiz-center').style.visibility = 'visible';
       }
-      const questionNum = currentQuestion.questionNumber;
-      if (questionNum === questions[0].questionNumber) {
+      const questionNum = currentQuestion.number;
+      if (questionNum === questions[0].number) {
         document.getElementById('left-arrow').style.visibility = 'hidden';
-      } else if (questionNum === questions.slice(-1)[0].questionNumber) {
+      } else if (questionNum === questions.slice(-1)[0].number) {
         document.getElementById('right-arrow').style.visibility = 'hidden';
       } else {
         document.getElementById('left-arrow').style.visibility = 'visible';
@@ -137,7 +139,7 @@ function LessonQuiz(props) {
         </div>
 
         <div className='quizQuestion'>
-          {<LessonQuestion num={currentQuestion.questionNumber} content={currentQuestion.questionText} />}
+          {<LessonQuestion num={currentQuestion.number} content={currentQuestion.text} />}
         </div>
 
         <div className="quizAnswer">

@@ -2,21 +2,36 @@ const {Router} = require('express');
 const router = new Router({mergeParams: true});
 const path = require('path');
 require('dotenv').config({
-  silent: true, path: path.join('../..', '.env'),
+  silent: true, path: path.join(__dirname, '../..', '.env'),
 }); // Stores custom environmental variables
-const lessons = require('../../data/lessons.json');
+const Lesson = require('../../models/Lesson');
 
-router.get('/', (req, res) => {
-  res.send(lessons);
+router.get('/count', async (req, res) => {
+  try {
+    const lessonCount = await Lesson.countDocuments();
+    res.send({ success: true, count: lessonCount});
+  } catch(err) {
+    res.status(404);
+    res.json({ success: false, error: 'Count not found'})
+  }
 });
 
-router.get('/:lessonID', (req, res) => {
-  const lessonID = parseInt(req.params.lessonID);
-  if (!lessonID || lessonID > Object.keys(lessons).length) {
+router.get('/id/:lessonId', async (req, res) => {
+  const lessonId = parseInt(req.params.lessonId);
+
+  if(!lessonId) {
+    res.status(400);
+    res.json({ success: false, error: 'Invalid lesson ID' });
+  }
+
+  const lesson = await Lesson.findOne({id: lessonId}, {_id: 0});
+
+  if(!lesson) {
     res.status(404);
-    res.send({});
-  } else {
-    res.send(lessons[lessonID]);
+    res.json({ success: false, error: 'Lesson not found' });
+  }
+  else {
+    res.json(lesson);
   }
 });
 

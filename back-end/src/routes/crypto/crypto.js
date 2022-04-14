@@ -5,7 +5,7 @@ const axios = require('axios');
 const path = require('path');
 const {from, to, transformData, getDataMax, getDataMin} = require('../../lib');
 require('dotenv').config({
-  silent: true, path: path.join('../..', '.env'),
+  silent: true, path: path.join(__dirname, '../..', '.env'),
 }); // Stores custom environmental variables
 
 router.get('/crypto/data/:symbol', (req, res) => {

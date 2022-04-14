@@ -3,8 +3,8 @@
 /* eslint-disable max-len */
 const path = require('path');
 require('dotenv').config({
-    silent: true, path: path.join(__dirname, '.env'),
-});
+    silent: true, path: path.join(__dirname, '../..', '.env'),
+  }); // Stores custom environmental variables
 const User = require('../../models/User');
 const passportJWT = require("passport-jwt");
 const ExtractJwt = passportJWT.ExtractJwt;
