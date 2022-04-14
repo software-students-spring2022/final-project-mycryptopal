@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 const cryptoSchema = new mongoose.Schema({
     id: SVGAnimatedInteger;
     name: String;
-    price: Double;
+    price: Number;
     symbol: String;
-    percentChange: Double;
+    percentChange: Number;
     imageUrl: String;
-    tradingVolume: Double;
-    marketCap: Double;
-    circulatingSupply: Double;
+    tradingVolume: Number;
+    marketCap: Number;
+    circulatingSupply: Number;
     priceTickers: Object;
     description: String;
 
