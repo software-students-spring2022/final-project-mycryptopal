@@ -1,3 +1,4 @@
+import {useNavigate} from 'react-router-dom';
 import './Sidebar.css';
 import {slide as Menu} from 'react-burger-menu';
 import Grid from '@mui/material/Grid';
@@ -10,77 +11,81 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 function Sidebar() {
+  let navigate = useNavigate();
+  
   return (
     <Menu>
-      <a id="home" className="menu-item" href="/">
+      <Grid id="home" className="menu-item" onClick={() => navigate('/')}>
         <Typography variant='h4' fontWeight={'bold'}>MyCryptoPal</Typography>
-      </a>
-      <a id="portfolio" className="menu-item" href="/portfolio">
-        <Grid container spacing={1}>
+      </Grid>
+
+      <Grid id="portfolio" className="menu-item" >
+        <Grid container spacing={1} onClick={() => navigate('/portfolio')}>
           <Grid item>
             <AssignmentIcon/>
           </Grid>
-
           <Grid item>
             <Typography variant='body1' className="subItem">Portfolio</Typography>
           </Grid>
         </Grid>
-      </a>
-      <a id="explore" className="menu-item" href="/explore">
-        <Grid container spacing={1}>
+      </Grid>
+
+      <Grid id="explore" className="menu-item" >
+        <Grid container spacing={1} onClick={() => navigate('/explore')}>
           <Grid item>
             <ExploreIcon />
           </Grid>
-
           <Grid item>
-            <Typography variant='body1'>Explore Cryptos</Typography>
+            <Typography variant='body1' className="subItem">Explore Cryptos</Typography>
           </Grid>
         </Grid>
-      </a>
-      <a id="learn" className="menu-item" href="/learn">
-        <Grid container spacing={1}>
+      </Grid>
+
+      <Grid id="learn" className="menu-item" >
+        <Grid container spacing={1} onClick={() => navigate('/learn')}>
           <Grid item>
             <SchoolIcon />
           </Grid>
-
           <Grid item>
-            <Typography variant='body1'>Learn</Typography>
+            <Typography variant='body1' className="subItem">Learn</Typography>
           </Grid>
         </Grid>
-      </a>
-      <a id="contact" className="menu-item" href="/contact">
-        <Grid container spacing={1}>
+      </Grid>
+
+      <Grid id="contact" className="menu-item" >
+        <Grid container spacing={1} onClick={() => navigate('/contact')}>
           <Grid item>
             <AlternateEmailIcon />
           </Grid>
-
           <Grid item>
-            <Typography variant='body1'>Contact Us</Typography>
+            <Typography variant='body1' className="subItem">Contact Us</Typography>
           </Grid>
         </Grid>
-      </a>
-      <a id="settings" className="menu-item" href="/settings">
-        <Grid container spacing={1}>
+      </Grid>
+
+      <Grid id="settings" className="menu-item" >
+        <Grid container spacing={1} onClick={() => navigate('/settings')}>
           <Grid item>
             <SettingsIcon />
           </Grid>
-
           <Grid item>
-            <Typography variant='body1'>Settings</Typography>
+            <Typography variant='body1' className="subItem">Settings</Typography>
           </Grid>
         </Grid>
-      </a>
-      <a id="logout" className="menu-item" href="/login" onClick={() => localStorage.removeItem('token')}>
-        <Grid container spacing={1}>
+      </Grid>     
+
+      <Grid id="logout" className="menu-item" >
+        <Grid container spacing={1} onClick={() => {
+          localStorage.removeItem('token')
+          window.location.href = '/';}}>
           <Grid item>
             <LogoutIcon />
           </Grid>
-
           <Grid item>
-            <Typography variant='body1'>Logout</Typography>
+            <Typography variant='body1' className="subItem">Logout</Typography>
           </Grid>
         </Grid>
-      </a>
+      </Grid>    
     </Menu>
   );
 }
