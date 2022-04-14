@@ -7,7 +7,7 @@ const {Router} = require('express');
 const router = new Router({mergeParams: true});
 const path = require('path');
 require('dotenv').config({
-  silent: true, path: path.join('../..', '.env'),
+  silent: true, path: path.join(__dirname, '../..', '.env'),
 }); // Stores custom environmental variables
 
 const passport = require('passport');
