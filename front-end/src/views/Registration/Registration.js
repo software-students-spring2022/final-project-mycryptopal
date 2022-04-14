@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Registration.css';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 
 function Registration() {
+
+  let navigate = useNavigate();
 
   const [response, setResponse] = useState({});
 
@@ -48,21 +50,21 @@ function Registration() {
             <Grid item xs={0.5} md={4} className="formLeft formSurrounds"></Grid>
 
             <Grid item xs={11} md={4} className="formBody">
-              <Stack>
+              <Grid container spacing={1} height={'100%'} alignItems={'center'} justifyContent={'center'}>
 
-                <div className="tagLine">
+                <Grid item className="tagLine">
                   <Typography fontSize={'3vh'}>
                       Start Your Journey Today!
                   </Typography>
-                </div>
-{/* 
-                <div className="appLogo">
-                  <img src="https://picsum.photos/1000" alt="MyCryptoPal Logo"/>
-                </div> */}
+                </Grid>
 
-                <div className="entryForm">
+                {/* <Grid item className="appLogo">
+                  <img src="https://picsum.photos/1000" alt="MyCryptoPal Logo"/>
+                </Grid> */}
+
+                <Grid item className="entryForm">
                   <form onSubmit={handleSubmit}>
-                    <Grid container spacing={2} alignItems={'center'} justifyContent={'center'}>
+                    <Grid container spacing={3} alignItems={'center'} justifyContent={'center'}>
 
                       <Grid item xs={12} md={7}>
                         <TextField name='username' id="register-user" className="credentials" label="Username" variant="outlined" InputLabelProps={{shrink: true}} required/>
@@ -86,15 +88,15 @@ function Registration() {
 
                       <Grid item xs={12} className='helperText' id='register-helper'>
                         <Button variant="text" size='small' onClick={() => {
-                          window.location.href='/login';
+                          navigate('/login');
                         }}>Have an Account? Sign In Here!</Button>
                       </Grid>
 
                     </Grid>
 
                   </form>
-                </div>
-              </Stack>
+                </Grid>
+              </Grid>
             </Grid>
 
             <Grid item xs={0.5} md={4} className="formRight formSurrounds"></Grid>
