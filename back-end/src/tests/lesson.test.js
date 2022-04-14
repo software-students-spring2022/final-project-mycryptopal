@@ -1,5 +1,6 @@
 /* eslint no-unused-vars: "off", no-undef: "off", max-len: "off" */
 const app = require('../app');
+const mongoose = require('mongoose');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const should = chai.should();
@@ -53,4 +54,7 @@ describe('GET /lesson/id/:lessonId', () => {
     res.body.error.should.be.a('string');
     res.body.error.should.equal('Lesson not found');
   });
+  after(async () => {
+    await mongoose.disconnect();
+  })
 });
