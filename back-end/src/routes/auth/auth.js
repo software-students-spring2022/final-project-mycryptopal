@@ -18,6 +18,7 @@ const { jwtOptions, jwtStrategy } = require("./jwt-config.js")
 passport.use(jwtStrategy);
 
 const User = require('../../models/User');
+const { body, validationResult } = require('express-validator');
 
 router.get('/protected', passport.authenticate('jwt', { session: false}), (req, res) => {
   res.json({
