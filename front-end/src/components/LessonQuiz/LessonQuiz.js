@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LessonQuiz.css';
 import LessonQuestion from '../../components/LessonQuestion/LessonQuestion';
 import Stack from '@mui/material/Stack';
@@ -14,6 +15,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
 function LessonQuiz(props) {
+  let navigate = useNavigate();
   const [questions, setQuestions] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState({});
   const [correctCount, setCorrectCount] = useState(0);
@@ -55,7 +57,7 @@ function LessonQuiz(props) {
   }
 
   function advanceLessons() {
-    window.location.href=`/lesson/id/${parseInt(props.lessonId)+1}`;
+    navigate(`/lesson/id/${parseInt(props.lessonId)+1}`);
   }
 
   function handleCorrectClose(event, reason) {
