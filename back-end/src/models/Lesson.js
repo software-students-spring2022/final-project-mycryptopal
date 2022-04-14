@@ -1,13 +1,14 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 const mongoose = require('mongoose');
+
 const lessonSchema = new mongoose.Schema({
-  lessonId: String,
+  id: Number,
   title: String,
   content: String,
   questions: Array,
 });
 
-const Lesson = db.model('Lesson', schema);
+const Lesson = mongoose.model('Lesson', lessonSchema);
 
 module.exports = Lesson;
