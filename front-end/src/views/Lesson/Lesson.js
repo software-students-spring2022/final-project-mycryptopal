@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 function Lesson() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const {lessonId} = useParams();
   const [lesson, setLesson] = useState({});
   const [questions, setQuestions] = useState(null);

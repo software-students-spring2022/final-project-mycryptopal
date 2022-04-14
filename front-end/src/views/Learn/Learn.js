@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react';
-import LessonCircle from '../../components/LessonCircle/LessonCircle';
 import './Learn.css';
-import Grid from '@mui/material/Grid';
+import LessonCircle from '../../components/LessonCircle/LessonCircle';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 function Learn() {
@@ -17,7 +17,7 @@ function Learn() {
       elements.push(
           <Grid container spacing={spacing} className='lessonMap'>
             {
-              lessons.slice(min, max).map((lesson) => {
+              lessons.slice(min, max).map((lesson, i) => {
                 return (
                   <Grid item xs={xs} marginBottom={marginBottom}>
                     {lesson}
@@ -43,7 +43,7 @@ function Learn() {
 
   useEffect(() => {
     const lessons = new Array(lessonCount).fill(0).map((ele, i) => {
-      return <LessonCircle key={i+1} num={i+1} />;
+      return <LessonCircle key={i} num={i+1} />;
     });
     setLessons(lessons);
   }, [lessonCount]);

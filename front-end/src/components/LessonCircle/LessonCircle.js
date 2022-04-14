@@ -1,10 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import './LessonCircle.css';
 import Typography from '@mui/material/Typography';
 
 function LessonCircle(props) {
   const COLORS = ['color1', 'color2', 'color3', 'color4'];
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <>

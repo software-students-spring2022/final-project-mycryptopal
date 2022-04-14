@@ -1,21 +1,21 @@
 import {useState, useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import './LessonQuiz.css';
 import LessonQuestion from '../../components/LessonQuestion/LessonQuestion';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
+import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
-import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import LinearProgress from '@mui/material/LinearProgress';
 import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 
 function LessonQuiz(props) {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [questions, setQuestions] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState({});
   const [correctCount, setCorrectCount] = useState(0);
@@ -42,7 +42,7 @@ function LessonQuiz(props) {
   }
 
   function checkAnswer() {
-    const answerBox = document.getElementById('quiz-answer')
+    const answerBox = document.getElementById('quiz-answer');
     const userAnswer = answerBox.value.toLowerCase();
     const isCorrect = (userAnswer === currentQuestion.answer.toLowerCase());
     if (isCorrect) {
