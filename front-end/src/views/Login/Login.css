@@ -28,14 +28,8 @@
     border: 5px rgb(193, 180, 104) solid;
 }
 
-.tagLine {
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-}
-
 .appLogo img {
     max-width: 300px;
-    margin-bottom: 4vh;
 }
 
 .credentials {
