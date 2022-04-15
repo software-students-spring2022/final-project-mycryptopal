@@ -1,42 +1,94 @@
 /* eslint-disable no-unused-vars */
 const {Router} = require('express');
 const router = new Router({mergeParams: true});
-const axios = require('axios');
+const User = require('../../models/User');
 const path = require('path');
 require('dotenv').config({
   silent: true, path: path.join(__dirname, '../..', '.env'),
 }); // Stores custom environmental variables
+const {body, validationResult} = require('express-validator');
 
-router.get('/assets', (req, res) => {
-  const COINS = ['BTC', 'ETH', 'DOGE', 'SOL', 'XMR'];
-  const FRACTIONS = new Array(COINS.length).fill(0).map(() => {
-    return parseInt((Math.random() * 200)) + 20;
-  });
-  const ALLOCATIONS = COINS.reduce((current, element, index) => {
-    current[element] = FRACTIONS[index];
-    return current;
-  }, {});
-  res.json(ALLOCATIONS);
+// Avatar upload
+const aws = require('aws-sdk');
+const s3 = new aws.S3();
+s3.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+  region: process.env.AWS_REGION,
+});
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+const s3Storage = multerS3({
+  s3: s3,
+  acl: 'public-read',
+  bucket: process.env.AWS_S3_BUCKET,
+  key: async function(req, file, cb) {
+    try {
+      const user = await User.findOne({user_id: req.body.userId});
+      const newFilename = `${file.fieldname}${path.extname(file.originalname)}`;
+      user.avatar = newFilename;
+      user.save();
+      cb(null, `u/${req.body.userId}/${newFilename}`);
+      req.body.success = true;
+    } catch (err) {
+      req.body.success = false;
+      req.body.error = 'Error during user avatar upload';
+      console.log(err);
+    }
+  },
+});
+const upload = multer({storage: s3Storage});
+
+// Routes
+router.get('/avatar/:userId', async (req, res) => {
+  const userId = req.params.userId;
+  const user = await User.findOne({user_id: userId});
+  if (user) {
+    res.json({success: true, url: `https://${process.env.AWS_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/u/${req.params.userId}/${user.avatar}`});
+  } else {
+    res.status(400).json({success: false, error: `User does not exist`});
+  }
 });
 
-router.get('/data', (req, res) => {
-  // axios
-  //     .get(`https://my.api.mockaroo.com/users.json?key=4c156a80&limit=1`)
-  //     .then((apiResponse) => res.json(apiResponse.data))
-  //     .catch(err => console.log(err));
-  const obj = {
-    id: 1181923123812,
-    firstName: 'John',
-    lastName: 'Smith',
-    username: 'jsmith',
-    email: 'jsmith123@mail.com',
-  };
-  res.json(obj);
+router.post('/update/avatar', upload.single('avatar'), (req, res) => {
+  if (req.body.success) {
+    res.json({success: true});
+  } else {
+    res.status(500).json({success: false, error: req.body.error});
+  }
 });
 
-router.post('/contact', (req, res) => {
-  console.log(req.body);
-  res.redirect('http://localhost:3000/contact');
+router.get('/info', (req, res) => {
+  const user = req.user;
+  res.json(user);
 });
+
+router.post('/update/info',
+    body('email').isEmail(),
+    body('username').isLength({min: 6}),
+    async (req, res) => {
+      const validationErrors = validationResult(req);
+      if (validationErrors.isEmpty()) {
+        const userId = req.user.user_id;
+        try {
+          const user = await User.findOne({user_id: userId});
+          if (user) {
+            const updatedInfo = req.body;
+            Object.keys(updatedInfo).forEach((key) => {
+              user[key] = updatedInfo[key];
+            });
+            user.save();
+            res.json({success: true});
+          } else {
+            res.json(404).json({success: false, error: 'User not found'});
+          }
+        } catch (err) {
+          console.log(err);
+          res.status(500).json({success: false, error: 'Server error'});
+        }
+      } else {
+        res.status(400).json({success: false, error: 'Invalid inputs'});
+      }
+    });
 
 module.exports = router;

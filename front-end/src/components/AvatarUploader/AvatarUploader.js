@@ -1,17 +1,18 @@
-import './AvatarUploader.css';
-import axios from 'axios';
 import {useEffect, useRef, useState} from 'react';
+import './AvatarUploader.css';
+import Typography from '@mui/material/Typography';
+import axios from 'axios';
 
 function AvatarUploader(props) {
+  const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
   const fileDialog = useRef(null);
   const [avatarURL, setAvatarURL] = useState('');
 
   useEffect(() => {
     if (props.userId) {
       async function getAvatarURL() {
-        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/avatar/${props.userId}`);
-        const data = await res.json();
-        console.log(data);
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/avatar/${props.userId}`, {headers: authHeader});
+        const data = res.data;
         setAvatarURL(`${data.url}`);
       }
       getAvatarURL();
@@ -22,29 +23,38 @@ function AvatarUploader(props) {
     fileDialog.current.click();
   };
 
-  function onFileChange(evt) {
+  async function onFileChange(evt) {
     const uploadFile = evt.target.files[0];
     if (uploadFile.type.startsWith('image/')) {
       const uploadForm = new FormData();
       uploadForm.append('userId', props.userId);
       uploadForm.append('avatar', uploadFile);
-      axios
-          .post(`${process.env.REACT_APP_BACKEND_URL}/avatar`, uploadForm, {})
-          .then((res) => {
-            window.location.href = '/settings';
-          })
-          .catch((err) => console.log(err));
-    };
+      try {
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/avatar`,
+            uploadForm,
+            {headers: authHeader});
+        if (res.data.success) {
+          window.location.href = '/settings';
+        } else {
+          console.log(res.data.error);
+        }
+      } catch (err) {
+        console.log('Error updating avatar');
+        console.log(err);
+      }
+    }
   }
 
   return (
     <div id="avatar-uploader">
       <input id="file-dialog" type='file' ref={fileDialog} accept="image/*" onChange={onFileChange}/>
       <img id="current-pic" src={avatarURL} alt="avatar" onError={(evt) => {
-        evt.target.src = 'https://picsum.photos/320';
+        evt.target.src = 'https://via.placeholder.com/320?text=Set Your Profile Picture';
       }} />
       <div id="upload-overlay" onClick={onOverlayClick}>
-                Change Profile Picture
+        <Typography variant='h6'>
+          Change Profile Picture
+        </Typography>
       </div>
     </div>
   );

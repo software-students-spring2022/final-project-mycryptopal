@@ -24,7 +24,7 @@ function Portfolio() {
 
   useEffect(() => {
     async function getAssets() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/assets`);
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/assets`);
       const data = await res.json();
       setAssets(data);
     }

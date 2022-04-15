@@ -1,4 +1,5 @@
 const {Router} = require('express');
+const passport = require('passport');
 const router = new Router();
 const authRouter = require('./auth/auth');
 const cryptoRouter = require('./crypto/crypto');
@@ -10,6 +11,6 @@ router.use('/auth', authRouter);
 router.use('/api', cryptoRouter);
 router.use('/lesson', lessonRouter);
 router.use('/api', newsRouter);
-router.use('/user', userRouter);
+router.use('/user', passport.authenticate('jwt', {session: false}), userRouter);
 
 module.exports = router;

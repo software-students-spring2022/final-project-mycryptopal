@@ -16,28 +16,7 @@ require('dotenv').config({
 });
 const morgan = require('morgan'); // Logs incoming HTTP requests
 const cors = require('cors'); // Enables CORS
-// Handles file uploads
-const aws = require('aws-sdk');
 
-const s3 = new aws.S3();
-s3.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY,
-  secretAccessKey: process.env.AWS_SECRET_KEY,
-  region: process.env.AWS_REGION
-})
-const multer = require('multer');
-const multerS3 = require('multer-s3');
-const s3Storage = multerS3({
-  s3: s3,
-  acl: 'public-read',
-  bucket: process.env.AWS_S3_BUCKET,
-  key: function(req, file, cb) {
-    console.log(file);
-    const newName = `u/${req.body.userId}/${file.fieldname}${path.extname(file.originalname)}`;
-    cb(null, newName);
-  }
-});
-const upload = multer({storage: s3Storage});
 // Database integration
 const mongoose = require('mongoose');
 // Connects to database
@@ -70,27 +49,21 @@ app.post('/contact', (req, res) => {
   res.sendStatus(200);
 });
 
-app.post('/register', (req, res) => {
-  console.log(req.body);
-  res.redirect(`${process.env.FRONT_END_URL}/login`);
-});
-
-app.post('/personalize', (req, res) => {
-  console.log(req.body);
-  res.redirect(`${process.env.FRONT_END_URL}/settings`);
-});
-
 app.post('/security', (req, res) => {
   console.log(req.body);
   res.redirect(`${process.env.FRONT_END_URL}/settings`);
 });
 
-app.get('/avatar/:userId', (req, res) => {
-  res.json({'url': `https://${process.env.AWS_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/u/${req.params.userId}/avatar.png`}); // extension shouldn't be hardcoded but this is just placeholder code until MongoDB has been implemented
-});
-
-app.post('/avatar', upload.single('avatar'), (req, res) => {
-  res.json({});
+app.get('/assets', (req, res) => {
+  const COINS = ['BTC', 'ETH', 'DOGE', 'SOL', 'XMR'];
+  const FRACTIONS = new Array(COINS.length).fill(0).map(() => {
+    return parseInt((Math.random() * 200)) + 20;
+  });
+  const ALLOCATIONS = COINS.reduce((current, element, index) => {
+    current[element] = FRACTIONS[index];
+    return current;
+  }, {});
+  res.json(ALLOCATIONS);
 });
 
 module.exports = app;
