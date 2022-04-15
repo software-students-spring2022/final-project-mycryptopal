@@ -52,6 +52,11 @@ function Crypto() {
   }
 
   function handleDialogClose() {
+    // query for user
+    // push info to database
+    const value = document.getElementById('crypto-amount').value
+    console.log(value)
+    
     setDialogOpen(false);
     setAlertOpen(true);
   }
