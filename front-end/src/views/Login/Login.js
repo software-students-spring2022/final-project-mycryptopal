@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 
 function Login() {
+
+  let navigate = useNavigate();
 
   const [response, setResponse] = useState({});
 
@@ -47,19 +49,19 @@ function Login() {
             <Grid item xs={0.5} md={4} className="formLeft formSurrounds"></Grid>
 
             <Grid item xs={11} md={4} className="formBody">
-              <Stack>
+              <Grid container spacing={1} height={'100%'} alignItems={'center'} justifyContent={'center'}>
 
-                <div className="tagLine">
+                <Grid item className="tagLine">
                   <Typography fontSize={'3vh'}>
                     Ready to Level Up Your Investing Career?
                   </Typography>
-                </div>
+                </Grid>
 
-                {/* <div className="appLogo">
+                {/* <Grid item className="appLogo">
                   <img src="https://picsum.photos/1000" alt="MyCryptoPal Logo"/>
-                </div> */}
+                </Grid> */}
 
-                <div className="entryForm">
+                <Grid item className="entryForm">
                   <form onSubmit={handleSubmit}>
                     <Grid container spacing={3} alignItems={'center'} justifyContent={'center'}>
 
@@ -75,23 +77,17 @@ function Login() {
                         <Button variant="outlined" size='large' type='submit'>Sign In</Button>
                       </Grid>
 
-                      <Grid item xs={12} className='helperText' marginTop={'-0.5vh'}>
+                      <Grid item xs={12} className='helperText'>
                         <Button variant="text" size='small' onClick={() => {
-                          window.location.href='/login';
-                        }}>Forgot Password?</Button>
-                      </Grid>
-
-                      <Grid item xs={12} className='helperText' marginTop={'-1.75vh'}>
-                        <Button variant="text" size='small' onClick={() => {
-                          window.location.href='/registration';
+                          navigate('/registration');
                         }}>Don't Have An Account? Register Here!</Button>
                       </Grid>
 
                     </Grid>
 
                   </form>
-                </div>
-              </Stack>
+                </Grid>
+              </Grid>
             </Grid>
 
             <Grid item xs={0.5} md={4} className="formRight formSurrounds"></Grid>
