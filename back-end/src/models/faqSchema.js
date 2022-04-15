@@ -6,6 +6,6 @@ const faqSchema = new mongoose.Schema({
   answer: String,
 });
 
-const FAQ = db.model('FAQ', schema);
+const FAQ = mongoose.model('FAQ', schema);
 
 module.exports = FAQ;

@@ -10,6 +10,6 @@ const newsSchema = new mongoose.Schema({
 
 });
 
-const News = db.model('News', schema);
+const News = mongoose.model('News', schema);
 
 module.exports = News;

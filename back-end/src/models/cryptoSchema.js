@@ -16,6 +16,6 @@ const cryptoSchema = new mongoose.Schema({
 
 });
 
-const Crypto = db.model('Crypto', schema);
+const Crypto = mongoose.model('Crypto', schema);
 
 module.exports = Crypto;
