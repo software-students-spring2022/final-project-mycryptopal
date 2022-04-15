@@ -17,16 +17,27 @@ require('dotenv').config({
 const morgan = require('morgan'); // Logs incoming HTTP requests
 const cors = require('cors'); // Enables CORS
 // Handles file uploads
+const aws = require('aws-sdk');
+
+const s3 = new aws.S3();
+s3.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+  region: process.env.AWS_REGION
+})
 const multer = require('multer');
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, PUBLIC_DIR);
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${file.fieldname}-${req.body.userId}${path.extname(file.originalname)}`);
-  },
+const multerS3 = require('multer-s3');
+const s3Storage = multerS3({
+  s3: s3,
+  acl: 'public-read',
+  bucket: process.env.AWS_S3_BUCKET,
+  key: function(req, file, cb) {
+    console.log(file);
+    const newName = `u/${req.body.userId}/${file.fieldname}${path.extname(file.originalname)}`;
+    cb(null, newName);
+  }
 });
-const upload = multer({storage: storage});
+const upload = multer({storage: s3Storage});
 // Database integration
 const mongoose = require('mongoose');
 // Connects to database
@@ -75,7 +86,7 @@ app.post('/security', (req, res) => {
 });
 
 app.get('/avatar/:userId', (req, res) => {
-  res.json({'url': `avatar-${req.params.userId}.jpg`}); // extension shouldn't be hardcoded but this is just placeholder code until MongoDB has been implemented
+  res.json({'url': `https://${process.env.AWS_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/u/${req.params.userId}/avatar.png`}); // extension shouldn't be hardcoded but this is just placeholder code until MongoDB has been implemented
 });
 
 app.post('/avatar', upload.single('avatar'), (req, res) => {

@@ -12,7 +12,7 @@ function AvatarUploader(props) {
         const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/avatar/${props.userId}`);
         const data = await res.json();
         console.log(data);
-        setAvatarURL(`${process.env.REACT_APP_BACKEND_URL}/static/${data.url}`);
+        setAvatarURL(`${data.url}`);
       }
       getAvatarURL();
     }
