@@ -34,6 +34,7 @@ function Crypto() {
   const [maxTick, setMaxTick] = useState(0);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
+  const [alertAddDropFail, setAlertAddDropFail] = useState(false);
   const [user, setUser] = useState({});
 
   const {symbol} = useParams();
@@ -64,11 +65,9 @@ function Crypto() {
     console.log(cryptoAmount)
     if (cryptoAmount < 0) {
       // should create a pop up message saying you inputted an incorrect value
+      setAlertAddDropFail(true);
       console.log("Please enter a value greater than 0. Please try again.")
     }
-
-    
-
 
     // query for user
     // push info to database
@@ -82,6 +81,14 @@ function Crypto() {
       return;
     }
     setAlertOpen(false);
+  }
+
+  function handleAlertAddDropFail(event, reason) {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setAlertAddDropFail(false);
+    
   }
 
   useEffect(() => {
@@ -420,7 +427,8 @@ function Crypto() {
           <DialogTitle>Add/Drop</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Please enter a quantity of {coinData.symbol}. Your changes will be reflected in your assets graph.
+              Please enter a quantity of {coinData.symbol}. Your changes will be reflected in your assets graph. Please
+              enter a number greater than 0. 
             </DialogContentText>
             <TextField
               autoFocus
@@ -444,6 +452,12 @@ function Crypto() {
               Placeholder alert
             </Alert>
           </Snackbar>
+
+        <Snackbar open={alertAddDropFail} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleAlertAddDropFail}>
+            <Alert onClose={handleAlertAddDropFail} severity="success" sx={{width: '100%'}}>
+              Please enter an appropiate quantity.
+            </Alert>
+        </Snackbar>
       </div>
     </>
   );
