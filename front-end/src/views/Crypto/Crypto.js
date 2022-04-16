@@ -35,6 +35,7 @@ function Crypto() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertAddDropFail, setAlertAddDropFail] = useState(false);
+  const [alertSuccess, setalertSuccess] = useState(false); 
   const [user, setUser] = useState({});
 
   const {symbol} = useParams();
@@ -66,11 +67,11 @@ function Crypto() {
     if (cryptoAmount < 0) {
       // should create a pop up message saying you inputted an incorrect value
       setAlertAddDropFail(true);
-      console.log("Please enter a value greater than 0. Please try again.")
     }
-
+    else {
     // query for user
     // push info to database
+    }
 
     setDialogOpen(false);
     setAlertOpen(true);
