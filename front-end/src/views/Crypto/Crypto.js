@@ -53,11 +53,22 @@ function Crypto() {
   }
 
   function handleDialogClose() {
+    
+    setDialogOpen(false);
+    setAlertOpen(true);
+  }
+
+  function handleDialogConfirm() {
+    // gets the value user inputted 
+    const cryptoAmount = document.getElementById('crypto-amount').value
+    console.log(cryptoAmount)
+    // if (cryptoAmount < 0) {
+
+    // }
+
     // query for user
     // push info to database
-    const value = document.getElementById('crypto-amount').value
-    console.log(value)
-    
+
     setDialogOpen(false);
     setAlertOpen(true);
   }
@@ -420,7 +431,7 @@ function Crypto() {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleDialogClose}>Cancel</Button>
-            <Button onClick={handleDialogClose}>Confirm</Button>
+            <Button onClick={handleDialogConfirm}>Confirm</Button>
           </DialogActions>
         </Dialog>
 
