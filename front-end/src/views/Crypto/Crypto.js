@@ -35,7 +35,7 @@ function Crypto() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertAddDropFail, setAlertAddDropFail] = useState(false);
-  const [alertSuccess, setalertSuccess] = useState(false); 
+  const [alertSuccess, setAlertSuccess] = useState(false); 
   const [user, setUser] = useState({});
 
   const {symbol} = useParams();
@@ -68,13 +68,12 @@ function Crypto() {
       // should create a pop up message saying you inputted an incorrect value
       setAlertAddDropFail(true);
     }
-    else {
     // query for user
     // push info to database
-    }
+
 
     setDialogOpen(false);
-    setAlertOpen(true);
+    setAlertSuccess(true);
   }
 
   function handleAlertClose(event, reason) {
@@ -89,6 +88,14 @@ function Crypto() {
       return;
     }
     setAlertAddDropFail(false);
+    
+  }
+
+  function handleSuccess(event, reason) {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setAlertSuccess(false);
     
   }
 
@@ -450,9 +457,14 @@ function Crypto() {
 
         <Snackbar open={alertOpen} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleAlertClose}>
             <Alert onClose={handleAlertClose} severity="success" sx={{width: '100%'}}>
-              Placeholder alert
+              Cancelled Transaction.
             </Alert>
           </Snackbar>
+        <Snackbar open={alertSuccess} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleSuccess}>
+            <Alert onClose={handleSuccess} severity="success" sx={{width: '100%'}}>
+              Successfully added!
+            </Alert>
+        </Snackbar>
 
         <Snackbar open={alertAddDropFail} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleAlertAddDropFail}>
             <Alert onClose={handleAlertAddDropFail} severity="success" sx={{width: '100%'}}>
