@@ -9,28 +9,27 @@ const Lesson = require('../../models/Lesson');
 router.get('/count', async (req, res) => {
   try {
     const lessonCount = await Lesson.countDocuments();
-    res.send({ success: true, count: lessonCount});
-  } catch(err) {
+    res.send({success: true, count: lessonCount});
+  } catch (err) {
     res.status(404);
-    res.json({ success: false, error: 'Count not found'})
+    res.json({success: false, error: 'Count not found'});
   }
 });
 
 router.get('/id/:lessonId', async (req, res) => {
   const lessonId = parseInt(req.params.lessonId);
 
-  if(!lessonId) {
+  if (!lessonId) {
     res.status(400);
-    res.json({ success: false, error: 'Invalid lesson ID' });
+    res.json({success: false, error: 'Invalid lesson ID'});
   }
 
   const lesson = await Lesson.findOne({id: lessonId}, {_id: 0});
 
-  if(!lesson) {
+  if (!lesson) {
     res.status(404);
-    res.json({ success: false, error: 'Lesson not found' });
-  }
-  else {
+    res.json({success: false, error: 'Lesson not found'});
+  } else {
     res.json(lesson);
   }
 });
