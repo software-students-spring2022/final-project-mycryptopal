@@ -62,9 +62,13 @@ function Crypto() {
     // gets the value user inputted 
     const cryptoAmount = document.getElementById('crypto-amount').value
     console.log(cryptoAmount)
-    // if (cryptoAmount < 0) {
+    if (cryptoAmount < 0) {
+      // should create a pop up message saying you inputted an incorrect value
+      console.log("Please enter a value greater than 0. Please try again.")
+    }
 
-    // }
+    
+
 
     // query for user
     // push info to database
