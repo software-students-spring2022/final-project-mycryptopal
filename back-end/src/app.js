@@ -49,11 +49,6 @@ app.post('/contact', (req, res) => {
   res.sendStatus(200);
 });
 
-app.post('/security', (req, res) => {
-  console.log(req.body);
-  res.redirect(`${process.env.FRONT_END_URL}/settings`);
-});
-
 app.get('/assets', (req, res) => {
   const COINS = ['BTC', 'ETH', 'DOGE', 'SOL', 'XMR'];
   const FRACTIONS = new Array(COINS.length).fill(0).map(() => {

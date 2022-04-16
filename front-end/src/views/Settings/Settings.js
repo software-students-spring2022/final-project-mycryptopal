@@ -22,17 +22,30 @@ function Settings() {
     };
 
     try {
-      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/info`, userInput, {headers: authHeader});
-      if(res.data.success) {
-        window.location.href = '/settings';
-      }
-      else {
-        console.log('Error updating user info');
-        console.log(res.data.error);
-      }
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/info`, userInput, {headers: authHeader});
+      window.location.href = '/settings';
     } catch (err) {
-      console.log('Error in POST request to update user info');
-      console.log(err);
+      console.log('Error updating user info');
+      console.log(err.response.data);
+    }
+  }
+
+  async function handleSubmitCredentials(evt) {
+    evt.preventDefault();
+
+    const userInput = {
+      currentPassword: evt.target.currentPassword.value,
+      newPassword: evt.target.newPassword.value,
+      rePassword: evt.target.rePassword.value,
+    }
+
+    try {
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/credentials`, userInput, {headers: authHeader});
+      window.location.href = '/settings';
+    }
+    catch(err) {
+      console.log('Error updating user password');
+      console.log(err.response.data);
     }
   }
 
@@ -95,7 +108,7 @@ function Settings() {
           <Grid item xs={0} md={0.5}></Grid>
 
           <Grid item xs={12} md={3.25} id={'security-form'} className={'settingsForm'}>
-            <form method='POST' action={`${process.env.REACT_APP_BACKEND_URL}/security`}>
+            <form onSubmit={handleSubmitCredentials}>
               <Grid container spacing={2}>
 
                 <Grid item xs={12}>

@@ -6,6 +6,7 @@ const path = require('path');
 require('dotenv').config({
   silent: true, path: path.join(__dirname, '../..', '.env'),
 }); // Stores custom environmental variables
+const bcrypt = require('bcrypt');
 const {body, validationResult} = require('express-validator');
 
 // Avatar upload
@@ -88,6 +89,38 @@ router.post('/update/info',
         }
       } else {
         res.status(400).json({success: false, error: 'Invalid inputs'});
+      }
+    });
+
+router.post('/update/credentials',
+    body('newPassword').matches(process.env.PASSWORD_REGEX),
+    async (req, res) => {
+      const validationErrors = validationResult(req);
+      if (validationErrors.isEmpty()) {
+        const matchesReenter = req.body.newPassword === req.body.rePassword;
+        if (matchesReenter) {
+          const userId = req.user.user_id;
+          try {
+            const user = await User.findOne({user_id: userId});
+            const matchesCurrent = await bcrypt.compare(req.body.currentPassword, user.password);
+            if (matchesCurrent) {
+              const passwordSalt = await bcrypt.genSalt(10);
+              const hashedNewPassword = await bcrypt.hash(req.body.newPassword, passwordSalt);
+              user.password = hashedNewPassword;
+              user.save();
+              res.json({success: true});
+            } else {
+              res.status(401).json({success: false, error: 'Entered current password is incorrect.'});
+            }
+          } catch (err) {
+            console.log(err);
+            res.status(500).json({success: false, error: 'Server error'});
+          }
+        } else {
+          res.status(400).json({success: false, error: 'New password does not match re-entered password.'});
+        }
+      } else {
+        res.status(400).json({success: false, error: 'Invalid format for new password. Should have no spaces, minimum length of 6, and at least 1 uppercase letter, 1 lowercase letter, and 1 number.'});
       }
     });
 
