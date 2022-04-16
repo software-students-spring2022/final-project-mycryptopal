@@ -56,5 +56,5 @@ describe('GET /lesson/id/:lessonId', () => {
   });
   after(async () => {
     await mongoose.disconnect();
-  })
+  });
 });

@@ -18,7 +18,7 @@ router.get('/crypto/data/:symbol', (req, res) => {
               {
                 'X-CMC_PRO_API_KEY': process.env.CMC_API_KEY,
               },
-          }
+          },
       )
       .then((apiResponse) => res.json(apiResponse.data.data[`${SYMBOL}`][0]))
       .catch((err) => {
@@ -37,7 +37,7 @@ router.get('/crypto/info/:symbol', (req, res) => {
               {
                 'X-CMC_PRO_API_KEY': process.env.CMC_API_KEY_2,
               },
-          }
+          },
       )
       .then((apiResponse) => {
         const data = apiResponse.data.data;
@@ -59,7 +59,7 @@ router.get('/crypto/explore', (req, res) => {
             headers: {
               'X-CMC_PRO_API_KEY': process.env.CMC_API_KEY,
             },
-          }
+          },
       )
       .then((apiResponse) => {
         const data = apiResponse.data.data;

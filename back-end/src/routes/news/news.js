@@ -36,7 +36,7 @@ router.get('/news/feed', (req, res) => {
             `&language=${LANGUAGE}` +
             `&sortBy=${SORT_BY}` +
             `&pageSize=${PAGE_SIZE}` +
-            `&domains=${DOMAINS.join(',')}`
+            `&domains=${DOMAINS.join(',')}`,
       )
       .then((apiResponse) => res.json(apiResponse.data))
       .catch((err) => {

@@ -16,17 +16,7 @@ require('dotenv').config({
 });
 const morgan = require('morgan'); // Logs incoming HTTP requests
 const cors = require('cors'); // Enables CORS
-// Handles file uploads
-const multer = require('multer');
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, PUBLIC_DIR);
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${file.fieldname}-${req.body.userId}${path.extname(file.originalname)}`);
-  },
-});
-const upload = multer({storage: storage});
+
 // Database integration
 const mongoose = require('mongoose');
 // Connects to database
@@ -59,27 +49,16 @@ app.post('/contact', (req, res) => {
   res.sendStatus(200);
 });
 
-app.post('/register', (req, res) => {
-  console.log(req.body);
-  res.redirect(`${process.env.FRONT_END_URL}/login`);
-});
-
-app.post('/personalize', (req, res) => {
-  console.log(req.body);
-  res.redirect(`${process.env.FRONT_END_URL}/settings`);
-});
-
-app.post('/security', (req, res) => {
-  console.log(req.body);
-  res.redirect(`${process.env.FRONT_END_URL}/settings`);
-});
-
-app.get('/avatar/:userId', (req, res) => {
-  res.json({'url': `avatar-${req.params.userId}.jpg`}); // extension shouldn't be hardcoded but this is just placeholder code until MongoDB has been implemented
-});
-
-app.post('/avatar', upload.single('avatar'), (req, res) => {
-  res.json({});
+app.get('/assets', (req, res) => {
+  const COINS = ['BTC', 'ETH', 'DOGE', 'SOL', 'XMR'];
+  const FRACTIONS = new Array(COINS.length).fill(0).map(() => {
+    return parseInt((Math.random() * 200)) + 20;
+  });
+  const ALLOCATIONS = COINS.reduce((current, element, index) => {
+    current[element] = FRACTIONS[index];
+    return current;
+  }, {});
+  res.json(ALLOCATIONS);
 });
 
 module.exports = app;
