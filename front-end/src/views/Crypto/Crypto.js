@@ -34,6 +34,7 @@ function Crypto() {
   const [maxTick, setMaxTick] = useState(0);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
+  const [user, setUser] = useState({});
 
   const {symbol} = useParams();
 
