@@ -24,6 +24,7 @@ import {
   Line,
   ResponsiveContainer,
 } from 'recharts';
+import axios from 'axios';
 
 function Crypto() {
   const [coinData, setCoinData] = useState({slug: '', symbol: '', circulating_supply: 0, quote: {USD: {price: 0, percent_change_24h: 0, volume_24h: 0, market_cap: 0}}});
@@ -68,7 +69,7 @@ function Crypto() {
       // should create a pop up message saying you inputted an incorrect value
       setAlertAddDropFail(true);
     }
-    
+
     // query for user
     // push info to database
 
