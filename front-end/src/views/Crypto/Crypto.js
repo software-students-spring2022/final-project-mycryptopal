@@ -64,10 +64,11 @@ function Crypto() {
     // gets the value user inputted 
     const cryptoAmount = document.getElementById('crypto-amount').value
     console.log(cryptoAmount)
-    if (cryptoAmount < 0) {
+    if (cryptoAmount < 0 || cryptoAmount.length == 0) {
       // should create a pop up message saying you inputted an incorrect value
       setAlertAddDropFail(true);
     }
+    
     // query for user
     // push info to database
 
@@ -462,7 +463,7 @@ function Crypto() {
           </Snackbar>
         <Snackbar open={alertSuccess} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleSuccess}>
             <Alert onClose={handleSuccess} severity="success" sx={{width: '100%'}}>
-              Successfully added!
+              Successfully added {coinData.symbol}!
             </Alert>
         </Snackbar>
 
