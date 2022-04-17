@@ -64,6 +64,24 @@ router.get('/info', (req, res) => {
   res.json(user);
 });
 
+router.post('/update/assets',
+  async (req, res) => {
+    const userId = req.user.user_id;
+    try {
+      const user = await User.findOne({user_id: userId});
+      if (user) {
+        // add to the assets property of the user here
+      }
+      else {
+        res.json(404).json({success: false, error: 'User not found'});
+      }
+    }
+    catch (err) {
+      console.log(err);
+      res.status(500).json({success: false, error: 'Server error'});
+    }
+  });
+
 router.post('/update/info',
     body('email').isEmail(),
     body('username').isLength({min: 6}),
