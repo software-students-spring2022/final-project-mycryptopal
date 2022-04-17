@@ -72,6 +72,14 @@ function Crypto() {
 
     // query for user
     // push info to database
+    // try {
+    //   await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/assets`, coinData.symbol, cryptoAmount);
+    //   window.location.href = 'analytics';
+    // }
+    // catch (err) {
+    //   console.log('Error updating user info');
+    //   console.log(err.response.data);
+    // }
 
 
     setDialogOpen(false);
