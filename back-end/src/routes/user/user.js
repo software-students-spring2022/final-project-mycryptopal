@@ -64,13 +64,21 @@ router.get('/info', (req, res) => {
   res.json(user);
 });
 
+router.get('/assets', (req, res) => {
+  const user = req.user
+  res.json(user);
+})
+
 router.post('/update/assets',
+  // add some sort of way to input the coin's symbol and quantity into here
+
   async (req, res) => {
     const userId = req.user.user_id;
     try {
       const user = await User.findOne({user_id: userId});
       if (user) {
         // add to the assets property of the user here
+        // user.assets.push()
       }
       else {
         res.json(404).json({success: false, error: 'User not found'});
