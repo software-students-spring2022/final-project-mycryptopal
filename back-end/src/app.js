@@ -28,6 +28,15 @@ mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO
       console.error(`Error connecting to the database. \n${err}`);
     });
 
+// Schedule API update
+const cron = require('node-cron');
+const {updateNews} = require('./api/newsAPI');
+cron.schedule('5 * * * *', async () => {
+  console.log('Updating news every 5 minutes');
+  await updateNews();
+  console.log('Finished updating news');
+});
+
 // Middleware
 app.use('/static', express.static(PUBLIC_DIR)); // Serves static files
 
