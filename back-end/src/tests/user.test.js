@@ -109,6 +109,23 @@ describe('Testing /user routes', () => {
         res.body.should.have.key('success');
         res.body.success.should.equal(true);
       });
+      it('should respond with a 400 status code if the provided username is already associated with another user', async () => {
+        const userInput = {
+          username: 'testuser2',
+          email: 'jsmith@mail.com',
+        };
+        const res = await chai
+            .request(app)
+            .post('/user/update/info')
+            .set('Authorization', `JWT ${process.env.TEST_AUTH_TOKEN}`)
+            .send(userInput);
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.keys(['success', 'error']);
+        res.body.success.should.equal(false);
+        res.body.error.should.be.a('string');
+        res.body.error.should.equal('There is already an user with this username');
+      });
       it('should respond with a 400 status code if the provided username is shorter than 6 characters', async () => {
         const userInput = {
           username: 'abcde',
