@@ -67,6 +67,10 @@ function Crypto() {
     setAlertOpen(true);
   }
 
+  function handleDialogDropConfirm() {
+    
+  }
+
   function handleDialogConfirm() {
     // gets the value user inputted 
     const cryptoAmount = document.getElementById('crypto-amount').value
@@ -447,10 +451,34 @@ function Crypto() {
 
         </Box>
 
+        <Dialog open={dialogDropOpen} onClose={handleDialogClose}>
+          <DialogTitle>Drop {coinData.symbol} </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Please enter a quantity of {coinData.symbol}. Your changes will be reflected in your assets graph. Please
+              enter a number greater than 0. 
+            </DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="crypto-amount"
+              label="Quantity"
+              type="number"
+              inputProps={{min: 0}}
+              fullWidth
+              variant="standard"
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleDialogClose}>Cancel</Button>
+            <Button onClick={handleDialogDropConfirm}>Confirm</Button>
+          </DialogActions>
+        </Dialog>
+
         
 
         <Dialog open={dialogOpen} onClose={handleDialogClose}>
-          <DialogTitle>Add/Drop</DialogTitle>
+          <DialogTitle>Add {coinData.symbol} </DialogTitle>
           <DialogContent>
             <DialogContentText>
               Please enter a quantity of {coinData.symbol}. Your changes will be reflected in your assets graph. Please
