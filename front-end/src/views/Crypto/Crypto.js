@@ -79,12 +79,15 @@ function Crypto() {
 
     if (cryptoAmount < 0 || cryptoAmount.length == 0) {
       setAlertAddDropFail(true);
+      setDialogDropOpen(false);
+    }
+    else {
+      setAlertDropSuccess(true);
     }
     // Add a conditional statement to make sure the crypto is already in the users assets
 
 
     setDialogDropOpen(false);
-    setAlertDropSuccess(true);
   }
 
   function handleDialogConfirm() {
@@ -93,6 +96,10 @@ function Crypto() {
 
     if (cryptoAmount < 0 || cryptoAmount.length == 0) {
       setAlertAddDropFail(true);
+      setDialogDropOpen(false);
+    }
+    else {
+      setAlertSuccess(true);
     }
 
     // query for user
@@ -108,7 +115,6 @@ function Crypto() {
 
 
     setDialogOpen(false);
-    setAlertSuccess(true);
   }
 
   function handleAlertClose(event, reason) {
@@ -119,13 +125,18 @@ function Crypto() {
   }
 
 
-
   function handleAlertAddDropFail(event, reason) {
     if (reason === 'clickaway') {
       return;
     }
     setAlertAddDropFail(false);
-    
+  }
+
+  function handleDropSuccess(event, reason) {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setAlertDropSuccess(false);
   }
 
   function handleSuccess(event, reason) {
