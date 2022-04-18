@@ -5,15 +5,14 @@ require('dotenv').config({
   silent: true, path: path.join(__dirname, '../..', '.env'),
 });
 
-const userValidationRules = () => {
-  return [
-    // username must be an email
-    body('username').isEmail(),
-    body('email').normalizeEmail().isEmail(),
-    // password must be at least 5 chars long
-    body('password').matches(process.env.PASSWORD_REGEX),
-  ];
-};
+const userValidationRules = () => [
+  // username must be an email
+  body('username').isString().notEmpty()
+      .isLength({min: 6}),
+  body('email').normalizeEmail().isEmail(),
+  // password must be at least 5 chars long
+  body('password').matches(process.env.PASSWORD_REGEX),
+];
 
 const validate = (req, res, next) => {
   const errors = validationResult(req);
