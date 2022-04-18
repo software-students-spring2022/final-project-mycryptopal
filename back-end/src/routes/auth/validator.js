@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 const {body, validationResult} = require('express-validator');
+const path = require('path');
 
 require('dotenv').config({
   silent: true, path: path.join(__dirname, '../..', '.env'),
@@ -10,7 +11,7 @@ const userValidationRules = () => {
     // username must be an email
     body('username').isString().notEmpty().isLength({min: 6}),
     body('email').normalizeEmail().isEmail(),
-    // password must be at least 5 chars long
+    // password must be at least 6 chars long
     body('password').matches(process.env.PASSWORD_REGEX),
   ];
 };
