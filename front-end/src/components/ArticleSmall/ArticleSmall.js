@@ -16,7 +16,7 @@ function ArticleSmall(props) {
     <>
       <Grid container className={`articleSmall`}>
         <Grid item xs={12} md={4} className={`articleSmallPicture`} onClick={() => window.open(article.url)}>
-          <img src={article.urlToImage} alt=""></img>
+          <img src={article.imageUrl} alt=""></img>
         </Grid>
 
         <Grid item xs={0} md={0.5}></Grid>
@@ -44,13 +44,13 @@ function ArticleSmall(props) {
 
               <Box display={{'xs': 'none', 'md': 'block'}}>
                 <Typography variant='body' textAlign={'justify'}>
-                  {article.description}
+                  {article.summary}
                 </Typography>
               </Box>
 
               <Box display={{'xs': 'block', 'md': 'none'}}>
                 <Typography variant='caption' textAlign={'justify'}>
-                  {article.description}
+                  {article.summary}
                 </Typography>
               </Box>
 
@@ -59,8 +59,8 @@ function ArticleSmall(props) {
             <Grid item xs={12}>
               {
                 (() => {
-                  if (article.source && article.source.name) {
-                    return <Chip className={'articleSourceChip'} label={article.source.name} />;
+                  if (article.source) {
+                    return <Chip className={'articleSourceChip'} label={article.source} />;
                   } else {
                     return <Chip className={'articleSourceChip'} label="" />;
                   }

@@ -1,75 +1,51 @@
 /* eslint no-unused-vars: "off", no-undef: "off", max-len: "off" */
 
-// const app = require('../app');
-// const chai = require('chai');
-// const chaiHttp = require('chai-http');
-// const should = chai.should();
-// chai.use(chaiHttp);
+const app = require('../app');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const should = chai.should();
+chai.use(chaiHttp);
 
-// describe('GET /api/news', () => {
-//   it('should respond with an object containing an array of crypto-related news articles with a default length when no limit is specified', (done) => {
-//     chai
-//         .request(app)
-//         .get('/api/news')
-//         .end((err, res) => {
-//           res.should.have.status(200);
-//           res.body.should.be.a('object');
-//           res.body.should.have.property('articles');
-//           res.body.articles.should.have.lengthOf(20);
-//           done();
-//         });
-//   });
-//   it('should respond with an object containing an array of a single crypto-related news article and its info when the specified limit is 1', (done) => {
-//     chai
-//         .request(app)
-//         .get('/api/news')
-//         .query({'limit': 1})
-//         .end((err, res) => {
-//           res.should.have.status(200);
-//           res.body.should.be.a('object');
-//           res.body.should.have.property('articles');
-//           res.body.articles.should.have.lengthOf(1);
-//           done();
-//         });
-//   });
-//   it('should respond with an object containing an array of multiple crypto-related news articles and their info when the specified limit is > 1', (done) => {
-//     chai
-//         .request(app)
-//         .get('/api/news')
-//         .query({'limit': 100})
-//         .end((err, res) => {
-//           res.should.have.status(200);
-//           res.body.should.be.a('object');
-//           res.body.should.have.property('articles');
-//           res.body.articles.should.have.lengthOf(100);
-//           done();
-//         });
-//   });
-//   it('should respond with a 400 status code and an object containing an empty array of news articles if the limit exceeds the API\'s restriction of 100 articles per request', (done) => {
-//     chai
-//         .request(app)
-//         .get('/api/news')
-//         .query({'limit': 101})
-//         .end((err, res) => {
-//           res.should.have.status(400);
-//           res.body.should.be.a('object');
-//           res.body.should.have.property('articles');
-//           res.body.articles.should.have.lengthOf(0);
-//           done();
-//         });
-//   });
-//   it('should respond with an object containing an array of crypto-related news articles with a default length when the limit is of invalid format', (done) => {
-//     chai
-//         .request(app)
-//         .get('/api/news?')
-//         .query({'limit': 'invalidLimit'})
-//         .end((err, res) => {
-//           res.should.have.status(200);
-//           res.body.should.be.a('object');
-//           res.body.should.have.property('articles');
-//           res.body.articles.should.have.lengthOf(20);
-//           done();
-//         });
-//   });
-// });
-
+describe('Testing news route', () => {
+  describe('GET /api/news/feed', () => {
+    it('should respond with an object containing a specified number of news articles, sorted by date published - latest first', async () => {
+      const res = await chai.request(app).get('/api/news/feed').query({'limit': 5});
+      res.should.have.status(200);
+      res.body.should.be.a('object');
+      res.body.should.have.keys(['success', 'articles']);
+      res.body.success.should.equal(true);
+      res.body.articles.should.be.a('array');
+      res.body.articles.should.have.lengthOf(5);
+    });
+    it('should respond with a 400 status code and an error message if the specified limit is 0 or lower', (done) => {
+      chai
+          .request(app)
+          .get('/api/news/feed')
+          .query({'limit': -1})
+          .end((err, res) => {
+            res.should.have.status(400);
+            res.body.should.be.a('object');
+            res.body.should.have.keys(['success', 'error']);
+            res.body.success.should.equal(false);
+            res.body.error.should.be.a('string');
+            res.body.error.should.equal('Invalid limit');
+            done();
+          });
+    });
+    it('should respond with a 400 status code and an error message if the specified limit is not a number', (done) => {
+      chai
+          .request(app)
+          .get('/api/news/feed')
+          .query({'limit': 'invalidLimit'})
+          .end((err, res) => {
+            res.should.have.status(400);
+            res.body.should.be.a('object');
+            res.body.should.have.keys(['success', 'error']);
+            res.body.success.should.equal(false);
+            res.body.error.should.be.a('string');
+            res.body.error.should.equal('Invalid limit');
+            done();
+          });
+    });
+  });
+});

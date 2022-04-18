@@ -8,7 +8,6 @@ const path = require('path');
 // Constants
 const PUBLIC_DIR = path.join(__dirname, `../public`);
 const router = require('./routes/router');
-const faqs = require('./data/faqs.json');
 
 // Stores custom environmental variables
 require('dotenv').config({
@@ -28,6 +27,15 @@ mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO
       console.error(`Error connecting to the database. \n${err}`);
     });
 
+// Schedule API update
+const cron = require('node-cron');
+const {updateNews} = require('./api/newsAPI');
+cron.schedule('*/5 * * * *', async () => {
+  console.log('Updating news every 5 minutes');
+  await updateNews();
+  console.log('Finished updating news');
+});
+
 // Middleware
 app.use('/static', express.static(PUBLIC_DIR)); // Serves static files
 
@@ -40,15 +48,6 @@ app.use(cors()); // Enables CORS
 app.use('/', router);
 
 // Placeholder/not important yet
-app.get('/faqs', (req, res) => {
-  res.send(faqs);
-});
-
-app.post('/contact', (req, res) => {
-  console.log(req.body);
-  res.sendStatus(200);
-});
-
 app.get('/assets', (req, res) => {
   const COINS = ['BTC', 'ETH', 'DOGE', 'SOL', 'XMR'];
   const FRACTIONS = new Array(COINS.length).fill(0).map(() => {
