@@ -87,7 +87,7 @@ router.post('/update/info',
             }
           }
           if (duplicateUsername) {
-            res.status(400).json({success: false, error: 'There is already an user with this username'});
+            res.status(400).json({success: false, error: 'A user with this username already exists'});
           } else {
             const updatedInfo = req.body;
             Object.keys(updatedInfo).forEach((key) => {

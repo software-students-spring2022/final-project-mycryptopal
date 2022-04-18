@@ -124,7 +124,7 @@ describe('Testing /user routes', () => {
         res.body.should.have.keys(['success', 'error']);
         res.body.success.should.equal(false);
         res.body.error.should.be.a('string');
-        res.body.error.should.equal('There is already an user with this username');
+        res.body.error.should.equal('A user with this username already exists');
       });
       it('should respond with a 400 status code if the provided username is shorter than 6 characters', async () => {
         const userInput = {
