@@ -19,9 +19,9 @@ function Contact() {
 
   useEffect(() => {
     async function getFAQs() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/faqs`);
-      const data = await res.json();
-      setFAQs(data);
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/info/faq`);
+      const data = res.data;
+      setFAQs(data.faqs);
     }
     getFAQs();
   }, []);
