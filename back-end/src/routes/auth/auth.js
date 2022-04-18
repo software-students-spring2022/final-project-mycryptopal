@@ -39,30 +39,35 @@ router.post('/register', userValidationRules(), validate, async (req, res) => {
   const email = req.body.email;
   const reenter = req.body.reenter;
 
-  if (password !== reenter) {
-    res
-        .status(401)
-        .json({success: false, message: `Re-entered password does not match.`});
+  const duplicateUsers = await User.find({username: username});
+
+  if (duplicateUsers.length > 0) {
+    res.status(400).json({success: false, error: 'A user with this username already exists'});
   }
   else {
-    const passwordSalt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, passwordSalt);
-    const userNum = await User.countDocuments();
-
-    const registeredUser = new User({
-      user_id: userNum + 1,
-      username: username,
-      password: hashedPassword,
-      email: email,
-    });
-
-    try {
-      const saved = await registeredUser.save();
-      res.json({success: true});
-      console.log(saved);
+    if (password !== reenter) {
+      res.status(401).json({success: false, message: `Re-entered password does not match.`});
     }
-    catch (err) {
-      console.log(err);
+    else {
+      const passwordSalt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, passwordSalt);
+      const userNum = await User.countDocuments();
+  
+      const registeredUser = new User({
+        user_id: userNum + 1,
+        username: username,
+        password: hashedPassword,
+        email: email,
+      });
+  
+      try {
+        await registeredUser.save();
+        res.json({success: true});
+      }
+      catch (err) {
+        console.log(err);
+        res.status(500).json({success: false, error: 'Server error'});
+      }
     }
   }
 });

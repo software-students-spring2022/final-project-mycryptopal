@@ -99,7 +99,7 @@ function Contact() {
             <form id="contact-form" onSubmit={handleSubmitMessage}>
               <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
-                  <TextField name='contactName' id="contact-name" label="Your Name" variant="outlined" placeholder={`${user.firstName} ${user.lastName}`} fullWidth InputLabelProps={{shrink: true}}/>
+                  <TextField name='contactName' id="contact-name" label="Your Name" variant="outlined" placeholder={`${user.firstName || ' '} ${user.lastName || ' '}`} fullWidth InputLabelProps={{shrink: true}}/>
                 </Grid>
 
                 <Grid item xs={12} md={6}>
