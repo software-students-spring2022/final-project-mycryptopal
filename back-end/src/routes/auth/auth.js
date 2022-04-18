@@ -18,7 +18,8 @@ const {jwtOptions, jwtStrategy} = require('./jwt-config.js');
 passport.use(jwtStrategy);
 
 const User = require('../../models/User');
-const {body, validationResult} = require('express-validator');
+const {userValidationRules, validate} = require('./validator.js');
+
 
 router.get('/protected', passport.authenticate('jwt', {session: false}), (req, res) => {
   res.json({
@@ -32,7 +33,7 @@ router.get('/protected', passport.authenticate('jwt', {session: false}), (req, r
   });
 });
 
-router.post('/register', async (req, res) => {
+router.post('/register', userValidationRules(), validate, async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
