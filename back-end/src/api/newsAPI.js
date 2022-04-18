@@ -19,7 +19,6 @@ async function updateNews() {
     'cryptoslate.com',
     'bitcoinist.com',
     'apnews.com',
-    'bbc.co.uk',
     'economist.com',
     'npr.org',
     'u.today',

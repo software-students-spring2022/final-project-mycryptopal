@@ -49,15 +49,6 @@ app.use(cors()); // Enables CORS
 app.use('/', router);
 
 // Placeholder/not important yet
-app.get('/faqs', (req, res) => {
-  res.send(faqs);
-});
-
-app.post('/contact', (req, res) => {
-  console.log(req.body);
-  res.sendStatus(200);
-});
-
 app.get('/assets', (req, res) => {
   const COINS = ['BTC', 'ETH', 'DOGE', 'SOL', 'XMR'];
   const FRACTIONS = new Array(COINS.length).fill(0).map(() => {
