@@ -11,8 +11,7 @@ router.get('/count', async (req, res) => {
     const lessonCount = await Lesson.countDocuments();
     res.send({success: true, count: lessonCount});
   } catch (err) {
-    res.status(404);
-    res.json({success: false, error: 'Count not found'});
+    res.status(500).json({success: false, error: 'Server error'});
   }
 });
 

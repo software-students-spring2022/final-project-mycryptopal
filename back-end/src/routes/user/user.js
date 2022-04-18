@@ -32,30 +32,35 @@ const s3Storage = multerS3({
       cb(null, `u/${req.body.userId}/${newFilename}`);
       req.body.success = true;
     } catch (err) {
-      req.body.success = false;
-      req.body.error = 'Error during user avatar upload';
+      console.log('Error during user avatar upload');
       console.log(err);
     }
   },
 });
-const upload = multer({storage: s3Storage});
+const imageFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    req.body.code = 400;
+    req.body.success = false;
+    req.body.error = 'Invalid filetype (not an image)';
+    cb(null, false);
+  }
+};
+const upload = multer({storage: s3Storage, fileFilter: imageFilter});
 
 // Routes
-router.get('/avatar/:userId', async (req, res) => {
-  const userId = req.params.userId;
-  const user = await User.findOne({user_id: userId});
-  if (user) {
-    res.json({success: true, url: `https://${process.env.AWS_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/u/${req.params.userId}/${user.avatar}`});
-  } else {
-    res.status(400).json({success: false, error: `User does not exist`});
-  }
+router.get('/avatar', async (req, res) => {
+  const user = req.user;
+  const userId = user.user_id;
+  res.json({success: true, url: `https://${process.env.AWS_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/u/${userId}/${user.avatar}`});
 });
 
 router.post('/update/avatar', upload.single('avatar'), (req, res) => {
   if (req.body.success) {
     res.json({success: true});
   } else {
-    res.status(500).json({success: false, error: req.body.error});
+    res.status(req.body.code).json({success: false, error: req.body.error});
   }
 });
 

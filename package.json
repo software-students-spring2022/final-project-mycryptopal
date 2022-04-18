@@ -30,7 +30,7 @@
     }
   },
   "scripts": {
-    "test": "nyc mocha ./back-end/src/tests/*.js --timeout=3000"
+    "test": "nyc mocha ./back-end/src/tests/*.js --exit --timeout=3000"
   },
   "repository": {
     "type": "git",
