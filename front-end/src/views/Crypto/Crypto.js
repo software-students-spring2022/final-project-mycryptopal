@@ -37,7 +37,9 @@ function Crypto() {
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertAddDropFail, setAlertAddDropFail] = useState(false);
   const [alertSuccess, setAlertSuccess] = useState(false); 
+  const [dialogDropOpen, setDialogDropOpen] = useState(false);
   const [user, setUser] = useState({});
+  
 
   const {symbol} = useParams();
 
@@ -49,6 +51,10 @@ function Crypto() {
       return 'red';
     }
     return;
+  }
+
+  function handleDialogDropOpen() {
+    setDialogDropOpen(true);
   }
 
   function handleDialogOpen() {
@@ -429,7 +435,7 @@ function Crypto() {
                 </Grid>
 
                 <Grid item xs={6}>
-                <Button variant="outlined" className="cryptoButtons" onClick={handleDialogOpen}>
+                <Button variant="outlined" className="cryptoButtons" onClick={handleDialogDropOpen}>
                     Drop
                   </Button>
                 </Grid>
@@ -440,6 +446,8 @@ function Crypto() {
 
 
         </Box>
+
+        
 
         <Dialog open={dialogOpen} onClose={handleDialogClose}>
           <DialogTitle>Add/Drop</DialogTitle>
