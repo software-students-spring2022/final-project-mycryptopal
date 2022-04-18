@@ -8,7 +8,6 @@ const path = require('path');
 // Constants
 const PUBLIC_DIR = path.join(__dirname, `../public`);
 const router = require('./routes/router');
-const faqs = require('./data/faqs.json');
 
 // Stores custom environmental variables
 require('dotenv').config({
@@ -31,7 +30,7 @@ mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO
 // Schedule API update
 const cron = require('node-cron');
 const {updateNews} = require('./api/newsAPI');
-cron.schedule('5 * * * *', async () => {
+cron.schedule('*/5 * * * *', async () => {
   console.log('Updating news every 5 minutes');
   await updateNews();
   console.log('Finished updating news');
