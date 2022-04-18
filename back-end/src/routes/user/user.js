@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
 const {Router} = require('express');
 const router = new Router({mergeParams: true});
 const User = require('../../models/User');
@@ -75,18 +75,26 @@ router.post('/update/info',
     async (req, res) => {
       const validationErrors = validationResult(req);
       if (validationErrors.isEmpty()) {
-        const userId = req.user.user_id;
         try {
+          const userId = req.user.user_id;
           const user = await User.findOne({user_id: userId});
-          if (user) {
+          const changedUsername = (user.username !== req.body.username);
+          let duplicateUsername = false;
+          if (changedUsername) {
+            const duplicateUsers = await User.find({username: req.body.username});
+            if (duplicateUsers.length > 0) {
+              duplicateUsername = true;
+            }
+          }
+          if (duplicateUsername) {
+            res.status(400).json({success: false, error: 'There is already an user with this username'});
+          } else {
             const updatedInfo = req.body;
             Object.keys(updatedInfo).forEach((key) => {
               user[key] = updatedInfo[key];
             });
             user.save();
             res.json({success: true});
-          } else {
-            res.json(404).json({success: false, error: 'User not found'});
           }
         } catch (err) {
           console.log(err);
