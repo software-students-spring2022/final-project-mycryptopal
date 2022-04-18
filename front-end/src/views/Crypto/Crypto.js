@@ -37,6 +37,7 @@ function Crypto() {
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertAddDropFail, setAlertAddDropFail] = useState(false);
   const [alertSuccess, setAlertSuccess] = useState(false); 
+  const [alertDropSuccess, setAlertDropSuccess] = useState(false);
   const [dialogDropOpen, setDialogDropOpen] = useState(false);
   const [user, setUser] = useState({});
   
@@ -67,16 +68,30 @@ function Crypto() {
     setAlertOpen(true);
   }
 
+  function handleDialogDropClose() {
+    setDialogDropOpen(false);
+    setAlertOpen(true);
+  }
+
   function handleDialogDropConfirm() {
-    
+    const cryptoAmount = document.getElementById('crypto-amount').value
+    console.log(cryptoAmount)
+
+    if (cryptoAmount < 0 || cryptoAmount.length == 0) {
+      setAlertAddDropFail(true);
+    }
+    // Add a conditional statement to make sure the crypto is already in the users assets
+
+
+    setDialogDropOpen(false);
+    setAlertDropSuccess(true);
   }
 
   function handleDialogConfirm() {
-    // gets the value user inputted 
     const cryptoAmount = document.getElementById('crypto-amount').value
     console.log(cryptoAmount)
+
     if (cryptoAmount < 0 || cryptoAmount.length == 0) {
-      // should create a pop up message saying you inputted an incorrect value
       setAlertAddDropFail(true);
     }
 
@@ -103,6 +118,8 @@ function Crypto() {
     setAlertOpen(false);
   }
 
+
+
   function handleAlertAddDropFail(event, reason) {
     if (reason === 'clickaway') {
       return;
@@ -116,7 +133,13 @@ function Crypto() {
       return;
     }
     setAlertSuccess(false);
-    
+  }
+
+  function handleDropSuccess(event, reason) {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setAlertDropSuccess(false);
   }
 
   useEffect(() => {
@@ -451,7 +474,7 @@ function Crypto() {
 
         </Box>
 
-        <Dialog open={dialogDropOpen} onClose={handleDialogClose}>
+        <Dialog open={dialogDropOpen} onClose={handleDialogDropClose}>
           <DialogTitle>Drop {coinData.symbol} </DialogTitle>
           <DialogContent>
             <DialogContentText>
@@ -470,7 +493,7 @@ function Crypto() {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleDialogClose}>Cancel</Button>
+            <Button onClick={handleDialogDropClose}>Cancel</Button>
             <Button onClick={handleDialogDropConfirm}>Confirm</Button>
           </DialogActions>
         </Dialog>
@@ -509,6 +532,11 @@ function Crypto() {
         <Snackbar open={alertSuccess} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleSuccess}>
             <Alert onClose={handleSuccess} severity="success" sx={{width: '100%'}}>
               Successfully added {coinData.symbol}!
+            </Alert>
+        </Snackbar>
+        <Snackbar open={alertDropSuccess} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleDropSuccess}>
+            <Alert onClose={handleDropSuccess} severity="success" sx={{width: '100%'}}>
+              Successfully dropped {coinData.symbol}!
             </Alert>
         </Snackbar>
 
