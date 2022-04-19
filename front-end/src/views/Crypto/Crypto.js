@@ -40,6 +40,7 @@ function Crypto() {
   const [alertDropSuccess, setAlertDropSuccess] = useState(false);
   const [dialogDropOpen, setDialogDropOpen] = useState(false);
   const [user, setUser] = useState({});
+  const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
   
 
   const {symbol} = useParams();
@@ -85,8 +86,6 @@ function Crypto() {
       setAlertDropSuccess(true);
     }
     // Add a conditional statement to make sure the crypto is already in the users assets
-
-
     setDialogDropOpen(false);
   }
 
@@ -100,19 +99,14 @@ function Crypto() {
     }
     else {
       setAlertSuccess(true);
+      try {
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/assets`, coinData.symbol, cryptoAmount, {headers: authHeader});
+      }
+      catch (err) {
+        console.log('Error updating user info');
+        console.log(err.response.data);
+      }
     }
-
-    // query for user
-    // push info to database
-    // try {
-    //   await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/assets`, coinData.symbol, cryptoAmount);
-    //   window.location.href = 'analytics';
-    // }
-    // catch (err) {
-    //   console.log('Error updating user info');
-    //   console.log(err.response.data);
-    // }
-
 
     setDialogOpen(false);
   }
