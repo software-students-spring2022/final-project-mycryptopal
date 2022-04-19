@@ -89,7 +89,7 @@ function Crypto() {
     setDialogDropOpen(false);
   }
 
-  function handleDialogConfirm() {
+  async function handleDialogConfirm() {
     const cryptoAmount = document.getElementById('crypto-amount').value
     console.log(cryptoAmount)
 
@@ -98,14 +98,14 @@ function Crypto() {
       setDialogDropOpen(false);
     }
     else {
-      setAlertSuccess(true);
       try {
-        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/assets`, coinData.symbol, cryptoAmount, {headers: authHeader});
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/assets/${coinData.symbol}`, cryptoAmount, {headers: authHeader});
       }
       catch (err) {
         console.log('Error updating user info');
         console.log(err.response.data);
       }
+      setAlertSuccess(true);
     }
 
     setDialogOpen(false);

@@ -70,13 +70,12 @@ router.get('/assets', (req, res) => {
 })
 
 router.post('/update/assets/:symbol',
-  const SYMBOL = req.params.symbol.toUpperCase(),
   // add some sort of way to input the coin's symbol and quantity into here
-  const quantity = 3; // if quantity is negative then, it is a drop command
-
 
   async (req, res) => {
+    const SYMBOL = req.params.symbol.toUpperCase()
     const userId = req.user.user_id;
+    const quantity = 3;   // if quantity is negative then, it is a drop command
     try {
       const user = await User.findOne({user_id: userId});
       if (user) {
