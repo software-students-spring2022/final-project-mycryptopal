@@ -69,9 +69,9 @@ router.get('/assets', (req, res) => {
   res.json(user);
 })
 
-router.post('/update/assets',
+router.post('/update/assets/:symbol',
+  const SYMBOL = req.params.symbol.toUpperCase(),
   // add some sort of way to input the coin's symbol and quantity into here
-  const slug = 'BTC';
   const quantity = 3; // if quantity is negative then, it is a drop command
 
 
@@ -81,7 +81,6 @@ router.post('/update/assets',
       const user = await User.findOne({user_id: userId});
       if (user) {
         // add to the assets property of the user here
-        // user.assets.push()
         assets = user.assets;
         if (slug in assets && quantity > 0) { // case user has slug already and is simply adding
           assets[slug] += quantity;
