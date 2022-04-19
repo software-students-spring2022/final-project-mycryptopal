@@ -17,7 +17,7 @@ function AvatarUploader(props) {
       }
       getAvatarURL();
     }
-  }, [props.userId]);
+  }, [authHeader, props.userId]);
 
   function onOverlayClick() {
     fileDialog.current.click();

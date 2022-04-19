@@ -32,7 +32,7 @@ function Contact() {
     }
     getUser();
     getFAQs();
-  }, []);
+  }, [authHeader]);
 
   async function handleSubmitMessage(evt) {
     evt.preventDefault();

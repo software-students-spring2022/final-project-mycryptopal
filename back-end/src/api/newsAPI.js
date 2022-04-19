@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const axios = require('axios');
 const path = require('path');
 const Article = require('../models/Article');

@@ -23,10 +23,10 @@ router.post('/contact', async (req, res) => {
       email: req.body.email,
       message: req.body.message,
       user_id: req.body.user_id,
-    })
+    });
     await message.save();
     res.json({success: true});
-  } catch(err) {
+  } catch (err) {
     res.status(500).json({success: false, error: 'Server error'});
   }
 });
