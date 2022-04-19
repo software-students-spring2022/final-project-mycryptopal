@@ -100,12 +100,12 @@ function Crypto() {
     else {
       try {
         await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/assets/${coinData.symbol}`, cryptoAmount, {headers: authHeader});
+        setAlertSuccess(true);
       }
       catch (err) {
         console.log('Error updating user info');
         console.log(err.response.data);
       }
-      setAlertSuccess(true);
     }
 
     setDialogOpen(false);
