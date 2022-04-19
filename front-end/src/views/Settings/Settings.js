@@ -57,7 +57,7 @@ function Settings() {
       setUser(data);
     }
     getUser();
-  }, [authHeader]);
+  }, []);
 
   return (
     <>

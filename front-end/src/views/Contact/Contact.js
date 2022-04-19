@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useState} from 'react';
 import './Contact.css';
 import Accordion from '@mui/material/Accordion';
@@ -32,7 +33,7 @@ function Contact() {
     }
     getUser();
     getFAQs();
-  }, [authHeader]);
+  }, []);
 
   async function handleSubmitMessage(evt) {
     evt.preventDefault();

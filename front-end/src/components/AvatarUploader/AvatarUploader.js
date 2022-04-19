@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useRef, useState} from 'react';
 import './AvatarUploader.css';
 import Typography from '@mui/material/Typography';
@@ -17,7 +18,7 @@ function AvatarUploader(props) {
       }
       getAvatarURL();
     }
-  }, [authHeader, props.userId]);
+  }, [props.userId]);
 
   function onOverlayClick() {
     fileDialog.current.click();
