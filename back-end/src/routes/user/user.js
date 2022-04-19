@@ -71,6 +71,9 @@ router.get('/assets', (req, res) => {
 
 router.post('/update/assets',
   // add some sort of way to input the coin's symbol and quantity into here
+  const slug = 'BTC';
+  const quantity = 3; // if quantity is negative then, it is a drop command
+
 
   async (req, res) => {
     const userId = req.user.user_id;
@@ -79,6 +82,15 @@ router.post('/update/assets',
       if (user) {
         // add to the assets property of the user here
         // user.assets.push()
+        assets = user.assets;
+        if (slug in assets && quantity > 0) { // case user has slug already and is simply adding
+          assets[slug] += quantity;
+        }
+        else if (assets[slug] == undefined && quantity > 0) { // case user does not have slug and is adding
+          assets[slug] = quantity;
+        } 
+        
+        
       }
       user.save();
       res.json({success: true});
