@@ -80,6 +80,8 @@ router.post('/update/assets',
         // add to the assets property of the user here
         // user.assets.push()
       }
+      user.save();
+      res.json({success: true});
       else {
         res.json(404).json({success: false, error: 'User not found'});
       }
