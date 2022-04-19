@@ -89,11 +89,16 @@ router.post('/update/assets',
         else if (assets[slug] == undefined && quantity > 0) { // case user does not have slug and is adding
           assets[slug] = quantity;
         } 
-        
-        
+        else if (slug in assets && quantity < 0) { // case user has slug already and is subtracting
+          assets[slug] += quantity;
+          if (assets[slug] < 0) {
+            delete assets[slug]; // if the quantity of the asset is not positive, the user effectively removes all of their crypto, maybe add an alert for the user
+          }
+        }
+        user.save();
+        res.json({success: true});
       }
-      user.save();
-      res.json({success: true});
+
       else {
         res.json(404).json({success: false, error: 'User not found'});
       }
