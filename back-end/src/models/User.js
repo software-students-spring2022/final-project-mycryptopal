@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   email: String,
   firstName: String,
   lastName: String,
-  assets: Array,
+  assets: Object,
   lessonProgress: Array,
   avatar: String,
 });
