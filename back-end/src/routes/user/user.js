@@ -93,8 +93,13 @@ router.post('/update/assets/:symbol',
           delete assets[SYMBOL];
           console.log(`deleting ${SYMBOL}`);
           }
+        console.log('Before');
+        console.log(assets);
+        console.log(assets[SYMBOL])
+        console.log(cryptoAmount);
         user.save();
         res.json({success: true});
+        console.log('After');
         console.log(assets);
         console.log(assets[SYMBOL])
         console.log(cryptoAmount);
