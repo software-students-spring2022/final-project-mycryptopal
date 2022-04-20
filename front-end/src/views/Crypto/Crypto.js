@@ -74,18 +74,26 @@ function Crypto() {
     setAlertOpen(true);
   }
 
-  function handleDialogDropConfirm() {
+  async function handleDialogDropConfirm() {
     const cryptoAmount = document.getElementById('crypto-amount').value
-    console.log(cryptoAmount)
+    // console.log(cryptoAmount)
 
     if (cryptoAmount < 0 || cryptoAmount.length == 0) {
       setAlertAddDropFail(true);
       setDialogDropOpen(false);
     }
     else {
-      setAlertDropSuccess(true);
+      const cryptoDropAmount = cryptoAmount * -1;
+      console.log(cryptoDropAmount);
+      try {
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/assets/${coinData.symbol}`, {amount : cryptoDropAmount}, {headers: authHeader});
+        setAlertDropSuccess(true);
+      }
+      catch (err) {
+        console.log('Error updating user info');
+        console.log(err.response.data);
+      }
     }
-    // Add a conditional statement to make sure the crypto is already in the users assets
     setDialogDropOpen(false);
   }
 
