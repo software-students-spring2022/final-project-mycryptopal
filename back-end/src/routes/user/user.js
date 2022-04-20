@@ -75,7 +75,7 @@ router.post('/update/assets/:symbol',
   async (req, res) => {
     const SYMBOL = req.params.symbol.toUpperCase()
     const userId = req.user.user_id;
-    const cryptoAmount = req.body.amount;   // if quantity is negative then, it is a drop command
+    const cryptoAmount = parseInt(req.body.amount);   // if quantity is negative then, it is a drop command
     try {
       const user = await User.findOne({user_id: userId});
       if (user) {
@@ -93,13 +93,9 @@ router.post('/update/assets/:symbol',
           delete assets[SYMBOL];
           console.log(`deleting ${SYMBOL}`);
           }
-        console.log('Before');
-        console.log(assets);
-        console.log(assets[SYMBOL])
-        console.log(cryptoAmount);
+        user.markModified('assets');
         user.save();
         res.json({success: true});
-        console.log('After');
         console.log(assets);
         console.log(assets[SYMBOL])
         console.log(cryptoAmount);

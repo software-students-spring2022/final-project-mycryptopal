@@ -39,7 +39,6 @@ function Crypto() {
   const [alertSuccess, setAlertSuccess] = useState(false); 
   const [alertDropSuccess, setAlertDropSuccess] = useState(false);
   const [dialogDropOpen, setDialogDropOpen] = useState(false);
-  const [user, setUser] = useState({});
   const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
   
 
