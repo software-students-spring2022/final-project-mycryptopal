@@ -246,7 +246,7 @@ function Crypto() {
                             </Grid>
 
                             <Grid item xs={6}>
-                              <Button variant="outlined" className="cryptoButtons" onClick={handleDialogOpen}>
+                              <Button variant="outlined" className="cryptoButtons" onClick={handleDialogDropOpen}>
                                 Drop
                               </Button>
                             </Grid>
