@@ -75,26 +75,27 @@ router.post('/update/assets/:symbol',
   async (req, res) => {
     const SYMBOL = req.params.symbol.toUpperCase()
     const userId = req.user.user_id;
-    const quantity = 5;   // if quantity is negative then, it is a drop command
+    const cryptoAmount = req.body.amount;   // if quantity is negative then, it is a drop command
     try {
       const user = await User.findOne({user_id: userId});
       if (user) {
         // add to the assets property of the user here
         assets = user.assets;
-        if (SYMBOL in assets && quantity > 0) { // case user has slug already and is simply adding
-          assets[SYMBOL] += quantity;
-          console.log('case user has slug already and is simply adding')
+        if (SYMBOL in assets && cryptoAmount > 0) { // case user has slug already and is simply adding
+          assets[SYMBOL] += cryptoAmount;
+          console.log(`case user has ${SYMBOL} already and is simply adding ${cryptoAmount}`);
         }
-        else if (assets[SYMBOL] == undefined && quantity > 0) { // case user does not have slug and is adding
-          assets[SYMBOL] = quantity;
-          console.log('case user does not have slug and is adding')
+        else if (assets[SYMBOL] == undefined && cryptoAmount > 0) { // case user does not have slug and is adding
+          assets[SYMBOL] = cryptoAmount;
+          console.log(`case user does not have ${SYMBOL} and is adding ${cryptoAmount}`);
         } 
-        else if (SYMBOL in assets && quantity < 0) { // case user has slug already and is subtracting
-          assets[SYMBOL] += quantity;
-          console.log('case user has slug already and is subtracting')
+        else if (SYMBOL in assets && cryptoAmount < 0) { // case user has slug already and is subtracting
+          assets[SYMBOL] += cryptoAmount;
+          console.log(`case user has ${SYMBOL} already and is subtracting ${cryptoAmount}`);
+
           if (assets[SYMBOL] < 0) {
             delete assets[SYMBOL]; // if the quantity of the asset is not positive, the user effectively removes all of their crypto, maybe add an alert for the user
-            console.log('deleting asset')
+            console.log(`deleting ${SYMBOL}`)
           }
         }
         user.save();

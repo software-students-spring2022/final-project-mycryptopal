@@ -99,7 +99,7 @@ function Crypto() {
     }
     else {
       try {
-        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/assets/${coinData.symbol}`, cryptoAmount, {headers: authHeader});
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/assets/${coinData.symbol}`, {amount : cryptoAmount}, {headers: authHeader});
         setAlertSuccess(true);
       }
       catch (err) {
