@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useRef, useState} from 'react';
 import './AvatarUploader.css';
 import Typography from '@mui/material/Typography';
@@ -11,7 +12,7 @@ function AvatarUploader(props) {
   useEffect(() => {
     if (props.userId) {
       async function getAvatarURL() {
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/avatar/${props.userId}`, {headers: authHeader});
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/avatar`, {headers: authHeader});
         const data = res.data;
         setAvatarURL(`${data.url}`);
       }

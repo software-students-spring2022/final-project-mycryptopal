@@ -29,7 +29,7 @@ function Registration() {
       console.log(`Server response: ${JSON.stringify(res.data, null, 0)}`);
       setResponse(res.data);
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err.response.data));
   }
 
   useEffect(() => {
