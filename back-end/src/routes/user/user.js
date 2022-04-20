@@ -81,27 +81,23 @@ router.post('/update/assets/:symbol',
       if (user) {
         // add to the assets property of the user here
         assets = user.assets;
-        if (SYMBOL in assets && cryptoAmount > 0) { // case user has slug already and is simply adding
+        if (SYMBOL in assets) { // case user has slug already and is simply adding
           assets[SYMBOL] += cryptoAmount;
           console.log(`case user has ${SYMBOL} already and is simply adding ${cryptoAmount}`);
         }
-        else if (assets[SYMBOL] == undefined && cryptoAmount > 0) { // case user does not have slug and is adding
+        else { // case user does not have slug
           assets[SYMBOL] = cryptoAmount;
-          console.log(`case user does not have ${SYMBOL} and is adding ${cryptoAmount}`);
-        } 
-        else if (SYMBOL in assets && cryptoAmount < 0) { // case user has slug already and is subtracting
-          assets[SYMBOL] += cryptoAmount;
-          console.log(`case user has ${SYMBOL} already and is subtracting ${cryptoAmount}`);
-
-          if (assets[SYMBOL] < 0) {
-            delete assets[SYMBOL]; // if the quantity of the asset is not positive, the user effectively removes all of their crypto, maybe add an alert for the user
-            console.log(`deleting ${SYMBOL}`)
-          }
+          console.log(`user has added ${SYMBOL}.`)
         }
+        if (assets[SYMBOL] <= 0) { // Remove crypto from assets field
+          delete assets[SYMBOL];
+          console.log(`deleting ${SYMBOL}`);
+          }
         user.save();
         res.json({success: true});
         console.log(assets);
-        console.log(assets[SYMBOL]);
+        console.log(assets[SYMBOL])
+        console.log(cryptoAmount);
       }
 
       else {
