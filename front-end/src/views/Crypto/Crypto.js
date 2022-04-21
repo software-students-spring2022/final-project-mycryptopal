@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import './Crypto.css';
@@ -24,6 +25,7 @@ import {
   Line,
   ResponsiveContainer,
 } from 'recharts';
+import axios from 'axios';
 
 function Crypto() {
   const [coinData, setCoinData] = useState({slug: '', symbol: '', circulating_supply: 0, quote: {USD: {price: 0, percent_change_24h: 0, volume_24h: 0, market_cap: 0}}});
@@ -38,10 +40,9 @@ function Crypto() {
   const {symbol} = useParams();
 
   function setColor(number) {
-    if(number > 0) {
+    if (number > 0) {
       return 'green';
-    }
-    else if(number < 0) {
+    } else if (number < 0) {
       return 'red';
     }
     return;
@@ -65,36 +66,47 @@ function Crypto() {
 
   useEffect(() => {
     async function getCoinData() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/crypto/data/${symbol}`);
-      if (res.status === 404) {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/crypto/data/${symbol}`);
+        const data = res.data.cryptoData;
+        setCoinData(data);
+      } catch (err) {
         window.location.href = '/notfound';
       }
-      const data = await res.json();
-      setCoinData(data);
-    }
-    getCoinData();
-  }, [symbol]);
-
-  useEffect(() => {
-    async function getCoinGraph() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/crypto/graph/${symbol}?interval=30`);
-      const data = await res.json();
-      setMinTick(data.min);
-      setMaxTick(data.max) ;
-      setCoinGraph(data.values);
     }
     async function getCoinInfo() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/crypto/info/${symbol}`);
-      const data = await res.json();
-      setCoinInfo(data.description);
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/crypto/info/${symbol}`);
+        const data = res.data.cryptoInfo;
+        setCoinInfo(data.description);
+      } catch (err) {
+        console.log('Error fetching info');
+        console.log(err);
+      }
     }
-    getCoinGraph();
+    async function getCoinGraph() {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/crypto/graph/${symbol}?interval=30`);
+        const data = res.data.graphData;
+        setMinTick(data.min);
+        setMaxTick(data.max);
+        setCoinGraph(data.values);
+      } catch (err) {
+        console.log('Error fetching ticker data');
+        console.log(err);
+      }
+    }
+    getCoinData();
     getCoinInfo();
+    getCoinGraph();
+  }, []);
+
+  useEffect(() => {
     if (coinData.id) {
       const logoURL = `${process.env.REACT_APP_COIN_LOGO}/${coinData.id}.png`;
       setCoinLogo(logoURL);
     }
-  }, [coinData, symbol]);
+  }, [coinData]);
 
   return (
     <>
@@ -106,80 +118,80 @@ function Crypto() {
         <Box display={{'xs': 'none', 'md': 'block'}} id="crypto-desktop">
           <Grid container spacing={2}>
             <Grid item xs={9} id="crypto-left">
-                <Grid item xs={12} id="crypto-summary" marginBottom={'5vh'}>
-                  <Grid container spacing={3}>
-                    <Grid item xs={2} id="crypto-image">
-                      <img src={coinLogo} alt="Coin"></img>
-                    </Grid>
+              <Grid item xs={12} id="crypto-summary" marginBottom={'5vh'}>
+                <Grid container spacing={3}>
+                  <Grid item xs={2} id="crypto-image">
+                    <img src={coinLogo} alt="Coin"></img>
+                  </Grid>
 
-                    <Grid item xs={10} id="crypto-basic">
-                      <Grid container spacing={0} height={'100%'} textAlign={'left'} alignItems={'center'}>
-                        <Grid item xs={12} id="crypto-name">
-                          <Typography variant='h3' fontWeight={'bold'}>
-                            {coinData.name} <Chip label={coinData.symbol}/>
-                          </Typography>
-                        </Grid>
+                  <Grid item xs={10} id="crypto-basic">
+                    <Grid container spacing={0} height={'100%'} textAlign={'left'} alignItems={'center'}>
+                      <Grid item xs={12} id="crypto-name">
+                        <Typography variant='h3' fontWeight={'bold'}>
+                          {coinData.name} <Chip label={coinData.symbol}/>
+                        </Typography>
+                      </Grid>
 
-                        <Grid item xs={8} id="crypto-info">
-                          <Grid container spacing={1}>
-                            <Grid item xs={5} id="crypto-price-text">
-                              <Typography variant='h6'>
+                      <Grid item xs={8} id="crypto-info">
+                        <Grid container spacing={1}>
+                          <Grid item xs={5} id="crypto-price-text">
+                            <Typography variant='h6'>
                                 Price (USD)
-                              </Typography>
-                            </Grid>
-                            <Grid item xs={7} color={setColor(coinData.quote.USD.percent_change_24h)} id="crypto-price-data">
-                              <Typography variant='h6'>
-                                {coinData.quote.USD.price.toFixed(5)}
-                              </Typography>                      
-                            </Grid>
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={7} color={setColor(coinData.quote.USD.percent_change_24h)} id="crypto-price-data">
+                            <Typography variant='h6'>
+                              {coinData.quote.USD.price.toFixed(5)}
+                            </Typography>
+                          </Grid>
 
-                            <Grid item xs={5} id="crypto-change-text">
-                              <Typography variant='h6'>
+                          <Grid item xs={5} id="crypto-change-text">
+                            <Typography variant='h6'>
                                 Change (1D)
-                              </Typography>
-                            </Grid>
-                            <Grid item xs={7} id="crypto-change-data">
-                              <Typography variant='h6' color={setColor(coinData.quote.USD.percent_change_24h)}>
-                                {(coinData.quote.USD.percent_change_24h / 100).toFixed(2)}%
-                              </Typography>                         
-                            </Grid>
+                            </Typography>
                           </Grid>
-                        </Grid> 
+                          <Grid item xs={7} id="crypto-change-data">
+                            <Typography variant='h6' color={setColor(coinData.quote.USD.percent_change_24h)}>
+                              {(coinData.quote.USD.percent_change_24h / 100).toFixed(2)}%
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
 
-                        <Grid item xs={4} id="crypto-buttons" textAlign={'center'}>
-                          <Grid container>
-                            <Grid item xs={6}>
-                              <Button variant="contained" className="cryptoButtons" onClick={handleDialogOpen}>
+                      <Grid item xs={4} id="crypto-buttons" textAlign={'center'}>
+                        <Grid container>
+                          <Grid item xs={6}>
+                            <Button variant="contained" className="cryptoButtons" onClick={handleDialogOpen}>
                                 Add
-                              </Button>
-                            </Grid>
-
-                            <Grid item xs={6}>
-                              <Button variant="outlined" className="cryptoButtons" onClick={handleDialogOpen}>
-                                Drop
-                              </Button>
-                            </Grid>
+                            </Button>
                           </Grid>
-                        </Grid>                      
+
+                          <Grid item xs={6}>
+                            <Button variant="outlined" className="cryptoButtons" onClick={handleDialogOpen}>
+                                Drop
+                            </Button>
+                          </Grid>
+                        </Grid>
                       </Grid>
                     </Grid>
                   </Grid>
-
                 </Grid>
 
-                <ResponsiveContainer id="crypto-graph" width="100%" height={300}>
-                  <LineChart data={coinGraph} margin={{'left': 10, 'right': 10}}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="timestamp" tick={{ fontSize: '80%'}} />
+              </Grid>
 
-                    <YAxis type="number" allowDecimals={true} allowDataOverflow={true} tick={{ fontSize: '80%'}} 
+              <ResponsiveContainer id="crypto-graph" width="100%" height={300}>
+                <LineChart data={coinGraph} margin={{'left': 10, 'right': 10}}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="timestamp" tick={{fontSize: '80%'}} />
+
+                  <YAxis type="number" allowDecimals={true} allowDataOverflow={true} tick={{fontSize: '80%'}}
                     domain={[minTick, maxTick]} />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="open" stroke="green" dot={false} />
-                    <Line type="monotone" dataKey="close" stroke="blue" dot={false} />
-                  </LineChart>
-                </ResponsiveContainer>
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="open" stroke="green" dot={false} />
+                  <Line type="monotone" dataKey="close" stroke="blue" dot={false} />
+                </LineChart>
+              </ResponsiveContainer>
             </Grid>
 
             <Grid container xs={3} id="crypto-right" alignItems={'center'}>
@@ -199,7 +211,7 @@ function Crypto() {
                   <Grid item xs={12} id="crypto-volume-data">
                     <Typography>
                       {coinData.quote.USD.volume_24h.toLocaleString('en-US')}
-                    </Typography>                      
+                    </Typography>
                   </Grid>
 
                   <Grid item xs={12} id="crypto-cap-title">
@@ -210,7 +222,7 @@ function Crypto() {
                   <Grid item xs={12} id="crypto-cap-data">
                     <Typography>
                       {coinData.quote.USD.market_cap.toLocaleString('en-US')}
-                    </Typography>                         
+                    </Typography>
                   </Grid>
 
                   <Grid item xs={12} id="crypto-supply-title">
@@ -221,8 +233,8 @@ function Crypto() {
                   <Grid item xs={12} id="crypto-supply-data">
                     <Typography>
                       {coinData.circulating_supply.toLocaleString('en-US')}
-                    </Typography>                         
-                  </Grid>                      
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
 
@@ -254,9 +266,9 @@ function Crypto() {
                   <Grid container spacing={1} height={'100%'}>
 
                     <Grid item xs={12} id="crypto-name">
-                        <Typography variant='h5' fontWeight={'bold'}>
-                          {coinData.name} <Chip label={coinData.symbol}/>
-                        </Typography>
+                      <Typography variant='h5' fontWeight={'bold'}>
+                        {coinData.name} <Chip label={coinData.symbol}/>
+                      </Typography>
                     </Grid>
 
                     <Grid item xs={12} id="crypto-info">
@@ -270,7 +282,7 @@ function Crypto() {
                         <Grid item xs={6} color={setColor(coinData.quote.USD.percent_change_24h)} id="crypto-price-data">
                           <Typography>
                             {coinData.quote.USD.price.toFixed(5)}
-                          </Typography>                      
+                          </Typography>
                         </Grid>
 
                         <Grid item xs={6} id="crypto-change-text">
@@ -282,7 +294,7 @@ function Crypto() {
                         <Grid item xs={6} id="crypto-change-data">
                           <Typography color={setColor(coinData.quote.USD.percent_change_24h)}>
                             {(coinData.quote.USD.percent_change_24h / 100).toFixed(2)}%
-                          </Typography>                         
+                          </Typography>
                         </Grid>
                       </Grid>
                     </Grid>
@@ -295,15 +307,15 @@ function Crypto() {
                 </Grid>
               </Grid>
             </Grid>
-          
+
             <Grid item xs={12} marginTop={'1vh'}>
               <ResponsiveContainer id="crypto-graph" width="100%" height={300}>
                 <LineChart data={coinGraph}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="timestamp" tick={{ fontSize: '80%'}} />
+                  <XAxis dataKey="timestamp" tick={{fontSize: '80%'}} />
 
-                  <YAxis type="number" allowDecimals={true} allowDataOverflow={true} tick={{ fontSize: '80%'}} 
-                  domain={[minTick, maxTick]} />
+                  <YAxis type="number" allowDecimals={true} allowDataOverflow={true} tick={{fontSize: '80%'}}
+                    domain={[minTick, maxTick]} />
                   <Tooltip />
                   <Legend />
                   <Line type="monotone" dataKey="open" stroke="green" dot={false} />
@@ -321,42 +333,42 @@ function Crypto() {
 
               <Grid item xs={12} textAlign={'center'} marginBottom={'1vh'} id="crypto-stats-data">
                 <Grid container spacing={0.5}>
-                      <Grid item xs={6} id="crypto-volume-title">
-                        <Typography fontWeight={'bold'}>
+                  <Grid item xs={6} id="crypto-volume-title">
+                    <Typography fontWeight={'bold'}>
                           Trading Volume
-                        </Typography>
-                      </Grid>
-
-                      <Grid item xs={6} id="crypto-volume-data">
-                        <Typography>
-                          {coinData.quote.USD.volume_24h.toLocaleString('en-US')}
-                        </Typography>                      
-                      </Grid>
-
-                      <Grid item xs={6} id="crypto-cap-title">
-                        <Typography fontWeight={'bold'}>
-                          Market Cap
-                        </Typography>
-                      </Grid>
-
-                      <Grid item xs={6} id="crypto-cap-data">
-                        <Typography>
-                          {coinData.quote.USD.market_cap.toLocaleString('en-US')}
-                        </Typography>                         
-                      </Grid>
-
-                      <Grid item xs={6} id="crypto-supply-title">
-                        <Typography fontWeight={'bold'}>
-                          Circulating Supply
-                        </Typography>
-                      </Grid>
-
-                      <Grid item xs={6} id="crypto-supply-data">
-                        <Typography>
-                          {coinData.circulating_supply.toLocaleString('en-US')}
-                        </Typography>                         
-                      </Grid>                      
+                    </Typography>
                   </Grid>
+
+                  <Grid item xs={6} id="crypto-volume-data">
+                    <Typography>
+                      {coinData.quote.USD.volume_24h.toLocaleString('en-US')}
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={6} id="crypto-cap-title">
+                    <Typography fontWeight={'bold'}>
+                          Market Cap
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={6} id="crypto-cap-data">
+                    <Typography>
+                      {coinData.quote.USD.market_cap.toLocaleString('en-US')}
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={6} id="crypto-supply-title">
+                    <Typography fontWeight={'bold'}>
+                          Circulating Supply
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={6} id="crypto-supply-data">
+                    <Typography>
+                      {coinData.circulating_supply.toLocaleString('en-US')}
+                    </Typography>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
 
@@ -383,7 +395,7 @@ function Crypto() {
                 </Grid>
 
                 <Grid item xs={6}>
-                <Button variant="outlined" className="cryptoButtons" onClick={handleDialogOpen}>
+                  <Button variant="outlined" className="cryptoButtons" onClick={handleDialogOpen}>
                     Drop
                   </Button>
                 </Grid>
@@ -419,10 +431,10 @@ function Crypto() {
         </Dialog>
 
         <Snackbar open={alertOpen} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleAlertClose}>
-            <Alert onClose={handleAlertClose} severity="success" sx={{width: '100%'}}>
+          <Alert onClose={handleAlertClose} severity="success" sx={{width: '100%'}}>
               Placeholder alert
-            </Alert>
-          </Snackbar>
+          </Alert>
+        </Snackbar>
       </div>
     </>
   );

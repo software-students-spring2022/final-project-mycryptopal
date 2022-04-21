@@ -1,29 +1,35 @@
+import {useState, useEffect} from 'react';
 import './Explore.css';
 import ExploreCard from '../../components/ExploreCard/ExploreCard';
-import {useState, useEffect} from 'react';
+import Alert from '@mui/material/Alert';
 import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+import axios from 'axios';
 
 function Explore() {
-  const [coins, setCoins] = useState([]);
+  const [cryptos, setCryptos] = useState([]);
   const [selected, setSelected] = useState('');
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    async function getCoins() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/crypto/explore?limit=100`);
-      const data = await res.json();
-      setCoins(data);
+    async function getCryptos() {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/crypto/explore?limit=100`);
+        const data = res.data.cryptos;
+        setCryptos(data);
+      } catch (err) {
+        console.log('Error fetching cryptos');
+        console.log(err);
+      }
     }
-    getCoins();
+    getCryptos();
   }, []);
 
   function handleAlertClose(evt, reason) {
@@ -35,7 +41,7 @@ function Explore() {
 
   function handleSearch() {
     if (selected) {
-      window.location.href = `crypto/${selected}`;
+      window.location.href = `/crypto/${selected}`;
     } else {
       setOpen(true);
     }
@@ -43,8 +49,8 @@ function Explore() {
 
   function handleSortChange(evt) {
     const filter = evt.target.value;
-    const sorted = [...coins].sort((a, b) => a[filter] < b[filter]);
-    setCoins(sorted);
+    const sorted = [...cryptos].sort((a, b) => a[filter] < b[filter]);
+    setCryptos(sorted);
   }
 
   return (
@@ -67,7 +73,7 @@ function Explore() {
             <Autocomplete
               autoHighlight openOnFocus disableClearable
               id="crypto-dropdown"
-              options={[...coins].sort((a, b) => a.label > b.label)}
+              options={[...cryptos].sort((a, b) => a.label > b.label)}
               sx={{width: '100%'}}
               isOptionEqualToValue={(option, value) =>{
                 return option.symbol === value.symbol;
@@ -136,7 +142,7 @@ function Explore() {
             <Grid container spacing={2}>
 
 
-              {coins.slice(0, 20).map((coin, i) => {
+              {cryptos.slice(0, 20).map((coin, i) => {
                 return <Grid item key={i} xs={6} md={3}>
                   <ExploreCard key={i} symbol={coin.symbol} pic={coin.pic}/>
                 </Grid>;
@@ -151,7 +157,7 @@ function Explore() {
 
       <Snackbar open={open} autoHideDuration={5000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleAlertClose}>
         <Alert onClose={handleAlertClose} severity="info" sx={{width: '100%'}}>
-              Select Crypto.
+              Select a crypto
         </Alert>
       </Snackbar>
     </>
