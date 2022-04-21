@@ -16,6 +16,7 @@
            res.should.have.status(200);
            res.body.should.be.a('object');
            Object.keys(res.body).should.have.lengthOf(20);
+           //res.body.should.have.property("success", true); took from slides
            res.body[Object.keys(res.body)[0]].should.include.all.keys('symbol', 'pic', 'url');
            done();
          });
@@ -26,6 +27,7 @@
            res.should.have.status(200);
            res.body.should.be.a('object');
            Object.keys(res.body).should.have.lengthOf(1);
+           //res.body.should.have.property("success", true);
            res.body[Object.keys(res.body)[0]].should.include.all.keys('symbol', 'pic', 'url');
            done();
          });
@@ -36,6 +38,7 @@
            res.should.have.status(200);
            res.body.should.be.a('object');
            Object.keys(res.body).should.have.lengthOf(500);
+           //res.body.should.have.property("success", true);
            res.body[Object.keys(res.body)[0]].should.include.all.keys('symbol', 'pic', 'url');
            done();
          });
@@ -46,6 +49,7 @@
            res.should.have.status(400);
            console.log(res.body);
            res.body.should.be.a('object');
+           //res.body.should.have.property("success", true);
            Object.keys(res.body).should.be.empty;
            done();
          });
@@ -62,6 +66,7 @@
            res.body.should.be.a('object');
            res.body.should.include.all.keys('circulating_supply', 'quote');
            res.body['quote'].should.have.property('USD');
+           //res.body.should.have.property("success", true);
            res.body['quote']['USD'].should.include.all.keys('price', 'volume_24h', 'percent_change_24h', 'market_cap');
            done();
          });
@@ -74,6 +79,7 @@
            res.should.have.status(404);
            res.body.should.be.a('object');
            res.body.should.be.empty;
+           //res.body.should.have.property("success", true);
            done();
          });
    });
@@ -88,6 +94,7 @@
            res.should.have.status(200);
            res.body.should.be.a('object');
            res.body.should.have.property('description');
+           //res.body.should.have.property("success", true);
            res.body['description'].should.be.a('string');
            done();
          });
@@ -99,6 +106,7 @@
          .end((err, res) => {
            res.should.have.status(404);
            res.body.should.be.a('object');
+           //res.body.should.have.property("success", true);
            res.body.should.be.empty;
            done();
          });
@@ -114,6 +122,7 @@
            res.should.have.status(200);
            res.body.should.be.a('object');
            res.body.should.have.property('c');
+           //res.body.should.have.property("success", true);
            expect.res.to.be.json;
            done();
          });
@@ -125,6 +134,7 @@
          .end((err, res) => {
            res.should.have.status(404);
            res.body.should.be.a('object');
+           //res.body.should.have.property("success", true);
            res.body.should.be.empty;
            done();
          });
