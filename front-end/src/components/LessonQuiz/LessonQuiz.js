@@ -188,19 +188,19 @@ function LessonQuiz(props) {
 
       <Snackbar open={correctOpen} autoHideDuration={3000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleCorrectClose}>
         <Alert onClose={handleCorrectClose} severity="success" sx={{width: '100%'}}>
-                    Your answer is correct!
+                    Correct!
         </Alert>
       </Snackbar>
 
       <Snackbar open={incorrectOpen} autoHideDuration={3000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleIncorrectClose}>
         <Alert onClose={handleIncorrectClose} severity="warning" sx={{width: '100%'}}>
-                    Your answer is incorrect!
+                    Incorrect! Try Again.
         </Alert>
       </Snackbar>
 
       <Snackbar open={completeOpen} autoHideDuration={3000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleCompleteClose}>
         <Alert onClose={handleCompleteClose} severity="success" sx={{width: '100%'}}>
-                    You got all correct answers and completed this lesson's quiz!
+                    Congratulations. You've completed this lesson's quiz!
         </Alert>
       </Snackbar>
     </>

@@ -59,7 +59,7 @@ function Explore() {
 
           <Grid item xs={12}>
             <Typography variant='h5' textAlign={'center'}>
-              Cryptocurrency Search
+              Search Crypto
             </Typography>
           </Grid>
 
@@ -151,7 +151,7 @@ function Explore() {
 
       <Snackbar open={open} autoHideDuration={5000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleAlertClose}>
         <Alert onClose={handleAlertClose} severity="info" sx={{width: '100%'}}>
-              Please select a cryptocurrency from the dropdown.
+              Select Crypto.
         </Alert>
       </Snackbar>
     </>
