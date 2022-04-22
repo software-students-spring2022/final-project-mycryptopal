@@ -11,6 +11,8 @@ const userSchema = new mongoose.Schema({
   assets: Object,
   lessonProgress: Array,
   avatar: String,
+}, {
+  minimize: false
 });
 
 const User = mongoose.model('User', userSchema);
