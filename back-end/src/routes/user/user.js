@@ -69,6 +69,57 @@ router.get('/info', (req, res) => {
   res.json(user);
 });
 
+router.get('/assets', 
+  
+  async (req, res) => {
+  const userID = req.user.user_id;
+  const user = await User.findOne({user_id: userID});
+  assets = user.assets;
+  res.json(assets);
+})
+
+router.post('/update/assets/:symbol',
+  // add some sort of way to input the coin's symbol and quantity into here
+
+  async (req, res) => {
+    const SYMBOL = req.params.symbol.toUpperCase()
+    const userId = req.user.user_id;
+    const cryptoAmount = parseInt(req.body.amount);   // if quantity is negative then, it is a drop command
+    try {
+      const user = await User.findOne({user_id: userId});
+      if (user) {
+        // add to the assets property of the user here
+        assets = user.assets;
+        if (SYMBOL in assets) { // case user has slug already and is simply adding
+          assets[SYMBOL] += cryptoAmount;
+          console.log(`case user has ${SYMBOL} already and is simply adding ${cryptoAmount}`);
+        }
+        else { // case user does not have slug
+          assets[SYMBOL] = cryptoAmount;
+          console.log(`user has added ${SYMBOL}.`)
+        }
+        if (assets[SYMBOL] <= 0) { // Remove crypto from assets field
+          delete assets[SYMBOL];
+          console.log(`deleting ${SYMBOL}`);
+          }
+        user.markModified('assets');
+        user.save();
+        res.json({success: true});
+        console.log(assets);
+        console.log(assets[SYMBOL])
+        console.log(cryptoAmount);
+      }
+
+      else {
+        res.json(404).json({success: false, error: 'User not found'});
+      }
+    }
+    catch (err) {
+      console.log(err);
+      res.status(500).json({success: false, error: 'Server error'});
+    }
+  });
+
 router.post('/update/info',
     body('email').isEmail(),
     body('username').isLength({min: 6}),
