@@ -4,14 +4,14 @@ import {useParams} from 'react-router-dom';
 import './Crypto.css';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/system/Box';
-import Grid from '@mui/material/Grid';
-import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Grid from '@mui/material/Grid';
 import Snackbar from '@mui/material/Snackbar';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -28,130 +28,32 @@ import {
 import axios from 'axios';
 
 function Crypto() {
+  const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
   const [coinData, setCoinData] = useState({slug: '', symbol: '', circulating_supply: 0, quote: {USD: {price: 0, percent_change_24h: 0, volume_24h: 0, market_cap: 0}}});
   const [coinGraph, setCoinGraph] = useState(null);
   const [coinInfo, setCoinInfo] = useState('');
   const [coinLogo, setCoinLogo] = useState(`${process.env.REACT_APP_COIN_PLACEHOLDER}`);
   const [minTick, setMinTick] = useState(0);
   const [maxTick, setMaxTick] = useState(0);
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [alertOpen, setAlertOpen] = useState(false);
-  const [alertAddDropFail, setAlertAddDropFail] = useState(false);
-  const [alertSuccess, setAlertSuccess] = useState(false); 
-  const [alertDropSuccess, setAlertDropSuccess] = useState(false);
-  const [dialogDropOpen, setDialogDropOpen] = useState(false);
-  const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
-  
+  const [ownedAmount, setOwnedAmount] = useState(0);
+  const [addDialogOpen, setAddDialogOpen] = useState(false);
+  const [dropDialogOpen, setDropDialogOpen] = useState(false);
+  const [cancelAlertOpen, setCancelAlertOpen] = useState(false);
+  const [failAlertOpen, setFailAlertOpen] = useState(false);
+  const [addSuccessAlertOpen, setAddSuccessAlertOpen] = useState(false);
+  const [dropSuccessAlertOpen, setDropSuccessAlertOpen] = useState(false);
 
   const {symbol} = useParams();
 
-  function setColor(number) {
-    if (number > 0) {
-      return 'green';
-    } else if (number < 0) {
-      return 'red';
+  async function getOwnedAmount() {
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/assets/${symbol}`, {headers: authHeader});
+      const data = res.data.amount;
+      setOwnedAmount(data);
+    } catch (err) {
+      console.log('Error fetching amount owned');
+      console.log(err);
     }
-    return;
-  }
-
-  function handleDialogDropOpen() {
-    setDialogDropOpen(true);
-  }
-
-  function handleDialogOpen() {
-    setDialogOpen(true);
-  }
-
-  function handleDialogClose() {
-    
-    setDialogOpen(false);
-    setAlertOpen(true);
-  }
-
-  function handleDialogDropClose() {
-    setDialogDropOpen(false);
-    setAlertOpen(true);
-  }
-
-  async function handleDialogDropConfirm() {
-    const cryptoAmount = document.getElementById('crypto-amount').value
-    // console.log(cryptoAmount)
-
-    if (cryptoAmount < 0 || cryptoAmount.length == 0) {
-      setAlertAddDropFail(true);
-      setDialogDropOpen(false);
-    }
-    else {
-      const cryptoDropAmount = cryptoAmount * -1;
-      console.log(cryptoDropAmount);
-      try {
-        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/assets/${coinData.symbol}`, {amount : cryptoDropAmount}, {headers: authHeader});
-        setAlertDropSuccess(true);
-      }
-      catch (err) {
-        console.log('Error updating user info');
-        console.log(err.response.data);
-      }
-    }
-    setDialogDropOpen(false);
-  }
-
-  async function handleDialogConfirm() {
-    const cryptoAmount = document.getElementById('crypto-amount').value
-    console.log(cryptoAmount)
-
-    if (cryptoAmount < 0 || cryptoAmount.length == 0) {
-      setAlertAddDropFail(true);
-      setDialogDropOpen(false);
-    }
-    else {
-      try {
-        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/assets/${coinData.symbol}`, {amount : cryptoAmount}, {headers: authHeader});
-        setAlertSuccess(true);
-      }
-      catch (err) {
-        console.log('Error updating user info');
-        console.log(err.response.data);
-      }
-    }
-
-    setDialogOpen(false);
-  }
-
-  function handleAlertClose(event, reason) {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setAlertOpen(false);
-  }
-
-
-  function handleAlertAddDropFail(event, reason) {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setAlertAddDropFail(false);
-  }
-
-  function handleDropSuccess(event, reason) {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setAlertDropSuccess(false);
-  }
-
-  function handleSuccess(event, reason) {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setAlertSuccess(false);
-  }
-
-  function handleDropSuccess(event, reason) {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setAlertDropSuccess(false);
   }
 
   useEffect(() => {
@@ -186,6 +88,7 @@ function Crypto() {
         console.log(err);
       }
     }
+    getOwnedAmount();
     getCoinData();
     getCoinInfo();
     getCoinGraph();
@@ -197,6 +100,90 @@ function Crypto() {
       setCoinLogo(logoURL);
     }
   }, [coinData]);
+
+  function setColor(number) {
+    if (number > 0) {
+      return 'green';
+    } else if (number < 0) {
+      return 'red';
+    }
+    return;
+  }
+
+  function handleAddDialogOpen() {
+    setAddDialogOpen(true);
+  }
+  function handleDropDialogOpen() {
+    setDropDialogOpen(true);
+  }
+  function handleAddDialogClose() {
+    setAddDialogOpen(false);
+    setCancelAlertOpen(true);
+  }
+  function handleDropDialogClose() {
+    setDropDialogOpen(false);
+    setCancelAlertOpen(true);
+  }
+
+  async function handleAddDialogConfirm() {
+    setAddDialogOpen(false);
+    const addAmount = document.getElementById('crypto-amount').value;
+    if (addAmount.length === 0 || addAmount <= 0) {
+      setFailAlertOpen(true);
+      setDropDialogOpen(false);
+    } else {
+      try {
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/assets/${coinData.symbol}`, {amount: addAmount}, {headers: authHeader});
+        setAddSuccessAlertOpen(true);
+      } catch (err) {
+        console.log('Error updating user assets');
+        console.log(err.response.data);
+      }
+    }
+    getOwnedAmount();
+  }
+  async function handleDropDialogConfirm() {
+    setDropDialogOpen(false);
+    const dropAmount = document.getElementById('crypto-amount').value;
+    if (dropAmount.length === 0 || dropAmount <= 0 || dropAmount > ownedAmount) {
+      setFailAlertOpen(true);
+      setDropDialogOpen(false);
+    } else {
+      try {
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/assets/${coinData.symbol}`, {amount: dropAmount * -1}, {headers: authHeader});
+        setDropSuccessAlertOpen(true);
+      } catch (err) {
+        console.log('Error updating user assets');
+        console.log(err.response.data);
+      }
+    }
+    getOwnedAmount();
+  }
+
+  function handleCancelAlertClose(event, reason) {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setCancelAlertOpen(false);
+  }
+  function handleFailAlertClose(event, reason) {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setFailAlertOpen(false);
+  }
+  function handleAddSuccessAlertClose(event, reason) {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setAddSuccessAlertOpen(false);
+  }
+  function handleDropSuccessAlertClose(event, reason) {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setDropSuccessAlertOpen(false);
+  }
 
   return (
     <>
@@ -251,13 +238,13 @@ function Crypto() {
                       <Grid item xs={4} id="crypto-buttons" textAlign={'center'}>
                         <Grid container>
                           <Grid item xs={6}>
-                            <Button variant="contained" className="cryptoButtons" onClick={handleDialogOpen}>
+                            <Button variant="contained" className="cryptoButtons" onClick={handleAddDialogOpen}>
                                 Add
                             </Button>
                           </Grid>
 
                           <Grid item xs={6}>
-                            <Button variant="outlined" className="cryptoButtons" onClick={handleDialogDropOpen}>
+                            <Button variant="outlined" className="cryptoButtons" onClick={handleDropDialogOpen}>
                                 Drop
                             </Button>
                           </Grid>
@@ -479,13 +466,13 @@ function Crypto() {
             <Grid item xs={12} id="crypto-buttons" marginBottom={'2vh'} textAlign='center'>
               <Grid container>
                 <Grid item xs={6}>
-                  <Button variant="contained" className="cryptoButtons" onClick={handleDialogOpen}>
+                  <Button variant="contained" className="cryptoButtons" onClick={handleAddDialogOpen}>
                     Add
                   </Button>
                 </Grid>
 
                 <Grid item xs={6}>
-                  <Button variant="outlined" className="cryptoButtons" onClick={handleDialogDropOpen}>
+                  <Button variant="outlined" className="cryptoButtons" onClick={handleDropDialogOpen}>
                     Drop
                   </Button>
                 </Grid>
@@ -497,12 +484,11 @@ function Crypto() {
 
         </Box>
 
-        <Dialog open={dialogDropOpen} onClose={handleDialogDropClose}>
+        <Dialog open={dropDialogOpen} onClose={handleDropDialogClose}>
           <DialogTitle>Drop {coinData.symbol} </DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Please enter a quantity of {coinData.symbol}. Your changes will be reflected in your assets graph. Please
-              enter a number greater than 0. 
+              You currently have {ownedAmount} {coinData.symbol}. Please enter a positive quantity. Your changes will be reflected in your allocation pie chart.
             </DialogContentText>
             <TextField
               autoFocus
@@ -516,19 +502,16 @@ function Crypto() {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleDialogDropClose}>Cancel</Button>
-            <Button onClick={handleDialogDropConfirm}>Confirm</Button>
+            <Button onClick={handleDropDialogClose}>Cancel</Button>
+            <Button onClick={handleDropDialogConfirm}>Confirm</Button>
           </DialogActions>
         </Dialog>
 
-        
-
-        <Dialog open={dialogOpen} onClose={handleDialogClose}>
+        <Dialog open={addDialogOpen} onClose={handleAddDialogClose}>
           <DialogTitle>Add {coinData.symbol} </DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Please enter a quantity of {coinData.symbol}. Your changes will be reflected in your assets graph. Please
-              enter a number greater than 0. 
+            You currently have {ownedAmount} {coinData.symbol}. Please enter a positive quantity. Your changes will be reflected in your allocation pie chart.
             </DialogContentText>
             <TextField
               autoFocus
@@ -542,31 +525,30 @@ function Crypto() {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleDialogClose}>Cancel</Button>
-            <Button onClick={handleDialogConfirm}>Confirm</Button>
+            <Button onClick={handleAddDialogClose}>Cancel</Button>
+            <Button onClick={handleAddDialogConfirm}>Confirm</Button>
           </DialogActions>
         </Dialog>
 
-        <Snackbar open={alertOpen} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleAlertClose}>
-            <Alert onClose={handleAlertClose} severity="success" sx={{width: '100%'}}>
-              Cancelled Transaction.
-            </Alert>
-          </Snackbar>
-        <Snackbar open={alertSuccess} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleSuccess}>
-            <Alert onClose={handleSuccess} severity="success" sx={{width: '100%'}}>
+        <Snackbar open={cancelAlertOpen} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleCancelAlertClose}>
+          <Alert onClose={handleCancelAlertClose} severity="info" sx={{width: '100%'}}>
+              Cancelled transaction.
+          </Alert>
+        </Snackbar>
+        <Snackbar open={addSuccessAlertOpen} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleAddSuccessAlertClose}>
+          <Alert onClose={handleAddSuccessAlertClose} severity="success" sx={{width: '100%'}}>
               Successfully added {coinData.symbol}!
-            </Alert>
+          </Alert>
         </Snackbar>
-        <Snackbar open={alertDropSuccess} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleDropSuccess}>
-            <Alert onClose={handleDropSuccess} severity="success" sx={{width: '100%'}}>
+        <Snackbar open={dropSuccessAlertOpen} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleDropSuccessAlertClose}>
+          <Alert onClose={handleDropSuccessAlertClose} severity="success" sx={{width: '100%'}}>
               Successfully dropped {coinData.symbol}!
-            </Alert>
+          </Alert>
         </Snackbar>
-
-        <Snackbar open={alertAddDropFail} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleAlertAddDropFail}>
-            <Alert onClose={handleAlertAddDropFail} severity="success" sx={{width: '100%'}}>
+        <Snackbar open={failAlertOpen} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleFailAlertClose}>
+          <Alert onClose={handleFailAlertClose} severity="warning" sx={{width: '100%'}}>
               Please enter an appropiate quantity.
-            </Alert>
+          </Alert>
         </Snackbar>
       </div>
     </>

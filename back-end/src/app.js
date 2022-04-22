@@ -30,8 +30,8 @@ mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO
 // Schedule API update
 const cron = require('node-cron');
 const {updateNews} = require('./api/newsAPI');
-cron.schedule('*/5 * * * *', async () => {
-  console.log('Updating news every 5 minutes');
+cron.schedule('*/30 * * * *', async () => {
+  console.log('Updating news every 30 minutes');
   await updateNews();
   console.log('Finished updating news');
 });
@@ -46,18 +46,5 @@ app.use(express.urlencoded({
 app.use(morgan('dev')); // Sets logging mode
 app.use(cors()); // Enables CORS
 app.use('/', router);
-
-// Placeholder/not important yet
-app.get('/assets', (req, res) => {
-  const COINS = ['BTC', 'ETH', 'DOGE', 'SOL', 'XMR'];
-  const FRACTIONS = new Array(COINS.length).fill(0).map(() => {
-    return parseInt((Math.random() * 200)) + 20;
-  });
-  const ALLOCATIONS = COINS.reduce((current, element, index) => {
-    current[element] = FRACTIONS[index];
-    return current;
-  }, {});
-  res.json(ALLOCATIONS);
-});
 
 module.exports = app;

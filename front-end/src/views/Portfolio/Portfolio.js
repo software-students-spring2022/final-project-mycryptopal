@@ -1,5 +1,15 @@
 import {useState, useEffect} from 'react';
 import './Portfolio.css';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import {
   LineChart,
@@ -26,8 +36,8 @@ function Portfolio() {
 
   useEffect(() => {
     async function getAssets() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/assets`, {headers : authHeader});
-      const data = await res.json();
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/assets`, {headers: authHeader});
+      const data = res.data.assets;
       setAssets(data);
     }
     getAssets();
@@ -71,39 +81,77 @@ function Portfolio() {
       </div>
 
       <div id="page-content">
-        <div className="container dropdownContainer">
-          <div className="selector">
-            <label htmlFor="stock_select" className="label">
-              <strong>Stock Symbol: </strong>
-            </label>
-            <select id="stock_select" onChange={handleChangeCrypto}>
-              {symbols.map((s) => <option key={s} value={s}>{s}</option>)}
-            </select>
-          </div>
-          <div className="selector">
-            <label htmlFor="interval_select" className="label">
-              <strong>Interval: </strong>
-            </label>
-            <select onChange={handleChangeInterval}>
-              {INTERVAL_OPTIONS.map((s) => <option key={s} value={s}>Past {s} days</option>)}
-            </select>
-          </div>
-        </div>
-        <div className="container">
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={data} margin={{'left': 10, 'right': 10, 'top': 10, 'bottom': 10}}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="timestamp" tick={{fontSize: '80%'}} />
+        <Grid container spacing={2}>
 
-              <YAxis type="number" allowDecimals={true} allowDataOverflow={true} tick={{fontSize: '80%'}}
-                domain={[minTick, maxTick]} />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey="open" stroke="green" dot={false} />
-              <Line type="monotone" dataKey="close" stroke="blue" dot={false} />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
+          <Grid item xs={12}>
+            <Typography variant='h5' textAlign={'center'}>
+              My Assets
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12}>
+            <TableContainer>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="center">Asset</TableCell>
+                    <TableCell align="center">Amount</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {symbols.map((symbol, i) => (
+                    <TableRow key={i}>
+                      <TableCell align='center'>
+                        <Link href={`/crypto/${symbol}`}>{symbol}</Link>
+                      </TableCell>
+                      <TableCell align='center'>
+                        {assets[symbol]}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography variant='h5' textAlign={'center'}>
+              Stock Graph
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Grid container alignItems={'center'} justifyContent={'center'} spacing={3}>
+              <Grid item xs={12} md={2}>
+                <Select className='graphDropdown' onChange={handleChangeCrypto} fullWidth displayEmpty value={symbol}>
+                  {symbols.map((s, i) => <MenuItem key={i} value={s}>{s}</MenuItem>)}
+                </Select>
+              </Grid>
+
+              <Grid item xs={12} md={2}>
+                <Select className='graphDropdown' onChange={handleChangeInterval} fullWidth displayEmpty value={interval}>
+                  {INTERVAL_OPTIONS.map((s, i) => <MenuItem key={i} value={s}>Past {s} days</MenuItem>)}
+                </Select>
+              </Grid>
+            </Grid>
+          </Grid>
+
+          <Grid item xs={12}>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={data} margin={{'left': 10, 'right': 10, 'top': 10, 'bottom': 10}}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="timestamp" tick={{fontSize: '80%'}} />
+
+                <YAxis type="number" allowDecimals={true} allowDataOverflow={true} tick={{fontSize: '80%'}}
+                  domain={[minTick, maxTick]} />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="open" stroke="green" dot={false} />
+                <Line type="monotone" dataKey="close" stroke="blue" dot={false} />
+              </LineChart>
+            </ResponsiveContainer>
+          </Grid>
+        </Grid>
       </div>
     </>
   );

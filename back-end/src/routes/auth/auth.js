@@ -1,8 +1,4 @@
-/* eslint-disable brace-style */
-/* eslint-disable no-undef */
 /* eslint-disable max-len */
-/* eslint-disable new-cap */
-/* eslint-disable no-unused-vars */
 const {Router} = require('express');
 const router = new Router({mergeParams: true});
 const path = require('path');
@@ -43,29 +39,25 @@ router.post('/register', userValidationRules(), validate, async (req, res) => {
 
   if (duplicateUsers.length > 0) {
     res.status(400).json({success: false, error: 'A user with this username already exists'});
-  }
-  else {
+  } else {
     if (password !== reenter) {
-      res.status(401).json({success: false, message: `Re-entered password does not match.`});
-    }
-    else {
+      res.status(401).json({success: false, error: `Re-entered password does not match`});
+    } else {
       const passwordSalt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, passwordSalt);
       const userNum = await User.countDocuments();
-  
+
       const registeredUser = new User({
         user_id: userNum + 1,
         username: username,
         password: hashedPassword,
         email: email,
-        assets: {}
       });
-  
+
       try {
         await registeredUser.save();
         res.json({success: true});
-      }
-      catch (err) {
+      } catch (err) {
         console.log(err);
         res.status(500).json({success: false, error: 'Server error'});
       }
@@ -76,23 +68,18 @@ router.post('/register', userValidationRules(), validate, async (req, res) => {
 router.post('/login', async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-
   const user = await User.findOne({username: username});
 
   if (!user) {
-    res
-        .status(401)
-        .json({success: false, message: `user not found ${username}.`});
-  }
-
-  else {
+    res.status(401).json({success: false, error: `User not found - ${username}.`});
+  } else {
     const passwordsMatch = await bcrypt.compare(password, user.password);
     if (passwordsMatch) {
       const payload = {user_id: user.user_id};
       const token = jwt.sign(payload, jwtOptions.secretOrKey);
       res.json({success: true, username: user.username, token: token});
     } else {
-      res.status(401).json({success: false, message: 'passwords did not match'});
+      res.status(401).json({success: false, error: 'Password is incorrect'});
     }
   }
 });
