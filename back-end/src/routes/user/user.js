@@ -57,6 +57,18 @@ router.get('/assets', async (req, res) => {
   res.json({success: true, assets: assets});
 })
 
+router.get('/assets/:symbol', async (req, res) => {
+  const SYMBOL = req.params.symbol.toUpperCase();
+  const userId = req.user.user_id;
+  const user = await User.findOne({user_id: userId});
+  if(user.assets[SYMBOL]) {
+    res.json({success: true, amount: user.assets[SYMBOL]});
+  }
+  else {
+    res.json({success: true, amount: 0});
+  }
+});
+
 router.post('/update/assets/:symbol', async (req, res) => {
     const SYMBOL = req.params.symbol.toUpperCase()
     const userId = req.user.user_id;
