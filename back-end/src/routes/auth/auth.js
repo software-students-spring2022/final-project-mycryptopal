@@ -52,7 +52,6 @@ router.post('/register', userValidationRules(), validate, async (req, res) => {
         username: username,
         password: hashedPassword,
         email: email,
-        assets: {},
       });
 
       try {
