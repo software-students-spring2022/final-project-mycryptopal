@@ -1,5 +1,6 @@
-import './Portfolio.css';
 import {useState, useEffect} from 'react';
+import './Portfolio.css';
+import Typography from '@mui/material/Typography';
 import {
   LineChart,
   CartesianGrid,
@@ -10,7 +11,7 @@ import {
   Line,
   ResponsiveContainer,
 } from 'recharts';
-import Typography from '@mui/material/Typography';
+import axios from 'axios';
 
 function Portfolio() {
   const INTERVAL_OPTIONS = [30, 60, 90, 120];
@@ -45,11 +46,16 @@ function Portfolio() {
       return;
     }
     async function getData() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/crypto/graph/${symbol}?interval=${interval}`);
-      const data = await res.json();
-      setData(data.values);
-      setMinTick(data.min);
-      setMaxTick(data.max);
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/crypto/graph/${symbol}?interval=${interval}`);
+        const data = res.data.graphData;
+        setData(data.values);
+        setMinTick(data.min);
+        setMaxTick(data.max);
+      } catch (err) {
+        console.log('Error fetching ticker data');
+        console.log(err);
+      }
     }
     getData();
   }, [symbol, interval]);
@@ -85,17 +91,17 @@ function Portfolio() {
         </div>
         <div className="container">
           <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={data} margin={{'left': 10, 'right': 10, 'top': 10, 'bottom': 10}}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="timestamp" tick={{ fontSize: '80%'}} />
+            <LineChart data={data} margin={{'left': 10, 'right': 10, 'top': 10, 'bottom': 10}}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="timestamp" tick={{fontSize: '80%'}} />
 
-                <YAxis type="number" allowDecimals={true} allowDataOverflow={true} tick={{ fontSize: '80%'}} 
+              <YAxis type="number" allowDecimals={true} allowDataOverflow={true} tick={{fontSize: '80%'}}
                 domain={[minTick, maxTick]} />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="open" stroke="green" dot={false} />
-                <Line type="monotone" dataKey="close" stroke="blue" dot={false} />
-              </LineChart>
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="open" stroke="green" dot={false} />
+              <Line type="monotone" dataKey="close" stroke="blue" dot={false} />
+            </LineChart>
           </ResponsiveContainer>
         </div>
       </div>
