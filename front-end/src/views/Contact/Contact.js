@@ -122,7 +122,7 @@ function Contact() {
 
           <Snackbar open={alertOpen} autoHideDuration={5000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleAlertClose}>
             <Alert onClose={handleAlertClose} severity="success" sx={{width: '100%'}}>
-            Thank you for your message! Our team will get back to you as soon as possible :)
+            Thank you for your message! Our team will get back to you shortly :)
             </Alert>
           </Snackbar>
         </Grid>

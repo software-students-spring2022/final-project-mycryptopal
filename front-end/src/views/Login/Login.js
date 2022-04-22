@@ -53,7 +53,7 @@ function Login() {
 
                 <Grid item className="tagLine">
                   <Typography fontSize={'3vh'}>
-                    Ready to Level Up Your Investing Career?
+                    Ready to Upgrade your Investing Career?
                   </Typography>
                 </Grid>
 
