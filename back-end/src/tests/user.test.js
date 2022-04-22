@@ -48,7 +48,7 @@ describe('Testing /user routes', () => {
   });
 
   describe('GET /user/assets', () => {
-    let testUser, prevAssets;
+    let testUser; let prevAssets;
     const testAssets = {BTC: 13, ETH: 43, DOGE: 512};
 
     before(async () => {
@@ -329,10 +329,10 @@ describe('Testing /user routes', () => {
     });
 
     describe('POST /user/update/assets/:symbol', () => {
-      let testUser, prevAssets;
-      let testAssets = {BTC: 3, ETH: 4, DOGE: 5};
+      let testUser; let prevAssets;
+      const testAssets = {BTC: 3, ETH: 4, DOGE: 5};
       const testSymbol = 'BTC';
-  
+
       before(async () => {
         testUser = await User.findOne({user_id: 1});
         prevAssets = Object.assign({}, testUser.assets);
@@ -344,10 +344,10 @@ describe('Testing /user routes', () => {
       it('should increase the quantity of a user\'s asset when a postive amount is specified', async () => {
         const userInput = {amount: 2};
         const res = await chai
-        .request(app)
-        .post(`/user/update/assets/${testSymbol}`)
-        .set('Authorization', `JWT ${process.env.TEST_AUTH_TOKEN}`)
-        .send(userInput);
+            .request(app)
+            .post(`/user/update/assets/${testSymbol}`)
+            .set('Authorization', `JWT ${process.env.TEST_AUTH_TOKEN}`)
+            .send(userInput);
         res.should.have.status(200);
         res.body.should.have.property('success', true);
         const updatedAssets = (await User.findOne({user_id: 1})).assets;
@@ -357,10 +357,10 @@ describe('Testing /user routes', () => {
       it('should decrease the quantity of a user\'s asset when a negative amount is specified', async () => {
         const userInput = {amount: -2};
         const res = await chai
-        .request(app)
-        .post(`/user/update/assets/${testSymbol}`)
-        .set('Authorization', `JWT ${process.env.TEST_AUTH_TOKEN}`)
-        .send(userInput);
+            .request(app)
+            .post(`/user/update/assets/${testSymbol}`)
+            .set('Authorization', `JWT ${process.env.TEST_AUTH_TOKEN}`)
+            .send(userInput);
         res.should.have.status(200);
         res.body.should.have.property('success', true);
         const updatedAssets = (await User.findOne({user_id: 1})).assets;
@@ -370,10 +370,10 @@ describe('Testing /user routes', () => {
       it('should decrease the quantity of a user\'s asset when a negative amount is specified and remove the asset from the user\'s assets if the specified amount is equal to the owned amount', async () => {
         const userInput = {amount: -3};
         const res = await chai
-        .request(app)
-        .post(`/user/update/assets/${testSymbol}`)
-        .set('Authorization', `JWT ${process.env.TEST_AUTH_TOKEN}`)
-        .send(userInput);
+            .request(app)
+            .post(`/user/update/assets/${testSymbol}`)
+            .set('Authorization', `JWT ${process.env.TEST_AUTH_TOKEN}`)
+            .send(userInput);
         res.should.have.status(200);
         res.body.should.have.property('success', true);
         const updatedAssets = (await User.findOne({user_id: 1})).assets;
