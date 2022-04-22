@@ -88,23 +88,20 @@ router.post('/update/assets/:symbol', async (req, res) => {
     const user = await User.findOne({user_id: userId});
     // add to the assets property of the user here
     const assets = user.assets;
-    if (SYMBOL in assets) { // case user has slug already and is simply adding
+    if (SYMBOL in assets) {
       assets[SYMBOL] += cryptoAmount;
-      console.log(`case user has ${SYMBOL} already and is simply adding ${cryptoAmount}`);
-    } else { // case user does not have slug
+      console.log(`Added ${cryptoAmount} ${SYMBOL} to user assets.`);
+    } else {
       assets[SYMBOL] = cryptoAmount;
-      console.log(`user has added ${SYMBOL}.`);
+      console.log(`No ${SYMBOL} in user assets. Added ${SYMBOL} with amount ${cryptoAmount} to user assets.`);
     }
     if (assets[SYMBOL] === 0) { // Remove crypto from assets field
       delete assets[SYMBOL];
-      console.log(`deleting ${SYMBOL}`);
+      console.log(`Deleted ${SYMBOL} with amount 0 from user assets`);
     }
     user.markModified('assets');
     user.save();
     res.json({success: true});
-    console.log(assets);
-    console.log(assets[SYMBOL]);
-    console.log(cryptoAmount);
   } catch (err) {
     console.log('Error updating user assets');
     console.log(err);
