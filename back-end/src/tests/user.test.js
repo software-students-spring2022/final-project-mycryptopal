@@ -49,7 +49,7 @@ describe('Testing /user routes', () => {
 
   describe('GET /user/assets', () => {
     let testUser, prevAssets;
-    const testAssets = {BTC: 3, ETH: 4, DOGE: 5};
+    const testAssets = {BTC: 13, ETH: 43, DOGE: 512};
 
     before(async () => {
       testUser = await User.findOne({user_id: 1});
@@ -382,7 +382,7 @@ describe('Testing /user routes', () => {
 
       afterEach(async () => {
         testUser = await User.findOne({user_id: 1});
-                testUser.assets = testAssets;
+        testUser.assets = testAssets;
         testUser.markModified('assets');
         await testUser.save();
       });
