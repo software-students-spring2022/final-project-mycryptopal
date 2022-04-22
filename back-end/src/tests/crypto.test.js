@@ -49,80 +49,74 @@ describe('Testing /crypto routes', () => {
       res.body.error.should.be.a('string');
     });
   });
+
+  describe('GET /api/crypto/explore', () => {
+    it('should respond with an object containing the information of a single cryptocurrency when the specified limit is 1', async () => {
+      const res = await chai.request(app).get('/api/crypto/explore').query({limit: 1});
+      res.should.have.status(200);
+      res.body.should.be.a('object');
+      res.body.should.have.keys(['success', 'cryptos']);
+      res.body.success.should.equal(true);
+      Object.keys(res.body.cryptos).should.have.lengthOf(1);
+      res.body.cryptos[Object.keys(res.body.cryptos)[0]].should.have.keys(['cap', 'label', 'pic', 'supply', 'symbol', 'volume']);
+    });
+    it('should respond with an object containing the information of a specified number of cryptocurrencies', async () => {
+      const res = await chai.request(app).get('/api/crypto/explore').query({limit: 123});
+      res.should.have.status(200);
+      res.body.should.be.a('object');
+      res.body.should.have.keys(['success', 'cryptos']);
+      res.body.success.should.equal(true);
+      Object.keys(res.body.cryptos).should.have.lengthOf(123);
+      res.body.cryptos[Object.keys(res.body.cryptos)[0]].should.have.keys(['cap', 'label', 'pic', 'supply', 'symbol', 'volume']);
+    });
+    it('should respond with an object containing an error code and an error message if the specified limit is of an invalid format', async () => {
+      const res = await chai.request(app).get('/api/crypto/explore').query({limit: 'invalidLimit'});
+      console.log(res.body);
+      res.should.have.status(400);
+      res.body.should.be.a('object');
+      res.body.should.have.keys(['success', 'error']);
+      res.body.success.should.equal(false);
+      res.body.error.should.be.a('string');
+    });
+    it('should respond with an object containing an error code and an error message if the specified limit exceeds the API\'s restriction', async () => {
+      const res = await chai.request(app).get('/api/crypto/explore').query({limit: 5001});
+      res.should.have.status(400);
+      res.body.should.be.a('object');
+      res.body.should.have.keys(['success', 'error']);
+      res.body.success.should.equal(false);
+      res.body.error.should.be.a('string');
+    });
+    it('should respond with an object containing an error code and an error message if the specified limit is less than 1', async () => {
+      const res = await chai.request(app).get('/api/crypto/explore').query({limit: -3});
+      res.should.have.status(400);
+      res.body.should.be.a('object');
+      res.body.should.have.keys(['success', 'error']);
+      res.body.success.should.equal(false);
+      res.body.error.should.be.a('string');
+    });
+  });
+
+  describe('GET /api/crypto/explore', () => {
+    const queryInterval = 30;
+    it('should respond with an object containing a crypto\'s price data in a given interval, and its min and max price in this period', async () => {
+      const res = await chai.request(app).get('/api/crypto/graph/btc').query({interval: queryInterval});
+      res.should.have.status(200);
+      res.body.should.be.a('object');
+      res.body.should.have.keys(['success', 'graphData']);
+      res.body.success.should.equal(true);
+      res.body.graphData.should.have.keys(['values', 'min', 'max']);
+      res.body.graphData.values.should.be.a('array');
+      res.body.graphData.values.should.have.lengthOf(queryInterval - 1);
+      res.body.graphData.max.should.be.a('number');
+      res.body.graphData.min.should.be.a('number');
+    });
+    it('should respond with an object containing a 404 error code and an error message if the provided symbol is invalid', async () => {
+      const res = await chai.request(app).get('/api/crypto/graph/thisCoinDoesNotExist').query({interval: queryInterval});
+      res.should.have.status(404);
+      res.body.should.be.a('object');
+      res.body.should.have.keys(['success', 'error']);
+      res.body.success.should.equal(false);
+      res.body.error.should.be.a('string');
+    });
+  });
 });
-
-//  describe('GET /api/crypto/explore', () => {
-//    it('should respond with an object containing a default number of cryptocurrencies along with their basic information', (done) => {
-//      chai.request(app).get('/api/crypto/explore')
-//          .end((err, res)=>{
-//            res.should.have.status(200);
-//            res.body.should.be.a('object');
-//            Object.keys(res.body).should.have.lengthOf(20);
-//            //res.body.should.have.property("success", true); took from slides
-//            res.body[Object.keys(res.body)[0]].should.include.all.keys('symbol', 'pic', 'url');
-//            done();
-//          });
-//    });
-//    it('should respond with an object containing a single cryptocurrency', (done) => {
-//      chai.request(app).get('/api/crypto/explore').query({'limit': 1})
-//          .end((err, res) => {
-//            res.should.have.status(200);
-//            res.body.should.be.a('object');
-//            Object.keys(res.body).should.have.lengthOf(1);
-//            //res.body.should.have.property("success", true);
-//            res.body[Object.keys(res.body)[0]].should.include.all.keys('symbol', 'pic', 'url');
-//            done();
-//          });
-//    });
-//    it('should respond with an object containing a specified large number of cryptocurrencies', (done) => {
-//      chai.request(app).get('/api/crypto/explore').query({'limit': 500})
-//          .end((err, res) => {
-//            res.should.have.status(200);
-//            res.body.should.be.a('object');
-//            Object.keys(res.body).should.have.lengthOf(500);
-//            //res.body.should.have.property("success", true);
-//            res.body[Object.keys(res.body)[0]].should.include.all.keys('symbol', 'pic', 'url');
-//            done();
-//          });
-//    });
-//    it('should respond with status code 400 and an empty object if the specified limit exceeds the API\'s restrictions', (done) => {
-//      chai.request(app).get('/api/crypto/explore').query({'limit': 5001})
-//          .end((err, res) => {
-//            res.should.have.status(400);
-//            console.log(res.body);
-//            res.body.should.be.a('object');
-//            //res.body.should.have.property("success", true);
-//            Object.keys(res.body).should.be.empty;
-//            done();
-//          });
-//    });
-//  });
-
-
-//  describe('GET /api/crypto/graph/:symbol', () => {
-//    it('should respond with an object containing a cryptocurrency\'s metadata given that the provided symbol is valid, in which the cryptocurrency\'s price data and graph can be found', (done) => {
-//      chai
-//          .request(app)
-//          .get('/api/crypto/graph/btc')
-//          .end((err, res) => {
-//            res.should.have.status(200);
-//            res.body.should.be.a('object');
-//            res.body.should.have.property('c');
-//            //res.body.should.have.property("success", true);
-//            expect.res.to.be.json;
-//            done();
-//          });
-//    });
-//    it('should respond with a 404 error code and an empty response object if the provided symbol is invalid', (done) => {
-//      chai
-//          .request(app)
-//          .get('/api/crypto/graph/thisCoinDoesNotExist')
-//          .end((err, res) => {
-//            res.should.have.status(404);
-//            res.body.should.be.a('object');
-//            //res.body.should.have.property("success", true);
-//            res.body.should.be.empty;
-//            done();
-//          });
-//    });
-//  });
