@@ -69,9 +69,13 @@ router.get('/info', (req, res) => {
   res.json(user);
 });
 
-router.get('/assets', (req, res) => {
-  const user = req.user
-  res.json(user);
+router.get('/assets', 
+  
+  async (req, res) => {
+  const userID = req.user.user_id;
+  const user = await User.findOne({user_id: userID});
+  assets = user.assets;
+  res.json(assets);
 })
 
 router.post('/update/assets/:symbol',
