@@ -1,22 +1,3 @@
-.container {
-    display: flex;
-    justify-content: center;
-    margin-top: 70px;
-  }
-
-  .dropdownContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+.graphDropdown {
     text-align: center;
-  }
-  
-  .label,
-  .selector { 
-    padding-top: 10px;
-    padding-bottom: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    flex-basis: 50%;
-  }
+}
