@@ -50,38 +50,14 @@ const imageFilter = (req, file, cb) => {
 const upload = multer({storage: s3Storage, fileFilter: imageFilter});
 
 // Routes
-router.get('/avatar', async (req, res) => {
-  const user = req.user;
-  const userId = user.user_id;
-  res.json({success: true, url: `https://${process.env.AWS_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/u/${userId}/${user.avatar}`});
-});
-
-router.post('/update/avatar', upload.single('avatar'), (req, res) => {
-  if (req.body.success) {
-    res.json({success: true});
-  } else {
-    res.status(req.body.code).json({success: false, error: req.body.error});
-  }
-});
-
-router.get('/info', (req, res) => {
-  const user = req.user;
-  res.json(user);
-});
-
-router.get('/assets', 
-  
-  async (req, res) => {
+router.get('/assets', async (req, res) => {
   const userID = req.user.user_id;
   const user = await User.findOne({user_id: userID});
   assets = user.assets;
-  res.json(assets);
+  res.json({success: true, assets: assets});
 })
 
-router.post('/update/assets/:symbol',
-  // add some sort of way to input the coin's symbol and quantity into here
-
-  async (req, res) => {
+router.post('/update/assets/:symbol', async (req, res) => {
     const SYMBOL = req.params.symbol.toUpperCase()
     const userId = req.user.user_id;
     const cryptoAmount = parseInt(req.body.amount);   // if quantity is negative then, it is a drop command
@@ -119,6 +95,25 @@ router.post('/update/assets/:symbol',
       res.status(500).json({success: false, error: 'Server error'});
     }
   });
+
+router.get('/avatar', async (req, res) => {
+  const user = req.user;
+  const userId = user.user_id;
+  res.json({success: true, url: `https://${process.env.AWS_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/u/${userId}/${user.avatar}`});
+});
+
+router.post('/update/avatar', upload.single('avatar'), (req, res) => {
+  if (req.body.success) {
+    res.json({success: true});
+  } else {
+    res.status(req.body.code).json({success: false, error: req.body.error});
+  }
+});
+
+router.get('/info', (req, res) => {
+  const user = req.user;
+  res.json(user);
+});
 
 router.post('/update/info',
     body('email').isEmail(),

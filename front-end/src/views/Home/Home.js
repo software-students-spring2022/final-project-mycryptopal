@@ -1,4 +1,7 @@
 import {useState, useEffect} from 'react';
+import './Home.css';
+import NewsFeed from '../../components/NewsFeed/NewsFeed';
+import Typography from '@mui/material/Typography';
 import {
   Tooltip,
   Legend,
@@ -7,9 +10,7 @@ import {
   Cell,
   ResponsiveContainer,
 } from 'recharts';
-import './Home.css';
-import NewsFeed from '../../components/NewsFeed/NewsFeed';
-import Typography from '@mui/material/Typography';
+import axios from 'axios';
 
 function Home() {
   const [allocations, setAllocations] = useState([]);
@@ -19,8 +20,8 @@ function Home() {
   // API call for mock asset allocation data
   useEffect(() => {
     async function getAllocations() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/assets`, {headers: authHeader});
-      const data = await res.json();
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/assets`, {headers: authHeader});
+      const data = res.data.assets;
       const assetSum = Object.values(data).reduce((sum, current) => sum + current, 0);
       const formattedData = Object.keys(data).reduce((result, current, index) => {
         const entry = {};
