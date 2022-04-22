@@ -21,10 +21,11 @@ function Portfolio() {
   const [symbols, setSymbols] = useState([]);
   const [minTick, setMinTick] = useState(0);
   const [maxTick, setMaxTick] = useState(0);
+  const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
 
   useEffect(() => {
     async function getAssets() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/assets`);
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/assets`, {headers : authHeader});
       const data = await res.json();
       setAssets(data);
     }
