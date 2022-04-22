@@ -30,8 +30,8 @@ mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO
 // Schedule API update
 const cron = require('node-cron');
 const {updateNews} = require('./api/newsAPI');
-cron.schedule('*/5 * * * *', async () => {
-  console.log('Updating news every 5 minutes');
+cron.schedule('*/30 * * * *', async () => {
+  console.log('Updating news every 30 minutes');
   await updateNews();
   console.log('Finished updating news');
 });
