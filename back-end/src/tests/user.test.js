@@ -382,7 +382,7 @@ describe('Testing /user routes', () => {
 
       afterEach(async () => {
         testUser = await User.findOne({user_id: 1});
-        testUser.assets = testAssets;
+                testUser.assets = testAssets;
         testUser.markModified('assets');
         await testUser.save();
       });

@@ -1,9 +1,15 @@
 import {useState, useEffect} from 'react';
 import './Portfolio.css';
 import Grid from '@mui/material/Grid';
-import Select from '@mui/material/Select';
+import Link from '@mui/material/Link';
 import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import {
   LineChart,
@@ -79,6 +85,37 @@ function Portfolio() {
 
           <Grid item xs={12}>
             <Typography variant='h5' textAlign={'center'}>
+              My Assets
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12}>
+            <TableContainer>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="center">Asset</TableCell>
+                    <TableCell align="center">Amount</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {symbols.map((symbol, i) => (
+                    <TableRow key={i}>
+                      <TableCell align='center'>
+                        <Link href={`/crypto/${symbol}`}>{symbol}</Link>
+                      </TableCell>
+                      <TableCell align='center'>
+                        {assets[symbol]}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography variant='h5' textAlign={'center'}>
               Stock Graph
             </Typography>
           </Grid>
@@ -115,8 +152,6 @@ function Portfolio() {
             </ResponsiveContainer>
           </Grid>
         </Grid>
-
-
       </div>
     </>
   );
