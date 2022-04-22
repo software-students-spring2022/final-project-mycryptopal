@@ -81,8 +81,8 @@ router.get('/crypto/graph/:symbol', async (req, res) => {
     const roundedTickers = transformData(tickers);
     const graphData = {
       values: roundedTickers,
-      min: getDataMin(tickers),
-      max: getDataMax(tickers),
+      min: getDataMin(roundedTickers),
+      max: getDataMax(roundedTickers),
     };
     res.json({success: true, graphData: graphData});
   } catch (err) {
