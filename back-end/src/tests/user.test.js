@@ -327,5 +327,72 @@ describe('Testing /user routes', () => {
             .send(userInput);
       });
     });
+
+    describe('POST /user/update/assets/:symbol', () => {
+      let testUser, prevAssets;
+      let testAssets = {BTC: 3, ETH: 4, DOGE: 5};
+      const testSymbol = 'BTC';
+  
+      before(async () => {
+        testUser = await User.findOne({user_id: 1});
+        prevAssets = Object.assign({}, testUser.assets);
+        testUser.assets = testAssets;
+        testUser.markModified('assets');
+        await testUser.save();
+      });
+
+      it('should increase the quantity of a user\'s asset when a postive amount is specified', async () => {
+        const userInput = {amount: 2};
+        const res = await chai
+        .request(app)
+        .post(`/user/update/assets/${testSymbol}`)
+        .set('Authorization', `JWT ${process.env.TEST_AUTH_TOKEN}`)
+        .send(userInput);
+        res.should.have.status(200);
+        res.body.should.have.property('success', true);
+        const updatedAssets = (await User.findOne({user_id: 1})).assets;
+        updatedAssets[testSymbol].should.equal(testAssets[testSymbol] + userInput.amount);
+      });
+
+      it('should decrease the quantity of a user\'s asset when a negative amount is specified', async () => {
+        const userInput = {amount: -2};
+        const res = await chai
+        .request(app)
+        .post(`/user/update/assets/${testSymbol}`)
+        .set('Authorization', `JWT ${process.env.TEST_AUTH_TOKEN}`)
+        .send(userInput);
+        res.should.have.status(200);
+        res.body.should.have.property('success', true);
+        const updatedAssets = (await User.findOne({user_id: 1})).assets;
+        updatedAssets[testSymbol].should.equal(testAssets[testSymbol] + userInput.amount);
+      });
+
+      it('should decrease the quantity of a user\'s asset when a negative amount is specified and remove the asset from the user\'s assets if the specified amount is equal to the owned amount', async () => {
+        const userInput = {amount: -3};
+        const res = await chai
+        .request(app)
+        .post(`/user/update/assets/${testSymbol}`)
+        .set('Authorization', `JWT ${process.env.TEST_AUTH_TOKEN}`)
+        .send(userInput);
+        res.should.have.status(200);
+        res.body.should.have.property('success', true);
+        const updatedAssets = (await User.findOne({user_id: 1})).assets;
+        updatedAssets.should.not.have.property(testSymbol);
+      });
+
+      afterEach(async () => {
+        testUser = await User.findOne({user_id: 1});
+        testUser.assets = testAssets;
+        testUser.markModified('assets');
+        await testUser.save();
+      });
+
+      after(async () => {
+        console.log('Revert test user to original state');
+        testUser.assets = prevAssets;
+        testUser.markModified('assets');
+        await testUser.save();
+      });
+    });
   });
 });
