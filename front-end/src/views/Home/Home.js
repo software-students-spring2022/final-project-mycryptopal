@@ -14,11 +14,12 @@ import Typography from '@mui/material/Typography';
 function Home() {
   const [allocations, setAllocations] = useState([]);
   const [colors, setColors] = useState([]);
+  const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
 
   // API call for mock asset allocation data
   useEffect(() => {
     async function getAllocations() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/assets`);
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/assets`, {headers: authHeader});
       const data = await res.json();
       const assetSum = Object.values(data).reduce((sum, current) => sum + current, 0);
       const formattedData = Object.keys(data).reduce((result, current, index) => {
