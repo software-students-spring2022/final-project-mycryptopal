@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Settings.css';
 import AvatarUploader from '../../components/AvatarUploader/AvatarUploader';
 import Button from '@mui/material/Button';
@@ -9,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 
 function Settings() {
+  let navigate = useNavigate();
   const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
   const [user, setUser] = useState({});
 
@@ -24,7 +26,7 @@ function Settings() {
 
     try {
       await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/info`, userInput, {headers: authHeader});
-      window.location.href = '/settings';
+      navigate(0);
     } catch (err) {
       console.log('Error updating user info');
       console.log(err.response.data);
@@ -42,7 +44,7 @@ function Settings() {
 
     try {
       await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/credentials`, userInput, {headers: authHeader});
-      window.location.href = '/settings';
+      navigate(0);
     }
     catch(err) {
       console.log('Error updating user password');

@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Explore.css';
 import ExploreCard from '../../components/ExploreCard/ExploreCard';
 import Alert from '@mui/material/Alert';
@@ -14,6 +15,7 @@ import Snackbar from '@mui/material/Snackbar';
 import axios from 'axios';
 
 function Explore() {
+  let navigate = useNavigate();
   const [cryptos, setCryptos] = useState([]);
   const [selected, setSelected] = useState('');
   const [open, setOpen] = useState(false);
@@ -41,7 +43,7 @@ function Explore() {
 
   function handleSearch() {
     if (selected) {
-      window.location.href = `/crypto/${selected}`;
+      navigate(`/crypto/${selected}`);
     } else {
       setOpen(true);
     }

@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import './Sidebar.css';
 import {slide as Menu} from 'react-burger-menu';
 import Grid from '@mui/material/Grid';
@@ -10,15 +11,17 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 function Sidebar() {
+
+  let navigate = useNavigate();
   
   return (
     <Menu>
-      <Grid id="home" className="menu-item" onClick={() => window.location.href='/'}>
+      <Grid id="home" className="menu-item" onClick={() => navigate('/')}>
         <Typography variant='h4' fontWeight={'bold'}>MyCryptoPal</Typography>
       </Grid>
 
       <Grid id="portfolio" className="menu-item" >
-        <Grid container spacing={1} onClick={() => window.location.href='/portfolio'}>
+        <Grid container spacing={1} onClick={() => navigate('/portfolio')}>
           <Grid item>
             <AssignmentIcon/>
           </Grid>
@@ -29,7 +32,7 @@ function Sidebar() {
       </Grid>
 
       <Grid id="explore" className="menu-item" >
-        <Grid container spacing={1} onClick={() => window.location.href='/explore'}>
+        <Grid container spacing={1} onClick={() => navigate('/explore')}>
           <Grid item>
             <ExploreIcon />
           </Grid>
@@ -40,7 +43,7 @@ function Sidebar() {
       </Grid>
 
       <Grid id="learn" className="menu-item" >
-        <Grid container spacing={1} onClick={() => window.location.href='/learn'}>
+        <Grid container spacing={1} onClick={() => navigate('/learn')}>
           <Grid item>
             <SchoolIcon />
           </Grid>
@@ -51,7 +54,7 @@ function Sidebar() {
       </Grid>
 
       <Grid id="contact" className="menu-item" >
-        <Grid container spacing={1} onClick={() => window.location.href='/contact'}>
+        <Grid container spacing={1} onClick={() => navigate('/contact')}>
           <Grid item>
             <AlternateEmailIcon />
           </Grid>
@@ -62,7 +65,7 @@ function Sidebar() {
       </Grid>
 
       <Grid id="settings" className="menu-item" >
-        <Grid container spacing={1} onClick={() => window.location.href='/settings'}>
+        <Grid container spacing={1} onClick={() => navigate('/settings')}>
           <Grid item>
             <SettingsIcon />
           </Grid>
@@ -74,8 +77,10 @@ function Sidebar() {
 
       <Grid id="logout" className="menu-item" >
         <Grid container spacing={1} onClick={() => {
-          localStorage.removeItem('token')
-          window.location.href = '/';}}>
+          localStorage.removeItem('token');
+          navigate('/logout');
+          navigate(0);
+          }}>
           <Grid item>
             <LogoutIcon />
           </Grid>

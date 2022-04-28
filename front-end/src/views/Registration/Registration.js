@@ -35,7 +35,7 @@ function Registration() {
   useEffect(() => {
     if (response.success) {
       console.log(`User successfully registered: ${response.username}`);
-      window.location.href = '/login';
+      navigate('/login');
     }
   }, [response]);
 

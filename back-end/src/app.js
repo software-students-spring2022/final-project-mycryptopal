@@ -6,7 +6,8 @@ const app = express();
 const path = require('path');
 
 // Constants
-const PUBLIC_DIR = path.join(__dirname, `../public`);
+const PUBLIC_DIR = path.join(__dirname, `../build/static`);
+const BUILD_DIR = path.join(__dirname, `../build`);
 const router = require('./routes/router');
 
 // Stores custom environmental variables
@@ -38,6 +39,7 @@ cron.schedule('*/30 * * * *', async () => {
 
 // Middleware
 app.use('/static', express.static(PUBLIC_DIR)); // Serves static files
+app.use('/client', express.static(BUILD_DIR)); // Serves static files
 
 app.use(express.json()); // Parses incoming JSON requests
 app.use(express.urlencoded({
@@ -46,5 +48,9 @@ app.use(express.urlencoded({
 app.use(morgan('dev')); // Sets logging mode
 app.use(cors()); // Enables CORS
 app.use('/', router);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(BUILD_DIR, "index.html"));
+});
 
 module.exports = app;

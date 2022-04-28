@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import './Crypto.css';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/system/Box';
@@ -28,6 +28,7 @@ import {
 import axios from 'axios';
 
 function Crypto() {
+  let navigate = useNavigate();
   const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
   const [coinData, setCoinData] = useState({slug: '', symbol: '', circulating_supply: 0, quote: {USD: {price: 0, percent_change_24h: 0, volume_24h: 0, market_cap: 0}}});
   const [coinGraph, setCoinGraph] = useState(null);
@@ -63,7 +64,7 @@ function Crypto() {
         const data = res.data.cryptoData;
         setCoinData(data);
       } catch (err) {
-        window.location.href = '/notfound';
+        navigate('/notfound');
       }
     }
     async function getCoinInfo() {

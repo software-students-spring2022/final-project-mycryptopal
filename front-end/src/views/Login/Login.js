@@ -34,7 +34,8 @@ function Login() {
     if (response.success && response.token) {
       console.log(`User successfully logged in: ${response.username}`);
       localStorage.setItem("token", response.token);
-      window.location.href = '/';
+      navigate('/');
+      navigate(0);
     }
   }, [response]);
 
