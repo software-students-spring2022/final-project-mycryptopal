@@ -4,6 +4,7 @@ import './Registration.css';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
+import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 
@@ -67,7 +68,9 @@ function Registration() {
                     <Grid container spacing={3} alignItems={'center'} justifyContent={'center'}>
 
                       <Grid item xs={12} md={7}>
-                        <TextField name='username' id="register-user" className="credentials" label="Username" variant="outlined" InputLabelProps={{shrink: true}} required/>
+                        <Tooltip title="Must have at least 6 characters" placement="top">
+                          <TextField name='username' id="register-user" className="credentials" label="Username" variant="outlined" InputLabelProps={{shrink: true}} required/>
+                        </Tooltip>
                       </Grid>
 
                       <Grid item xs={12} md={7}>
@@ -75,7 +78,9 @@ function Registration() {
                       </Grid>
 
                       <Grid item xs={12} md={7}>
-                        <TextField name='password' id="register-pass" className="credentials" label="Password" type={'password'} variant="outlined" InputLabelProps={{shrink: true}} required/>
+                        <Tooltip title="Must have at least 6 characters, 1 uppercase letter, 1 lowercase letter, and 1 number" placement="top">
+                          <TextField name='password' id="register-pass" className="credentials" label="Password" type={'password'} variant="outlined" InputLabelProps={{shrink: true}} required/>
+                        </Tooltip>
                       </Grid>
 
                       <Grid item xs={12} md={7}>
