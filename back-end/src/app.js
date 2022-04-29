@@ -49,8 +49,8 @@ app.use(morgan('dev')); // Sets logging mode
 app.use(cors()); // Enables CORS
 app.use('/', router);
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(BUILD_DIR, "index.html"));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(BUILD_DIR, 'index.html'));
 });
 
 module.exports = app;
