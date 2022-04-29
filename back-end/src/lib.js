@@ -24,13 +24,7 @@ function transformData(data) {
 }
 
 function roundNumber(number) {
-  let factor = 1;
-  let rounded = Math.round(number * factor + Number.EPSILON) / factor;
-  while (rounded === 0) {
-    factor *= 10;
-    rounded = Math.round(number * factor + Number.EPSILON) / factor;
-  }
-  return rounded;
+  return parseFloat(number.toFixed(3));
 }
 
 function getDataMin(data) {
