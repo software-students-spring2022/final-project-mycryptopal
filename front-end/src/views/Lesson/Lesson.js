@@ -15,7 +15,6 @@ function Lesson() {
     async function getCurrentLesson() {
       const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/lesson/id/${lessonId}`);
       const data = await res.json();
-      console.log(data);
       setLesson(data);
     }
     getCurrentLesson();

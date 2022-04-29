@@ -89,7 +89,9 @@ function Portfolio() {
             </Typography>
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={0} md={3}/>
+
+          <Grid item xs={12} md={6}>
             <TableContainer>
               <Table>
                 <TableHead>
@@ -113,6 +115,8 @@ function Portfolio() {
               </Table>
             </TableContainer>
           </Grid>
+
+          <Grid item xs={0} md={3}/>
 
           <Grid item xs={12}>
             <Typography variant='h5' textAlign={'center'}>
