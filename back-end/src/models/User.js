@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   assets: {type: Object, default: {}},
-  lessonProgress: Array,
+  lessonProgress: {type: Object, default: {}},
   avatar: String,
 }, {
   minimize: false,

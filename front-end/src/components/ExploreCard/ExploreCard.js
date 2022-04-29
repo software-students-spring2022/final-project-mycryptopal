@@ -1,12 +1,15 @@
+import { useNavigate } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
 import './ExploreCard.css';
 
 function ExploreCard(props) {
+  let navigate = useNavigate();
+
   return (
     <>
-      <Grid container className="exploreCard" onClick={() => window.location.href=`/crypto/${props.symbol}`}>
+      <Grid container className="exploreCard" onClick={() => navigate(`/crypto/${props.symbol}`)}>
         <Grid item xs={5} md={2.5} className="cardImage">
           <img src={props.pic} alt = 'crypto-logo'/>
         </Grid>

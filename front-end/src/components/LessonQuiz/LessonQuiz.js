@@ -13,9 +13,12 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import axios from 'axios';
 
 function LessonQuiz(props) {
   const navigate = useNavigate();
+  const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
+  const [progress, setProgress] = useState(null);
   const [questions, setQuestions] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState({});
   const [correctCount, setCorrectCount] = useState(0);
@@ -23,6 +26,59 @@ function LessonQuiz(props) {
   const [correctOpen, setCorrectOpen] = useState(false);
   const [incorrectOpen, setIncorrectOpen] = useState(false);
   const [completeOpen, setCompleteOpen] = useState(false);
+
+  async function getProgress() {
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/progress/${props.lessonId}`, {headers: authHeader});
+    const data = res.data;
+    setProgress(data.progress);
+  }
+
+  useEffect(() => {
+    getProgress();
+    setQuestions(props.questions);
+  }, []);
+
+  useEffect(() => {
+    if (questions) {
+      setCurrentQuestion(questions[0]);
+    }
+  }, [questions]);
+
+  useEffect(() => {
+    if (progress) {
+      setCorrectCount(Object.keys(progress).length);
+      const questionNum = currentQuestion.number;
+      if (progress[questionNum]) {
+        document.getElementById('quiz-answer').value = currentQuestion.answer;
+        document.getElementById('quiz-answer').setAttribute('readonly', true);
+        if (!complete) {
+          document.getElementById('quiz-center').style.visibility = 'hidden';
+        }
+      } else {
+        document.getElementById('quiz-answer').value='';
+        document.getElementById('quiz-answer').removeAttribute('readonly', false);
+        document.getElementById('quiz-center').style.visibility = 'visible';
+      }
+      if (questionNum === questions[0].number) {
+        document.getElementById('left-arrow').style.visibility = 'hidden';
+      } else if (questionNum === questions.slice(-1)[0].number) {
+        document.getElementById('right-arrow').style.visibility = 'hidden';
+      } else {
+        document.getElementById('left-arrow').style.visibility = 'visible';
+        document.getElementById('right-arrow').style.visibility = 'visible';
+      }
+    }
+  }, [progress, currentQuestion]);
+
+  useEffect(() => {
+    if (questions) {
+      if (correctCount === questions.length) {
+        setCompleteOpen(true);
+        setComplete(true);
+        document.getElementById('quiz-center').style.visibility = 'visible';
+      }
+    }
+  }, [correctCount]);
 
   function redirectEnterKey() {
     const centerButton = document.getElementById('quiz-center');
@@ -41,16 +97,16 @@ function LessonQuiz(props) {
     setCurrentQuestion(questions[getQuestionIndex(currentQuestion.number) + 1]);
   }
 
-  function checkAnswer() {
+  async function checkAnswer() {
     const answerBox = document.getElementById('quiz-answer');
     const userAnswer = answerBox.value.toLowerCase();
     const isCorrect = (userAnswer === currentQuestion.answer.toLowerCase());
     if (isCorrect) {
-      currentQuestion.answered = true;
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/progress/${props.lessonId}`, {questionNumber: currentQuestion.number}, {headers: authHeader});
+      getProgress();
       document.getElementById('quiz-center').style.visibility = 'hidden';
       answerBox.value = currentQuestion.answer;
       setCorrectOpen(true);
-      setCorrectCount(correctCount + 1);
     } else {
       setIncorrectOpen(true);
     }
@@ -58,6 +114,7 @@ function LessonQuiz(props) {
 
   function advanceLessons() {
     navigate(`/lesson/id/${parseInt(props.lessonId)+1}`);
+    navigate(0);
   }
 
   function handleCorrectClose(event, reason) {
@@ -81,54 +138,6 @@ function LessonQuiz(props) {
     setCompleteOpen(false);
   };
 
-
-  useEffect(() => {
-    setQuestions(props.questions);
-  }, [props.questions]);
-
-  useEffect(() => {
-    if (questions) {
-      setCurrentQuestion(questions[0]);
-    }
-  }, [questions]);
-
-
-  useEffect(() => {
-    if (questions) {
-      if (currentQuestion.answered) {
-        document.getElementById('quiz-answer').value = currentQuestion.answer;
-        document.getElementById('quiz-answer').setAttribute('readonly', true);
-        if (!complete) {
-          document.getElementById('quiz-center').style.visibility = 'hidden';
-        }
-      } else {
-        document.getElementById('quiz-answer').value='';
-        document.getElementById('quiz-answer').removeAttribute('readonly', false);
-        document.getElementById('quiz-center').style.visibility = 'visible';
-      }
-      const questionNum = currentQuestion.number;
-      if (questionNum === questions[0].number) {
-        document.getElementById('left-arrow').style.visibility = 'hidden';
-      } else if (questionNum === questions.slice(-1)[0].number) {
-        document.getElementById('right-arrow').style.visibility = 'hidden';
-      } else {
-        document.getElementById('left-arrow').style.visibility = 'visible';
-        document.getElementById('right-arrow').style.visibility = 'visible';
-      }
-    }
-  }, [currentQuestion, questions, complete]);
-
-  useEffect(() => {
-    if (questions) {
-      if (correctCount === questions.length) {
-        setCompleteOpen(true);
-        setComplete(true);
-        document.getElementById('quiz-center').style.visibility = 'visible';
-      }
-    }
-  }, [correctCount, questions]);
-
-
   return (
     <>
       <Stack>
@@ -145,7 +154,7 @@ function LessonQuiz(props) {
         <div className="quizAnswer">
           <TextField name="user-answer" id="quiz-answer" variant="filled" onKeyDown={(evt) => {
             if (evt.key === 'Enter') {
-              if (!currentQuestion.answered) {
+              if (!progress[currentQuestion.number]) {
                 redirectEnterKey();
               }
             }

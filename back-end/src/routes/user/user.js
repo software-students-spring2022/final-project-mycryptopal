@@ -123,6 +123,43 @@ router.post('/update/avatar', upload.single('avatar'), (req, res) => {
   }
 });
 
+router.get('/progress/:lessonId', async (req, res) => {
+  const userId = req.user.user_id;
+  const lessonId = req.params.lessonId;
+  try {
+    const user = await User.findOne({user_id: userId});
+    const progress = user.lessonProgress[lessonId] || {};
+    res.json({success: true, progress: progress});
+  } catch (err) {
+    console.log('Error getting user lesson progress');
+    console.log(err);
+    res.status(500).json({success: false, error: 'Server error'});
+  }
+});
+
+router.post('/update/progress/:lessonId', async (req, res) => {
+  const userId = req.user.user_id;
+  const lessonId = req.params.lessonId;
+  const questionNumber = parseInt(req.body.questionNumber);
+  console.log(req.body)
+  try {
+    const user = await User.findOne({user_id: userId});
+    const progress = user.lessonProgress;
+    if(!progress[lessonId]) {
+      progress[lessonId] = {};
+    }
+    const currentLessonProgress = progress[lessonId];
+    currentLessonProgress[questionNumber] = true;
+    user.markModified('lessonProgress');
+    user.save();
+    res.json({success: true});
+  } catch (err) {
+    console.log('Error updating user lesson progress');
+    console.log(err);
+    res.status(500).json({success: false, error: 'Server error'});
+  }
+});
+
 router.get('/info', (req, res) => {
   const user = req.user;
   res.json(user);

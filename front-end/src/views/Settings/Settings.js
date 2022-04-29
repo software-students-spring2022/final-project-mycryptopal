@@ -1,14 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Settings.css';
 import AvatarUploader from '../../components/AvatarUploader/AvatarUploader';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
+import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 
 function Settings() {
+  let navigate = useNavigate();
   const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
   const [user, setUser] = useState({});
 
@@ -24,7 +27,7 @@ function Settings() {
 
     try {
       await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/info`, userInput, {headers: authHeader});
-      window.location.href = '/settings';
+      navigate(0);
     } catch (err) {
       console.log('Error updating user info');
       console.log(err.response.data);
@@ -42,7 +45,7 @@ function Settings() {
 
     try {
       await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/credentials`, userInput, {headers: authHeader});
-      window.location.href = '/settings';
+      navigate(0);
     }
     catch(err) {
       console.log('Error updating user password');
@@ -92,7 +95,9 @@ function Settings() {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <TextField name='username' id="uname-field" label="Username" variant="outlined" placeholder={user.username} fullWidth InputLabelProps={{shrink: true}}/>
+                  <Tooltip title="Must have at least 6 characters" placement="top">
+                    <TextField name='username' id="uname-field" label="Username" variant="outlined" placeholder={user.username} fullWidth InputLabelProps={{shrink: true}}/>
+                  </Tooltip>
                 </Grid>
 
                 <Grid item xs={12}>
@@ -123,7 +128,9 @@ function Settings() {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <TextField id="new-pass-field" name="newPassword" label="New Password" variant="outlined" fullWidth type={'password'} InputLabelProps={{shrink: true}} />
+                  <Tooltip title="Must have at least 6 characters, 1 uppercase letter, 1 lowercase letter, and 1 number" placement="top">
+                    <TextField id="new-pass-field" name="newPassword" label="New Password" variant="outlined" fullWidth type={'password'} InputLabelProps={{shrink: true}} />
+                  </Tooltip>
                 </Grid>
 
                 <Grid item xs={12}>

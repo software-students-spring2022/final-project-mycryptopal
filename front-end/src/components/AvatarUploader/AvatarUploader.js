@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useRef, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import './AvatarUploader.css';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 
 function AvatarUploader(props) {
+  let navigate = useNavigate();
   const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
   const fileDialog = useRef(null);
   const [avatarURL, setAvatarURL] = useState('');
@@ -35,7 +37,7 @@ function AvatarUploader(props) {
             uploadForm,
             {headers: authHeader});
         if (res.data.success) {
-          window.location.href = '/settings';
+          navigate(0);
         } else {
           console.log(res.data.error);
         }
