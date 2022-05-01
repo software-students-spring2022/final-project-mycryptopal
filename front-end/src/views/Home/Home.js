@@ -19,11 +19,6 @@ import {
 } from 'recharts';
 import axios from 'axios';
 
-// Welcome to MyCryptoPal, the educational cryptocurrency platform of the year! Our team's mission statement
-// is to provide users with the ability to learn more about trading cryptocurrency without having to deal with 
-// real money. This simulation allows users to learn more about the technology powering blockchain! Let's get 
-// started by adding cryptocurrency to your portfolio!
-
 function Home() {
   const [allocations, setAllocations] = useState([]);
   const [colors, setColors] = useState([]);
