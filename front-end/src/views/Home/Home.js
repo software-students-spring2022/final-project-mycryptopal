@@ -35,6 +35,13 @@ function Home() {
     async function getAllocations() {
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/assets`, {headers: authHeader});
       const data = res.data.assets;
+
+      const isEmpty = Object.keys(data).length === 0;
+      console.log(data);
+      console.log(isEmpty);
+      
+
+
       const assetSum = Object.values(data).reduce((sum, current) => sum + current, 0);
       const formattedData = Object.keys(data).reduce((result, current, index) => {
         const entry = {};
