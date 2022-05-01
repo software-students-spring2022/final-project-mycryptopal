@@ -32,6 +32,7 @@ function Portfolio() {
   const [symbols, setSymbols] = useState([]);
   const [minTick, setMinTick] = useState(0);
   const [maxTick, setMaxTick] = useState(0);
+  const [emptyAssetDialogBox, setEmptyAssetDialogBox] = useState(false);
   const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
 
   useEffect(() => {
