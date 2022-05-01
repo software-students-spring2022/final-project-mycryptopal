@@ -93,6 +93,11 @@ function Portfolio() {
 
   const handleChangeInterval = (event) => setInterval(event.target.value);
 
+  function handleDialogClose() {
+    setEmptyAssetDialogBox(false);
+    // add code that redirects user to crypto/btc
+  }
+
   return (
     <>
       <div id="page-title">
