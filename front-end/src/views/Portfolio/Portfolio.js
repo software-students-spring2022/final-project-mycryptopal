@@ -11,6 +11,17 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
+import Alert from '@mui/material/Alert';
+import Box from '@mui/system/Box';
+import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Snackbar from '@mui/material/Snackbar';
+import TextField from '@mui/material/TextField';
 import {
   LineChart,
   CartesianGrid,
@@ -96,6 +107,19 @@ function Portfolio() {
               My Assets
             </Typography>
           </Grid>
+
+          <Dialog open={emptyAssetDialogBox}>
+          <DialogTitle> Please Add Assets </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Please add assets into your crypto portfolio. Empty portfolios limit the functionality of MyCryptoPal. 
+              Certain features are disabled if there are no assets present. Thank you.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleDialogClose}>Explore Crypto</Button>
+          </DialogActions>
+        </Dialog>
 
           <Grid item xs={0} md={3}/>
 
