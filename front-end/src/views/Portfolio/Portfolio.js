@@ -45,6 +45,13 @@ function Portfolio() {
   }, []);
 
   useEffect(() => {
+    const isEmpty = Object.keys(assets).length === 0;
+    if (isEmpty) {
+      setEmptyAssetDialogBox(true);
+    } 
+    else {
+      setEmptyAssetDialogBox(false);
+    }
     setSymbols(Object.keys(assets));
   }, [assets]);
 
