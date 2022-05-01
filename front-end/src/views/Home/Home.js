@@ -8,6 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useNavigate } from 'react-router-dom';
 import {
   Tooltip,
   Legend,
@@ -28,6 +29,7 @@ function Home() {
   const [colors, setColors] = useState([]);
   const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
   const [emptyAssetDialogBox, setEmptyAssetDialogBox] = useState(false);
+  let navigate = useNavigate();
 
   // API call for mock asset allocation data
   useEffect(() => {
@@ -36,17 +38,12 @@ function Home() {
       const data = res.data.assets;
 
       const isEmpty = Object.keys(data).length === 0;
-      console.log(data);
-      console.log(isEmpty);
-
       if (isEmpty) {
         setEmptyAssetDialogBox(true);
       } 
       else {
         setEmptyAssetDialogBox(false);
       }
-
-
       const assetSum = Object.values(data).reduce((sum, current) => sum + current, 0);
       const formattedData = Object.keys(data).reduce((result, current, index) => {
         const entry = {};
@@ -68,11 +65,6 @@ function Home() {
     const randomColors = new Array(allocations.length).fill(0).map(() => getRandomColor());
     setColors(randomColors);
   }, [allocations]);
-
-  function handleDialogClose() {
-    setEmptyAssetDialogBox(false);
-    // add code that redirects user to crypto/btc
-  }
 
   return (
     <>
@@ -107,7 +99,7 @@ function Home() {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleDialogClose}>Explore Crypto</Button>
+            <Button onClick={() => navigate('/explore')}>Explore Crypto</Button>
           </DialogActions>
         </Dialog>
         <div className='divider'></div>
