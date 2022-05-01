@@ -2,18 +2,12 @@ import {useState, useEffect} from 'react';
 import './Home.css';
 import NewsFeed from '../../components/NewsFeed/NewsFeed';
 import Typography from '@mui/material/Typography';
-import Alert from '@mui/material/Alert';
-import Box from '@mui/system/Box';
 import Button from '@mui/material/Button';
-import Chip from '@mui/material/Chip';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Grid from '@mui/material/Grid';
-import Snackbar from '@mui/material/Snackbar';
-import TextField from '@mui/material/TextField';
 import {
   Tooltip,
   Legend,
