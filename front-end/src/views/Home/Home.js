@@ -16,6 +16,7 @@ function Home() {
   const [allocations, setAllocations] = useState([]);
   const [colors, setColors] = useState([]);
   const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
+  const [newUserDialogBox, setNewUserDialogBox] = useState(true);
 
   // API call for mock asset allocation data
   useEffect(() => {
