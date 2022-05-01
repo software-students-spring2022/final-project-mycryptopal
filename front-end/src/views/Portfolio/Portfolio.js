@@ -47,19 +47,19 @@ function Portfolio() {
     async function getAssets() {
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/assets`, {headers: authHeader});
       const data = res.data.assets;
+      const isEmpty = Object.keys(data).length === 0;
+      if (isEmpty) {
+        setEmptyAssetDialogBox(true);
+      } 
+      else {
+        setEmptyAssetDialogBox(false);
+      }
       setAssets(data);
     }
     getAssets();
   }, []);
 
   useEffect(() => {
-    const isEmpty = Object.keys(assets).length === 0;
-    if (isEmpty) {
-      setEmptyAssetDialogBox(true);
-    } 
-    else {
-      setEmptyAssetDialogBox(false);
-    }
     setSymbols(Object.keys(assets));
   }, [assets]);
 
