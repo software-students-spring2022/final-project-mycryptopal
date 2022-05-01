@@ -24,11 +24,16 @@ import {
 } from 'recharts';
 import axios from 'axios';
 
+// Welcome to MyCryptoPal, the educational cryptocurrency platform of the year! Our team's mission statement
+// is to provide users with the ability to learn more about trading cryptocurrency without having to deal with 
+// real money. This simulation allows users to learn more about the technology powering blockchain! Let's get 
+// started by adding cryptocurrency to your portfolio!
+
 function Home() {
   const [allocations, setAllocations] = useState([]);
   const [colors, setColors] = useState([]);
   const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
-  const [newUserDialogBox, setNewUserDialogBox] = useState(false);
+  const [emptyAssetDialogBox, setEmptyAssetDialogBox] = useState(false);
 
   // API call for mock asset allocation data
   useEffect(() => {
@@ -39,7 +44,13 @@ function Home() {
       const isEmpty = Object.keys(data).length === 0;
       console.log(data);
       console.log(isEmpty);
-      
+
+      if (isEmpty) {
+        setEmptyAssetDialogBox(true);
+      } 
+      else {
+        setEmptyAssetDialogBox(false);
+      }
 
 
       const assetSum = Object.values(data).reduce((sum, current) => sum + current, 0);
@@ -65,7 +76,7 @@ function Home() {
   }, [allocations]);
 
   function handleDialogClose() {
-    setNewUserDialogBox(false);
+    setEmptyAssetDialogBox(false);
     // add code that redirects user to crypto/btc
   }
 
@@ -93,18 +104,16 @@ function Home() {
             </ResponsiveContainer>
           </div>
         </div>
-        <Dialog open={newUserDialogBox}>
-          <DialogTitle> User Tutorial </DialogTitle>
+        <Dialog open={emptyAssetDialogBox}>
+          <DialogTitle> Please Add Assets </DialogTitle>
           <DialogContent>
             <DialogContentText>
-            Welcome to MyCryptoPal, the educational cryptocurrency platform of the year! Our team's mission statement
-            is to provide users with the ability to learn more about trading cryptocurrency without having to deal with 
-            real money. This simulation allows users to learn more about the technology powering blockchain! Let's get 
-            started by adding cryptocurrency to your portfolio!
+              Please add assets into your crypto portfolio. Empty portfolios limit the functionality of MyCryptoPal. 
+              Certain features are disabled if there are no assets present. Thank you.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleDialogClose}>Add BTC</Button>
+            <Button onClick={handleDialogClose}>Explore Crypto</Button>
           </DialogActions>
         </Dialog>
         <div className='divider'></div>
