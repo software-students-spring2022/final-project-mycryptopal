@@ -17,6 +17,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useNavigate } from 'react-router-dom';
 import {
   LineChart,
   CartesianGrid,
@@ -40,6 +41,7 @@ function Portfolio() {
   const [maxTick, setMaxTick] = useState(0);
   const [emptyAssetDialogBox, setEmptyAssetDialogBox] = useState(false);
   const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
+  let navigate = useNavigate();
 
   useEffect(() => {
     async function getAssets() {
@@ -87,12 +89,6 @@ function Portfolio() {
   const handleChangeCrypto = (event) => setSymbol(event.target.value);
 
   const handleChangeInterval = (event) => setInterval(event.target.value);
-
-  function handleDialogClose() {
-    setEmptyAssetDialogBox(false);
-    // add code that redirects user to crypto/btc
-  }
-
   return (
     <>
       <div id="page-title">
@@ -117,7 +113,7 @@ function Portfolio() {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleDialogClose}>Explore Crypto</Button>
+            <Button onClick={() => navigate('/explore')}>Explore Crypto</Button>
           </DialogActions>
         </Dialog>
 
