@@ -2,6 +2,18 @@ import {useState, useEffect} from 'react';
 import './Home.css';
 import NewsFeed from '../../components/NewsFeed/NewsFeed';
 import Typography from '@mui/material/Typography';
+import Alert from '@mui/material/Alert';
+import Box from '@mui/system/Box';
+import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Grid from '@mui/material/Grid';
+import Snackbar from '@mui/material/Snackbar';
+import TextField from '@mui/material/TextField';
 import {
   Tooltip,
   Legend,
@@ -16,7 +28,7 @@ function Home() {
   const [allocations, setAllocations] = useState([]);
   const [colors, setColors] = useState([]);
   const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
-  const [newUserDialogBox, setNewUserDialogBox] = useState(true);
+  const [newUserDialogBox, setNewUserDialogBox] = useState(false);
 
   // API call for mock asset allocation data
   useEffect(() => {
@@ -36,6 +48,7 @@ function Home() {
     getAllocations();
   }, []);
 
+
   useEffect(() => {
     function getRandomColor() {
       return '#' + Math.floor(Math.random()*16777215).toString(16).toString();
@@ -43,6 +56,11 @@ function Home() {
     const randomColors = new Array(allocations.length).fill(0).map(() => getRandomColor());
     setColors(randomColors);
   }, [allocations]);
+
+  function handleDialogClose() {
+    setNewUserDialogBox(false);
+    // add code that redirects user to crypto/btc
+  }
 
   return (
     <>
@@ -68,6 +86,20 @@ function Home() {
             </ResponsiveContainer>
           </div>
         </div>
+        <Dialog open={newUserDialogBox}>
+          <DialogTitle> User Tutorial </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+            Welcome to MyCryptoPal, the educational cryptocurrency platform of the year! Our team's mission statement
+            is to provide users with the ability to learn more about trading cryptocurrency without having to deal with 
+            real money. This simulation allows users to learn more about the technology powering blockchain! Let's get 
+            started by adding cryptocurrency to your portfolio!
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleDialogClose}>Add BTC</Button>
+          </DialogActions>
+        </Dialog>
         <div className='divider'></div>
         <div id="news">
           <NewsFeed/>
