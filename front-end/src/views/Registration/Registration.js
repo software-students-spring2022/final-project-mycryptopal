@@ -14,6 +14,7 @@ function Registration() {
   let navigate = useNavigate();
 
   const [response, setResponse] = useState({});
+  const [failAlert, setFailAlert] = useState(false);
 
   async function handleSubmit(evt) {
     evt.preventDefault();
@@ -31,13 +32,16 @@ function Registration() {
       console.log(`Server response: ${JSON.stringify(res.data, null, 0)}`);
       setResponse(res.data);
     })
-    .catch(err => console.log(err.response.data));
+    .catch(err => console.log("err.response.data"));
   }
 
   useEffect(() => {
     if (response.success) {
       console.log(`User successfully registered: ${response.username}`);
       navigate('/login');
+    }
+    else {
+      setFailAlert(true);
     }
   }, [response]);
 
