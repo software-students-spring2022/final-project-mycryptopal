@@ -7,6 +7,8 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 import axios from 'axios';
 
 function Registration() {
@@ -14,6 +16,14 @@ function Registration() {
   let navigate = useNavigate();
 
   const [response, setResponse] = useState({});
+  const [failAlert, setFailAlert] = useState(false);
+
+  function handleFailAlert(event, reason) {
+      if (reason === 'clickaway') {
+        return;
+      }
+      setFailAlert(false);
+  }
 
   async function handleSubmit(evt) {
     evt.preventDefault();
@@ -31,7 +41,10 @@ function Registration() {
       console.log(`Server response: ${JSON.stringify(res.data, null, 0)}`);
       setResponse(res.data);
     })
-    .catch(err => console.log(err.response.data));
+    .catch(err => {
+      console.log("err.response.data")
+      setFailAlert(true);
+    });
   }
 
   useEffect(() => {
@@ -109,6 +122,13 @@ function Registration() {
 
           </Grid>
         </Grid>
+
+        <Snackbar open={failAlert} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleFailAlert}>
+          <Alert onClose={handleFailAlert} severity="info" sx={{width: '100%'}}>
+              Please Enter fields with at least 6 characters. The Password must contain 
+              at least one uppercase, one lowercase and one number.
+          </Alert>
+        </Snackbar>
 
         <Grid item className="formVertical formSurrounds" xs={12} md={12}></Grid>
 
