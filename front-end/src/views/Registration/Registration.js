@@ -17,6 +17,7 @@ function Registration() {
 
   const [response, setResponse] = useState({});
   const [failAlert, setFailAlert] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   function handleFailAlert(event, reason) {
       if (reason === 'clickaway') {
@@ -42,7 +43,12 @@ function Registration() {
       setResponse(res.data);
     })
     .catch(err => {
-      console.log("err.response.data")
+      if(err.response.data.error) {
+        setErrorMessage(err.response.data.error);
+      }
+      else {
+        setErrorMessage('Username and password should have at least 6 characters, and email should be of a valid format. Password must contain at least one uppercase, one lowercase and one number.')
+      }
       setFailAlert(true);
     });
   }
@@ -124,9 +130,8 @@ function Registration() {
         </Grid>
 
         <Snackbar open={failAlert} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleFailAlert}>
-          <Alert onClose={handleFailAlert} severity="info" sx={{width: '100%'}}>
-              Please Enter fields with at least 6 characters. The Password must contain 
-              at least one uppercase, one lowercase and one number.
+          <Alert onClose={handleFailAlert} severity="error" sx={{width: '100%'}}>
+              {errorMessage}
           </Alert>
         </Snackbar>
 

@@ -108,8 +108,8 @@ function Login() {
 
         <Grid item className="formVertical formSurrounds" xs={12} md={12}></Grid>
         <Snackbar open={failAlert} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleFailAlert}>
-          <Alert onClose={handleFailAlert} severity="info" sx={{width: '100%'}}>
-              Invalid Username or Password. Please Try Again
+          <Alert onClose={handleFailAlert} severity="error" sx={{width: '100%'}}>
+              Invalid Username or Password. Please Try Again.
           </Alert>
         </Snackbar>
       </Grid>
