@@ -2,6 +2,13 @@ import {useState, useEffect} from 'react';
 import './Home.css';
 import NewsFeed from '../../components/NewsFeed/NewsFeed';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { useNavigate } from 'react-router-dom';
 import {
   Tooltip,
   Legend,
@@ -16,12 +23,22 @@ function Home() {
   const [allocations, setAllocations] = useState([]);
   const [colors, setColors] = useState([]);
   const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
+  const [emptyAssetDialogBox, setEmptyAssetDialogBox] = useState(false);
+  let navigate = useNavigate();
 
   // API call for mock asset allocation data
   useEffect(() => {
     async function getAllocations() {
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/assets`, {headers: authHeader});
       const data = res.data.assets;
+
+      const isEmpty = Object.keys(data).length === 0;
+      if (isEmpty) {
+        setEmptyAssetDialogBox(true);
+      } 
+      else {
+        setEmptyAssetDialogBox(false);
+      }
       const assetSum = Object.values(data).reduce((sum, current) => sum + current, 0);
       const formattedData = Object.keys(data).reduce((result, current, index) => {
         const entry = {};
@@ -34,6 +51,7 @@ function Home() {
     }
     getAllocations();
   }, []);
+
 
   useEffect(() => {
     function getRandomColor() {
@@ -67,6 +85,18 @@ function Home() {
             </ResponsiveContainer>
           </div>
         </div>
+        <Dialog open={emptyAssetDialogBox}>
+          <DialogTitle> Please Add Assets </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Please add assets into your crypto portfolio. Empty portfolios limit the functionality of MyCryptoPal. 
+              Certain features are disabled if there are no assets present. Thank you.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => navigate('/explore')}>Explore Crypto</Button>
+          </DialogActions>
+        </Dialog>
         <div className='divider'></div>
         <div id="news">
           <NewsFeed/>

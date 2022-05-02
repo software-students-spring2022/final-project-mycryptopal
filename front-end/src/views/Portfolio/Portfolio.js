@@ -11,6 +11,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { useNavigate } from 'react-router-dom';
 import {
   LineChart,
   CartesianGrid,
@@ -32,12 +39,21 @@ function Portfolio() {
   const [symbols, setSymbols] = useState([]);
   const [minTick, setMinTick] = useState(0);
   const [maxTick, setMaxTick] = useState(0);
+  const [emptyAssetDialogBox, setEmptyAssetDialogBox] = useState(false);
   const authHeader = {Authorization: `JWT ${localStorage.getItem('token')}`};
+  let navigate = useNavigate();
 
   useEffect(() => {
     async function getAssets() {
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/assets`, {headers: authHeader});
       const data = res.data.assets;
+      const isEmpty = Object.keys(data).length === 0;
+      if (isEmpty) {
+        setEmptyAssetDialogBox(true);
+      } 
+      else {
+        setEmptyAssetDialogBox(false);
+      }
       setAssets(data);
     }
     getAssets();
@@ -73,7 +89,6 @@ function Portfolio() {
   const handleChangeCrypto = (event) => setSymbol(event.target.value);
 
   const handleChangeInterval = (event) => setInterval(event.target.value);
-
   return (
     <>
       <div id="page-title">
@@ -88,6 +103,19 @@ function Portfolio() {
               My Assets
             </Typography>
           </Grid>
+
+          <Dialog open={emptyAssetDialogBox}>
+          <DialogTitle> Please Add Assets </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Please add assets into your crypto portfolio. Empty portfolios limit the functionality of MyCryptoPal. 
+              Certain features are disabled if there are no assets present. Thank you.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => navigate('/explore')}>Explore Crypto</Button>
+          </DialogActions>
+        </Dialog>
 
           <Grid item xs={0} md={3}/>
 
