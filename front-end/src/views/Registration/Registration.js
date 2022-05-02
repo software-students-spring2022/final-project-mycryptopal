@@ -115,6 +115,12 @@ function Registration() {
           </Grid>
         </Grid>
 
+        <Snackbar open={failAlert} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleCancelAlertClose}>
+          <Alert onClose={handleCancelAlertClose} severity="info" sx={{width: '100%'}}>
+              Please Enter an Appropiate Username and Password.
+          </Alert>
+        </Snackbar>
+
         <Grid item className="formVertical formSurrounds" xs={12} md={12}></Grid>
 
       </Grid>
