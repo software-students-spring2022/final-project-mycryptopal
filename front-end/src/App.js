@@ -30,7 +30,7 @@ function App() {
           <Route path='/settings' element={<Settings />} />
           <Route path='crypto' element={<Explore />} />
           <Route path='/crypto/:symbol' element={<Crypto />} />
-          <Route path='/lesson/id/:lessonId' element={<Lesson />} />
+          <Route path='/learn/id/:lessonId' element={<Lesson />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </div>

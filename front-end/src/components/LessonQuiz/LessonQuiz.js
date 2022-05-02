@@ -114,7 +114,7 @@ function LessonQuiz(props) {
   }
 
   function advanceLessons() {
-    navigate(`/lesson/id/${parseInt(props.lessonId)+1}`);
+    navigate(`/learn/id/${parseInt(props.lessonId)+1}`);
     navigate(0);
   }
 

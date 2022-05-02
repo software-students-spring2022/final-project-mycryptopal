@@ -9,7 +9,7 @@ function LessonCircle(props) {
   return (
     <>
       <div className={`mapButton ${COLORS[props.num % 4]} circle`} onClick={() => {
-        navigate(`/lesson/id/${props.num}`);
+        navigate(`/learn/id/${props.num}`);
       }}>
         <Typography variant='h6'>
           Lesson {props.num}
