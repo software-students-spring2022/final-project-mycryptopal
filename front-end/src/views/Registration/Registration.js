@@ -72,10 +72,10 @@ function Registration() {
                       Start Your Journey Today!
                   </Typography>
                 </Grid>
-
+{/* 
                 <Grid item className="appLogo">
                   <img src={require('../../imageResources/logo.png')} alt="MyCryptoPal Logo"/>
-                </Grid>
+                </Grid> */}
 
                 <Grid item className="entryForm">
                   <form onSubmit={handleSubmit}>
