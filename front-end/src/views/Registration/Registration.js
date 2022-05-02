@@ -125,7 +125,8 @@ function Registration() {
 
         <Snackbar open={failAlert} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleFailAlert}>
           <Alert onClose={handleFailAlert} severity="info" sx={{width: '100%'}}>
-              Please Enter an Appropiate Username and Password.
+              Please Enter fields with at least 6 characters. The Password must contain 
+              at least one uppercase, one lowercase and one number.
           </Alert>
         </Snackbar>
 
