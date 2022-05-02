@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Tooltip from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import axios from 'axios';
@@ -73,15 +72,9 @@ function Registration() {
             <Grid item xs={11} md={4} className="formBody">
               <Grid container spacing={1} height={'100%'} alignItems={'center'} justifyContent={'center'}>
 
-                <Grid item className="tagLine">
-                  <Typography fontSize={'3vh'}>
-                      Start Your Journey Today!
-                  </Typography>
-                </Grid>
-{/* 
-                <Grid item className="appLogo">
+                <Grid item className="appLogo" xs={12} md={7}>
                   <img src={require('../../imageResources/logo.png')} alt="MyCryptoPal Logo"/>
-                </Grid> */}
+                </Grid>
 
                 <Grid item className="entryForm">
                   <form onSubmit={handleSubmit}>
@@ -129,7 +122,7 @@ function Registration() {
           </Grid>
         </Grid>
 
-        <Snackbar open={failAlert} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleFailAlert}>
+        <Snackbar open={failAlert} autoHideDuration={6000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleFailAlert}>
           <Alert onClose={handleFailAlert} severity="error" sx={{width: '100%'}}>
               {errorMessage}
           </Alert>

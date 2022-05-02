@@ -5,7 +5,6 @@ import './Login.css';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import axios from 'axios';
@@ -64,16 +63,15 @@ function Login() {
             <Grid item xs={0.5} md={4} className="formLeft formSurrounds"></Grid>
 
             <Grid item xs={11} md={4} className="formBody">
-              <Grid container spacing={1} height={'100%'} alignItems={'center'} justifyContent={'center'}>
+              <Grid container spacing={4} height={'100%'} alignItems={'center'} justifyContent={'center'}>
 
-                <Grid item className="appLogo">
+                <Grid item className="appLogo" xs={12} md={7}>
                   <img src={require('../../imageResources/logo.png')} alt="MyCryptoPal Logo"/>
                 </Grid>
 
                 <Grid item className="entryForm">
                   <form onSubmit={handleSubmit}>
                     <Grid container spacing={3} alignItems={'center'} justifyContent={'center'}>
-
                       <Grid item xs={12} md={7}>
                         <TextField name='username' id="login-user" className="credentials" label="Username" variant="outlined" InputLabelProps={{shrink: true}} required/>
                       </Grid>
@@ -91,9 +89,7 @@ function Login() {
                           navigate('/registration');
                         }}>Don't Have An Account? Register Here!</Button>
                       </Grid>
-
                     </Grid>
-
                   </form>
                 </Grid>
               </Grid>
@@ -107,7 +103,7 @@ function Login() {
         </Grid>
 
         <Grid item className="formVertical formSurrounds" xs={12} md={12}></Grid>
-        <Snackbar open={failAlert} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleFailAlert}>
+        <Snackbar open={failAlert} autoHideDuration={6000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleFailAlert}>
           <Alert onClose={handleFailAlert} severity="error" sx={{width: '100%'}}>
               Invalid Username or Password. Please Try Again.
           </Alert>
