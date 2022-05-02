@@ -141,11 +141,11 @@ router.post('/update/progress/:lessonId', async (req, res) => {
   const userId = req.user.user_id;
   const lessonId = req.params.lessonId;
   const questionNumber = parseInt(req.body.questionNumber);
-  console.log(req.body)
+  console.log(req.body);
   try {
     const user = await User.findOne({user_id: userId});
     const progress = user.lessonProgress;
-    if(!progress[lessonId]) {
+    if (!progress[lessonId]) {
       progress[lessonId] = {};
     }
     const currentLessonProgress = progress[lessonId];
