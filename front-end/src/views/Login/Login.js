@@ -15,6 +15,14 @@ function Login() {
   let navigate = useNavigate();
 
   const [response, setResponse] = useState({});
+  const [failAlert, setFailAlert] = useState(false);
+
+  function handleFailAlert(event, reason) {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setFailAlert(false);
+  }
 
   async function handleSubmit(evt) {
     evt.preventDefault();
@@ -30,7 +38,10 @@ function Login() {
       console.log(`Server response: ${JSON.stringify(res.data, null, 0)}`);
       setResponse(res.data);
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+      setFailAlert(true);
+    });
   }
 
   useEffect(() => {
@@ -94,13 +105,19 @@ function Login() {
               </Grid>
             </Grid>
 
+            
+
             <Grid item xs={0.5} md={4} className="formRight formSurrounds"></Grid>
 
           </Grid>
         </Grid>
 
         <Grid item className="formVertical formSurrounds" xs={12} md={12}></Grid>
-
+        <Snackbar open={failAlert} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleFailAlert}>
+          <Alert onClose={handleFailAlert} severity="info" sx={{width: '100%'}}>
+              Invalid Username or Password. Please Try Again
+          </Alert>
+        </Snackbar>
       </Grid>
     </>
   );
