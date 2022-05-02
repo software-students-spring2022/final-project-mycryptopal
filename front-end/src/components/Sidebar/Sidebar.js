@@ -15,9 +15,16 @@ function Sidebar() {
   let navigate = useNavigate();
   
   return (
-    <Menu>
+    <Menu customBurgerIcon={ <img src={require('../../imageResources/graphicfavicon.ico')} />}>
       <Grid id="home" className="menu-item" onClick={() => navigate('/')}>
-        <Typography variant='h4' fontWeight={'bold'}>MyCryptoPal</Typography>
+        <Grid container spacing={1} alignItems={'center'} justifyContent={'center'}>
+          <Grid item xs={2}>
+            <img src={require('../../imageResources/graphicfavicon.ico')} id="appLogo"/>
+          </Grid>
+          <Grid item xs={10}>
+            <Typography fontSize={27} fontWeight={'bold'}>MyCryptoPal</Typography>
+          </Grid>
+        </Grid>
       </Grid>
 
       <Grid id="portfolio" className="menu-item" >
