@@ -60,7 +60,7 @@ function Registration() {
                 </Grid>
 
                 {/* <Grid item className="appLogo">
-                  <img src="https://picsum.photos/1000" alt="MyCryptoPal Logo"/>
+                  <img src="MYCRYPTOPAL.png" alt="MyCryptoPal Logo"/>
                 </Grid> */}
 
                 <Grid item className="entryForm">
