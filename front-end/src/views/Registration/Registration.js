@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 import axios from 'axios';
 
 function Registration() {
@@ -16,6 +17,13 @@ function Registration() {
 
   const [response, setResponse] = useState({});
   const [failAlert, setFailAlert] = useState(false);
+
+  function handleFailAlert(event, reason) {
+      if (reason === 'clickaway') {
+        return;
+      }
+      setFailAlert(false);
+  }
 
   async function handleSubmit(evt) {
     evt.preventDefault();
@@ -33,16 +41,16 @@ function Registration() {
       console.log(`Server response: ${JSON.stringify(res.data, null, 0)}`);
       setResponse(res.data);
     })
-    .catch(err => console.log("err.response.data"));
+    .catch(err => {
+      console.log("err.response.data")
+      setFailAlert(true);
+    });
   }
 
   useEffect(() => {
     if (response.success) {
       console.log(`User successfully registered: ${response.username}`);
       navigate('/login');
-    }
-    else {
-      setFailAlert(true);
     }
   }, [response]);
 
@@ -115,8 +123,8 @@ function Registration() {
           </Grid>
         </Grid>
 
-        <Snackbar open={failAlert} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleCancelAlertClose}>
-          <Alert onClose={handleCancelAlertClose} severity="info" sx={{width: '100%'}}>
+        <Snackbar open={failAlert} autoHideDuration={2000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} onClose={handleFailAlert}>
+          <Alert onClose={handleFailAlert} severity="info" sx={{width: '100%'}}>
               Please Enter an Appropiate Username and Password.
           </Alert>
         </Snackbar>
