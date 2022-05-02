@@ -53,12 +53,6 @@ function Login() {
             <Grid item xs={11} md={4} className="formBody">
               <Grid container spacing={1} height={'100%'} alignItems={'center'} justifyContent={'center'}>
 
-                <Grid item className="tagLine">
-                  <Typography fontSize={'3vh'}>
-                    Ready to Upgrade your Investing Career?
-                  </Typography>
-                </Grid>
-
                 <Grid item className="appLogo">
                   <img src={require('../../imageResources/logo.png')} alt="MyCryptoPal Logo"/>
                 </Grid>
