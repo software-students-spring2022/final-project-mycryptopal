@@ -49,10 +49,10 @@ describe('Testing /user routes', () => {
 
   describe('GET /user/assets', () => {
     let testUser; let prevAssets;
-    const testAssets = {ETH: 4, XRP: 14, ADA: 32, DOGE: 235, MATIC: 5, BTC: 5};
+    const testAssets = {BTC: 13, ETH: 43, DOGE: 512};
 
     before(async () => {
-      testUser = await User.findOne({user_id: 5}); // nguyen as the test user
+      testUser = await User.findOne({user_id: 1});
       prevAssets = Object.assign({}, testUser.assets);
       testUser.assets = testAssets;
       testUser.markModified('assets');
